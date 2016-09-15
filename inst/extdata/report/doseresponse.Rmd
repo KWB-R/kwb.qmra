@@ -1,0 +1,122 @@
+---
+title: "Dose Response modelling"
+author: "Michael Rustler"
+date: "25 February 2016"
+runtime: shiny
+output: 
+  html_document: 
+    number_sections: yes
+    toc: yes
+fig_caption: yes
+---
+
+
+```{r, cache=FALSE, include=FALSE}
+library(kwb.qmra)
+library(dplyr)
+dr.db <- dr.db_download()
+
+
+dr.db <- dr.db %>% dplyr::select(Group,
+                         Agent, 
+                        `Agent strain`,
+                        `Best fit model*`,
+                        `Optimized parameter(s)`, 
+                        `LD50/ID50`,
+                        `Host type`,
+                         Route,
+                        `Dose units`,
+                         Response, 
+                         Reference)  %>% 
+                dplyr::arrange(Group, Agent) 
+
+library(knitr)
+library(ggplot2)
+library(ggrepel)
+library(shiny)
+```
+
+#Dose-response model database
+
+```{r, echo=FALSE}
+caption <- "Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"
+knitr::kable(dr.db,caption = caption )
+#DT::datatable(doseresponse, caption = caption)
+```
+
+#Example plot
+
+##Play with the model parameters
+
+```{r, fig.width=8, fig.height=5,echo=FALSE, fig.cap="Figure 1: Dose-response exponential model"}
+inputPanel(sliderInput(inputId = "k", 
+                       label = "K (exponential model)",
+                       min = 1E-5,
+                       max = 0.1, step = 0.00001,
+                       value = 1E-3),
+           sliderInput(inputId = "alpha", 
+                       label = "alpha (beta-poission model)",
+                       min =  0,
+                       max = 1, step = 0.01,
+                       value = 0.5),
+          sliderInput(inputId = "N50", 
+                       label = "log10(N50) (beta-poission model)",
+                       min =  0.3,
+                       max = 9.3, step = 0.1,
+                       value = 4)
+           )
+
+p1 <- reactive(plyr::rbind.fill(dr.expo(k = as.numeric(input$k)),
+                                dr.betapoisson(alpha = as.numeric(input$alpha),
+                                               N50 = 10^(as.numeric(input$N50)))))
+
+renderPlot({
+   print(ggplot(p1(), aes(x = dose, 
+                y = infectionProbability, 
+                col = model)) + 
+   geom_point() +
+   scale_x_log10() + 
+   theme_bw() + 
+   ggtitle(sprintf("Expo (k = %1.5f), Beta-poisson (alpha = %1.2f, N50 = %10.0f)", as.numeric(input$k), 
+                   as.numeric(input$alpha), 
+                   10^as.numeric(input$N50))))
+  })
+
+```
+
+## Dose response for all microbial parameters
+
+```{r, echo=FALSE, fig.width=8, fig.height=5, fig.cap="Figure 2: Dose-response for all parameters"}
+dr.db <- dr.db_download()
+dr.model <- dr.db_model(dr.db = dr.db)
+
+
+ggplot( dr.model, aes(x = dose, 
+               y = infectionProbability, col=Group)) + 
+  geom_point() + 
+  scale_x_log10() + 
+  theme_bw()
+
+```
+
+##Dose for all microbial parameters with 50% infection probability
+
+```{r, echo=FALSE, fig.width=8, fig.height=5, fig.cap="Figure 3: Dose for all microbial parameters with 50% infection probability"}
+tt <- dr.model  %>%  
+  filter(infectionProbability > 0.49,
+         infectionProbability < 0.51) %>%  
+  group_by(ID, Group, AgentName)  %>% 
+  summarise(infectionProbability = round(median(infectionProbability),2), 
+            dose = median(dose)) %>%  
+  ungroup() %>% 
+  dplyr::arrange(dose)
+
+ggplot(tt, aes(Group, dose, col = Group)) + 
+  geom_point(position = position_jitter(w = 0, h = 0)) + 
+  geom_text_repel(aes(label = AgentName)) +
+scale_y_log10() + 
+  theme_bw() +
+  guides(fill=FALSE) +
+  ylab("Dose with 50% infection probability")
+
+```

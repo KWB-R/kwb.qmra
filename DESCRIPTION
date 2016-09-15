@@ -1,0 +1,29 @@
+Package: kwb.qmra
+Version: 0.1.1
+Title: QMRA (quantitative microbial risk assessment)
+Author: Michael Rustler
+Maintainer: Michael Rustler <michael.rustler@kompetenz-wasser.de>
+Description: QMRA for water supply systems.
+Depends:
+    R (>= 3.0.0)
+Imports:
+	plyr,
+	dplyr, 
+	xml2,
+	rvest,
+	stringr,
+	sfsmisc,
+	rmarkdown,
+	readr,
+	readxl,
+	tidyr,
+	shiny, 
+	magrittr,
+	EnvStats,
+	ggplot2
+License: MIT + file LICENSE
+LazyLoad: yes
+RoxygenNote: 5.0.1
+Suggests: knitr,
+    ggrepel
+VignetteBuilder: knitr

@@ -1,0 +1,38 @@
+"PathogenID","PathogenName","infection_to_illness","dalys_per_case"
+1,"Bacillus anthracis",NA,NA
+2,"Burkholderia pseudomallei",NA,NA
+3,"Campylobacter jejuni and Campylobacter coli",0.7,0.0046
+4,"Coxiella burnetii",NA,NA
+5,"Escherichia coli enterohemorrhagic (EHEC)",NA,NA
+6,"Escherichia coli",NA,NA
+7,"Francisella tularensis",NA,NA
+8,"Legionella pneumophila",NA,NA
+9,"Listeria monocytogenes (Death as response)",NA,NA
+10,"Listeria monocytogenes (Infection)",NA,NA
+11,"Listeria monocytogenes (Stillbirths)",NA,NA
+12,"Mycobacterium avium",NA,NA
+13,"Pseudomonas aeruginosa (Contact lens)",NA,NA
+14,"Pseudomonas aeruginosa (bacterimia)",NA,NA
+15,"Rickettsia rickettsi",NA,NA
+16,"Salmonella Typhi",NA,NA
+17,"Salmonella anatum",NA,NA
+18,"Salmonella meleagridis",NA,NA
+19,"Salmonella nontyphoid",NA,NA
+20,"Salmonella serotype newport",NA,NA
+21,"Shigella",NA,NA
+22,"Staphylococcus aureus",NA,NA
+23,"Vibrio cholerae",NA,NA
+24,"Yersinia pestis",NA,NA
+25,"Adenovirus",NA,NA
+26,"Echovirus",NA,NA
+27,"Enteroviruses",NA,NA
+28,"Influenza",NA,NA
+29,"Lassa virus",NA,NA
+30,"Poliovirus",NA,NA
+31,"Rhinovirus",NA,NA
+32,"Rotavirus",0.03,0.014
+33,"SARS",NA,NA
+34,"Cryptosporidium parvum and Cryptosporidium hominis",NA,NA
+35,"Endamoeba coli",NA,NA
+36,"Giardia duodenalis",0.3,0.0015
+37,"Naegleria fowleri",NA,NA

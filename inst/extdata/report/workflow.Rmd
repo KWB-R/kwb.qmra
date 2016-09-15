@@ -1,0 +1,65 @@
+---
+title: "QMRA workflow"
+author: "Michael Rustler"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Loading required packages
+
+```{r }
+library(kwb.qmra)
+```
+
+##Configuration
+```{r }
+#### DEFINE DIRECTORY ################
+confDir
+
+#### LOAD ############################
+config <- config_read(confDir)
+```
+
+
+##SIMULATE RISK
+```{r }
+risk <- simulate_risk(config)
+```
+
+## VISUALIZE
+
+```{r fig.width=10,fig.asp=1}
+plot_inflow(risk)
+
+plot_reduction(risk)
+
+plot_effluent(risk)
+
+plot_event_volume(risk)
+
+### Exposure: effluent conc * volume #####
+plot_event_exposure(risk)
+
+#### Dose: based on exposure discrete dose is calculated by using rpois(), for 
+#### details see: simulate_risk() function
+plot_event_dose(risk)
+
+#### Dose-response relationship
+plot_doseresponse(risk)
+
+#### RISK PER EVENT ######################
+plot_event_infectionProb(risk)
+plot_event_illnessProb(risk)
+plot_event_dalys(risk)
+
+#### RISK TOTAL ##########################
+plot_total_infectionProb(risk)
+plot_total_illnessProb(risk)
+plot_total_dalys(risk)
+
+```
+

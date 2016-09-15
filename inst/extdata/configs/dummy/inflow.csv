@@ -1,0 +1,38 @@
+"PathogenID","PathogenName","PathogenGroup","simulate","type","value","min","max","mode","mean","sd","meanlog","sdlog"
+1,"Bacillus anthracis","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+2,"Burkholderia pseudomallei","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+3,"Campylobacter jejuni and Campylobacter coli","Bacteria",1,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+4,"Coxiella burnetii","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+5,"Escherichia coli enterohemorrhagic (EHEC)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+6,"Escherichia coli","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+7,"Francisella tularensis","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+8,"Legionella pneumophila","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+9,"Listeria monocytogenes (Death as response)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+10,"Listeria monocytogenes (Infection)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+11,"Listeria monocytogenes (Stillbirths)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+12,"Mycobacterium avium","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+13,"Pseudomonas aeruginosa (Contact lens)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+14,"Pseudomonas aeruginosa (bacterimia)","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+15,"Rickettsia rickettsi","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+16,"Salmonella Typhi","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+17,"Salmonella anatum","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+18,"Salmonella meleagridis","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+19,"Salmonella nontyphoid","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+20,"Salmonella serotype newport","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+21,"Shigella","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+22,"Staphylococcus aureus","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+23,"Vibrio cholerae","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+24,"Yersinia pestis","Bacteria",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+25,"Adenovirus","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+26,"Echovirus","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+27,"Enteroviruses","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+28,"Influenza","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+29,"Lassa virus","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+30,"Poliovirus","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+31,"Rhinovirus","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+32,"Rotavirus","Viruses",1,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+33,"SARS","Viruses",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+34,"Cryptosporidium parvum and Cryptosporidium hominis","Protozoa",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+35,"Endamoeba coli","Protozoa",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+36,"Giardia duodenalis","Protozoa",1,"uniform",NA,10,10000,NA,NA,NA,NA,NA
+37,"Naegleria fowleri","Protozoa",0,"uniform",NA,10,10000,NA,NA,NA,NA,NA
