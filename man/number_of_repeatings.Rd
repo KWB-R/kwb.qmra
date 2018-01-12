@@ -16,4 +16,3 @@ number of repeatings (used for bayesian analysis)
 Helper function: gets number of repeatings from config
 }
 \keyword{internal}
-

@@ -2,6 +2,7 @@
 #' @return list with $untidy and  $tidy data frames
 #' @seealso \url{http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=162}
 #' @importFrom magrittr %>% 
+#' @import dplyr
 #' @export
 who_getTreatment <- function() {
 

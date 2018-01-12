@@ -23,4 +23,3 @@ writes configuration in confDir subfolder defined in confName
 \description{
 Config: create configuration
 }
-

@@ -17,4 +17,3 @@ writes dummy configuration in confDir
 \description{
 Config: create dummy configuration
 }
-

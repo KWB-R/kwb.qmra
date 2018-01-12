@@ -15,4 +15,3 @@ ggplot for dalys_per_event
 \description{
 plotting
 }
-

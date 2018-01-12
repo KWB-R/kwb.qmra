@@ -34,4 +34,3 @@ Risk calculation: health
 \seealso{
 \code{\link{calc_infection_risk}} for infection risk input
 }
-

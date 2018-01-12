@@ -30,4 +30,3 @@ distribution_repeater(number_of_repeatings =  2,
                        min = 1,
                        max = 10)
 }
-

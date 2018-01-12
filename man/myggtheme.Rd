@@ -13,4 +13,3 @@ default ggplot theme for kwb.qmra
 Helper function: create default ggplot theme
 }
 \keyword{internal}
-

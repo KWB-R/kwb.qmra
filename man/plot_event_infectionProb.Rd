@@ -15,4 +15,3 @@ ggplot for infection probability
 \description{
 plotting
 }
-

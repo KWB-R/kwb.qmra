@@ -17,4 +17,3 @@ ggplot for total infection probability
 \description{
 plotting
 }
-

@@ -17,4 +17,3 @@ stores configuration in R list structure
 \description{
 Config: read configuration
 }
-

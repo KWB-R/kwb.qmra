@@ -20,4 +20,3 @@ tbl_df
 \description{
 Dose-response model: beta-poisson
 }
-

@@ -1,5 +1,5 @@
 Package: kwb.qmra
-Version: 0.1.1
+Version: 0.1.9999
 Title: QMRA (quantitative microbial risk assessment)
 Author: Michael Rustler
 Maintainer: Michael Rustler <michael.rustler@kompetenz-wasser.de>
@@ -23,7 +23,7 @@ Imports:
 	ggplot2
 License: MIT + file LICENSE
 LazyLoad: yes
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: knitr,
     ggrepel
 VignetteBuilder: knitr

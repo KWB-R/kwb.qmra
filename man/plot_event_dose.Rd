@@ -15,4 +15,3 @@ ggplot for dose per event
 \description{
 plotting
 }
-

@@ -23,4 +23,3 @@ absolute offset between "target_infectionRisk_perYear" and
 Backcalculate risk: infection (helper function)
 }
 \keyword{internal}
-

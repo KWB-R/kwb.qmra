@@ -21,4 +21,3 @@ infection risk per year
 Based on exposure days per year and target infection risk per year 
 the acceptable daily infection risk is backcalculated
 }
-

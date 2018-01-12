@@ -21,4 +21,3 @@ default ggplot theme for kwb.qmra
 Helper function: prepare ylogscale appearence
 }
 \keyword{internal}
-

@@ -23,4 +23,3 @@ list random distributions based on configuration file
 \description{
 Create random distribution based on configuration file
 }
-

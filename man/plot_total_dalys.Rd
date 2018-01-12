@@ -22,4 +22,3 @@ ggplot for total DALYs
 \description{
 plotting
 }
-

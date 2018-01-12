@@ -18,4 +18,3 @@ tbl_df
 \description{
 Generate table with different doses for dr.db_download()
 }
-

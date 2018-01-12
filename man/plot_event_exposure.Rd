@@ -15,4 +15,3 @@ ggplot for exposure per event
 \description{
 plotting
 }
-

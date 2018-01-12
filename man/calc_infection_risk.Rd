@@ -41,4 +41,3 @@ Risk calculation: infection
 \code{\link{dr.expo}} for exponential or \code{\link{dr.betapoisson}} 
 for beta-poisson dose-response model
 }
-

@@ -29,4 +29,3 @@ generate html report
 \description{
 Create report (not working for "shiny" reports)
 }
-

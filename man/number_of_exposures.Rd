@@ -16,4 +16,3 @@ number of exposures
 Helper function: gets number of exposures from config
 }
 \keyword{internal}
-

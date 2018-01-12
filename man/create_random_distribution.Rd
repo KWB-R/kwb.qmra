@@ -54,4 +54,3 @@ Create random distribution
 \seealso{
 for random triangle see \code{\link{rtri}}
 }
-

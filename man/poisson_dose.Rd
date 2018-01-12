@@ -15,4 +15,3 @@ dose per event based on poisson process
 \description{
 Helper function: poisson distribution based on exposure per event
 }
-

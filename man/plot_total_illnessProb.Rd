@@ -17,4 +17,3 @@ ggplot for total illness probability
 \description{
 plotting
 }
-
