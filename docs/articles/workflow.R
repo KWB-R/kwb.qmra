@@ -1,42 +1,20 @@
----
-title: "QMRA workflow"
-author: "Michael Rustler"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
-```
 
-##Loading required packages
-
-```{r }
+## ------------------------------------------------------------------------
 library(kwb.qmra)
-```
 
-##Configuration
-```{r }
+## ------------------------------------------------------------------------
 #### DEFINE DIRECTORY ################
 confDir <- system.file("extdata/configs/dummy", package = "kwb.qmra")
 
 #### LOAD ############################
 config <- config_read(confDir) 
-```
 
-
-##SIMULATE RISK
-```{r }
+## ------------------------------------------------------------------------
 risk <- simulate_risk(config)
-```
 
-## VISUALIZE
-
-```{r fig.width=10,fig.asp=1}
+## ----fig.width=10,fig.asp=1----------------------------------------------
 
 
 plot_inflow(risk)
@@ -65,15 +43,9 @@ plot_event_dalys(risk)
 plot_total_infectionProb(risk)
 plot_total_illnessProb(risk)
 plot_total_dalys(risk)
-```
 
+## ----eval=FALSE----------------------------------------------------------
+#  set.seed(seed = 1)
+#  confDirs <- system.file("extdata/configs", package = "kwb.qmra")
+#  report_workflow(confDirs = confDirs)
 
-## Create report
-
-Generates a report for the selected configuration.
-
-```{r eval=FALSE}
-set.seed(seed = 1)
-confDirs <- system.file("extdata/configs", package = "kwb.qmra")
-report_workflow(confDirs = confDirs)
-```

@@ -1,8 +1,7 @@
 Package: kwb.qmra
 Version: 0.1.9999
 Title: QMRA (quantitative microbial risk assessment)
-Author: Michael Rustler
-Maintainer: Michael Rustler <michael.rustler@kompetenz-wasser.de>
+Authors@R: person("Michael", "Rustler", role = c("aut", "cre"), email = "michael.rustler@kompetenz-wasser.de")
 Description: QMRA for water supply systems.
 Depends:
     R (>= 3.0.0)

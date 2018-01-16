@@ -1,0 +1,49 @@
+template:
+  params:
+    bootswatch: cerulean
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: General workflow
+    href: articles/general.html
+  - text: Technical workflow
+    menu: 
+    - text: 1 Installation
+      href: articles/installation.html
+    - text: 2 Usage
+      href: articles/usage.html
+  - text: News
+    href: news/index.html
+  - text: Reference
+    href: reference/index.html
+
+reference:
+  - title: Import data
+    desc: >
+      Import pre-defined CSV configuration files used as input 
+      data for QMRA
+    contents: 
+      - config_read
+
+  - title: Perform QMRA
+    desc: >
+      Functions for performing QMRA
+    contents: 
+      - simulate_risk
+      - simulate_inflow
+      - simulate_treatment
+      - simulate_exposure
+
+  - title: Visualise results
+    desc: >
+      Functions for plotting QMRA results
+    contents: 
+      - starts_with("plot_")
+
+  - title: Export data
+    desc: >
+      Functions for exporting data
+    contents: 
+      - config_write
+      - report_workflow

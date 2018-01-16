@@ -1,0 +1,58 @@
+---
+title: "Installation"
+author: "Michael Rustler"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Technical workflow: installation}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+#1 Pre-required software
+
+
+- [R (>= 3.3.1](https://cloud.r-project.org/): for the development of the R 
+package **kwb.qmra** R 3.3.1 was used. However, also later R releases 
+(e.g. 3.4) should be working.  
+
+- [Pandoc](http://pandoc.org/installing.html): is required to convert the reports 
+from plain text format (markdown) into the different formats (docx, html, pdf). 
+
+- [Miktex](https://miktex.org/download): needs to be installed in case that **pdf** reports 
+should be created.
+
+
+For the advanced user it is further recommended to install the latest version of 
+the integrated development environment (IDE) [RStudio Desktop "open source licence"](https://www.rstudio.com/products/rstudio/download2/#download). 
+
+
+#2 R Packages
+
+Once all [pre-required software](#pre-required-software) is installed the R 
+package installation workflow as described below can be started.
+
+
+##2.1 devtools 
+
+The R package `devtools` is required for downloading and installing the R package 
+`kwb.qmra` from Github. Installation is done by executing the following 
+lines of code in R or RStudio (from now on written as R(Studio)):
+
+```{r eval = FALSE}
+if (!require("devtools")) {
+  install.packages("devtools", repos = "https://cloud.r-project.org")
+}
+```
+
+##2.2 kwb.qmra
+
+Subsequently the R package `kwb.qmra` can be installed in R with the following code:
+
+```{r eval = FALSE}
+if(!require("devtools")) { install.packages("devtools") }
+devtools::install_github(repo = "KWB-R/kwb.qmra", 
+                         build_vignettes = TRUE,
+                         dependencies = TRUE)
+```
+
