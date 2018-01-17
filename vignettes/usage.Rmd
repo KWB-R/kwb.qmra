@@ -197,7 +197,7 @@ knitr::kable(risk$output$total[risk$output$total$repeatID==1, ],
              caption = "Total risk (for first repeat of random generation)")
 ```
 
-##5.6 Export results 
+##6 Export results 
 
 
 E.g. Write reports for all configurations in package subfolder `extdata/configs/` (here: 

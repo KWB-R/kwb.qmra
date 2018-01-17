@@ -17,6 +17,10 @@ navbar:
     href: news/index.html
   - text: Reference
     href: reference/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/kwb-r/kwb.qmra
+
 
 reference:
   - title: Import data

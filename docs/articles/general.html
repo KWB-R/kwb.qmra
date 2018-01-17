@@ -53,7 +53,14 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/kwb-r/kwb.qmra">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -68,7 +75,7 @@
       <h1>General workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">16 January, 2018</h4>
+            <h4 class="date">17 January, 2018</h4>
           </div>
 
     
@@ -76,22 +83,23 @@
 <div class="contents">
 <p>For performing quantitative microbiological risk assessment (QMRA) the open-source R package <code>kwb.qmra</code> (available at: <a href="https://github.com/kwb-r/kwb.qmra">Github</a> and <a href="https://doi.org/10.5281/zenodo.154111">Zenodo</a>) was developed at KWB within the <a href="http://demoware.eu">DEMOWARE</a> project.</p>
 <p>With the <code>kwb.qmra</code> package a QMRA was performed for the Old Ford site within the DEMOWARE project in order to assesss different wastewater reuse options (for details see: <a href="https://doi.org/10.5281/zenodo.159527">Zenodo</a>).</p>
-<p>The general workflow for using the R package <code>kwb.qmra</code> s is shown in the figure below.</p>
+<p>The general workflow for using the R package <code>kwb.qmra</code> is shown in Fig. 1 below.</p>
 <div class="figure">
-<img src="qmra_workflow.jpg" alt="General workflow"><p class="caption">General workflow</p>
+<img src="qmra_workflow.jpg" alt="Fig 1: General workflow"><p class="caption">Fig 1: General workflow</p>
 </div>
-<p>The QMRA calculation is based on input data which are stored in six different .CSV configuration files as shown belo.</p>
+<p>The QMRA calculation is based on input data which are stored in six different .CSV configuration files as shown in Fig. 2 below.</p>
 <div class="figure">
-<img src="dummy_config.jpg" alt="Screenshot of the six required .CSV configuration files"><p class="caption">Screenshot of the six required .CSV configuration files</p>
+<img src="dummy_config.jpg" alt="Fig. 2: Screenshot of the six required .CSV configuration files"><p class="caption">Fig. 2: Screenshot of the six required .CSV configuration files</p>
 </div>
 <p>These contain the required information for:</p>
 <ul>
 <li><p><strong>Inflow concentrations</strong> (defined in <code>inflow.csv</code>): inflow concentrations (fixed value or following a predefined distribution: e.g. min/max values in case of uniform distribution). Inflow concentrations need to be defined for all pathogens that should be used for QMRA.</p></li>
 <li><p><strong>Treatment processes</strong> (defined in <code>treatment_processes.csv</code>): for each treatment process the log-removals for the three different pathogen groups (i.e. Bacteria, Protozoa, Viruses) need to be defined. Again these can be either defined as fixed value or following a used defined distribution (e.g. uniform, which requires specifying min/max values). Ranges for log-removals can be found for example in <a href="http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=162">WHO (2011)</a></p></li>
-<li><p><strong>Treatment schemes</strong> (defined in <code>treatment_schemes.csv</code>): here different treatment processes (defined above) can be combined to treatment schemes (e.g. bankfiltration + slow sand filtration). All defined treatment schemes will be considered in the QMRA calculation</p></li>
+<li><p><strong>Treatment schemes</strong> (defined in <code>treatment_schemes.csv</code>): different treatment processes (defined in <code>treatment_processes.csv</code>) can be combined to treatment schemes (e.g. bankfiltration + slow sand filtration). All defined treatment schemes will be considered in the QMRA calculation.</p></li>
 <li><p><strong>Exposure scenario</strong> (defined in <code>exposure.csv</code>): i.e. the number of exposures per year and the ingested volume per event, which can be defined as fixed value or by following a predefined distribution (e.g. uniform, triangle). In case of a<br>
 Monte-Carlo simulation the number of random distribution generations can be specified here also.</p></li>
-<li><p><strong>Dose-response model</strong> (defined in <code>doseresponse.csv</code>):</p></li>
+<li><p><strong>Dose-response modelling</strong> (defined in <code>doseresponse.csv</code>): the best-fit model (i.e.<br>
+exponential or beta-poisson) and its parameters for each pathogen are taken from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki (2016)</a>.</p></li>
 <li><p><strong>Health parameters</strong> (defined in <code>health.csv</code>): for all pathogens to be used for QMRA the infection to illness factor and the disability-adjusted life years (DALY) per case need to be defined. Values for these parameters can be found for example in <a href="http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=132">WHO (2011)</a></p></li>
 </ul>
 </div>
@@ -108,7 +116,7 @@ Monte-Carlo simulation the number of random distribution generations can be spec
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
