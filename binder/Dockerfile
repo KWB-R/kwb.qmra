@@ -1,4 +1,4 @@
-FROM rocker/binder:3.4.3
+FROM rocker/binder:3.4.2
 
 # Copy repo into ${HOME}, make user own $HOME
 USER root
