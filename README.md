@@ -5,6 +5,7 @@ An R package for QMRA (quantitative microbial risk assessment) of water supply s
 
 Cite as: [![DOI](https://zenodo.org/badge/68301647.svg)](https://zenodo.org/badge/latestdoi/68301647)
 
+**Launch repository (from master) in cloud RStudio session:** [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kwb-r/kwb.qmra/master?urlpath=rstudio)
 
 # Tutorial
 ## 1. Install from GitHub 
