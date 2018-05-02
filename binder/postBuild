@@ -1,0 +1,3 @@
+#! /bin/bash
+
+echo R_LIBS_USER=/srv/rlibs >> /home/jovyan/.Renviron
