@@ -1,2 +1,10 @@
 language: r
+r:
+  - oldrel 
+  - release
 sudo: required
+r_packages:
+  - devtools
+  - covr
+after_success:
+  - Rscript -e 'covr::codecov()'

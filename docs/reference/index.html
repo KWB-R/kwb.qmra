@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">kwb.qmra</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">kwb.qmra</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -85,6 +95,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -92,178 +103,173 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.1.9999</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-import-data" class="hasAnchor"><a href="#section-import-data" class="anchor"></a>Import data</h2>
-            <p class="section-desc"><p>Import pre-defined CSV configuration files used as input data for QMRA</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="config_read.html">config_read</a></code> </p>
-          </td>
-          <td><p>Config: read configuration</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-perform-qmra" class="hasAnchor"><a href="#section-perform-qmra" class="anchor"></a>Perform QMRA</h2>
-            <p class="section-desc"><p>Functions for performing QMRA</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simulate_risk.html">simulate_risk</a></code> </p>
-          </td>
-          <td><p>Simulate: risk</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simulate_inflow.html">simulate_inflow</a></code> </p>
-          </td>
-          <td><p>Simulate: inflow</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simulate_treatment.html">simulate_treatment</a></code> </p>
-          </td>
-          <td><p>Simulate: treatment</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simulate_exposure.html">simulate_exposure</a></code> </p>
-          </td>
-          <td><p>Simulate: exposure</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-visualise-results" class="hasAnchor"><a href="#section-visualise-results" class="anchor"></a>Visualise results</h2>
-            <p class="section-desc"><p>Functions for plotting QMRA results</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_doseresponse.html">plot_doseresponse</a></code> </p>
-          </td>
-          <td><p>plot reduction</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_effluent.html">plot_effluent</a></code> </p>
-          </td>
-          <td><p>plot effluent</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_dalys.html">plot_event_dalys</a></code> </p>
-          </td>
-          <td><p>plot dalys_per_event</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_dose.html">plot_event_dose</a></code> </p>
-          </td>
-          <td><p>plot dose per event</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_exposure.html">plot_event_exposure</a></code> </p>
-          </td>
-          <td><p>plot exposure per event</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_illnessProb.html">plot_event_illnessProb</a></code> </p>
-          </td>
-          <td><p>plot illness probability</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_infectionProb.html">plot_event_infectionProb</a></code> </p>
-          </td>
-          <td><p>plot infection probability</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_event_volume.html">plot_event_volume</a></code> </p>
-          </td>
-          <td><p>plot volume per event</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_inflow.html">plot_inflow</a></code> </p>
-          </td>
-          <td><p>plot inflow</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_reduction.html">plot_reduction</a></code> </p>
-          </td>
-          <td><p>plot reduction</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_total_dalys.html">plot_total_dalys</a></code> </p>
-          </td>
-          <td><p>plot total DALYs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_total_illnessProb.html">plot_total_illnessProb</a></code> </p>
-          </td>
-          <td><p>plot total illness probability</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_total_infectionProb.html">plot_total_infectionProb</a></code> </p>
-          </td>
-          <td><p>plot total infection probability</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-export-data" class="hasAnchor"><a href="#section-export-data" class="anchor"></a>Export data</h2>
-            <p class="section-desc"><p>Functions for exporting data</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="config_write.html">config_write</a></code> </p>
-          </td>
-          <td><p>Config: create configuration</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="report_workflow.html">report_workflow</a></code> </p>
-          </td>
-          <td><p>Create report (not working for "shiny" reports)</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-import-data" class="hasAnchor"><a href="#section-import-data" class="anchor"></a>Import data</h2>
+          <p class="section-desc"><p>Import pre-defined CSV configuration files used as input data for QMRA</p></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="config_read.html">config_read()</a></code> </p>
+        </td>
+        <td><p>Config: read configuration</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-perform-qmra" class="hasAnchor"><a href="#section-perform-qmra" class="anchor"></a>Perform QMRA</h2>
+          <p class="section-desc"><p>Functions for performing QMRA</p></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="simulate_risk.html">simulate_risk()</a></code> </p>
+        </td>
+        <td><p>Simulate: risk</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="simulate_inflow.html">simulate_inflow()</a></code> </p>
+        </td>
+        <td><p>Simulate: inflow</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="simulate_treatment.html">simulate_treatment()</a></code> </p>
+        </td>
+        <td><p>Simulate: treatment</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="simulate_exposure.html">simulate_exposure()</a></code> </p>
+        </td>
+        <td><p>Simulate: exposure</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-visualise-results" class="hasAnchor"><a href="#section-visualise-results" class="anchor"></a>Visualise results</h2>
+          <p class="section-desc"><p>Functions for plotting QMRA results</p></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_doseresponse.html">plot_doseresponse()</a></code> </p>
+        </td>
+        <td><p>plot reduction</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_effluent.html">plot_effluent()</a></code> </p>
+        </td>
+        <td><p>plot effluent</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_dalys.html">plot_event_dalys()</a></code> </p>
+        </td>
+        <td><p>plot dalys_per_event</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_dose.html">plot_event_dose()</a></code> </p>
+        </td>
+        <td><p>plot dose per event</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_exposure.html">plot_event_exposure()</a></code> </p>
+        </td>
+        <td><p>plot exposure per event</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_illnessProb.html">plot_event_illnessProb()</a></code> </p>
+        </td>
+        <td><p>plot illness probability</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_infectionProb.html">plot_event_infectionProb()</a></code> </p>
+        </td>
+        <td><p>plot infection probability</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_event_volume.html">plot_event_volume()</a></code> </p>
+        </td>
+        <td><p>plot volume per event</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_inflow.html">plot_inflow()</a></code> </p>
+        </td>
+        <td><p>plot inflow</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_reduction.html">plot_reduction()</a></code> </p>
+        </td>
+        <td><p>plot reduction</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_total_dalys.html">plot_total_dalys()</a></code> </p>
+        </td>
+        <td><p>plot total DALYs</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_total_illnessProb.html">plot_total_illnessProb()</a></code> </p>
+        </td>
+        <td><p>plot total illness probability</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plot_total_infectionProb.html">plot_total_infectionProb()</a></code> </p>
+        </td>
+        <td><p>plot total infection probability</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-export-data" class="hasAnchor"><a href="#section-export-data" class="anchor"></a>Export data</h2>
+          <p class="section-desc"><p>Functions for exporting data</p></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="config_write.html">config_write()</a></code> </p>
+        </td>
+        <td><p>Config: create configuration</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="report_workflow.html">report_workflow()</a></code> </p>
+        </td>
+        <td><p>Create report (not working for "shiny" reports)</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -289,5 +295,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

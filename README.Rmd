@@ -5,16 +5,6 @@
 [![DOI](https://zenodo.org/badge/68301647.svg)](https://zenodo.org/badge/latestdoi/68301647)
 [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kwb-r/kwb.qmra/master?urlpath=rstudio)
 
-# kwb.qmra
 
 An R package for QMRA (quantitative microbial risk assessment) of water supply systems
 
-Launch repository (from master) in cloud RStudio session: 
-
-[![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kwb-r/kwb.qmra/master?urlpath=rstudio)
-
-## Documentation
-
-Development version: [https://kwb-r.github.io/kwb.hantush/dev](https://kwb-r.github.io/kwb.qmra/dev)
-
-Latest release: [https://kwb-r.github.io/kwb.hantush](https://kwb-r.github.io/kwb.qmra)
