@@ -22,7 +22,12 @@ test_that("generate_random_values() works", {
 
   config$type <- "triangle"  
   config$mode <- NA
-  config$min <- config$max <- 0
+  config$min <- 0
+  config$max <- 0
+  
+  expect_error(generate_random_values(config))
+  
+  config$max <- 1
   
   expect_error(generate_random_values(config))
 })
