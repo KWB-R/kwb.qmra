@@ -1,0 +1,56 @@
+---
+title: "Web-app development with OpenCpu"
+author: "Michael Rustler"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Technical workflow: usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+For developing a web application, which is based on the R package `kwb.qmra` 
+the [OpenCPU API](https://www.opencpu.org/api.html) can be used. It has a lot of 
+great features which its author Jeroen Ooms describes as follows 
+([Source](https://www.quora.com/How-do-plumber-and-OpenCPU-compare-when-it-comes-to-deploying-ML-models)):
+
+>"OpenCPU is mature has been put to the test in production for many years now,
+>both in private and public organizations. The system was developed out of a need
+>for a reliable, scalable system for embedding R that we used at UCLA for
+>teaching R to students, sometimes several classes at once (think about a
+>classroom settings with 100+ concurrent students).
+>The core implementation of OpenCPU is the opencpu-server stack based on systems
+>native Apache2 webserver. The opencpu-server stack has been packaged as deb/rpm
+>packages and can be installed out of the box on all popular Linux systems. This
+>really provides a super stable production ready system out-of-the-box. Not only
+>does it easily scale up but you can configure the server (if you want to add
+>auth, proxies, etc) via standard Apache configuration on your server.
+>An incredible amount of time and energy has been invested into optimizing the
+>internals of opencpu-server for security, reliability and performance. In
+>opencpu-server, each incoming request gets processed in a temporary process fork
+>which serves as a sandbox that controls memory/cpu limits, access control,
+>timeouts, etc. All these are critical to ensure that the stability of the server
+>does not get compromised by users or packages (accidentally) messing with the
+>system or using excessive resources. I am not aware of any other R server system
+>that does this. 
+>
+>More details about the why and how of OpenCPU are available from these papers:"
+>
+>- [Towards a Universal Interface for Scientific Computing through Separation of 
+>Concerns](https://arxiv.org/abs/1406.4806)
+>
+>- [Enforcing Security Policies in R Using Dynamic Sandboxing on Linux](https://arxiv.org/abs/1303.4808)
+
+
+For the `kwb.qmra` R package a very tiny example app (source code on 
+[GitHub](https://github.com/KWB-R/kwb.qmra/tree/master/inst/www)) was developed
+which uses the [OpenCPU](https://www.opencpu.org) framework. This web app 
+performs a quantitative microbiological risk assessment (QMRA) for a 
+[dummy configuration](https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs/dummy) 
+and can be tested here: [https://kwb-r.ocpu.io/kwb.qmra/www/](https://kwb-r.ocpu.io/kwb.qmra/www/)
+
+
+More advanced web-apps can be easily developed by using the [OpenCPU API](https://www.opencpu.org/api.html) 
+but will most probably need an own backend server which hosts the OpenCPU 
+server, because the [publically freely available OpenCPU server](https://www.opencpu.org/cloud.html) 
+might be too limited.

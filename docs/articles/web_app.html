@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Installation • kwb.qmra</title>
+<title>Web-app development with OpenCpu • kwb.qmra</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Installation">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Web-app development with OpenCpu">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -82,66 +82,32 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Installation</h1>
+      <h1>Web-app development with OpenCpu</h1>
                         <h4 class="author">Michael Rustler</h4>
             
             <h4 class="date">29 May, 2018</h4>
       
       
-      <div class="hidden name"><code>installation.Rmd</code></div>
+      <div class="hidden name"><code>web_app.Rmd</code></div>
 
     </div>
 
     
     
-<div id="pre-required-software" class="section level1">
-<h1 class="hasAnchor">
-<a href="#pre-required-software" class="anchor"></a>1 Pre-required software</h1>
+<p>For developing a web application, which is based on the R package <code>kwb.qmra</code> the <a href="https://www.opencpu.org/api.html">OpenCPU API</a> can be used. It has a lot of great features which its author Jeroen Ooms describes as follows (<a href="https://www.quora.com/How-do-plumber-and-OpenCPU-compare-when-it-comes-to-deploying-ML-models">Source</a>):</p>
+<blockquote>
+<p>“OpenCPU is mature has been put to the test in production for many years now, both in private and public organizations. The system was developed out of a need for a reliable, scalable system for embedding R that we used at UCLA for teaching R to students, sometimes several classes at once (think about a classroom settings with 100+ concurrent students). The core implementation of OpenCPU is the opencpu-server stack based on systems native Apache2 webserver. The opencpu-server stack has been packaged as deb/rpm packages and can be installed out of the box on all popular Linux systems. This really provides a super stable production ready system out-of-the-box. Not only does it easily scale up but you can configure the server (if you want to add auth, proxies, etc) via standard Apache configuration on your server. An incredible amount of time and energy has been invested into optimizing the internals of opencpu-server for security, reliability and performance. In opencpu-server, each incoming request gets processed in a temporary process fork which serves as a sandbox that controls memory/cpu limits, access control, timeouts, etc. All these are critical to ensure that the stability of the server does not get compromised by users or packages (accidentally) messing with the system or using excessive resources. I am not aware of any other R server system that does this.</p>
+<p>More details about the why and how of OpenCPU are available from these papers:"</p>
 <ul>
-<li><p><a href="https://cloud.r-project.org/">R (&gt;= 3.3.1</a>: for the development of the R package <strong>kwb.qmra</strong> R 3.3.1 was used. However, also later R releases (e.g. 3.4) should be working.</p></li>
-<li><p><a href="http://pandoc.org/installing.html">Pandoc</a>: is required to convert the reports from plain text format (markdown) into the different formats (docx, html, pdf).</p></li>
-<li><p><a href="https://miktex.org/download">Miktex</a>: needs to be installed in case that <strong>pdf</strong> reports should be created.</p></li>
+<li><p><a href="https://arxiv.org/abs/1406.4806">Towards a Universal Interface for Scientific Computing through Separation of Concerns</a></p></li>
+<li><p><a href="https://arxiv.org/abs/1303.4808">Enforcing Security Policies in R Using Dynamic Sandboxing on Linux</a></p></li>
 </ul>
-<p>For the advanced user it is further recommended to install the latest version of the integrated development environment (IDE) <a href="https://www.rstudio.com/products/rstudio/download2/#download">RStudio Desktop “open source licence”</a>.</p>
-</div>
-<div id="r-packages" class="section level1">
-<h1 class="hasAnchor">
-<a href="#r-packages" class="anchor"></a>2 R Packages</h1>
-<p>Once all <a href="#pre-required-software">pre-required software</a> is installed the R package installation workflow as described below can be started.</p>
-<div id="devtools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#devtools" class="anchor"></a>2.1 devtools</h2>
-<p>The R package <code>devtools</code> is required for downloading and installing the R package <code>kwb.qmra</code> from Github. Installation is done by executing the following lines of code in R or RStudio (from now on written as R(Studio)):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
-}</code></pre></div>
-</div>
-<div id="kwb-qmra" class="section level2">
-<h2 class="hasAnchor">
-<a href="#kwb-qmra" class="anchor"></a>2.2 kwb.qmra</h2>
-<p>Subsequently the R package <code>kwb.qmra</code> can be installed in R with the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) { <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) }
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">"KWB-R/kwb.qmra"</span>, 
-                         <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>,
-                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-</div>
+</blockquote>
+<p>For the <code>kwb.qmra</code> R package a very tiny example app (source code on <a href="https://github.com/KWB-R/kwb.qmra/tree/master/inst/www">GitHub</a>) was developed which uses the <a href="https://www.opencpu.org">OpenCPU</a> framework. This web app performs a quantitative microbiological risk assessment (QMRA) for a <a href="https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs/dummy">dummy configuration</a> and can be tested here: <a href="https://kwb-r.ocpu.io/kwb.qmra/www/" class="uri">https://kwb-r.ocpu.io/kwb.qmra/www/</a></p>
+<p>More advanced web-apps can be easily developed by using the <a href="https://www.opencpu.org/api.html">OpenCPU API</a> but will most probably need an own backend server which hosts the OpenCPU server, because the <a href="https://www.opencpu.org/cloud.html">publically freely available OpenCPU server</a> might be too limited.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#pre-required-software">1 Pre-required software</a></li>
-      <li>
-<a href="#r-packages">2 R Packages</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#devtools">2.1 devtools</a></li>
-      <li><a href="#kwb-qmra">2.2 kwb.qmra</a></li>
-      </ul>
-</li>
-      </ul>
-</div>
       </div>
 
 </div>

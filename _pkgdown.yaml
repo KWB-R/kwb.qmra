@@ -13,6 +13,8 @@ navbar:
       href: articles/installation.html
     - text: 2 Usage
       href: articles/usage.html
+    - text: 3 Web-app development
+      href: articles/web_app.html
   - text: News
     href: news/index.html
   - text: Reference
