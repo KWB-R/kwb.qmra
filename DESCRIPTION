@@ -27,6 +27,8 @@ LazyLoad: yes
 URL: http://kwb-r.github.io/kwb.hantush/
 BugReports: https://github.com/KWB-R/kwb.hantush/issues
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    ggrepel
+Suggests: 
+    knitr,
+    ggrepel,
+    testthat
 VignetteBuilder: knitr
