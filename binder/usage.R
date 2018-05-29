@@ -48,7 +48,7 @@ volume_per_event <- kwb.qmra::create_random_distribution(type = exposure$volume_
 
 
 knitr::kable(config$doseresponse[config$doseresponse$PathogenName %in% simulated$PathogenName,], 
-              caption = "Dose-response models (defined in: 'doseresponse.csv') used for QMRA (from [QMRAwiki](http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki)):")
+              caption = "Dose-response models (defined in: 'doseresponse.csv') used for QMRA (from [QMRAwiki](http://qmrawiki.canr.msu.edu/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki)):")
 
 knitr::kable(config$health[config$health$PathogenName %in% simulated$PathogenName,], 
               caption = "Health parameters (defined in: 'health.csv') for simulated pathogens (from [WHO, 2011](http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=132)):")

@@ -8,7 +8,7 @@
 #' Download dose-response model database from QMRAwiki 
 #' @param fromInternet download from internet (default: FALSE), if FALSE import from local copy 
 #' @return tbl_df for different microbial parameters
-#' @source http://qmrawiki.canr.msu.edu/old/index.php?title=Table_of_Recommended_Best-Fit_Parameters
+#' @source http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters
 #' @export
 dr.db_download <- function(fromInternet = FALSE) {
 
@@ -22,7 +22,7 @@ pathogens <- c("Bacteria", "Viruses", "Protozoa")
 
 for (i in 1:length(pathogens)) {
 
-url <- "http://qmrawiki.canr.msu.edu/old/index.php"
+url <- "http://qmrawiki.canr.msu.edu/index.php"
   
 tmp <- xml2::read_html(sprintf("%s?title=Table_of_Recommended_Best-Fit_Parameters#tab=%s", url, pathogens[i])) 
 tmp <-  rvest::html_node(x = tmp, xpath = sprintf("/html/body/div[3]/div/div[4]/div/div/div[%d]/div/table",i))

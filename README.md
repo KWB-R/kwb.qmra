@@ -15,6 +15,6 @@ Launch repository (from master) in cloud RStudio session:
 
 ## Documentation
 
-Development version: [https://kwb-r.github.io/kwb.hantush/dev](https://kwb-r.github.io/kwb.qmra/dev)
+Development version: [https://kwb-r.github.io/kwb.qmra/dev](https://kwb-r.github.io/kwb.qmra/dev)
 
-Latest release: [https://kwb-r.github.io/kwb.hantush](https://kwb-r.github.io/kwb.qmra)
+Latest release: [https://kwb-r.github.io/kwb.qmra](https://kwb-r.github.io/kwb.qmra)
