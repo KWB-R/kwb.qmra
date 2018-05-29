@@ -15,6 +15,13 @@ cache:
 
 # Adapt as necessary starting from here
 
+## Pandoc installation based on https://github.com/jennybc/reprex/blob/master/appveyor.yml
+## as discussed here: https://github.com/krlmlr/r-appveyor/issues/82 
+before_test:
+  - cinst pandoc
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
+
 build_script:
   - travis-tool.sh install_deps
 
