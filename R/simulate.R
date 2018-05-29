@@ -27,7 +27,7 @@ number_of_repeatings <- function(config) {
          and column 'value' has to be numeric") }
   
   return(repeatings)
-  }
+}
 
 #' Simulate: inflow
 #' @param config as retrieved by config_read() 
@@ -139,56 +139,56 @@ simulate_treatment <- function(config,
   names(treatment_events)[names(treatment_events) == "values"] <- "logreduction"
   
   
-
+  
   treatment_events <- dplyr::left_join(treatment_events,config$treatment$schemes)
   
   if (wide) {
-  treatment_events_wide <- tidyr::spread_(data = treatment_events,
-                                          key_col = "TreatmentID",
-                                          value_col = "logreduction")
-
-  schemeIDs <- unique(config$treatment$schemes$TreatmentSchemeID)
-  schemes_events_wide <- data.frame()
-
-  for (schemeID in schemeIDs) {
-
-    scheme_treatmentIDs <- unique(config$treatment$schemes$TreatmentID[config$treatment$schemes$TreatmentSchemeID == schemeID])
-
-    if (schemeID == schemeIDs[1]) {
-      schemes_events_wide <- cbind(treatment_events_wide[,c("eventID", "PathogenGroup")],
-                                   rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
-                                   drop = FALSE]),
-                                   row.names = NULL)
-    } else {
-      schemes_events_wide <- cbind(schemes_events_wide,
-                                   rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
-                                   drop = FALSE]),
-                                   row.names = NULL)
+    treatment_events_wide <- tidyr::spread_(data = treatment_events,
+                                            key_col = "TreatmentID",
+                                            value_col = "logreduction")
+    
+    schemeIDs <- unique(config$treatment$schemes$TreatmentSchemeID)
+    schemes_events_wide <- data.frame()
+    
+    for (schemeID in schemeIDs) {
+      
+      scheme_treatmentIDs <- unique(config$treatment$schemes$TreatmentID[config$treatment$schemes$TreatmentSchemeID == schemeID])
+      
+      if (schemeID == schemeIDs[1]) {
+        schemes_events_wide <- cbind(treatment_events_wide[,c("eventID", "PathogenGroup")],
+                                     rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
+                                                                   drop = FALSE]),
+                                     row.names = NULL)
+      } else {
+        schemes_events_wide <- cbind(schemes_events_wide,
+                                     rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
+                                                                   drop = FALSE]),
+                                     row.names = NULL)
+      }
     }
+    colnames(schemes_events_wide) <- c(c("eventID", "PathogenGroup"),
+                                       paste0("scheme_", schemeIDs))
   }
-  colnames(schemes_events_wide) <- c(c("eventID", "PathogenGroup"),
-                                     paste0("scheme_", schemeIDs))
+  
+  
+  lookup_treatmentNames <- config$treatment$processes[,c("TreatmentID","TreatmentName")] %>%  
+    dplyr::group_by_("TreatmentID") %>% 
+    dplyr::slice_(1)
+  
+  treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
+  
+  if (wide) {
+    treatment <- list(events_long = treatment_events,
+                      events_wide = treatment_events_wide, 
+                      schemes_events_wide = schemes_events_wide,
+                      schemes = config$treatment$schemes,
+                      paras = treatment_paras)
+  } else {
+    treatment <- list(events_long = treatment_events,
+                      schemes = config$treatment$schemes,
+                      paras = treatment_paras)
   }
   
-  
-lookup_treatmentNames <- config$treatment$processes[,c("TreatmentID","TreatmentName")] %>%  
-                         dplyr::group_by_("TreatmentID") %>% 
-                         dplyr::slice_(1)
-  
-treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
-  
-if (wide) {
-  treatment <- list(events_long = treatment_events,
-                    events_wide = treatment_events_wide, 
-                    schemes_events_wide = schemes_events_wide,
-                    schemes = config$treatment$schemes,
-                    paras = treatment_paras)
-} else {
-  treatment <- list(events_long = treatment_events,
-                    schemes = config$treatment$schemes,
-                    paras = treatment_paras)
-}
-
   return(treatment = treatment)
   
 }
@@ -262,22 +262,22 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   
   cat("\n### STEP 2: TREATMENT SCHEMES #############################################\n\n")
   treatment <- simulate_treatment(config, debug)
-
+  
   tbl_reduction <- treatment$events_long %>%  
     dplyr::group_by_(~TreatmentSchemeID,
-              ~TreatmentSchemeName,
-              ~PathogenGroup, 
-              ~eventID,
-              ~repeatID) %>% 
+                     ~TreatmentSchemeName,
+                     ~PathogenGroup, 
+                     ~eventID,
+                     ~repeatID) %>% 
     dplyr::summarise_(logreduction = ~sum(logreduction))
   
-
-
+  
+  
   cat("\n### STEP 3: Exposure ######################################################\n\n")
   exposure <- simulate_exposure(config, debug)
-
+  
   tbl_risk <-  dplyr::right_join(tbl_reduction, 
-                         inflow$events) %>% 
+                                 inflow$events) %>% 
     dplyr::mutate(effluent = 10 ^ (log10(inflow) - logreduction)) %>% 
     dplyr::left_join(exposure$volumes$events) %>% 
     dplyr::mutate(exposure_perEvent = effluent * volume_perEvent)
@@ -288,7 +288,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   } else {
     tbl_risk$dose_perEvent <- tbl_risk$exposure_perEvent
   }
-    
+  
   cat("\n### STEP 4: DOSE RESPONSE #################################################\n\n")
   
   simulated_pathogenIDs <- config$inflow$PathogenID[config$inflow$simulate == 1]
@@ -299,33 +299,36 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   paras <- config$doseresponse[config$doseresponse$PathogenID %in% simulated_pathogenIDs,]
   print(paras)
   doseresponse <- list(response = dr.db_model(dr.db = config$doseresponse[indices,]),
-                  paras = paras)
+                       paras = paras)
   
   tbl_risk$infectionProb_per_event <- NA
   
   for (pathogenID in unique(tbl_risk$PathogenID)) {
-  
     
-  cond <- tbl_risk$PathogenID == pathogenID  
     
-  dose <- tbl_risk$dose_perEvent[cond]
-  
-   dr_model <- config$doseresponse[config$doseresponse$PathogenID == pathogenID,]
-  
-  if (is.na(dr_model$k) & !is.na(dr_model$alpha) & !is.na(dr_model$N50)) {
-    tbl_risk$infectionProb_per_event[cond] <- dr.betapoisson(dose = dose,
-                                                          alpha = dr_model$alpha, 
-                                                          N50 = dr_model$N50)$infectionProbability
-  } else if (!is.na(dr_model$k) & is.na(dr_model$alpha) & is.na(dr_model$N50)) {
-    tbl_risk$infectionProb_per_event[cond] <- dr.expo(dose = dose,
-                                                   k = dr_model$k)$infectionProbability
-  } else {
-    msg <- sprintf("Doseresponse configuration incomplete for pathogen %s. Define 
-                   required parameter(s), either k (for exponential model) or 
-                   alpha & N50 (for beta-poisson model) ")
-    stop(msg)
-  }
-  
+    cond <- tbl_risk$PathogenID == pathogenID  
+    
+    dose <- tbl_risk$dose_perEvent[cond]
+    
+    dr_model <- config$doseresponse[config$doseresponse$PathogenID == pathogenID,]
+    
+    if (is.na(dr_model$k) & !is.na(dr_model$alpha) & !is.na(dr_model$N50)) {
+      tbl_risk$infectionProb_per_event[cond] <- dr.betapoisson(dose = dose,
+                                                               alpha = dr_model$alpha, 
+                                                               N50 = dr_model$N50)$infectionProbability
+    } else if (!is.na(dr_model$k) & is.na(dr_model$alpha) & is.na(dr_model$N50)) {
+      tbl_risk$infectionProb_per_event[cond] <- dr.expo(dose = dose,
+                                                        k = dr_model$k)$infectionProbability
+    } else {
+      
+      stop(
+        "Doseresponse configuration incomplete for pathogen ", 
+        config$health$PathogenName[config$health$PathogenID == pathogenID], ".\n",
+        "Define required parameter(s), either k (for exponential model) or\n",
+        "alpha & N50 (for beta-poisson model) "
+      )
+    }
+    
   }
   
   
@@ -338,38 +341,37 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   tbl_risk <- tbl_risk %>% 
     dplyr::left_join(config$health) %>% 
     dplyr::mutate(illnessProb_per_event = infectionProb_per_event * infection_to_illness,
-                    dalys_per_event = illnessProb_per_event * dalys_per_case)
+                  dalys_per_event = illnessProb_per_event * dalys_per_case)
   
-
+  
   
   tbl_risk_total <- tbl_risk %>%   
-          dplyr::group_by_(~repeatID, 
-                           ~TreatmentSchemeID, 
-                           ~TreatmentSchemeName,
-                           ~PathogenID, 
-                           ~PathogenName, 
-                           ~PathogenGroup) %>% 
-        dplyr::summarise(events = n(), 
-                      inflow_median = median(inflow), 
-                      logreduction_median = median(logreduction), 
-                      volume_sum = sum(volume_perEvent), 
-                      exposure_sum = sum(exposure_perEvent),
-                      dose_sum = sum(dose_perEvent),
-                      infectionProb_sum = 1 - prod( 1 - infectionProb_per_event),
-                      illnessProb_sum = 1 - prod(1 - illnessProb_per_event),
-                      dalys_sum = sum(dalys_per_event))
+    dplyr::group_by_(~repeatID, 
+                     ~TreatmentSchemeID, 
+                     ~TreatmentSchemeName,
+                     ~PathogenID, 
+                     ~PathogenName, 
+                     ~PathogenGroup) %>% 
+    dplyr::summarise(events = n(), 
+                     inflow_median = median(inflow), 
+                     logreduction_median = median(logreduction), 
+                     volume_sum = sum(volume_perEvent), 
+                     exposure_sum = sum(exposure_perEvent),
+                     dose_sum = sum(dose_perEvent),
+                     infectionProb_sum = 1 - prod( 1 - infectionProb_per_event),
+                     illnessProb_sum = 1 - prod(1 - illnessProb_per_event),
+                     dalys_sum = sum(dalys_per_event))
   
   
-
+  
   
   risk <- list(input = list(inflow = inflow, 
-                    treatment = treatment, 
-                    exposure = exposure, 
-                    doseresponse = doseresponse,
-                    health = health), 
-       output = list(events = tbl_risk, 
-                     total = tbl_risk_total))
+                            treatment = treatment, 
+                            exposure = exposure, 
+                            doseresponse = doseresponse,
+                            health = health), 
+               output = list(events = tbl_risk, 
+                             total = tbl_risk_total))
   
   return(risk)
 }
-
