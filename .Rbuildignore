@@ -4,5 +4,10 @@
 ^\.Rprofile$
 .travis.yml
 README.md
+README.Rmd
 ^docs$
 ^binder$
+LICENSE.md
+_pkgdown.yaml
+appveyor.yml
+codecov.yml
