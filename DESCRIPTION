@@ -24,8 +24,8 @@ Imports:
 	ggplot2
 License: MIT + file LICENSE
 LazyLoad: yes
-URL: http://kwb-r.github.io/kwb.hantush/
-BugReports: https://github.com/KWB-R/kwb.hantush/issues
+URL: http://kwb-r.github.io/kwb.qmra/
+BugReports: https://github.com/KWB-R/kwb.qmra/issues
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,

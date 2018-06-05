@@ -56,6 +56,21 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Case study (WWTP Old Ford)
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/OldFord_PublicIrrigation.html">1 Public irrigation</a>
+    </li>
+    <li>
+      <a href="../articles/OldFord_PotableReuse.html">2 Potable reuse</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -85,7 +100,7 @@
       <h1>Usage</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 May, 2018</h4>
+            <h4 class="date">05 Juni, 2018</h4>
       
       
       <div class="hidden name"><code>usage.Rmd</code></div>
@@ -96,34 +111,23 @@
     
 <p>How to work with the <code>kwb.qmra</code> package in R(Studio) is described in the following chapters</p>
 <p>Once the R package is installed it can be loaded with the following command in R(Studio):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kwb.qmra)</code></pre></div>
-<div id="input-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#input-data" class="anchor"></a>1 Input data</h1>
-<div id="location-of-dummy-configuration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#location-of-dummy-configuration" class="anchor"></a>1.1 Location of ‘dummy’ configuration</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(kwb.qmra)</a></code></pre></div>
+<p>#1 Input data</p>
+<p>##1.1 Location of ‘dummy’ configuration</p>
 <p>The folder with the csv configuration files for a hypothetical use case is located here:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">#### DEFINE DIRECTORY ################
-confDir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/configs/dummy"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)
-confDir</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">#### DEFINE DIRECTORY ################</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">confDir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/configs/dummy"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">confDir</a></code></pre></div>
 <pre><code>## [1] "C:/Users/mrustl.KWB/Documents/R/win-library/3.4/kwb.qmra/extdata/configs/dummy"</code></pre>
 <p>The following screenshot shows the required configuration files located in <code>confDir</code> (here: C:/Users/mrustl.KWB/Documents/R/win-library/3.4/kwb.qmra/extdata/configs/dummy):</p>
 <div class="figure">
 <img src="dummy_config.jpg" alt="Screenshot of required configuration files"><p class="caption">Screenshot of required configuration files</p>
 </div>
-</div>
-<div id="import-configuration-into-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#import-configuration-into-r" class="anchor"></a>1.2 Import configuration into R</h2>
+<p>##1.2 Import configuration into R</p>
 <p>All csv files with the input data for the hypothetical u <code>dummy</code> (as shown above) are imported into R with the following function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">#### LOAD ############################
-config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/config_read.html">config_read</a></span>(confDir) </code></pre></div>
-</div>
-</div>
-<div id="check-input-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#check-input-data" class="anchor"></a>2 Check input data</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">#### LOAD ############################</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/config_read.html">config_read</a></span>(confDir) </a></code></pre></div>
+<p>#2 Check input data</p>
 <p>The QMRA will be performed - in case the user does not modify them in R - based on the imported input data, which are defined in the configuration folder.</p>
 <p>In case of the dummy configuration, a Monte carlo simulation (n = 10) for 365 exposure events per year for three pathogens and the following input parameters will be performed:</p>
 <table class="table">
@@ -396,7 +400,7 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 </tr></tbody>
 </table>
 <table class="table">
-<caption>Dose-response models (defined in: ‘doseresponse.csv’) used for QMRA (from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki</a>):</caption>
+<caption>Dose-response models (defined in: ‘doseresponse.csv’) used for QMRA (from <a href="http://qmrawiki.canr.msu.edu/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki</a>):</caption>
 <thead><tr class="header">
 <th align="right">PathogenID</th>
 <th align="left">PathogenName</th>
@@ -489,12 +493,9 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 </tr>
 </tbody>
 </table>
-</div>
-<div id="run-risk-calculation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#run-risk-calculation" class="anchor"></a>4 Run risk calculation</h1>
+<p>#4 Run risk calculation</p>
 <p>Subsequently the risk calculation can be performed in R(Studio) by executing the following code, which uses the <code>config</code> that was imported and inspected above:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">risk &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">simulate_risk</span>(config)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">risk &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">simulate_risk</span>(config)</a></code></pre></div>
 <pre><code>## ### STEP 0: BASIC CONFIGURATION #############################################
 ## 
 ## Simulated 3 pathogen(s): Campylobacter jejuni and Campylobacter coli, Rotavirus, Giardia duodenalis
@@ -550,7 +551,7 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ## Simulated exposure: volume per event
 ## Create 10 random distribution(s): triangle (with parameters n: 365, min: 0.500000, max: 3.000000, mode = 1.500000)</code></pre>
 <pre><code>## Joining, by = c("PathogenGroup", "eventID", "repeatID")</code></pre>
-<pre><code>## Warning: package 'bindrcpp' was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: Paket 'bindrcpp' wurde unter R Version 3.4.4 erstellt</code></pre>
 <pre><code>## Joining, by = c("eventID", "repeatID")</code></pre>
 <pre><code>## 
 ## ### STEP 4: DOSE RESPONSE #################################################
@@ -575,13 +576,13 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 <pre><code>## Joining, by = c("PathogenID", "PathogenName")</code></pre>
 <p>All (input &amp; output) data will be saved in the resulting R object <code>risk</code> which an be easily inspected by the user, e.g.:</p>
 <p><strong>Input data</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(risk<span class="op">$</span>input)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">str</span>(risk<span class="op">$</span>input)</a></code></pre></div>
 <pre><code>## List of 5
 ##  $ inflow      :List of 2
 ##   ..$ events:'data.frame':   10950 obs. of  6 variables:
 ##   .. ..$ repeatID     : int [1:10950] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID      : int [1:10950] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. ..$ inflow       : num [1:10950] 8670 1539 7729 2442 1602 ...
+##   .. ..$ inflow       : num [1:10950] 898.1 8065.9 3701.5 7255.4 14.6 ...
 ##   .. ..$ PathogenID   : int [1:10950] 3 3 3 3 3 3 3 3 3 3 ...
 ##   .. ..$ PathogenName : chr [1:10950] "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" ...
 ##   .. ..$ PathogenGroup: chr [1:10950] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
@@ -598,7 +599,7 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   ..$ events_long        :'data.frame':  54750 obs. of  8 variables:
 ##   .. ..$ repeatID           : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID            : int [1:54750] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. ..$ logreduction       : num [1:54750] 0.839 0.279 0.818 1.808 0.977 ...
+##   .. ..$ logreduction       : num [1:54750] 1.848 0.356 0.791 0.444 1.01 ...
 ##   .. ..$ TreatmentID        : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ PathogenGroup      : chr [1:54750] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   .. ..$ TreatmentSchemeID  : int [1:54750] 2 2 2 2 2 2 2 2 2 2 ...
@@ -611,10 +612,10 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   .. ..$ TreatmentSchemeID  : int [1:54750] 1 1 2 2 2 1 1 2 2 2 ...
 ##   .. ..$ TreatmentSchemeName: chr [1:54750] "Berlin (BF + Slow sand)" "Berlin (BF + Slow sand)" "Depth &amp; surface filtration" "Depth &amp; surface filtration" ...
 ##   .. ..$ TreatmentName      : chr [1:54750] "Bank filtration" "Slow sand filtration" "Conventional clarification" "Granular high-rate filtration" ...
-##   .. ..$ 1                  : num [1:54750] NA NA 0.839 NA NA ...
-##   .. ..$ 5                  : num [1:54750] NA NA NA 1.85 NA ...
-##   .. ..$ 8                  : num [1:54750] NA 5.8 NA NA NA ...
-##   .. ..$ 9                  : num [1:54750] 2.47 NA NA NA NA ...
+##   .. ..$ 1                  : num [1:54750] NA NA 1.85 NA NA ...
+##   .. ..$ 5                  : num [1:54750] NA NA NA 2.73 NA ...
+##   .. ..$ 8                  : num [1:54750] NA 2.71 NA NA NA ...
+##   .. ..$ 9                  : num [1:54750] 4.41 NA NA NA NA ...
 ##   .. ..$ 15                 : num [1:54750] NA NA NA NA 4 NA NA NA NA 4 ...
 ##   ..$ schemes_events_wide:'data.frame':  54750 obs. of  4 variables:
 ##   .. ..$ eventID      : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
@@ -654,7 +655,7 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   .. ..$ events:'data.frame':    3650 obs. of  3 variables:
 ##   .. .. ..$ repeatID       : int [1:3650] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. .. ..$ eventID        : int [1:3650] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. .. ..$ volume_perEvent: num [1:3650] 2.16 1.58 1.87 1.07 1.06 ...
+##   .. .. ..$ volume_perEvent: num [1:3650] 1.68 1.89 1.46 1.82 2.14 ...
 ##   .. ..$ paras :'data.frame':    1 obs. of  6 variables:
 ##   .. .. ..$ type      : Factor w/ 1 level "triangle": 1
 ##   .. .. ..$ repeatings: int 10
@@ -693,7 +694,7 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   ..$ infection_to_illness: num [1:3] 0.7 0.03 0.3
 ##   ..$ dalys_per_case      : num [1:3] 0.0046 0.014 0.0015</code></pre>
 <p><strong>Output data</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(risk<span class="op">$</span>output)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">str</span>(risk<span class="op">$</span>output)</a></code></pre></div>
 <pre><code>## List of 2
 ##  $ events:Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':    21900 obs. of  18 variables:
 ##   ..$ TreatmentSchemeID      : int [1:21900] 1 2 1 2 1 2 1 2 1 2 ...
@@ -701,13 +702,13 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   ..$ PathogenGroup          : chr [1:21900] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   ..$ eventID                : int [1:21900] 1 1 2 2 3 3 4 4 5 5 ...
 ##   ..$ repeatID               : int [1:21900] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ logreduction           : num [1:21900] 8.27 6.69 8.54 8.16 7.31 ...
-##   ..$ inflow                 : num [1:21900] 8670 8670 1539 1539 7729 ...
+##   ..$ logreduction           : num [1:21900] 7.12 8.58 6.98 7.38 6.66 ...
+##   ..$ inflow                 : num [1:21900] 898 898 8066 8066 3702 ...
 ##   ..$ PathogenID             : int [1:21900] 3 3 3 3 3 3 3 3 3 3 ...
 ##   ..$ PathogenName           : chr [1:21900] "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" ...
-##   ..$ effluent               : num [1:21900] 4.67e-05 1.75e-03 4.43e-06 1.06e-05 3.76e-04 ...
-##   ..$ volume_perEvent        : num [1:21900] 2.16 2.16 1.58 1.58 1.87 ...
-##   ..$ exposure_perEvent      : num [1:21900] 1.01e-04 3.79e-03 6.99e-06 1.68e-05 7.05e-04 ...
+##   ..$ effluent               : num [1:21900] 6.81e-05 2.37e-06 8.42e-04 3.36e-04 8.15e-04 ...
+##   ..$ volume_perEvent        : num [1:21900] 1.68 1.68 1.89 1.89 1.46 ...
+##   ..$ exposure_perEvent      : num [1:21900] 1.14e-04 3.97e-06 1.59e-03 6.35e-04 1.19e-03 ...
 ##   ..$ dose_perEvent          : int [1:21900] 0 0 0 0 0 0 0 0 0 0 ...
 ##   ..$ infectionProb_per_event: num [1:21900] 0 0 0 0 0 0 0 0 0 0 ...
 ##   ..$ infection_to_illness   : num [1:21900] 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 ...
@@ -834,109 +835,87 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/conf
 ##   ..$ PathogenName       : chr [1:60] "Campylobacter jejuni and Campylobacter coli" "Rotavirus" "Giardia duodenalis" "Campylobacter jejuni and Campylobacter coli" ...
 ##   ..$ PathogenGroup      : chr [1:60] "Bacteria" "Viruses" "Protozoa" "Bacteria" ...
 ##   ..$ events             : int [1:60] 365 365 365 365 365 365 365 365 365 365 ...
-##   ..$ inflow_median      : num [1:60] 5024 5096 5230 5024 5096 ...
-##   ..$ logreduction_median: num [1:60] 8.08 7.41 3.99 7.53 7.47 ...
-##   ..$ volume_sum         : num [1:60] 602 602 602 602 602 ...
-##   ..$ exposure_sum       : num [1:60] 4.59 117.62 5032.35 2.47 5.72 ...
-##   ..$ dose_sum           : int [1:60] 6 92 5058 6 10 0 6 153 5532 1 ...
-##   ..$ infectionProb_sum  : num [1:60] 0.103 1 1 0.103 0.944 ...
-##   ..$ illnessProb_sum    : num [1:60] 0.0732 0.1901 1 0.0732 0.0715 ...
-##   ..$ dalys_sum          : num [1:60] 0.000347 0.002933 0.022337 0.000347 0.001034 ...
+##   ..$ inflow_median      : num [1:60] 4877 5447 4800 4877 5447 ...
+##   ..$ logreduction_median: num [1:60] 8.13 7.31 4.1 7.4 7.46 ...
+##   ..$ volume_sum         : num [1:60] 613 613 613 613 613 ...
+##   ..$ exposure_sum       : num [1:60] 4.22 64.86 5852.69 2.85 3.88 ...
+##   ..$ dose_sum           : int [1:60] 5 73 5810 2 3 3 3 229 5874 2 ...
+##   ..$ infectionProb_sum  : num [1:60] 0.0885 1 1 0.0364 0.6003 ...
+##   ..$ illnessProb_sum    : num [1:60] 0.0626 0.2381 1 0.0255 0.0235 ...
+##   ..$ dalys_sum          : num [1:60] 0.000295 0.003785 0.024062 0.000118 0.000332 ...
 ##   ..- attr(*, "vars")= chr [1:5] "repeatID" "TreatmentSchemeID" "TreatmentSchemeName" "PathogenID" ...
 ##   ..- attr(*, "drop")= logi TRUE</code></pre>
 <p>Thus the user has access to all</p>
-</div>
-<div id="visualise-results" class="section level1">
-<h1 class="hasAnchor">
-<a href="#visualise-results" class="anchor"></a>5 Visualise results</h1>
+<p>#5 Visualise results</p>
 <p>Finally the results of the QMRA can be visualised for each system component as shown below:</p>
-<div id="inflow" class="section level2">
-<h2 class="hasAnchor">
-<a href="#inflow" class="anchor"></a>5.1 Inflow</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_inflow</span>(risk)</code></pre></div>
+<p>##5.1 Inflow</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_inflow</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-8-1.png" alt="Simulated inflow concentrations" width="1152"><p class="caption">
 Simulated inflow concentrations
 </p>
 </div>
-</div>
-<div id="treatment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#treatment" class="anchor"></a>5.2 Treatment</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_reduction</span>(risk)</code></pre></div>
+<p>##5.2 Treatment</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_reduction</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-9-1.png" alt="Simulated reductions in the treatment plant" width="1152"><p class="caption">
 Simulated reductions in the treatment plant
 </p>
 </div>
-</div>
-<div id="effluent" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effluent" class="anchor"></a>5.3 Effluent</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_effluent</span>(risk)</code></pre></div>
+<p>##5.3 Effluent</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_effluent</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-10-1.png" alt="Simulated effluent concentrations" width="1152"><p class="caption">
 Simulated effluent concentrations
 </p>
 </div>
-</div>
-<div id="exposure" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exposure" class="anchor"></a>5.4 Exposure</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_event_dose</span>(risk)</code></pre></div>
+<p>##5.4 Exposure</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_event_dose</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-11-1.png" alt="Simulated dose per event" width="1152"><p class="caption">
 Simulated dose per event
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_event_volume</span>(risk)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_event_volume</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-12-1.png" alt="Simulated ingested volume per event" width="1152"><p class="caption">
 Simulated ingested volume per event
 </p>
 </div>
-</div>
-<div id="health-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#health-results" class="anchor"></a>5.5 Health results</h2>
-<div id="per-event" class="section level3">
-<h3 class="hasAnchor">
-<a href="#per-event" class="anchor"></a>5.5.1 Per event</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_event_infectionProb</span>(risk)</code></pre></div>
+<p>##5.5 Health results</p>
+<p>###5.5.1 Per event</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_event_infectionProb</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-13-1.png" alt="Simulated infection probability per event" width="1152"><p class="caption">
 Simulated infection probability per event
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_event_illnessProb</span>(risk)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_event_illnessProb</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-14-1.png" alt="Simulated illness probability per event" width="1152"><p class="caption">
 Simulated illness probability per event
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_event_dalys</span>(risk)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_event_dalys</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-15-1.png" alt="Simulated DALYs per event" width="1152"><p class="caption">
 Simulated DALYs per event
 </p>
 </div>
-</div>
-<div id="total" class="section level3">
-<h3 class="hasAnchor">
-<a href="#total" class="anchor"></a>5.5.2 Total</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_total_infectionProb</span>(risk)</code></pre></div>
+<p>###5.5.2 Total</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_total_infectionProb</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-16-1.png" alt="Simulated total infection probability (for all events)" width="1152"><p class="caption">
 Simulated total infection probability (for all events)
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_total_illnessProb</span>(risk)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_total_illnessProb</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-17-1.png" alt="Simulated total illness probability (for all events" width="1152"><p class="caption">
 Simulated total illness probability (for all events
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kwb.qmra<span class="op">::</span><span class="kw">plot_total_dalys</span>(risk)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">plot_total_dalys</span>(risk)</a></code></pre></div>
 <div class="figure">
 <img src="usage_files/figure-html/unnamed-chunk-18-1.png" alt="Simulated total DALYs (for all events)" width="1152"><p class="caption">
 Simulated total DALYs (for all events)
@@ -971,14 +950,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">5023.741</td>
-<td align="right">8.077747</td>
-<td align="right">601.5873</td>
-<td align="right">4.5858458</td>
-<td align="right">6</td>
-<td align="right">0.1032865</td>
-<td align="right">0.0732209</td>
-<td align="right">0.0003469</td>
+<td align="right">4877.466</td>
+<td align="right">8.127416</td>
+<td align="right">612.9687</td>
+<td align="right">4.2170049</td>
+<td align="right">5</td>
+<td align="right">0.0884511</td>
+<td align="right">0.0626012</td>
+<td align="right">0.0002955</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -988,14 +967,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5095.669</td>
-<td align="right">7.413288</td>
-<td align="right">601.5873</td>
-<td align="right">117.6247337</td>
-<td align="right">92</td>
-<td align="right">0.9998944</td>
-<td align="right">0.1900797</td>
-<td align="right">0.0029333</td>
+<td align="right">5447.470</td>
+<td align="right">7.311299</td>
+<td align="right">612.9687</td>
+<td align="right">64.8606814</td>
+<td align="right">73</td>
+<td align="right">0.9999893</td>
+<td align="right">0.2380727</td>
+<td align="right">0.0037850</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1005,14 +984,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">5230.298</td>
-<td align="right">3.991436</td>
-<td align="right">601.5873</td>
-<td align="right">5032.3452533</td>
-<td align="right">5058</td>
+<td align="right">4799.914</td>
+<td align="right">4.103169</td>
+<td align="right">612.9687</td>
+<td align="right">5852.6858295</td>
+<td align="right">5810</td>
 <td align="right">1.0000000</td>
-<td align="right">0.9999999</td>
-<td align="right">0.0223366</td>
+<td align="right">1.0000000</td>
+<td align="right">0.0240618</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1022,14 +1001,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">5023.741</td>
-<td align="right">7.526117</td>
-<td align="right">601.5873</td>
-<td align="right">2.4740368</td>
-<td align="right">6</td>
-<td align="right">0.1032865</td>
-<td align="right">0.0732209</td>
-<td align="right">0.0003469</td>
+<td align="right">4877.466</td>
+<td align="right">7.396170</td>
+<td align="right">612.9687</td>
+<td align="right">2.8543613</td>
+<td align="right">2</td>
+<td align="right">0.0363663</td>
+<td align="right">0.0255271</td>
+<td align="right">0.0001182</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1039,14 +1018,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5095.669</td>
-<td align="right">7.470768</td>
-<td align="right">601.5873</td>
-<td align="right">5.7228034</td>
-<td align="right">10</td>
-<td align="right">0.9441657</td>
-<td align="right">0.0715104</td>
-<td align="right">0.0010344</td>
+<td align="right">5447.470</td>
+<td align="right">7.457228</td>
+<td align="right">612.9687</td>
+<td align="right">3.8756572</td>
+<td align="right">3</td>
+<td align="right">0.6002746</td>
+<td align="right">0.0235158</td>
+<td align="right">0.0003318</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1056,54 +1035,24 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">5230.298</td>
-<td align="right">7.303037</td>
-<td align="right">601.5873</td>
-<td align="right">0.5942503</td>
-<td align="right">0</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
+<td align="right">4799.914</td>
+<td align="right">7.495376</td>
+<td align="right">612.9687</td>
+<td align="right">0.6178394</td>
+<td align="right">3</td>
+<td align="right">0.0579529</td>
+<td align="right">0.0176284</td>
+<td align="right">0.0000266</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div id="export-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#export-results" class="anchor"></a>6 Export results</h2>
+<p>##6 Export results</p>
 <p>E.g. Write reports for all configurations in package subfolder <code>extdata/configs/</code> (here: C:/Users/mrustl.KWB/Documents/R/win-library/3.4/kwb.qmra/extdata/configs):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">confDirs &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/configs/"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)
-kwb.qmra<span class="op">::</span><span class="kw">report_workflow</span>(confDirs)</code></pre></div>
-</div>
-</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">confDirs &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/configs/"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">kwb.qmra<span class="op">::</span><span class="kw">report_workflow</span>(confDirs)</a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#input-data">1 Input data</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#location-of-dummy-configuration">1.1 Location of ‘dummy’ configuration</a></li>
-      <li><a href="#import-configuration-into-r">1.2 Import configuration into R</a></li>
-      </ul>
-</li>
-      <li><a href="#check-input-data">2 Check input data</a></li>
-      <li><a href="#run-risk-calculation">4 Run risk calculation</a></li>
-      <li>
-<a href="#visualise-results">5 Visualise results</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#inflow">5.1 Inflow</a></li>
-      <li><a href="#treatment">5.2 Treatment</a></li>
-      <li><a href="#effluent">5.3 Effluent</a></li>
-      <li><a href="#exposure">5.4 Exposure</a></li>
-      <li><a href="#health-results">5.5 Health results</a></li>
-      <li><a href="#export-results">6 Export results</a></li>
-      </ul>
-</li>
-      </ul>
-</div>
       </div>
 
 </div>

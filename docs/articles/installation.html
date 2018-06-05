@@ -56,6 +56,21 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Case study (WWTP Old Ford)
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/OldFord_PublicIrrigation.html">1 Public irrigation</a>
+    </li>
+    <li>
+      <a href="../articles/OldFord_PotableReuse.html">2 Potable reuse</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -85,7 +100,7 @@
       <h1>Installation</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 May, 2018</h4>
+            <h4 class="date">05 Juni, 2018</h4>
       
       
       <div class="hidden name"><code>installation.Rmd</code></div>
@@ -94,54 +109,29 @@
 
     
     
-<div id="pre-required-software" class="section level1">
-<h1 class="hasAnchor">
-<a href="#pre-required-software" class="anchor"></a>1 Pre-required software</h1>
+<p>#1 Pre-required software</p>
 <ul>
 <li><p><a href="https://cloud.r-project.org/">R (&gt;= 3.3.1</a>: for the development of the R package <strong>kwb.qmra</strong> R 3.3.1 was used. However, also later R releases (e.g. 3.4) should be working.</p></li>
 <li><p><a href="http://pandoc.org/installing.html">Pandoc</a>: is required to convert the reports from plain text format (markdown) into the different formats (docx, html, pdf).</p></li>
 <li><p><a href="https://miktex.org/download">Miktex</a>: needs to be installed in case that <strong>pdf</strong> reports should be created.</p></li>
 </ul>
 <p>For the advanced user it is further recommended to install the latest version of the integrated development environment (IDE) <a href="https://www.rstudio.com/products/rstudio/download2/#download">RStudio Desktop “open source licence”</a>.</p>
-</div>
-<div id="r-packages" class="section level1">
-<h1 class="hasAnchor">
-<a href="#r-packages" class="anchor"></a>2 R Packages</h1>
+<p>#2 R Packages</p>
 <p>Once all <a href="#pre-required-software">pre-required software</a> is installed the R package installation workflow as described below can be started.</p>
-<div id="devtools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#devtools" class="anchor"></a>2.1 devtools</h2>
+<p>##2.1 devtools</p>
 <p>The R package <code>devtools</code> is required for downloading and installing the R package <code>kwb.qmra</code> from Github. Installation is done by executing the following lines of code in R or RStudio (from now on written as R(Studio)):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
-}</code></pre></div>
-</div>
-<div id="kwb-qmra" class="section level2">
-<h2 class="hasAnchor">
-<a href="#kwb-qmra" class="anchor"></a>2.2 kwb.qmra</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">}</a></code></pre></div>
+<p>##2.2 kwb.qmra</p>
 <p>Subsequently the R package <code>kwb.qmra</code> can be installed in R with the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) { <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) }
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">"KWB-R/kwb.qmra"</span>, 
-                         <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>,
-                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) { <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) }</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">"KWB-R/kwb.qmra"</span>, </a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                         <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#pre-required-software">1 Pre-required software</a></li>
-      <li>
-<a href="#r-packages">2 R Packages</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#devtools">2.1 devtools</a></li>
-      <li><a href="#kwb-qmra">2.2 kwb.qmra</a></li>
-      </ul>
-</li>
-      </ul>
-</div>
       </div>
 
 </div>

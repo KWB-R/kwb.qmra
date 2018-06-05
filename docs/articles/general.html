@@ -56,6 +56,21 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Case study (WWTP Old Ford)
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/OldFord_PublicIrrigation.html">1 Public irrigation</a>
+    </li>
+    <li>
+      <a href="../articles/OldFord_PotableReuse.html">2 Potable reuse</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -85,7 +100,7 @@
       <h1>General workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 May, 2018</h4>
+            <h4 class="date">05 Juni, 2018</h4>
       
       
       <div class="hidden name"><code>general.Rmd</code></div>
@@ -111,8 +126,8 @@
 <li><p><strong>Treatment schemes</strong> (defined in <code>treatment_schemes.csv</code>): different treatment processes (defined in <code>treatment_processes.csv</code>) can be combined to treatment schemes (e.g. bankfiltration + slow sand filtration). All defined treatment schemes will be considered in the QMRA calculation.</p></li>
 <li><p><strong>Exposure scenario</strong> (defined in <code>exposure.csv</code>): i.e. the number of exposures per year and the ingested volume per event, which can be defined as fixed value or by following a predefined distribution (e.g. uniform, triangle). In case of a<br>
 Monte-Carlo simulation the number of random distribution generations can be specified here also.</p></li>
-<li><p><strong>Dose-response modelling</strong> (defined in <code>doseresponse.csv</code>): the best-fit model (i.e.<br>
-exponential or beta-poisson) and its parameters for each pathogen are taken from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki (2016)</a>.</p></li>
+<li><p><strong>Dose-response modelling</strong> (defined in <code>doseresponse.csv</code>): the best-fit model (<br>
+i.e. exponential or beta-poisson) and its parameters for each pathogen are taken from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki (2016)</a>.</p></li>
 <li><p><strong>Health parameters</strong> (defined in <code>health.csv</code>): for all pathogens to be used for QMRA the infection to illness factor and the disability-adjusted life years (DALY) per case need to be defined. Values for these parameters can be found for example in <a href="http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=132">WHO (2011)</a></p></li>
 </ul>
 </div>

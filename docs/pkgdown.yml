@@ -1,10 +1,12 @@
-pandoc: 1.19.2.1
+pandoc: 2.2.1
 pkgdown: 1.0.0
 pkgdown_sha: ~
 articles:
   doseresponse: doseresponse.html
   general: general.html
   installation: installation.html
+  OldFord_PotableReuse: OldFord_PotableReuse.html
+  OldFord_PublicIrrigation: OldFord_PublicIrrigation.html
   usage: usage.html
   web_app: web_app.html
 

@@ -15,6 +15,12 @@ navbar:
       href: articles/usage.html
     - text: 3 Web-app development
       href: articles/web_app.html
+  - text: Case study (WWTP Old Ford)
+    menu: 
+    - text: 1 Public irrigation
+      href: articles/OldFord_PublicIrrigation.html
+    - text: 2 Potable reuse
+      href: articles/OldFord_PotableReuse.html
   - text: News
     href: news/index.html
   - text: Reference
@@ -53,3 +59,19 @@ reference:
     contents: 
       - config_write
       - report_workflow
+      
+  - title: Helper functions
+    desc: >
+      Helper functions for performing QMRA
+    contents: 
+      - config_write_dummy
+      - create_random_distribution
+      - generate_random_values 
+      - distribution_repeater 
+      - dr.betapoisson
+      - dr.db_download 
+      - dr.db_model 
+      - dr.expo
+      - poisson_dose
+      - who_getTreatment
+      

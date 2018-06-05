@@ -4,7 +4,7 @@
 \alias{dr.db_download}
 \title{Download dose-response model database from QMRAwiki}
 \source{
-http://qmrawiki.canr.msu.edu/old/index.php?title=Table_of_Recommended_Best-Fit_Parameters
+http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters
 }
 \usage{
 dr.db_download(fromInternet = FALSE)

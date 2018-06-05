@@ -56,6 +56,21 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Case study (WWTP Old Ford)
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/OldFord_PublicIrrigation.html">1 Public irrigation</a>
+    </li>
+    <li>
+      <a href="../articles/OldFord_PotableReuse.html">2 Potable reuse</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -85,7 +100,7 @@
       <h1>Web-app development with OpenCpu</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 May, 2018</h4>
+            <h4 class="date">05 Juni, 2018</h4>
       
       
       <div class="hidden name"><code>web_app.Rmd</code></div>
@@ -96,7 +111,7 @@
     
 <p>For developing a web application, which is based on the R package <code>kwb.qmra</code> the <a href="https://www.opencpu.org/api.html">OpenCPU API</a> can be used. It has a lot of great features which its author Jeroen Ooms describes as follows (<a href="https://www.quora.com/How-do-plumber-and-OpenCPU-compare-when-it-comes-to-deploying-ML-models">Source</a>):</p>
 <blockquote>
-<p>“OpenCPU is mature has been put to the test in production for many years now, both in private and public organizations. The system was developed out of a need for a reliable, scalable system for embedding R that we used at UCLA for teaching R to students, sometimes several classes at once (think about a classroom settings with 100+ concurrent students). The core implementation of OpenCPU is the opencpu-server stack based on systems native Apache2 webserver. The opencpu-server stack has been packaged as deb/rpm packages and can be installed out of the box on all popular Linux systems. This really provides a super stable production ready system out-of-the-box. Not only does it easily scale up but you can configure the server (if you want to add auth, proxies, etc) via standard Apache configuration on your server. An incredible amount of time and energy has been invested into optimizing the internals of opencpu-server for security, reliability and performance. In opencpu-server, each incoming request gets processed in a temporary process fork which serves as a sandbox that controls memory/cpu limits, access control, timeouts, etc. All these are critical to ensure that the stability of the server does not get compromised by users or packages (accidentally) messing with the system or using excessive resources. I am not aware of any other R server system that does this.</p>
+<p>"OpenCPU is mature has been put to the test in production for many years now, both in private and public organizations. The system was developed out of a need for a reliable, scalable system for embedding R that we used at UCLA for teaching R to students, sometimes several classes at once (think about a classroom settings with 100+ concurrent students). The core implementation of OpenCPU is the opencpu-server stack based on systems native Apache2 webserver. The opencpu-server stack has been packaged as deb/rpm packages and can be installed out of the box on all popular Linux systems. This really provides a super stable production ready system out-of-the-box. Not only does it easily scale up but you can configure the server (if you want to add auth, proxies, etc) via standard Apache configuration on your server. An incredible amount of time and energy has been invested into optimizing the internals of opencpu-server for security, reliability and performance. In opencpu-server, each incoming request gets processed in a temporary process fork which serves as a sandbox that controls memory/cpu limits, access control, timeouts, etc. All these are critical to ensure that the stability of the server does not get compromised by users or packages (accidentally) messing with the system or using excessive resources. I am not aware of any other R server system that does this.</p>
 <p>More details about the why and how of OpenCPU are available from these papers:"</p>
 <ul>
 <li><p><a href="https://arxiv.org/abs/1406.4806">Towards a Universal Interface for Scientific Computing through Separation of Concerns</a></p></li>
