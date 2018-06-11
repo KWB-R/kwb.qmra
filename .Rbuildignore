@@ -11,3 +11,4 @@ LICENSE.md
 _pkgdown.yaml
 appveyor.yml
 codecov.yml
+^.gitlab-ci\.yml$
