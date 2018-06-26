@@ -1,12 +1,13 @@
 pandoc: 2.2.1
-pkgdown: 1.0.0
+pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   doseresponse: doseresponse.html
   general: general.html
   installation: installation.html
-  OldFord_PotableReuse: OldFord_PotableReuse.html
-  OldFord_PublicIrrigation: OldFord_PublicIrrigation.html
   usage: usage.html
   web_app: web_app.html
+urls:
+  reference: https://kwb-r.github.io/kwb.qmra/reference
+  article: https://kwb-r.github.io/kwb.qmra/articles
 

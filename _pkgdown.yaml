@@ -1,6 +1,11 @@
+url: https://kwb-r.github.io/kwb.qmra
+
 template:
   params:
     bootswatch: cerulean
+    docsearch:
+      api_key: 197d3cb0436a3187109f1c5910ffe967
+      index_name: kwb-r
 navbar:
   title: ~
   type: default
