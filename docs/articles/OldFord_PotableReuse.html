@@ -8,8 +8,10 @@
 <title>WWTP Old Ford: public irrigation scenario • kwb.qmra</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="WWTP Old Ford: public irrigation scenario">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="WWTP Old Ford: public irrigation scenario">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -86,7 +88,13 @@
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -100,7 +108,7 @@
       <h1>WWTP Old Ford: public irrigation scenario</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">05 Juni, 2018</h4>
+            <h4 class="date">26 June, 2018</h4>
       
       
       <div class="hidden name"><code>OldFord_PotableReuse.Rmd</code></div>
@@ -138,7 +146,7 @@ located here and can be downloaded with the following command from <a href="http
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">#### DEFINE DIRECTORY ################</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">confDir &lt;-<span class="st"> </span><span class="kw">dir</span>(scenarios_dir,<span class="dt">full.names =</span> <span class="ot">TRUE</span>)[<span class="dv">2</span>]</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">confDir</a></code></pre></div>
-<pre><code>## [1] "C:\\Users\\mrustl.KWB\\AppData\\Local\\Temp\\RtmpoTpDGb/scenarios/oldFord_prior_potableReuse"</code></pre>
+<pre><code>## [1] "C:\\Users\\mrustl.KWB\\AppData\\Local\\Temp\\Rtmp4Q6dO2/scenarios/oldFord_prior_potableReuse"</code></pre>
 </div>
 <div id="import-configuration-into-r" class="section level2">
 <h2 class="hasAnchor">
@@ -657,7 +665,7 @@ located here and can be downloaded with the following command from <a href="http
 ## Simulated exposure: volume per event
 ## Replicate 365000 times constant value 1.000000</code></pre>
 <pre><code>## Joining, by = c("PathogenGroup", "eventID", "repeatID")</code></pre>
-<pre><code>## Warning: Paket 'bindrcpp' wurde unter R Version 3.4.4 erstellt</code></pre>
+<pre><code>## Warning: package 'bindrcpp' was built under R version 3.4.4</code></pre>
 <pre><code>## Joining, by = c("eventID", "repeatID")</code></pre>
 <pre><code>## 
 ## ### STEP 4: DOSE RESPONSE #################################################
@@ -689,7 +697,7 @@ located here and can be downloaded with the following command from <a href="http
 ##   ..$ events:'data.frame':   1095000 obs. of  6 variables:
 ##   .. ..$ repeatID     : int [1:1095000] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID      : int [1:1095000] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. ..$ inflow       : num [1:1095000] 447152 537387 436318 510017 389743 ...
+##   .. ..$ inflow       : num [1:1095000] 917947 80710 637611 837167 412221 ...
 ##   .. ..$ PathogenID   : int [1:1095000] 3 3 3 3 3 3 3 3 3 3 ...
 ##   .. ..$ PathogenName : chr [1:1095000] "Campylobacter jejuni" "Campylobacter jejuni" "Campylobacter jejuni" "Campylobacter jejuni" ...
 ##   .. ..$ PathogenGroup: chr [1:1095000] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
@@ -706,7 +714,7 @@ located here and can be downloaded with the following command from <a href="http
 ##   ..$ events_long        :'data.frame':  12045000 obs. of  8 variables:
 ##   .. ..$ repeatID           : int [1:12045000] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID            : int [1:12045000] 1 1 1 1 2 2 2 2 3 3 ...
-##   .. ..$ logreduction       : num [1:12045000] 0.459 0.459 0.459 0.459 0.109 ...
+##   .. ..$ logreduction       : num [1:12045000] 0.0931 0.0931 0.0931 0.0931 0.1184 ...
 ##   .. ..$ TreatmentID        : int [1:12045000] 16 16 16 16 16 16 16 16 16 16 ...
 ##   .. ..$ PathogenGroup      : chr [1:12045000] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   .. ..$ TreatmentSchemeID  : int [1:12045000] 1 2 3 4 1 2 3 4 1 2 ...
@@ -719,16 +727,16 @@ located here and can be downloaded with the following command from <a href="http
 ##   .. ..$ TreatmentSchemeID  : int [1:12045000] 0 1 2 2 3 3 3 4 4 4 ...
 ##   .. ..$ TreatmentSchemeName: chr [1:12045000] "0" "1st" "1st-2nd" "1st-2nd" ...
 ##   .. ..$ TreatmentName      : chr [1:12045000] "None" "Primary treatment" "Primary treatment" "Secondary treatment" ...
-##   .. ..$ 16                 : num [1:12045000] NA 0.459 0.459 NA NA ...
-##   .. ..$ 17                 : num [1:12045000] NA NA NA 1.45 NA ...
-##   .. ..$ 19                 : num [1:12045000] NA NA NA NA 3.53 ...
+##   .. ..$ 16                 : num [1:12045000] NA 0.0931 0.0931 NA NA ...
+##   .. ..$ 17                 : num [1:12045000] NA NA NA 2.42 NA ...
+##   .. ..$ 19                 : num [1:12045000] NA NA NA NA 5.61 ...
 ##   .. ..$ 20                 : num [1:12045000] NA NA NA NA NA ...
 ##   .. ..$ 21                 : num [1:12045000] 0 NA NA NA NA NA NA NA NA NA ...
 ##   ..$ schemes_events_wide:'data.frame':  12045000 obs. of  7 variables:
 ##   .. ..$ eventID      : int [1:12045000] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ PathogenGroup: chr [1:12045000] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   .. ..$ scheme_0     : num [1:12045000] 0 NA NA NA NA NA NA NA NA NA ...
-##   .. ..$ scheme_1     : num [1:12045000] NA 0.459 0.459 NA NA ...
+##   .. ..$ scheme_1     : num [1:12045000] NA 0.0931 0.0931 NA NA ...
 ##   .. ..$ scheme_2     : num [1:12045000] NA NA NA NA NA NA NA NA NA NA ...
 ##   .. ..$ scheme_3     : num [1:12045000] NA NA NA NA NA NA NA NA NA NA ...
 ##   .. ..$ scheme_4     : num [1:12045000] NA NA NA NA NA NA NA NA NA NA ...
@@ -813,21 +821,21 @@ located here and can be downloaded with the following command from <a href="http
 ##   ..$ PathogenGroup          : chr [1:5475000] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   ..$ eventID                : int [1:5475000] 1 1 1 1 1 2 2 2 2 2 ...
 ##   ..$ repeatID               : int [1:5475000] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ logreduction           : num [1:5475000] 0 0.459 1.906 5.44 7.834 ...
-##   ..$ inflow                 : num [1:5475000] 447152 447152 447152 447152 447152 ...
+##   ..$ logreduction           : num [1:5475000] 0 0.0931 2.5132 8.1274 13.5012 ...
+##   ..$ inflow                 : num [1:5475000] 917947 917947 917947 917947 917947 ...
 ##   ..$ PathogenID             : int [1:5475000] 3 3 3 3 3 3 3 3 3 3 ...
 ##   ..$ PathogenName           : chr [1:5475000] "Campylobacter jejuni" "Campylobacter jejuni" "Campylobacter jejuni" "Campylobacter jejuni" ...
-##   ..$ effluent               : num [1:5475000] 4.47e+05 1.55e+05 5.55e+03 1.62 6.56e-03 ...
+##   ..$ effluent               : num [1:5475000] 9.18e+05 7.41e+05 2.82e+03 6.84e-03 2.89e-08 ...
 ##   ..$ volume_perEvent        : int [1:5475000] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ exposure_perEvent      : num [1:5475000] 4.47e+05 1.55e+05 5.55e+03 1.62 6.56e-03 ...
-##   ..$ dose_perEvent          : int [1:5475000] 445988 155299 5598 0 0 536374 417690 5580 0 0 ...
-##   ..$ infectionProb_per_event: num [1:5475000] 0.796 0.762 0.616 0 0 ...
+##   ..$ exposure_perEvent      : num [1:5475000] 9.18e+05 7.41e+05 2.82e+03 6.84e-03 2.89e-08 ...
+##   ..$ dose_perEvent          : int [1:5475000] 917917 740831 2794 0 0 80135 61487 264 0 0 ...
+##   ..$ infectionProb_per_event: num [1:5475000] 0.816 0.81 0.576 0 0 ...
 ##   ..$ infection_to_illness   : num [1:5475000] 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 ...
 ##   ..$ dalys_per_case         : num [1:5475000] 0.0046 0.0046 0.0046 0.0046 0.0046 0.0046 0.0046 0.0046 0.0046 0.0046 ...
 ##   ..$ ReferenceName          : chr [1:5475000] "WHO (2011): Drinking water guideline, Table 7.4" "WHO (2011): Drinking water guideline, Table 7.4" "WHO (2011): Drinking water guideline, Table 7.4" "WHO (2011): Drinking water guideline, Table 7.4" ...
 ##   ..$ ReferenceLink          : chr [1:5475000] "http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155" "http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155" "http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155" "http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155" ...
-##   ..$ illnessProb_per_event  : num [1:5475000] 0.239 0.229 0.185 0 0 ...
-##   ..$ dalys_per_event        : num [1:5475000] 0.0011 0.00105 0.00085 0 0 ...
+##   ..$ illnessProb_per_event  : num [1:5475000] 0.245 0.243 0.173 0 0 ...
+##   ..$ dalys_per_event        : num [1:5475000] 0.001126 0.001118 0.000794 0 0 ...
 ##   ..- attr(*, "vars")= chr [1:4] "TreatmentSchemeID" "TreatmentSchemeName" "PathogenGroup" "eventID"
 ##   ..- attr(*, "labels")='data.frame':    5475 obs. of  4 variables:
 ##   .. ..$ TreatmentSchemeID  : int [1:5475] 0 0 0 0 0 0 0 0 0 0 ...
@@ -948,14 +956,14 @@ located here and can be downloaded with the following command from <a href="http
 ##   ..$ PathogenName       : chr [1:15000] "Campylobacter jejuni" "Rotavirus" "Cryptosporidium parvum" "Campylobacter jejuni" ...
 ##   ..$ PathogenGroup      : chr [1:15000] "Bacteria" "Viruses" "Protozoa" "Bacteria" ...
 ##   ..$ events             : int [1:15000] 365 365 365 365 365 365 365 365 365 365 ...
-##   ..$ inflow_median      : num [1:15000] 494555 2672 4973 494555 2672 ...
-##   ..$ logreduction_median: num [1:15000] 0 0 0 0.2678 0.0502 ...
+##   ..$ inflow_median      : num [1:15000] 482058 2294 5000 482058 2294 ...
+##   ..$ logreduction_median: num [1:15000] 0 0 0 0.2496 0.0486 ...
 ##   ..$ volume_sum         : int [1:15000] 365 365 365 365 365 365 365 365 365 365 ...
-##   ..$ exposure_sum       : num [1:15000] 1.82e+08 9.60e+05 1.79e+06 1.04e+08 8.58e+05 ...
-##   ..$ dose_sum           : int [1:15000] 181833941 959284 1795208 103510665 860033 728036 2214557 78406 83751 106 ...
+##   ..$ exposure_sum       : num [1:15000] 1.77e+08 8.65e+05 1.83e+06 1.04e+08 7.77e+05 ...
+##   ..$ dose_sum           : int [1:15000] 176852764 865606 1829451 103609235 778360 737684 2174748 71010 94326 112 ...
 ##   ..$ infectionProb_sum  : num [1:15000] 1 1 1 1 1 ...
 ##   ..$ illnessProb_sum    : num [1:15000] 1 1 1 1 1 ...
-##   ..$ dalys_sum          : num [1:15000] 0.396 2.247 0.381 0.386 2.238 ...
+##   ..$ dalys_sum          : num [1:15000] 0.395 2.239 0.383 0.386 2.23 ...
 ##   ..- attr(*, "vars")= chr [1:5] "repeatID" "TreatmentSchemeID" "TreatmentSchemeName" "PathogenID" ...
 ##   ..- attr(*, "drop")= logi TRUE</code></pre>
 <p>Thus the user has access to all results.</p>
@@ -1085,14 +1093,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">494555.023</td>
+<td align="right">482058.389</td>
 <td align="right">0.0000000</td>
 <td align="right">365</td>
-<td align="right">1.818511e+08</td>
-<td align="right">181833941</td>
+<td align="right">1.768543e+08</td>
+<td align="right">176852764</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.3960481</td>
+<td align="right">0.3954151</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1102,14 +1110,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">2671.992</td>
+<td align="right">2293.630</td>
 <td align="right">0.0000000</td>
 <td align="right">365</td>
-<td align="right">9.599605e+05</td>
-<td align="right">959284</td>
+<td align="right">8.654389e+05</td>
+<td align="right">865606</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">2.2473266</td>
+<td align="right">2.2391351</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1119,14 +1127,14 @@ Simulated total DALYs (for all events)
 <td align="left">Cryptosporidium parvum</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4973.285</td>
+<td align="right">4999.568</td>
 <td align="right">0.0000000</td>
 <td align="right">365</td>
-<td align="right">1.794275e+06</td>
-<td align="right">1795208</td>
+<td align="right">1.829787e+06</td>
+<td align="right">1829451</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.3810995</td>
+<td align="right">0.3829863</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1136,14 +1144,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">494555.023</td>
-<td align="right">0.2678000</td>
+<td align="right">482058.389</td>
+<td align="right">0.2496297</td>
 <td align="right">365</td>
-<td align="right">1.035111e+08</td>
-<td align="right">103510665</td>
+<td align="right">1.036035e+08</td>
+<td align="right">103609235</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.3859880</td>
+<td align="right">0.3858960</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1153,14 +1161,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">2671.992</td>
-<td align="right">0.0502211</td>
+<td align="right">2293.630</td>
+<td align="right">0.0486245</td>
 <td align="right">365</td>
-<td align="right">8.584255e+05</td>
-<td align="right">860033</td>
+<td align="right">7.766945e+05</td>
+<td align="right">778360</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">2.2384652</td>
+<td align="right">2.2296912</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1170,14 +1178,14 @@ Simulated total DALYs (for all events)
 <td align="left">Cryptosporidium parvum</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4973.285</td>
-<td align="right">0.5114650</td>
+<td align="right">4999.568</td>
+<td align="right">0.4905561</td>
 <td align="right">365</td>
-<td align="right">7.268409e+05</td>
-<td align="right">728036</td>
+<td align="right">7.382405e+05</td>
+<td align="right">737684</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.3784575</td>
+<td align="right">0.3806089</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1187,14 +1195,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">494555.023</td>
-<td align="right">2.2832195</td>
+<td align="right">482058.389</td>
+<td align="right">2.2796193</td>
 <td align="right">365</td>
-<td align="right">2.213746e+06</td>
-<td align="right">2214557</td>
+<td align="right">2.173946e+06</td>
+<td align="right">2174748</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.2716946</td>
+<td align="right">0.2725962</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1204,14 +1212,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">2671.992</td>
-<td align="right">1.2831768</td>
+<td align="right">2293.630</td>
+<td align="right">1.2509413</td>
 <td align="right">365</td>
-<td align="right">7.802607e+04</td>
-<td align="right">78406</td>
+<td align="right">7.047213e+04</td>
+<td align="right">71010</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">1.8750911</td>
+<td align="right">1.8673308</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1221,14 +1229,14 @@ Simulated total DALYs (for all events)
 <td align="left">Cryptosporidium parvum</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4973.285</td>
-<td align="right">1.4963317</td>
+<td align="right">4999.568</td>
+<td align="right">1.4902524</td>
 <td align="right">365</td>
-<td align="right">8.389713e+04</td>
-<td align="right">83751</td>
+<td align="right">9.427079e+04</td>
+<td align="right">94326</td>
 <td align="right">1.0000000</td>
 <td align="right">1.0000000</td>
-<td align="right">0.3507002</td>
+<td align="right">0.3461806</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1238,14 +1246,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">494555.023</td>
-<td align="right">7.0838192</td>
+<td align="right">482058.389</td>
+<td align="right">7.0256899</td>
 <td align="right">365</td>
-<td align="right">1.171063e+02</td>
-<td align="right">106</td>
-<td align="right">0.8038235</td>
-<td align="right">0.3798779</td>
-<td align="right">0.0021781</td>
+<td align="right">1.145329e+02</td>
+<td align="right">112</td>
+<td align="right">0.8451686</td>
+<td align="right">0.4236382</td>
+<td align="right">0.0025185</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1255,14 +1263,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">2671.992</td>
-<td align="right">5.5020433</td>
+<td align="right">2293.630</td>
+<td align="right">5.6159475</td>
 <td align="right">365</td>
-<td align="right">3.081156e+01</td>
-<td align="right">31</td>
-<td align="right">0.9995577</td>
-<td align="right">0.9699217</td>
-<td align="right">0.0451909</td>
+<td align="right">2.589215e+01</td>
+<td align="right">33</td>
+<td align="right">0.9998781</td>
+<td align="right">0.9837517</td>
+<td align="right">0.0533956</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1272,10 +1280,10 @@ Simulated total DALYs (for all events)
 <td align="left">Cryptosporidium parvum</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4973.285</td>
-<td align="right">7.4963317</td>
+<td align="right">4999.568</td>
+<td align="right">7.4902524</td>
 <td align="right">365</td>
-<td align="right">8.389710e-02</td>
+<td align="right">9.427080e-02</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -1289,14 +1297,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">494555.023</td>
-<td align="right">11.2045868</td>
+<td align="right">482058.389</td>
+<td align="right">11.0894174</td>
 <td align="right">365</td>
-<td align="right">1.832132e-01</td>
-<td align="right">0</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
+<td align="right">1.100879e-01</td>
+<td align="right">1</td>
+<td align="right">0.0183515</td>
+<td align="right">0.0055055</td>
+<td align="right">0.0000253</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1306,14 +1314,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">2671.992</td>
-<td align="right">7.4064595</td>
+<td align="right">2293.630</td>
+<td align="right">7.5545833</td>
 <td align="right">365</td>
-<td align="right">4.593275e-01</td>
-<td align="right">0</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
+<td align="right">6.632673e-01</td>
+<td align="right">1</td>
+<td align="right">0.2633623</td>
+<td align="right">0.1316812</td>
+<td align="right">0.0018435</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1323,10 +1331,10 @@ Simulated total DALYs (for all events)
 <td align="left">Cryptosporidium parvum</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4973.285</td>
-<td align="right">8.2533495</td>
+<td align="right">4999.568</td>
+<td align="right">8.1904208</td>
 <td align="right">365</td>
-<td align="right">2.251630e-02</td>
+<td align="right">2.741630e-02</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -1339,7 +1347,7 @@ Simulated total DALYs (for all events)
 <div id="export-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-results" class="anchor"></a>6 Export results</h2>
-<p>E.g. Write reports for all configurations in a folder e.g. <code>/scenarios</code> (here: C:.KWB/scenarios):</p>
+<p>E.g. Write reports for all configurations in a folder e.g. <code>/scenarios</code> (here: C:.KWB4Q6dO2/scenarios):</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">kwb.qmra<span class="op">::</span><span class="kw">report_workflow</span>(<span class="dt">confDirs =</span> scenarios_dir)</a></code></pre></div>
 </div>
 </div>
@@ -1387,6 +1395,20 @@ Simulated total DALYs (for all events)
 </div>
 
   
-
-  </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    
+    apiKey: '197d3cb0436a3187109f1c5910ffe967',
+    indexName: 'kwb-r',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>
