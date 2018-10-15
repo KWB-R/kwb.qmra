@@ -16,18 +16,22 @@ distribution_repeater <- function(number_of_repeatings =  10,
                                   number_of_events = 365,
                                   func,
                                   ... ) {
+  
+  repl_tmp <- vapply(seq_len(number_of_repeatings), 
+         function(x) {func(n = number_of_events,
+                           ...)},FUN.VALUE = numeric(number_of_events))
+  
+  if(number_of_events == 1)   repl_tmp <- t(repl_tmp)
 
-  repl <- sapply(1:number_of_repeatings, 
-                  function(x) {func(n = number_of_events,
-                           ...)}) %>% 
+  repl <- repl_tmp %>% 
     as.data.frame() %>% 
-    cbind(eventID = 1:number_of_events )
-  colnames(repl) <- c(1:number_of_repeatings, "eventID")
+    cbind(eventID = seq_len(number_of_events))
+  colnames(repl) <- c(seq_len(number_of_repeatings), "eventID")
   
   repl_list <- tidyr::gather_(data = repl,
                               key_col = "repeatID", 
                               value_col = "values",
-                              gather_cols = as.character(1:number_of_repeatings)) 
+                              gather_cols = as.character(seq_len(number_of_repeatings))) 
   
   repl_list$repeatID <- as.integer(repl_list$repeatID)
   

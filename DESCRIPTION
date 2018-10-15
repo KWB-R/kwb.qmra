@@ -23,10 +23,11 @@ Imports:
 	EnvStats,
 	ggplot2
 License: MIT + file LICENSE
+Encoding: UTF-8
 LazyLoad: yes
 URL: http://kwb-r.github.io/kwb.qmra/
 BugReports: https://github.com/KWB-R/kwb.qmra/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: 
     knitr,
     ggrepel,

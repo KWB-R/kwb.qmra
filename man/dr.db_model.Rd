@@ -4,8 +4,8 @@
 \alias{dr.db_model}
 \title{Generate table with different doses for dr.db_download()}
 \usage{
-dr.db_model(dr.db = dr.db_download(), dose = sfsmisc::lseq(from = 1, to =
-  10^10, length = 1000))
+dr.db_model(dr.db = dr.db_download(), dose = sfsmisc::lseq(from = 1, to
+  = 10^10, length = 1000))
 }
 \arguments{
 \item{dr.db}{as retrieved by dr.db_download(), default: dr.db_download()}

@@ -108,7 +108,7 @@
       <h1>Dose-response modelling</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2018-06-26</h4>
+            <h4 class="date">2018-10-15</h4>
       
       
       <div class="hidden name"><code>doseresponse.Rmd</code></div>
@@ -120,7 +120,6 @@
 <p>#1. Load the required R packages</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(kwb.qmra)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.4.4</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -129,12 +128,13 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(knitr)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">library</span>(ggrepel)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(knitr)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<pre><code>## Warning: package 'ggplot2' was built under R version 3.5.1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(ggrepel)</a></code></pre></div>
 <p>#2. Dose-response database from <a href="http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki</a></p>
 <p>2.1 Download</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">dr.db &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">dr.db_download</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">dr.db &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">dr.db_download</span>()</a></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: 'X1' [1]</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -160,21 +160,21 @@
 ## )</code></pre>
 <p>##2.2 Visualise</p>
 <p><strong>Database</strong>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dr.db2 &lt;-<span class="st"> </span>dr.db <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(PathogenGroup,</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">                         PathogenName, </a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">                        <span class="st">`</span><span class="dt">Agent strain</span><span class="st">`</span>,</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">                        <span class="st">`</span><span class="dt">Best fit model*</span><span class="st">`</span>,</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">                        <span class="st">`</span><span class="dt">Optimized parameter(s)</span><span class="st">`</span>, </a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">                        <span class="st">`</span><span class="dt">LD50/ID50</span><span class="st">`</span>,</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">                        <span class="st">`</span><span class="dt">Host type</span><span class="st">`</span>,</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">                         Route,</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">                        <span class="st">`</span><span class="dt">Dose units</span><span class="st">`</span>,</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">                         Response, </a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">                         Reference)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="st">                </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(PathogenGroup, PathogenName) </a></code></pre></div>
-<pre><code>## Warning: package 'bindrcpp' was built under R version 3.4.4</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">caption &lt;-<span class="st"> "Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(dr.db2,<span class="dt">caption =</span> caption )</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dr.db2 &lt;-<span class="st"> </span>dr.db <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(PathogenGroup,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">                         PathogenName, </a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">                        <span class="st">`</span><span class="dt">Agent strain</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">                        <span class="st">`</span><span class="dt">Best fit model*</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">                        <span class="st">`</span><span class="dt">Optimized parameter(s)</span><span class="st">`</span>, </a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">                        <span class="st">`</span><span class="dt">LD50/ID50</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">                        <span class="st">`</span><span class="dt">Host type</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">                         Route,</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">                        <span class="st">`</span><span class="dt">Dose units</span><span class="st">`</span>,</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">                         Response, </a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">                         Reference)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="st">                </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(PathogenGroup, PathogenName) </a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">caption &lt;-<span class="st"> "Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(dr.db2,<span class="dt">caption =</span> caption )</a></code></pre></div>
 <table class="table">
 <caption>Table 1: Best-fit dose-response parameters (<a href="http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki, 2016</a>)</caption>
 <thead><tr class="header">
@@ -674,17 +674,17 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#DT::datatable(doseresponse, caption = caption)</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#DT::datatable(doseresponse, caption = caption)</span></a></code></pre></div>
 <p><strong>Dose response for all microbial parameters</strong>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dr.model &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">dr.db_model</span>(<span class="dt">dr.db =</span> dr.db)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">ggplot</span>( dr.model, <span class="kw">aes</span>(<span class="dt">x =</span> dose, </a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">                      <span class="dt">y =</span> infectionProbability, </a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">                      <span class="dt">col =</span> PathogenGroup)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dr.model &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">dr.db_model</span>(<span class="dt">dr.db =</span> dr.db)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">ggplot</span>( dr.model, <span class="kw">aes</span>(<span class="dt">x =</span> dose, </a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">                      <span class="dt">y =</span> infectionProbability, </a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">                      <span class="dt">col =</span> PathogenGroup)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="doseresponse_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p><strong>Dose for all microbial parameters with 50% infection probability</strong></p>
 <div class="figure">

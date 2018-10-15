@@ -5,8 +5,6 @@ articles:
   doseresponse: doseresponse.html
   general: general.html
   installation: installation.html
-  OldFord_PotableReuse: OldFord_PotableReuse.html
-  OldFord_PublicIrrigation: OldFord_PublicIrrigation.html
   usage: usage.html
   web_app: web_app.html
 urls:

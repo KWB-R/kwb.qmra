@@ -4,7 +4,8 @@
 \alias{plot_total_dalys}
 \title{plot total DALYs}
 \usage{
-plot_total_dalys(risk, labelling = FALSE, title = "", tolerance = 1e-06)
+plot_total_dalys(risk, labelling = FALSE, title = "",
+  tolerance = 1e-06)
 }
 \arguments{
 \item{risk}{list as retrieved by simulate_risk()}

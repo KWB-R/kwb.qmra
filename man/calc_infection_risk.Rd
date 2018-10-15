@@ -4,10 +4,10 @@
 \alias{calc_infection_risk}
 \title{Risk calculation: infection}
 \usage{
-calc_infection_risk(inflow_orgPerLitre = 10, treatment_logRemoval = 5.8,
-  exposure_daysPerYear = 365, doseresponse_modelType = "dr.expo",
-  waterConsumption_LitrePerDay = 1, target_infectionRisk_perYear = 1/10000,
-  ...)
+calc_infection_risk(inflow_orgPerLitre = 10,
+  treatment_logRemoval = 5.8, exposure_daysPerYear = 365,
+  doseresponse_modelType = "dr.expo", waterConsumption_LitrePerDay = 1,
+  target_infectionRisk_perYear = 1/10000, ...)
 }
 \arguments{
 \item{inflow_orgPerLitre}{concentration of microbiological parameter in inflow

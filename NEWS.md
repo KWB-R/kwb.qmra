@@ -2,6 +2,8 @@
 
 * current development version
 
+* bugfix: distribution_repeater(), works now if number_of_events == 1
+
 # [kwb.qmra 0.1.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v.0.1.1)
 
 * version developed within DEMOWARE project and also released on [Zenodo](https://zenodo.org/record/154111) 

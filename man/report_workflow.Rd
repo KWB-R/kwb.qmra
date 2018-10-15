@@ -5,8 +5,8 @@
 \title{Create report (not working for "shiny" reports)}
 \usage{
 report_workflow(confDirs = system.file("extdata/configs/", package =
-  "kwb.qmra"), report_template_dir = system.file("extdata/report", package =
-  "kwb.qmra"), report_template_name = "workflow.Rmd",
+  "kwb.qmra"), report_template_dir = system.file("extdata/report",
+  package = "kwb.qmra"), report_template_name = "workflow.Rmd",
   report_output_dir = NULL, openReport = TRUE)
 }
 \arguments{

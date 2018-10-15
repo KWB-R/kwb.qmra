@@ -4,8 +4,8 @@
 \alias{distribution_repeater}
 \title{Helper function: distributon repeater}
 \usage{
-distribution_repeater(number_of_repeatings = 10, number_of_events = 365,
-  func, ...)
+distribution_repeater(number_of_repeatings = 10,
+  number_of_events = 365, func, ...)
 }
 \arguments{
 \item{number_of_repeatings}{how often should the random distribution with the 

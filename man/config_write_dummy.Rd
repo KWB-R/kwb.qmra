@@ -4,8 +4,8 @@
 \alias{config_write_dummy}
 \title{Config: create dummy configuration}
 \usage{
-config_write_dummy(confDir = system.file("extdata/configs/dummy", package =
-  "kwb.qmra"))
+config_write_dummy(confDir = system.file("extdata/configs/dummy", package
+  = "kwb.qmra"))
 }
 \arguments{
 \item{confDir}{directory to save the dummy configuration files (Default:
