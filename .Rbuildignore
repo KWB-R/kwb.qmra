@@ -4,7 +4,7 @@
 ^\.Rprofile$
 .travis.yml
 README.md
-README.Rmd
+index.Rmd
 ^docs$
 ^binder$
 LICENSE.md

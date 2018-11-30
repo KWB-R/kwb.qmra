@@ -25,7 +25,7 @@ Imports:
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyLoad: yes
-URL: http://kwb-r.github.io/kwb.qmra/
+URL: http://github.com/KWB-/kwb.qmra/
 BugReports: https://github.com/KWB-R/kwb.qmra/issues
 RoxygenNote: 6.1.0
 Suggests: 
