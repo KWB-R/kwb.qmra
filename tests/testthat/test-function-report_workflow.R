@@ -4,6 +4,6 @@
 
 test_that("report_workflow() works", {
 
-  kwb.qmra:::report_workflow(report_output_dir = tempdir())
+  kwb.qmra:::report_workflow()
 })
 
