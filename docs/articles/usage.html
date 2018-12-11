@@ -108,7 +108,7 @@
       <h1>Usage</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">30 November, 2018</h4>
+            <h4 class="date">11 December, 2018</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/KWB-R/kwb.qmra//blob/master/vignettes/usage.Rmd"><code>vignettes/usage.Rmd</code></a></small>
       <div class="hidden name"><code>usage.Rmd</code></div>
@@ -589,7 +589,7 @@
 ##   ..$ events:'data.frame':   10950 obs. of  6 variables:
 ##   .. ..$ repeatID     : int [1:10950] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID      : int [1:10950] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. ..$ inflow       : num [1:10950] 6148 9604 9944 2663 7932 ...
+##   .. ..$ inflow       : num [1:10950] 8078 2179 2265 3695 7678 ...
 ##   .. ..$ PathogenID   : int [1:10950] 3 3 3 3 3 3 3 3 3 3 ...
 ##   .. ..$ PathogenName : chr [1:10950] "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" ...
 ##   .. ..$ PathogenGroup: chr [1:10950] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
@@ -606,7 +606,7 @@
 ##   ..$ events_long        :'data.frame':  54750 obs. of  8 variables:
 ##   .. ..$ repeatID           : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ eventID            : int [1:54750] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. ..$ logreduction       : num [1:54750] 1.942 1.844 1.685 1.058 0.793 ...
+##   .. ..$ logreduction       : num [1:54750] 1.146 1.234 0.629 0.639 0.962 ...
 ##   .. ..$ TreatmentID        : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. ..$ PathogenGroup      : chr [1:54750] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   .. ..$ TreatmentSchemeID  : int [1:54750] 2 2 2 2 2 2 2 2 2 2 ...
@@ -619,10 +619,10 @@
 ##   .. ..$ TreatmentSchemeID  : int [1:54750] 1 1 2 2 2 1 1 2 2 2 ...
 ##   .. ..$ TreatmentSchemeName: chr [1:54750] "Berlin (BF + Slow sand)" "Berlin (BF + Slow sand)" "Depth &amp; surface filtration" "Depth &amp; surface filtration" ...
 ##   .. ..$ TreatmentName      : chr [1:54750] "Bank filtration" "Slow sand filtration" "Conventional clarification" "Granular high-rate filtration" ...
-##   .. ..$ 1                  : num [1:54750] NA NA 1.94 NA NA ...
-##   .. ..$ 5                  : num [1:54750] NA NA NA 1.14 NA ...
-##   .. ..$ 8                  : num [1:54750] NA 4.07 NA NA NA ...
-##   .. ..$ 9                  : num [1:54750] 5.23 NA NA NA NA ...
+##   .. ..$ 1                  : num [1:54750] NA NA 1.15 NA NA ...
+##   .. ..$ 5                  : num [1:54750] NA NA NA 4.24 NA ...
+##   .. ..$ 8                  : num [1:54750] NA 2.4 NA NA NA ...
+##   .. ..$ 9                  : num [1:54750] 3.74 NA NA NA NA ...
 ##   .. ..$ 15                 : num [1:54750] NA NA NA NA 4 NA NA NA NA 4 ...
 ##   ..$ schemes_events_wide:'data.frame':  54750 obs. of  4 variables:
 ##   .. ..$ eventID      : int [1:54750] 1 1 1 1 1 1 1 1 1 1 ...
@@ -662,7 +662,7 @@
 ##   .. ..$ events:'data.frame':    3650 obs. of  3 variables:
 ##   .. .. ..$ repeatID       : int [1:3650] 1 1 1 1 1 1 1 1 1 1 ...
 ##   .. .. ..$ eventID        : int [1:3650] 1 2 3 4 5 6 7 8 9 10 ...
-##   .. .. ..$ volume_perEvent: num [1:3650] 1.4 1.72 2.36 1.27 2.1 ...
+##   .. .. ..$ volume_perEvent: num [1:3650] 2.14 1.78 1.59 2.09 1.53 ...
 ##   .. ..$ paras :'data.frame':    1 obs. of  6 variables:
 ##   .. .. ..$ type      : Factor w/ 1 level "triangle": 1
 ##   .. .. ..$ repeatings: int 10
@@ -709,13 +709,13 @@
 ##   ..$ PathogenGroup          : chr [1:21900] "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
 ##   ..$ eventID                : int [1:21900] 1 1 2 2 3 3 4 4 5 5 ...
 ##   ..$ repeatID               : int [1:21900] 1 1 1 1 1 1 1 1 1 1 ...
-##   ..$ logreduction           : num [1:21900] 9.3 7.08 8.04 6.55 7.8 ...
-##   ..$ inflow                 : num [1:21900] 6148 6148 9604 9604 9944 ...
+##   ..$ logreduction           : num [1:21900] 6.14 9.38 6.89 8.01 6.84 ...
+##   ..$ inflow                 : num [1:21900] 8078 8078 2179 2179 2265 ...
 ##   ..$ PathogenID             : int [1:21900] 3 3 3 3 3 3 3 3 3 3 ...
 ##   ..$ PathogenName           : chr [1:21900] "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" "Campylobacter jejuni and Campylobacter coli" ...
-##   ..$ effluent               : num [1:21900] 3.11e-06 5.11e-04 8.78e-05 2.70e-03 1.57e-04 ...
-##   ..$ volume_perEvent        : num [1:21900] 1.4 1.4 1.72 1.72 2.36 ...
-##   ..$ exposure_perEvent      : num [1:21900] 4.37e-06 7.17e-04 1.51e-04 4.63e-03 3.70e-04 ...
+##   ..$ effluent               : num [1:21900] 5.91e-03 3.34e-06 2.80e-04 2.12e-05 3.31e-04 ...
+##   ..$ volume_perEvent        : num [1:21900] 2.14 2.14 1.78 1.78 1.59 ...
+##   ..$ exposure_perEvent      : num [1:21900] 1.27e-02 7.15e-06 4.98e-04 3.77e-05 5.26e-04 ...
 ##   ..$ dose_perEvent          : int [1:21900] 0 0 0 0 0 0 0 0 0 0 ...
 ##   ..$ infectionProb_per_event: num [1:21900] 0 0 0 0 0 0 0 0 0 0 ...
 ##   ..$ infection_to_illness   : num [1:21900] 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 ...
@@ -842,14 +842,14 @@
 ##   ..$ PathogenName       : chr [1:60] "Campylobacter jejuni and Campylobacter coli" "Rotavirus" "Giardia duodenalis" "Campylobacter jejuni and Campylobacter coli" ...
 ##   ..$ PathogenGroup      : chr [1:60] "Bacteria" "Viruses" "Protozoa" "Bacteria" ...
 ##   ..$ events             : int [1:60] 365 365 365 365 365 365 365 365 365 365 ...
-##   ..$ inflow_median      : num [1:60] 4814 5254 4916 4814 5254 ...
-##   ..$ logreduction_median: num [1:60] 8.04 7.19 4.12 7.25 7.57 ...
-##   ..$ volume_sum         : num [1:60] 597 597 597 597 597 ...
-##   ..$ exposure_sum       : num [1:60] 3.94 109.3 4909.17 2.59 3.26 ...
-##   ..$ dose_sum           : int [1:60] 5 110 4918 5 3 0 6 107 7629 3 ...
-##   ..$ infectionProb_sum  : num [1:60] 0.0865 1 1 0.0865 0.6003 ...
-##   ..$ illnessProb_sum    : num [1:60] 0.0612 0.2616 1 0.0612 0.0235 ...
-##   ..$ dalys_sum          : num [1:60] 0.000288 0.00422 0.020547 0.000288 0.000332 ...
+##   ..$ inflow_median      : num [1:60] 4541 5093 5246 4541 5093 ...
+##   ..$ logreduction_median: num [1:60] 8.02 7.39 4.37 7.48 7.53 ...
+##   ..$ volume_sum         : num [1:60] 613 613 613 613 613 ...
+##   ..$ exposure_sum       : num [1:60] 4.73 131.8 6062 2.56 3.43 ...
+##   ..$ dose_sum           : int [1:60] 2 128 6002 3 2 0 5 99 4966 0 ...
+##   ..$ infectionProb_sum  : num [1:60] 0.0364 1 1 0.0541 0.4574 ...
+##   ..$ illnessProb_sum    : num [1:60] 0.0255 0.2453 1 0.038 0.0157 ...
+##   ..$ dalys_sum          : num [1:60] 0.000118 0.003916 0.022204 0.000177 0.000221 ...
 ##   ..- attr(*, "vars")= chr [1:5] "repeatID" "TreatmentSchemeID" "TreatmentSchemeName" "PathogenID" ...
 ##   ..- attr(*, "drop")= logi TRUE</code></pre>
 <p>Thus the user has access to all</p>
@@ -957,14 +957,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">4814.398</td>
-<td align="right">8.038598</td>
-<td align="right">596.9602</td>
-<td align="right">3.9360805</td>
-<td align="right">5</td>
-<td align="right">0.0865228</td>
-<td align="right">0.0611605</td>
-<td align="right">0.0002878</td>
+<td align="right">4541.132</td>
+<td align="right">8.023353</td>
+<td align="right">612.764</td>
+<td align="right">4.730757</td>
+<td align="right">2</td>
+<td align="right">0.0363663</td>
+<td align="right">0.0255271</td>
+<td align="right">0.0001182</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -974,14 +974,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5253.861</td>
-<td align="right">7.191199</td>
-<td align="right">596.9602</td>
-<td align="right">109.3032126</td>
-<td align="right">110</td>
-<td align="right">0.9999978</td>
-<td align="right">0.2615545</td>
-<td align="right">0.0042195</td>
+<td align="right">5093.455</td>
+<td align="right">7.386018</td>
+<td align="right">612.764</td>
+<td align="right">131.797637</td>
+<td align="right">128</td>
+<td align="right">0.9999946</td>
+<td align="right">0.2452565</td>
+<td align="right">0.0039156</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -991,14 +991,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4915.533</td>
-<td align="right">4.121148</td>
-<td align="right">596.9602</td>
-<td align="right">4909.1654538</td>
-<td align="right">4918</td>
+<td align="right">5245.847</td>
+<td align="right">4.368680</td>
+<td align="right">612.764</td>
+<td align="right">6061.998934</td>
+<td align="right">6002</td>
 <td align="right">1.0000000</td>
-<td align="right">0.9999997</td>
-<td align="right">0.0205473</td>
+<td align="right">0.9999999</td>
+<td align="right">0.0222036</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1008,14 +1008,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">4814.398</td>
-<td align="right">7.247096</td>
-<td align="right">596.9602</td>
-<td align="right">2.5906918</td>
-<td align="right">5</td>
-<td align="right">0.0865228</td>
-<td align="right">0.0611605</td>
-<td align="right">0.0002878</td>
+<td align="right">4541.132</td>
+<td align="right">7.477856</td>
+<td align="right">612.764</td>
+<td align="right">2.560261</td>
+<td align="right">3</td>
+<td align="right">0.0540504</td>
+<td align="right">0.0380453</td>
+<td align="right">0.0001773</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -1025,14 +1025,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5253.861</td>
-<td align="right">7.567980</td>
-<td align="right">596.9602</td>
-<td align="right">3.2622485</td>
-<td align="right">3</td>
-<td align="right">0.6002746</td>
-<td align="right">0.0235158</td>
-<td align="right">0.0003318</td>
+<td align="right">5093.455</td>
+<td align="right">7.531724</td>
+<td align="right">612.764</td>
+<td align="right">3.427519</td>
+<td align="right">2</td>
+<td align="right">0.4573650</td>
+<td align="right">0.0157393</td>
+<td align="right">0.0002212</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -1042,10 +1042,10 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4915.533</td>
-<td align="right">7.228957</td>
-<td align="right">596.9602</td>
-<td align="right">0.7748292</td>
+<td align="right">5245.847</td>
+<td align="right">7.487666</td>
+<td align="right">612.764</td>
+<td align="right">0.808922</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -1081,8 +1081,8 @@ Simulated total DALYs (for all events)
   docsearch({
     
     
-    apiKey: '197d3cb0436a3187109f1c5910ffe967',
-    indexName: 'kwb-r',
+    apiKey: 'ba545525664b60ab9e580ae0f7f4ac02',
+    indexName: 'kwb_qmra',
     inputSelector: 'input#search-input.form-control',
     transformData: function(hits) {
       return hits.map(function (hit) {

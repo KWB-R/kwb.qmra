@@ -108,7 +108,7 @@
       <h1>Dose-response modelling</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2018-11-30</h4>
+            <h4 class="date">2018-12-11</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/KWB-R/kwb.qmra//blob/master/vignettes/doseresponse.Rmd"><code>vignettes/doseresponse.Rmd</code></a></small>
       <div class="hidden name"><code>doseresponse.Rmd</code></div>
@@ -159,7 +159,7 @@
 ## )</code></pre>
 <p>##2.2 Visualise</p>
 <p><strong>Database</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dr.db2 &lt;-<span class="st"> </span>dr.db <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(PathogenGroup,</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dr.db2 &lt;-<span class="st"> </span>dr.db <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(PathogenGroup,</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">                         PathogenName, </a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">                        <span class="st">`</span><span class="dt">Agent strain</span><span class="st">`</span>,</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">                        <span class="st">`</span><span class="dt">Best fit model*</span><span class="st">`</span>,</a>
@@ -170,7 +170,7 @@
 <a class="sourceLine" id="cb9-9" data-line-number="9">                        <span class="st">`</span><span class="dt">Dose units</span><span class="st">`</span>,</a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">                         Response, </a>
 <a class="sourceLine" id="cb9-11" data-line-number="11">                         Reference)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">                </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(PathogenGroup, PathogenName) </a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">                </span>dplyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(PathogenGroup, PathogenName) </a>
 <a class="sourceLine" id="cb9-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb9-14" data-line-number="14">caption &lt;-<span class="st"> "Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(dr.db2,<span class="dt">caption =</span> caption )</a></code></pre></div>
@@ -715,8 +715,8 @@ Figure 3: Dose for all microbial parameters with 50% infection probability
   docsearch({
     
     
-    apiKey: '197d3cb0436a3187109f1c5910ffe967',
-    indexName: 'kwb-r',
+    apiKey: 'ba545525664b60ab9e580ae0f7f4ac02',
+    indexName: 'kwb_qmra',
     inputSelector: 'input#search-input.form-control',
     transformData: function(hits) {
       return hits.map(function (hit) {

@@ -4,8 +4,8 @@ template:
   params:
     bootswatch: cerulean
     docsearch:
-      api_key: 197d3cb0436a3187109f1c5910ffe967
-      index_name: kwb-r
+      api_key: ba545525664b60ab9e580ae0f7f4ac02
+      index_name: kwb_qmra
 navbar:
   title: ~
   type: default
