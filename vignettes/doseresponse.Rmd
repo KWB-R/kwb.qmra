@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-#1. Load the required R packages
+# 1. Load the required R packages
 
 ```{r}
 library(kwb.qmra)
@@ -19,7 +19,7 @@ library(ggplot2)
 library(ggrepel)
 ```
 
-#2. Dose-response database from [QMRAwiki](http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters)
+# 2. Dose-response database from [QMRAwiki](http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters)
 
 2.1 Download 
 
@@ -27,7 +27,7 @@ library(ggrepel)
 dr.db <- kwb.qmra::dr.db_download()
 ```
 
-##2.2 Visualise 
+## 2.2 Visualise 
 
 **Database**:
 

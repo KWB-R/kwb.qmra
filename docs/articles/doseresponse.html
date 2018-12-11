@@ -117,7 +117,9 @@
 
     
     
-<p>#1. Load the required R packages</p>
+<div id="load-the-required-r-packages" class="section level1">
+<h1 class="hasAnchor">
+<a href="#load-the-required-r-packages" class="anchor"></a>1. Load the required R packages</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(kwb.qmra)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
@@ -131,7 +133,11 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(knitr)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">library</span>(ggrepel)</a></code></pre></div>
-<p>#2. Dose-response database from <a href="http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki</a></p>
+</div>
+<div id="dose-response-database-from-qmrawiki" class="section level1">
+<h1 class="hasAnchor">
+<a href="#dose-response-database-from-qmrawiki" class="anchor"></a>2. Dose-response database from <a href="http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki</a>
+</h1>
 <p>2.1 Download</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">dr.db &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">dr.db_download</span>()</a></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: 'X1' [1]</code></pre>
@@ -157,7 +163,9 @@
 ##   N50 = col_double(),
 ##   PathogenID = col_integer()
 ## )</code></pre>
-<p>##2.2 Visualise</p>
+<div id="visualise" class="section level2">
+<h2 class="hasAnchor">
+<a href="#visualise" class="anchor"></a>2.2 Visualise</h2>
 <p><strong>Database</strong>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dr.db2 &lt;-<span class="st"> </span>dr.db <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(PathogenGroup,</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">                         PathogenName, </a>
@@ -691,9 +699,23 @@
 Figure 3: Dose for all microbial parameters with 50% infection probability
 </p>
 </div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#load-the-required-r-packages">1. Load the required R packages</a></li>
+      <li>
+<a href="#dose-response-database-from-qmrawiki">2. Dose-response database from <span>QMRAwiki</span></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#visualise">2.2 Visualise</a></li>
+      </ul>
+</li>
+      </ul>
+</div>
       </div>
 
 </div>

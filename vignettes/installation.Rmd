@@ -9,7 +9,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-#1 Pre-required software
+# 1 Pre-required software
 
 
 - [R (>= 3.3.1](https://cloud.r-project.org/): for the development of the R 
@@ -27,13 +27,13 @@ For the advanced user it is further recommended to install the latest version of
 the integrated development environment (IDE) [RStudio Desktop "open source licence"](https://www.rstudio.com/products/rstudio/download2/#download). 
 
 
-#2 R Packages
+# 2 R Packages
 
 Once all [pre-required software](#pre-required-software) is installed the R 
 package installation workflow as described below can be started.
 
 
-##2.1 devtools 
+## 2.1 devtools 
 
 The R package `devtools` is required for downloading and installing the R package 
 `kwb.qmra` from Github. Installation is done by executing the following 
@@ -45,7 +45,7 @@ if (!require("devtools")) {
 }
 ```
 
-##2.2 kwb.qmra
+## 2.2 kwb.qmra
 
 Subsequently the R package `kwb.qmra` can be installed in R with the following code:
 

@@ -19,9 +19,9 @@ library(kwb.qmra)
 ```
 
 
-#1 Input data 
+# 1 Input data 
 
-##1.1 Location of 'dummy' configuration 
+## 1.1 Location of 'dummy' configuration 
 
 The folder with the csv configuration files  for a hypothetical use case is 
 located here: 
@@ -37,7 +37,7 @@ The following screenshot shows the required configuration files located in
 
 ![Screenshot of required configuration files](dummy_config.jpg)
 
-##1.2 Import configuration into R
+## 1.2 Import configuration into R
 
 All csv files with the input data for the hypothetical u `dummy` (as shown above) are 
 imported into R with the following function:
@@ -47,7 +47,7 @@ imported into R with the following function:
 config <- config_read(confDir) 
 ```
 
-#2 Check input data 
+# 2 Check input data 
 
 The QMRA will be performed - in case the user does not modify them in R - based on the 
 imported input data, which are defined in the configuration folder. 
@@ -101,7 +101,7 @@ knitr::kable(config$health[config$health$PathogenName %in% simulated$PathogenNam
 
 ```
 
-#4 Run risk calculation
+# 4 Run risk calculation
 
 Subsequently the risk calculation can be performed in R(Studio) by executing the 
 following code, which uses the `config` that was imported and inspected above:
@@ -131,28 +131,28 @@ str(risk$output)
 
 Thus the user has access to all 
 
-#5 Visualise results 
+# 5 Visualise results 
 
 Finally the results of the QMRA can be visualised for each system component as shown 
 below:
 
 
-##5.1 Inflow
+## 5.1 Inflow
 ```{r, fig.width = 12,  fig.cap="Simulated inflow concentrations", warning= FALSE}
 kwb.qmra::plot_inflow(risk)
 ```
 
-##5.2 Treatment
+## 5.2 Treatment
 ```{r, fig.width = 12, fig.cap="Simulated reductions in the treatment plant", warning= FALSE}
 kwb.qmra::plot_reduction(risk)
 ```
 
-##5.3 Effluent
+## 5.3 Effluent
 ```{r, fig.width = 12, fig.cap="Simulated effluent concentrations", warning= FALSE}
 kwb.qmra::plot_effluent(risk)
 ```
 
-##5.4 Exposure 
+## 5.4 Exposure 
 ```{r, fig.width = 12, fig.cap="Simulated dose per event", warning= FALSE}
 kwb.qmra::plot_event_dose(risk)
 ```
@@ -161,9 +161,9 @@ kwb.qmra::plot_event_dose(risk)
 kwb.qmra::plot_event_volume(risk)
 ```
 
-##5.5 Health results 
+## 5.5 Health results 
 
-###5.5.1 Per event
+### 5.5.1 Per event
 ```{r, fig.width = 12, fig.cap="Simulated infection probability per event", warning= FALSE}
 kwb.qmra::plot_event_infectionProb(risk)
 ```
@@ -175,7 +175,7 @@ kwb.qmra::plot_event_illnessProb(risk)
 kwb.qmra::plot_event_dalys(risk)
 ```
 
-###5.5.2 Total 
+### 5.5.2 Total 
 
 ```{r, fig.width = 12, fig.cap="Simulated total infection probability (for all events)", warning= FALSE}
 kwb.qmra::plot_total_infectionProb(risk)
@@ -197,7 +197,7 @@ knitr::kable(risk$output$total[risk$output$total$repeatID==1, ],
              caption = "Total risk (for first repeat of random generation)")
 ```
 
-##6 Export results 
+## 6 Export results 
 
 
 E.g. Write reports for all configurations in package subfolder `extdata/configs/` (here: 
