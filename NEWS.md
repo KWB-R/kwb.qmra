@@ -2,7 +2,9 @@
 
 * current development version
 
-* bugfix: distribution_repeater(), works now if number_of_events == 1
+* `create_random_distribution()` add **loguniform** distribution together with new vignette `usage_loguniform.Rmd` (https://github.com/KWB-R/kwb.qmra/commit/647c93f1bff1cc35d2fa2eee4b3214d94140dc67)
+
+* bugfix: `distribution_repeater()`, works now if number_of_events == 1
 
 # [kwb.qmra 0.1.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v.0.1.1)
 
