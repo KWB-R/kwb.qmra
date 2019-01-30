@@ -10,7 +10,7 @@ generate_random_values(config, number_of_repeatings = 1,
 \arguments{
 \item{config}{as retrieved by config_read()}
 
-\item{number_of_repeatings}{how often should the random distribution with the 
+\item{number_of_repeatings}{how often should the random distribution with the
 same parameters be generated (default: 1)}
 
 \item{number_of_events}{number of events}

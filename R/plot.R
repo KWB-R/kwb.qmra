@@ -78,9 +78,9 @@ xlogscale <-  function(paraVals,
 plot_inflow <- function(risk) {
 
   ggplot2::ggplot(risk$input$inflow$events, 
-                  ggplot2::aes_(x = ~PathogenName,
-                               y = ~inflow,
-                               col = ~PathogenGroup)) +
+                  ggplot2::aes_string(x = "PathogenName",
+                               y = "inflow",
+                               col = "PathogenGroup")) +
     ggplot2::geom_jitter() +
     ggplot2::coord_trans(y="log10") +
     ylogscale(risk$input$inflow$events$inflow) +
@@ -98,9 +98,9 @@ plot_inflow <- function(risk) {
 #' @export
 plot_reduction <- function(risk) {
 
-  ggplot(risk$input$treatment$events_long, aes_(x = ~TreatmentName,
-                                               y = ~logreduction,
-                                               col = ~PathogenGroup)) +
+  ggplot(risk$input$treatment$events_long, aes_string(x = "TreatmentName",
+                                               y = "logreduction",
+                                               col = "PathogenGroup")) +
     geom_jitter() +
     facet_wrap(~ TreatmentSchemeName,ncol = 1) +
     myggtheme() +
@@ -121,19 +121,20 @@ plot_reduction <- function(risk) {
 #' @export
 plot_effluent <- function(risk) {
 
-  ggplot(risk$output$events, aes_(x = ~PathogenName,
-                                 y = ~effluent,
-                                 col = ~PathogenGroup)) +
-    geom_jitter() +
-    coord_trans(y = "log10") +
+  ggplot2::ggplot(risk$output$events, 
+                  ggplot2::aes_string(x = "PathogenName",
+                                 y = "effluent",
+                                 col = "PathogenGroup")) +
+    ggplot2::geom_jitter() +
+    ggplot2::coord_trans(y = "log10") +
     ylogscale(risk$output$events$effluent) +
-    facet_wrap(~ TreatmentSchemeName,ncol = 1) +
-    geom_hline(yintercept = 1,
+    ggplot2::facet_wrap(~ TreatmentSchemeName, ncol = 1) +
+    ggplot2::geom_hline(yintercept = 1,
                col = "grey",
                lty = 2,
                lwd = 1.5) +
     myggtheme() +
-    labs(x = "Pathogen",
+    ggplot2::labs(x = "Pathogen",
          y = "Effluent concentration (pathogens / litre)")
 }
 
@@ -148,7 +149,7 @@ plot_effluent <- function(risk) {
 plot_event_volume <- function(risk) {
   
 ggplot(risk$input$exposure$volumes$events, 
-       aes_(x = ~volume_perEvent)) +
+       ggplot2::aes_string(x = "volume_perEvent")) +
   geom_density(alpha = 0.1, col = "blue",fill = "blue") +
   geom_point(y = 0, col = "black") +
   myggtheme() + 
@@ -171,9 +172,9 @@ plot_doseresponse <- function(risk) {
   
   dr <- dr.db_model(dr.db = risk$input$doseresponse$paras) 
   
-  ggplot(dr, aes_(x = ~dose, 
-             y = ~infectionProbability, 
-             col = ~PathogenName)) +
+  ggplot(dr, ggplot2::aes_string(x = "dose", 
+             y = "infectionProbability", 
+             col = "PathogenName")) +
   geom_point() +
   coord_trans(x = "log10") +
   xlogscale(paraVals = dr$dose) +
@@ -192,9 +193,9 @@ plot_doseresponse <- function(risk) {
 #' @export
 plot_event_exposure <- function(risk) {
 
-ggplot(risk$output$events, aes_(x = ~PathogenName,
-                               y = ~exposure_perEvent,
-                               col = ~PathogenGroup)) +
+ggplot(risk$output$events, aes_string(x = "PathogenName",
+                               y = "exposure_perEvent",
+                               col = "PathogenGroup")) +
   geom_jitter() +
   coord_trans(y = "log10") +
   ylogscale(risk$output$events$exposure_perEvent) +
@@ -217,13 +218,13 @@ ggplot(risk$output$events, aes_(x = ~PathogenName,
 #' @import ggplot2
 #' @export
 plot_event_dose <- function(risk) {
-ggplot(risk$output$events, aes_(x = ~PathogenName,
-                               y = ~dose_perEvent,
-                               col = ~PathogenGroup)) +
+ggplot(risk$output$events, ggplot2::aes_string(x = "PathogenName",
+                               y = "dose_perEvent",
+                               col = "PathogenGroup")) +
   geom_jitter() +
   coord_trans(y= "log10") +
   ylogscale(risk$output$events$dose_perEvent) +
-  facet_wrap(~ TreatmentSchemeName,ncol = 1) +
+  facet_wrap(~  TreatmentSchemeName,ncol = 1) +
   geom_hline(yintercept = 1,
              col = "grey",
              lty = 2,
@@ -243,9 +244,9 @@ ggplot(risk$output$events, aes_(x = ~PathogenName,
 #' @export
 plot_event_infectionProb <- function(risk) {
   
-  ggplot(risk$output$events, aes_(x = ~PathogenName, 
-                                 y = ~infectionProb_per_event, 
-                                 col = ~PathogenGroup, 
+  ggplot(risk$output$events, aes_string(x = "PathogenName", 
+                                 y = "infectionProb_per_event", 
+                                 col = "PathogenGroup", 
                                  fill = TRUE)) + 
     geom_jitter() + 
     coord_trans(y = "log10") +
@@ -266,16 +267,16 @@ plot_event_infectionProb <- function(risk) {
 #' @import ggplot2
 #' @export
 plot_event_illnessProb <- function(risk) {
-ggplot(risk$output$events, aes_(x = ~PathogenName, 
-                               y = ~illnessProb_per_event, 
-                               col = ~PathogenGroup, 
+ggplot(risk$output$events, ggplot2::aes_string(x = "PathogenName", 
+                               y = "illnessProb_per_event", 
+                               col = "PathogenGroup", 
                                fill = TRUE)) + 
   geom_jitter() + 
   coord_trans(y = "log10") +
   scale_y_continuous(breaks = c(0.001, 0.01,0.05, 0.1, 0.25,0.5,1), 
                      limits = c(0.001,1)) +
   scale_fill_discrete(guide = 'none') +
-  facet_wrap(~ TreatmentSchemeName,ncol = 1) + 
+  facet_wrap(~  TreatmentSchemeName,ncol = 1) + 
   myggtheme() + 
   labs(x = "Pathogen", 
        y = "Illness probability")
@@ -290,9 +291,9 @@ ggplot(risk$output$events, aes_(x = ~PathogenName,
 #' @import ggplot2
 #' @export
 plot_event_dalys <- function(risk) {
-ggplot(risk$output$events, aes_(x = ~PathogenName, 
-                               y = ~dalys_per_event, 
-                               col = ~PathogenGroup)) + 
+ggplot(risk$output$events, aes_string(x = "PathogenName", 
+                               y = "dalys_per_event", 
+                               col = "PathogenGroup")) + 
   geom_jitter() + 
   geom_hline(yintercept = 1E-6, 
              col = "grey", 
@@ -300,7 +301,7 @@ ggplot(risk$output$events, aes_(x = ~PathogenName,
              lwd = 1.5) +
   coord_trans(y = "log10") +
   ylogscale(risk$output$events$dalys_per_event) +
-  facet_wrap(~ TreatmentSchemeName,ncol = 1) + 
+  facet_wrap(~ TreatmentSchemeName, ncol = 1) + 
   myggtheme() +
   labs(x = "Pathogen", 
        y = "DALYs per event")
@@ -318,19 +319,19 @@ ggplot(risk$output$events, aes_(x = ~PathogenName,
 #' @export
 plot_total_infectionProb <- function(risk, tolerance = 1E-4) {
     risk$output$total %>%  
-    dplyr::mutate(label = ifelse(infectionProb_sum > 0,
+    dplyr::mutate(label = ifelse(.data$infectionProb_sum > 0,
                                  sprintf("%d per %d",
-                                         floor(infectionProb_sum/tolerance),
+                                         floor(.data$infectionProb_sum/tolerance),
                                          floor(1/tolerance)),
                                  "Zero")) %>% 
-  ggplot(aes_(x = ~TreatmentSchemeName, 
-                                y = ~infectionProb_sum, 
-                                col = ~PathogenName,
+  ggplot(ggplot2::aes_string(x = "TreatmentSchemeName", 
+                                y = "infectionProb_sum", 
+                                col = "PathogenName",
                                 size = 2)) + 
     geom_jitter(width = 0.05,
                 alpha = 0.4) + 
     scale_size(guide = 'none') +
-    geom_text(aes_(label = ~label),
+    geom_text(ggplot2::aes(label = .data$label),
               nudge_x = 0.2) + 
     geom_hline(yintercept = tolerance, 
                col = "grey", 
@@ -360,19 +361,19 @@ plot_total_infectionProb <- function(risk, tolerance = 1E-4) {
 #' @export
 plot_total_illnessProb <- function(risk, tolerance = 0.0001 ) {
   risk$output$total %>%  
-    dplyr::mutate(label = ifelse(illnessProb_sum > 0,
+    dplyr::mutate(label = ifelse(.data$illnessProb_sum > 0,
                                  sprintf("%d per %d",
-                                         floor(illnessProb_sum/tolerance),
+                                         floor(.data$illnessProb_sum/tolerance),
                                          floor(1/tolerance)),
                                  "Zero")) %>% 
-ggplot(aes_(x = ~TreatmentSchemeName, 
-                              y = ~illnessProb_sum, 
-                              col = ~PathogenName,
+ggplot(ggplot2::aes_string(x = "TreatmentSchemeName", 
+                              y = "illnessProb_sum", 
+                              col = "PathogenName",
                               size = 2)) + 
   geom_jitter(width = 0.05,
                 alpha = 0.4) + 
   scale_size(guide = 'none') +
-  geom_text(aes_(label = ~label),
+  geom_text(aes_string(label = "label"),
             nudge_x = 0.2) + 
   geom_hline(yintercept = tolerance, 
              col = "grey", 
@@ -409,15 +410,15 @@ plot_total_dalys <- function(risk,
                              title = "",
                              tolerance = 1E-6) {
   tmp <- risk$output$total %>%  
-    dplyr::mutate(label = ifelse(dalys_sum > 0,
+    dplyr::mutate(label = ifelse(.data$dalys_sum > 0,
                                  sprintf("%d per %d",
-                                         floor(dalys_sum/tolerance),
+                                         floor(.data$dalys_sum/tolerance),
                                          floor(1/tolerance)),
                                  "Zero"))
   
-  gg <- ggplot(tmp, aes_(x = ~TreatmentSchemeName, 
-                              y = ~dalys_sum, 
-                              col = ~PathogenName)) +
+  gg <- ggplot(tmp, aes_string(x = "TreatmentSchemeName", 
+                              y = "dalys_sum", 
+                              col = "PathogenName")) +
   geom_jitter(width = 0.8,
               alpha = 0.4,
               size = 1.5) + 
@@ -431,7 +432,7 @@ plot_total_dalys <- function(risk,
              lwd = 1.5) 
   
   if (labelling) {
-  gg <- gg + geom_text(aes(label = label),
+  gg <- gg + geom_text(ggplot2::aes_string(label = "label"),
             nudge_x = 0.2)
   }
   gg + geom_text(x = 1, 

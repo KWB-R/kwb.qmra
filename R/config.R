@@ -26,10 +26,10 @@ config_write_dummy <- function(confDir = system.file("extdata/configs/dummy",
             row.names = FALSE)
   ### 2) Inflow 
   dr.db_download() %>% 
-    dplyr::select_(~PathogenID, 
-                   ~PathogenName,
-                   ~PathogenGroup) %>%
-    dplyr::mutate(simulate = ifelse(PathogenID %in% c(3,32,36), 
+    dplyr::select(.data$PathogenID, 
+                   .data$PathogenName,
+                   .data$PathogenGroup) %>%
+    dplyr::mutate(simulate = ifelse(.data$PathogenID %in% c(3,32,36), 
                              1, 
                              0),
            type = "uniform", 
@@ -50,8 +50,8 @@ config_write_dummy <- function(confDir = system.file("extdata/configs/dummy",
   ### 3.1) Processes 
   
   treatment_processes <- treatment$untidy %>% 
-    dplyr::rename_(min = ~LogReduction_Minimum, 
-           max = ~LogReduction_Maximum) %>%
+    dplyr::rename(min = .data$LogReduction_Minimum, 
+           max = .data$LogReduction_Maximum) %>%
     dplyr::mutate(type = "uniform", 
            value = NA_real_,
            mode = NA_real_, 
@@ -59,20 +59,20 @@ config_write_dummy <- function(confDir = system.file("extdata/configs/dummy",
            sd = NA_real_, 
            meanlog = NA_real_, 
            sdlog = NA_real_) %>% 
-    dplyr::select_(~TreatmentID, 
-                   ~TreatmentName, 
-                   ~TreatmentGroup, 
-                   ~PathogenGroup,
-                   ~type,
-                   ~value,
-                   ~min, 
-                   ~max,
-                   ~mode, 
-                   ~mean, 
-                   ~sd, 
-                   ~meanlog, 
-                   ~sdlog) %>% 
-    dplyr::arrange_(~TreatmentID) %>% 
+    dplyr::select(.data$TreatmentID, 
+                   .data$TreatmentName, 
+                   .data$TreatmentGroup, 
+                   .data$PathogenGroup,
+                   .data$type,
+                   .data$value,
+                   .data$min, 
+                   .data$max,
+                   .data$mode, 
+                   .data$mean, 
+                   .data$sd, 
+                   .data$meanlog, 
+                   .data$sdlog) %>% 
+    dplyr::arrange(.data$TreatmentID) %>% 
     write.csv(file = file.path(confDir, "treatment_processes.csv"),
               row.names = FALSE)
   
@@ -90,37 +90,37 @@ config_write_dummy <- function(confDir = system.file("extdata/configs/dummy",
             row.names = FALSE)
   
   # 4) Dose-response config 
-  dr.db_download() %>%  dplyr::select_(~PathogenID,
-                                       ~PathogenName,
-                                       ~PathogenGroup,
-                                       ~`Best fit model*`,
-                                       ~k,
-                                       ~alpha,
-                                       ~N50,
-                                       ~`Host type`,
-                                       ~`Dose units`,
-                                       ~ Route,
-                                       ~Response,
-                                       ~Reference,
-                                       ~Link) %>% 
+  dr.db_download() %>%  dplyr::select(.data$PathogenID,
+                                       .data$PathogenName,
+                                       .data$PathogenGroup,
+                                       .data$`Best fit model*`,
+                                       .data$k,
+                                       .data$alpha,
+                                       .data$N50,
+                                       .data$`Host type`,
+                                       .data$`Dose units`,
+                                       .data$Route,
+                                       .data$Response,
+                                       .data$Reference,
+                                       .data$Link) %>% 
               write.csv(file = file.path(confDir, "doseresponse.csv"),
             row.names = FALSE)
   
   # 5) Health config
-  dr.db_download() %>%  dplyr::select_(~PathogenID,
-                                       ~PathogenName) %>%
-    dplyr::mutate(infection_to_illness = ifelse(PathogenID == 3, 
+  dr.db_download() %>%  dplyr::select(.data$PathogenID,
+                                      .data$PathogenName) %>%
+    dplyr::mutate(infection_to_illness = ifelse(.data$PathogenID == 3, 
                                                             0.7, 
-                                                            ifelse(PathogenID == 32,
+                                                            ifelse(.data$PathogenID == 32,
                                                                    0.03,
-                                                                   ifelse(PathogenID == 36, 
+                                                                   ifelse(.data$PathogenID == 36, 
                                                                           0.3, 
                                                                           NA))),
-                              dalys_per_case = ifelse(PathogenID == 3, 
+                              dalys_per_case = ifelse(.data$PathogenID == 3, 
                                                             4.6*10^-3, 
-                                                            ifelse(PathogenID == 32,
+                                                            ifelse(.data$PathogenID == 32,
                                                                    1.4*10 ^ -2,
-                                                                   ifelse(PathogenID == 36, 
+                                                                   ifelse(.data$PathogenID == 36, 
                                                                           1.5*10 ^ -3, 
                                                                           NA)))) %>% 
     write.csv(file = file.path(confDir, "health.csv"),

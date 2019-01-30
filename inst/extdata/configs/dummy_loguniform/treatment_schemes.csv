@@ -1,0 +1,6 @@
+"TreatmentSchemeID","TreatmentSchemeName","TreatmentID","TreatmentName"
+1,"Berlin (BF + Slow sand)",8,"Slow sand filtration"
+1,"Berlin (BF + Slow sand)",9,"Bank filtration"
+2,"Depth & surface filtration",1,"Conventional clarification"
+2,"Depth & surface filtration",5,"Granular high-rate filtration"
+2,"Depth & surface filtration",15,"UV"
