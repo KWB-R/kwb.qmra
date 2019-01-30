@@ -8,7 +8,7 @@ distribution_repeater(number_of_repeatings = 10,
   number_of_events = 365, func, ...)
 }
 \arguments{
-\item{number_of_repeatings}{how often should the random distribution with the 
+\item{number_of_repeatings}{how often should the random distribution with the
 same parameters be generated (default: 1)}
 
 \item{number_of_events}{number of events}
@@ -24,9 +24,11 @@ data.frame with columns repeatID, eventID and values
 Helper function: distributon repeater
 }
 \examples{
-distribution_repeater(number_of_repeatings =  2,
-                       number_of_events = 10,
-                       func = runif,
-                       min = 1,
-                       max = 10)
+distribution_repeater(
+  number_of_repeatings = 2,
+  number_of_events = 10,
+  func = runif,
+  min = 1,
+  max = 10
+)
 }

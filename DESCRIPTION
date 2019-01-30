@@ -14,6 +14,7 @@ Imports:
 	rvest,
 	stringr,
 	sfsmisc,
+	rlang,
 	rmarkdown,
 	readr,
 	readxl,
@@ -27,7 +28,7 @@ Encoding: UTF-8
 LazyLoad: yes
 URL: http://github.com/KWB-R/kwb.qmra/
 BugReports: https://github.com/KWB-R/kwb.qmra/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
     knitr,
     ggrepel,

@@ -39,7 +39,8 @@ if (i == 1) {
 }
 }
 
-dr.db <- dplyr::filter_(.data = dr.db, ~Agent != "TestPage")
+dr.db <- dr.db %>% 
+  dplyr::filter(.data$Agent != "TestPage")
 dr.db$PathogenName <- stringr::str_replace(string = dr.db$Agent,pattern = ":.*","")
 dr.db$Agent <- sprintf("[%s](%s)", dr.db$Agent, dr.db$Link)
 
@@ -166,24 +167,23 @@ dr.db <- dr.db_download()
 dr.model <- dr.db_model(dr.db = dr.db)
 
 
-ggplot( dr.model, aes_(x = ~dose, 
-               y = ~infectionProbability, col = ~PathogenGroup)) + 
+ggplot( dr.model, ggplot2::aes_string(x = "dose", 
+               y = "infectionProbability", col = "PathogenGroup")) + 
   geom_point() + 
   scale_x_log10() + 
   theme_bw()
 
 tt <- dr.model  %>%  
-  dplyr::filter_(~infectionProbability > 0.49,
-         ~infectionProbability < 0.51) %>%  
-  dplyr::group_by_(~PathogenID, ~PathogenGroup, ~PathogenName)  %>% 
-  dplyr::summarise_(infectionProbability = round(median(~infectionProbability),2), 
-            dose = median(~dose)) %>%  
-  dplyr::ungroup() %>% 
-  dplyr::arrange_(~dose)
+  dplyr::filter(.data$infectionProbability > 0.49,
+         .data$infectionProbability < 0.51) %>%  
+  dplyr::group_by(.data$PathogenID, .data$PathogenGroup, .data$PathogenName)  %>% 
+  dplyr::summarise(infectionProbability = round(median(.data$infectionProbability),2), 
+            dose = median(.data$dose)) %>%
+  dplyr::arrange(.data$dose)
 
-ggplot2::ggplot(tt, ggplot2::aes_(~PathogenGroup, ~dose, col = ~Group)) + 
+ggplot2::ggplot(tt, ggplot2::aes_string("PathogenGroup", "dose", col = "PathogenGroup")) + 
   geom_point(position = position_jitter(w = 0, h = 0)) + 
-  geom_text_repel(ggplot2::aes_(label = ~PathogenName)) +
+  ggrepel::geom_text_repel(ggplot2::aes_string(label = "PathogenName")) +
 scale_y_log10() + 
   theme_bw() +
   guides(fill=FALSE) +
