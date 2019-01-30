@@ -172,7 +172,7 @@ simulate_treatment <- function(config,
   
   
   lookup_treatmentNames <- config$treatment$processes[,c("TreatmentID","TreatmentName")] %>%  
-    dplyr::group_by_("TreatmentID") %>% 
+    dplyr::group_by(.data$TreatmentID) %>% 
     dplyr::slice_(1)
   
   treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
@@ -243,6 +243,7 @@ simulate_exposure <- function(config, debug = TRUE) {
 #' @return list with parameters of user defined random distribution and 
 #' corresponding values
 #' @importFrom stats median
+#' @import dplyr
 #' @export
 
 simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
@@ -264,12 +265,12 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   treatment <- simulate_treatment(config, debug)
   
   tbl_reduction <- treatment$events_long %>%  
-    dplyr::group_by_(~TreatmentSchemeID,
-                     ~TreatmentSchemeName,
-                     ~PathogenGroup, 
-                     ~eventID,
-                     ~repeatID) %>% 
-    dplyr::summarise_(logreduction = ~sum(logreduction))
+    dplyr::group_by(.data$TreatmentSchemeID,
+                    .data$TreatmentSchemeName,
+                    .data$PathogenGroup, 
+                    .data$eventID,
+                    .data$repeatID) %>% 
+    dplyr::summarise(logreduction = sum(.data$logreduction))
   
   
   
@@ -278,9 +279,9 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   
   tbl_risk <-  dplyr::right_join(tbl_reduction, 
                                  inflow$events) %>% 
-    dplyr::mutate(effluent = 10 ^ (log10(inflow) - logreduction)) %>% 
+    dplyr::mutate(effluent = 10 ^ (log10(.data$inflow) - .data$logreduction)) %>% 
     dplyr::left_join(exposure$volumes$events) %>% 
-    dplyr::mutate(exposure_perEvent = effluent * volume_perEvent)
+    dplyr::mutate(exposure_perEvent = .data$effluent * .data$volume_perEvent)
   
   
   if (usePoisson) { 
@@ -297,7 +298,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   indices <- config$doseresponse$PathogenID %in%  simulated_pathogenIDs
   
   paras <- config$doseresponse[config$doseresponse$PathogenID %in% simulated_pathogenIDs,]
-  print(paras)
+  if(debug) print(paras)
   doseresponse <- list(response = dr.db_model(dr.db = config$doseresponse[indices,]),
                        paras = paras)
   
@@ -336,31 +337,32 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   
   health <- config$health[config$health$PathogenID %in% simulated_pathogenIDs,]
   
-  print(health)
+  if(debug) print(health)
   
   tbl_risk <- tbl_risk %>% 
     dplyr::left_join(config$health) %>% 
-    dplyr::mutate(illnessProb_per_event = infectionProb_per_event * infection_to_illness,
-                  dalys_per_event = illnessProb_per_event * dalys_per_case)
+    dplyr::mutate(illnessProb_per_event = .data$infectionProb_per_event * .data$infection_to_illness,
+                  dalys_per_event = .data$illnessProb_per_event * .data$dalys_per_case) %>% 
+    dplyr::ungroup()
   
   
   
-  tbl_risk_total <- tbl_risk %>%   
-    dplyr::group_by_(~repeatID, 
-                     ~TreatmentSchemeID, 
-                     ~TreatmentSchemeName,
-                     ~PathogenID, 
-                     ~PathogenName, 
-                     ~PathogenGroup) %>% 
+  tbl_risk_total <- tbl_risk %>%
+    dplyr::group_by(.data$repeatID, 
+                     .data$TreatmentSchemeID, 
+                     .data$TreatmentSchemeName,
+                     .data$PathogenID, 
+                     .data$PathogenName, 
+                     .data$PathogenGroup) %>% 
     dplyr::summarise(events = n(), 
-                     inflow_median = median(inflow), 
-                     logreduction_median = median(logreduction), 
-                     volume_sum = sum(volume_perEvent), 
-                     exposure_sum = sum(exposure_perEvent),
-                     dose_sum = sum(dose_perEvent),
-                     infectionProb_sum = 1 - prod( 1 - infectionProb_per_event),
-                     illnessProb_sum = 1 - prod(1 - illnessProb_per_event),
-                     dalys_sum = sum(dalys_per_event))
+                     inflow_median = median(.data$inflow), 
+                     logreduction_median = median(.data$logreduction), 
+                     volume_sum = sum(.data$volume_perEvent), 
+                     exposure_sum = sum(.data$exposure_perEvent),
+                     dose_sum = sum(.data$dose_perEvent),
+                     infectionProb_sum = 1 - prod( 1 - .data$infectionProb_per_event),
+                     illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
+                     dalys_sum = sum(.data$dalys_per_event)) 
   
   
   

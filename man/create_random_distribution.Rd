@@ -6,15 +6,17 @@
 \usage{
 create_random_distribution(type = "uniform", number_of_repeatings = 1,
   number_of_events = 365, value = 10, min = 10, max = 1000,
-  mean = (min + max)/2, sdev = (max - mean)/qnorm(0.975),
-  meanlog = mean(log((min + max)/2)), sdlog = sd(log((c(min, max)))),
-  mode = (min + max)/2, debug = TRUE)
+  log_zero_threshold = 1e-10, logmin = ifelse(min > 0, log10(min),
+  log10(log_zero_threshold)), logmax = ifelse(max > 0, log10(max),
+  log10(log_zero_threshold)), mean = (min + max)/2, sdev = (max -
+  mean)/qnorm(0.975), meanlog = mean(log((min + max)/2)),
+  sdlog = sd(log((c(min, max)))), mode = (min + max)/2, debug = TRUE)
 }
 \arguments{
-\item{type}{"uniform" calls runif(), "triangle" calls EnvStats::rtri(), "lognorm" 
+\item{type}{"uniform" calls runif(), "triangle" calls EnvStats::rtri(), "lognorm"
 calls rlnorm() and "norm" calls rnorm(), (default: "uniform")}
 
-\item{number_of_repeatings}{how often should the random distribution with the 
+\item{number_of_repeatings}{how often should the random distribution with the
 same parameters be generated (default: 1)}
 
 \item{number_of_events}{number of events}
@@ -22,22 +24,32 @@ same parameters be generated (default: 1)}
 \item{value}{constant value (no random number), gets repeated number_of_events
 times (if 'type' = 'value')}
 
-\item{min}{minimum value (default: 10), only used if 'type' is "runif" or 
+\item{min}{minimum value (default: 10), only used if 'type' is "runif" or
 "triangle"}
 
-\item{max}{maximum value (default: 1000), only used if 'type' is "runif" or 
+\item{max}{maximum value (default: 1000), only used if 'type' is "runif" or
 "triangle"}
 
-\item{mean}{mean value (default: mean of min & max value), only used if 'type' 
+\item{log_zero_threshold}{only used if 'type' is "loguniform"
+and "min" value equal zero. In this case the zero is replaced by this value 
+(default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10}
+
+\item{logmin}{minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
+only used if 'type' is "loguniform"}
+
+\item{logmax}{maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
+only used if 'type' is "loguniform"}
+
+\item{mean}{mean value (default: mean of min & max value), only used if 'type'
 is "norm"}
 
-\item{sdev}{standard deviation (default: (max-mean) / qnorm(0.975)), 
+\item{sdev}{standard deviation (default: (max-mean) / qnorm(0.975)),
 only used if 'type' is "norm"}
 
-\item{meanlog}{log mean value (default: mean of log min & max value), only 
+\item{meanlog}{log mean value (default: mean of log min & max value), only
 used if 'type' is "lognorm"}
 
-\item{sdlog}{standard deviation (default: sd of log min & max value), only 
+\item{sdlog}{standard deviation (default: sd of log min & max value), only
 used if 'type' is "lognorm"}
 
 \item{mode}{(default: mean of min & max), only used if 'type' is "triangle"}
@@ -45,7 +57,7 @@ used if 'type' is "lognorm"}
 \item{debug}{print debug information (default: TRUE)}
 }
 \value{
-list with parameters of user defined random distribution and 
+list with parameters of user defined random distribution and
 corresponding values
 }
 \description{

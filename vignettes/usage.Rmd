@@ -1,10 +1,10 @@
 ---
-title: "Usage"
+title: "Usage (Uniform Inflow)"
 author: "Michael Rustler"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Technical workflow: usage}
+  %\VignetteIndexEntry{Technical Workflow: Usage (Uniform Inflow)}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
