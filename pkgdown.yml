@@ -1,0 +1,11 @@
+pandoc: '2.2'
+pkgdown: 1.3.0
+pkgdown_sha: ~
+articles:
+  doseresponse: doseresponse.html
+  general: general.html
+  installation: installation.html
+  usage: usage.html
+  usage_loguniform: usage_loguniform.html
+  web_app: web_app.html
+
