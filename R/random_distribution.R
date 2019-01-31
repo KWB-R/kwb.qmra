@@ -67,9 +67,9 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' @param log_zero_threshold  only used if 'type' is "loguniform"
 #' and "min" value equal zero. In this case the zero is replaced by this value 
 #' (default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10
-#' @param logmin minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
+#' @param log10_min minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
 #' only used if 'type' is "loguniform"
-#' @param logmax maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
+#' @param log10_max maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
 #' only used if 'type' is "loguniform"
 #' @param mean mean value (default: mean of min & max value), only used if 'type'
 #' is "norm"
@@ -97,10 +97,10 @@ create_random_distribution <- function(type = "uniform",
                                        min = 10,
                                        max = 1000,
                                        log_zero_threshold = 1E-10, 
-                                       logmin = ifelse(min > 0, 
+                                       log10_min = ifelse(min > 0, 
                                                        log10(min), 
                                                        log10(log_zero_threshold)), 
-                                       logmax = ifelse(max > 0, 
+                                       log10_max = ifelse(max > 0, 
                                                        log10(max), 
                                                        log10(log_zero_threshold)),
                                        mean = (min + max) / 2,
@@ -176,8 +176,8 @@ create_random_distribution <- function(type = "uniform",
         "Create %d random distribution(s): loguniform (with parameters n: %d, min: %f, max: %f)\n",
         number_of_repeatings,
         number_of_events,
-        logmin,
-        logmax
+        log10_min,
+        log10_max
       ))
     }
 
