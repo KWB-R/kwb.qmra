@@ -6,15 +6,15 @@
 \usage{
 create_random_distribution(type = "uniform", number_of_repeatings = 1,
   number_of_events = 365, value = 10, min = 10, max = 1000,
-  log_zero_threshold = 1e-10, logmin = ifelse(min > 0, log10(min),
-  log10(log_zero_threshold)), logmax = ifelse(max > 0, log10(max),
+  log_zero_threshold = 1e-10, log10_min = ifelse(min > 0, log10(min),
+  log10(log_zero_threshold)), log10_max = ifelse(max > 0, log10(max),
   log10(log_zero_threshold)), mean = (min + max)/2, sdev = (max -
   mean)/qnorm(0.975), meanlog = mean(log((min + max)/2)),
   sdlog = sd(log((c(min, max)))), mode = (min + max)/2, debug = TRUE)
 }
 \arguments{
 \item{type}{"uniform" calls runif(), "loguniform" calls 
-10^runif(number_of_repeatings, logmin, logmax), "triangle" calls 
+10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
 EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
 (default: "uniform")}
 
@@ -36,10 +36,10 @@ times (if 'type' = 'value')}
 and "min" value equal zero. In this case the zero is replaced by this value 
 (default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10}
 
-\item{logmin}{minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
+\item{log10_min}{minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
 only used if 'type' is "loguniform"}
 
-\item{logmax}{maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
+\item{log10_max}{maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
 only used if 'type' is "loguniform"}
 
 \item{mean}{mean value (default: mean of min & max value), only used if 'type'
