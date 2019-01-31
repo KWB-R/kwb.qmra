@@ -51,8 +51,10 @@ distribution_repeater <- function(number_of_repeatings = 10,
 
 
 #' Create random distribution
-#' @param type "uniform" calls runif(), "triangle" calls EnvStats::rtri(), "lognorm"
-#' calls rlnorm() and "norm" calls rnorm(), (default: "uniform")
+#' @param type "uniform" calls runif(), "loguniform" calls 
+#' 10^runif(number_of_repeatings, logmin, logmax), "triangle" calls 
+#' EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
+#' (default: "uniform") 
 #' @param number_of_repeatings how often should the random distribution with the
 #' same parameters be generated (default: 1)
 #' @param  number_of_events number of events

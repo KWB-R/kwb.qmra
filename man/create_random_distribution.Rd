@@ -13,8 +13,10 @@ create_random_distribution(type = "uniform", number_of_repeatings = 1,
   sdlog = sd(log((c(min, max)))), mode = (min + max)/2, debug = TRUE)
 }
 \arguments{
-\item{type}{"uniform" calls runif(), "triangle" calls EnvStats::rtri(), "lognorm"
-calls rlnorm() and "norm" calls rnorm(), (default: "uniform")}
+\item{type}{"uniform" calls runif(), "loguniform" calls 
+10^runif(number_of_repeatings, logmin, logmax), "triangle" calls 
+EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
+(default: "uniform")}
 
 \item{number_of_repeatings}{how often should the random distribution with the
 same parameters be generated (default: 1)}
