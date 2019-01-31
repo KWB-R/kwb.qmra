@@ -186,8 +186,8 @@ create_random_distribution <- function(type = "uniform",
       number_of_repeatings = number_of_repeatings,
       number_of_events = number_of_events,
       func = runif,
-      min = logmin,
-      max = logmax
+      min = log10_min,
+      max = log10_max
     ) %>% 
       dplyr::mutate(values = 10^.data$values)
 
