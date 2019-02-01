@@ -208,13 +208,13 @@ and "min" value equal zero. In this case the zero is replaced by this value
     </tr>
     <tr>
       <th>log10_min</th>
-      <td><p>minimum value (default: ifelse(min &gt; 0, log10(min), log10(1E-10)), 
-only used if 'type' is "loguniform"</p></td>
+      <td><p>minimum value (default: ifelse(min &gt; 0, log10(min), 
+log10(log_zero_threshold)), only used if 'type' is "loguniform"</p></td>
     </tr>
     <tr>
       <th>log10_max</th>
-      <td><p>maximum value (default: ifelse(max &gt; 0, log10(max), log10(1E-10)), 
-only used if 'type' is "loguniform"</p></td>
+      <td><p>maximum value (default: ifelse(max &gt; 0, log10(max), 
+log10(log_zero_threshold)), only used if 'type' is "loguniform"</p></td>
     </tr>
     <tr>
       <th>mean</th>
