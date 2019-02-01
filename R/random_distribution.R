@@ -67,10 +67,10 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' @param log_zero_threshold  only used if 'type' is "loguniform"
 #' and "min" value equal zero. In this case the zero is replaced by this value 
 #' (default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10
-#' @param log10_min minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
-#' only used if 'type' is "loguniform"
-#' @param log10_max maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
-#' only used if 'type' is "loguniform"
+#' @param log10_min minimum value (default: ifelse(min > 0, log10(min), 
+#' log10(log_zero_threshold)), only used if 'type' is "loguniform"
+#' @param log10_max maximum value (default: ifelse(max > 0, log10(max), 
+#' log10(log_zero_threshold)), only used if 'type' is "loguniform"
 #' @param mean mean value (default: mean of min & max value), only used if 'type'
 #' is "norm"
 #' @param sdev standard deviation (default: (max-mean) / qnorm(0.975)),

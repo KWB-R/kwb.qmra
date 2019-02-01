@@ -36,11 +36,11 @@ times (if 'type' = 'value')}
 and "min" value equal zero. In this case the zero is replaced by this value 
 (default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10}
 
-\item{log10_min}{minimum value (default: ifelse(min > 0, log10(min), log10(1E-10)), 
-only used if 'type' is "loguniform"}
+\item{log10_min}{minimum value (default: ifelse(min > 0, log10(min), 
+log10(log_zero_threshold)), only used if 'type' is "loguniform"}
 
-\item{log10_max}{maximum value (default: ifelse(max > 0, log10(max), log10(1E-10)), 
-only used if 'type' is "loguniform"}
+\item{log10_max}{maximum value (default: ifelse(max > 0, log10(max), 
+log10(log_zero_threshold)), only used if 'type' is "loguniform"}
 
 \item{mean}{mean value (default: mean of min & max value), only used if 'type'
 is "norm"}
