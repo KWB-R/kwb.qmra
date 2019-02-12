@@ -92,10 +92,13 @@
       <a href="../articles/usage.html">2 Usage (Uniform Inflow)</a>
     </li>
     <li>
-      <a href="../articles/usage_loguniform.html">3 Usage (Loguniform Inflow)</a>
+      <a href="../articles/usage_log10_uniform.html">3 Usage (Log10 Uniform Inflow)</a>
     </li>
     <li>
-      <a href="../articles/web_app.html">4 Web-app development</a>
+      <a href="../articles/usage_log10_norm.html">4 Usage (Log10 Norm Inflow)</a>
+    </li>
+    <li>
+      <a href="../articles/web_app.html">5 Web-app development</a>
     </li>
   </ul>
 </li>
@@ -160,21 +163,25 @@
 
     <pre class="usage"><span class='fu'>create_random_distribution</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"uniform"</span>, <span class='kw'>number_of_repeatings</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>number_of_events</span> <span class='kw'>=</span> <span class='fl'>365</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>log_zero_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-10</span>, <span class='kw'>log10_min</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>min</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>min</span>),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>log_zero_threshold</span>)), <span class='kw'>log10_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>max</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>max</span>),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>log_zero_threshold</span>)), <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='no'>min</span> + <span class='no'>max</span>)/<span class='fl'>2</span>, <span class='kw'>sdev</span> <span class='kw'>=</span> (<span class='no'>max</span> -
-  <span class='no'>mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.975</span>), <span class='kw'>meanlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='no'>min</span> + <span class='no'>max</span>)/<span class='fl'>2</span>)),
-  <span class='kw'>sdlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>min</span>, <span class='no'>max</span>)))), <span class='kw'>mode</span> <span class='kw'>=</span> (<span class='no'>min</span> + <span class='no'>max</span>)/<span class='fl'>2</span>, <span class='kw'>debug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>log10_zero_threshold</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='fl'>0.01</span>), <span class='kw'>log10_min</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>min</span> <span class='kw'>&gt;</span> <span class='fl'>0</span> <span class='kw'>&amp;&amp;</span> <span class='no'>max</span>
+  <span class='kw'>&gt;</span> <span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>min</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>min</span> <span class='kw'>==</span> <span class='fl'>0</span> <span class='kw'>&amp;&amp;</span> <span class='no'>max</span> <span class='kw'>&lt;</span> <span class='fl'>1</span>, <span class='fl'>0.01</span> * <span class='no'>max</span>,
+  <span class='no'>log10_zero_threshold</span>)), <span class='kw'>log10_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>max</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>max</span>),
+  <span class='no'>log10_zero_threshold</span>), <span class='kw'>log10_mean</span> <span class='kw'>=</span> (<span class='no'>log10_min</span> + <span class='no'>log10_max</span>)/<span class='fl'>2</span>,
+  <span class='kw'>log10_sdev</span> <span class='kw'>=</span> (<span class='no'>log10_max</span> - <span class='no'>log10_mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.9</span>), <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='no'>min</span> +
+  <span class='no'>max</span>)/<span class='fl'>2</span>, <span class='kw'>sdev</span> <span class='kw'>=</span> (<span class='no'>max</span> - <span class='no'>mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.9</span>), <span class='kw'>meanlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='no'>min</span> +
+  <span class='no'>max</span>)/<span class='fl'>2</span>)), <span class='kw'>sdlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>min</span>, <span class='no'>max</span>)))), <span class='kw'>mode</span> <span class='kw'>=</span> (<span class='no'>min</span> + <span class='no'>max</span>)/<span class='fl'>2</span>,
+  <span class='kw'>debug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>type</th>
-      <td><p>"uniform" calls runif(), "loguniform" calls 
+      <td><p>"uniform" calls runif(), "log10_uniform" calls 
 10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
-EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
-(default: "uniform")</p></td>
+EnvStats::rtri(), "lognorm" calls rlnorm(), "norm" calls rnorm() and 
+"log10_norm" calls 10^rnorm(number_of_events, mean = log10_mean, 
+sdev = log10_sdev), (default: "uniform")</p></td>
     </tr>
     <tr>
       <th>number_of_repeatings</th>
@@ -201,20 +208,31 @@ times (if 'type' = 'value')</p></td>
 "triangle"</p></td>
     </tr>
     <tr>
-      <th>log_zero_threshold</th>
-      <td><p>only used if 'type' is "loguniform"
-and "min" value equal zero. In this case the zero is replaced by this value 
-(default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10</p></td>
+      <th>log10_zero_threshold</th>
+      <td><p>only used if 'type' is "log10_uniform" or 
+"log10_norm" and "min" value equal zero. In this case the zero is replaced by 
+this value (default: log10(0.01), i.e. with a lower limit of log10(0.01) = -2</p></td>
     </tr>
     <tr>
       <th>log10_min</th>
-      <td><p>minimum value (default: ifelse(min &gt; 0, log10(min), 
-log10(log_zero_threshold)), only used if 'type' is "loguniform"</p></td>
+      <td><p>minimum value (default: ifelse(min &gt; 0 &amp;&amp; max &gt; 1, log10(min), 
+ifelse(min == 0 &amp;&amp; max &lt; 1, 0.01 * max, log10_zero_threshold)), only used if 
+'type' is "log10_uniform" or "log10_norm"</p></td>
     </tr>
     <tr>
       <th>log10_max</th>
       <td><p>maximum value (default: ifelse(max &gt; 0, log10(max), 
-log10(log_zero_threshold)), only used if 'type' is "loguniform"</p></td>
+log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"</p></td>
+    </tr>
+    <tr>
+      <th>log10_mean</th>
+      <td><p>mean value (default: (log10_min + log10_max)/2), only used 
+if 'type' is "log10_norm"</p></td>
+    </tr>
+    <tr>
+      <th>log10_sdev</th>
+      <td><p>standard deviation (default: (log10_max- log10_mean) / 
+qnorm(0.9)), only used if 'type' is "log10_norm"</p></td>
     </tr>
     <tr>
       <th>mean</th>
@@ -223,7 +241,7 @@ is "norm"</p></td>
     </tr>
     <tr>
       <th>sdev</th>
-      <td><p>standard deviation (default: (max-mean) / qnorm(0.975)),
+      <td><p>standard deviation (default: (max-mean) / qnorm(0.9)),
 only used if 'type' is "norm"</p></td>
     </tr>
     <tr>

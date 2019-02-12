@@ -6,6 +6,7 @@ articles:
   general: general.html
   installation: installation.html
   usage: usage.html
-  usage_loguniform: usage_loguniform.html
+  usage_log10_norm_inflow: usage_log10_norm_inflow.html
+  usage_log10_uniform_inflow: usage_log10_uniform_inflow.html
   web_app: web_app.html
 
