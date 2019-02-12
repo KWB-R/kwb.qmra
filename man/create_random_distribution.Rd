@@ -6,17 +6,21 @@
 \usage{
 create_random_distribution(type = "uniform", number_of_repeatings = 1,
   number_of_events = 365, value = 10, min = 10, max = 1000,
-  log_zero_threshold = 1e-10, log10_min = ifelse(min > 0, log10(min),
-  log10(log_zero_threshold)), log10_max = ifelse(max > 0, log10(max),
-  log10(log_zero_threshold)), mean = (min + max)/2, sdev = (max -
-  mean)/qnorm(0.975), meanlog = mean(log((min + max)/2)),
-  sdlog = sd(log((c(min, max)))), mode = (min + max)/2, debug = TRUE)
+  log10_zero_threshold = log10(0.01), log10_min = ifelse(min > 0 && max
+  > 1, log10(min), ifelse(min == 0 && max < 1, 0.01 * max,
+  log10_zero_threshold)), log10_max = ifelse(max > 0, log10(max),
+  log10_zero_threshold), log10_mean = (log10_min + log10_max)/2,
+  log10_sdev = (log10_max - log10_mean)/qnorm(0.9), mean = (min +
+  max)/2, sdev = (max - mean)/qnorm(0.9), meanlog = mean(log((min +
+  max)/2)), sdlog = sd(log((c(min, max)))), mode = (min + max)/2,
+  debug = TRUE)
 }
 \arguments{
-\item{type}{"uniform" calls runif(), "loguniform" calls 
+\item{type}{"uniform" calls runif(), "log10_uniform" calls 
 10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
-EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
-(default: "uniform")}
+EnvStats::rtri(), "lognorm" calls rlnorm(), "norm" calls rnorm() and 
+"log10_norm" calls 10^rnorm(number_of_events, mean = log10_mean, 
+sdev = log10_sdev), (default: "uniform")}
 
 \item{number_of_repeatings}{how often should the random distribution with the
 same parameters be generated (default: 1)}
@@ -32,20 +36,27 @@ times (if 'type' = 'value')}
 \item{max}{maximum value (default: 1000), only used if 'type' is "runif" or
 "triangle"}
 
-\item{log_zero_threshold}{only used if 'type' is "loguniform"
-and "min" value equal zero. In this case the zero is replaced by this value 
-(default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10}
+\item{log10_zero_threshold}{only used if 'type' is "log10_uniform" or 
+"log10_norm" and "min" value equal zero. In this case the zero is replaced by 
+this value (default: log10(0.01), i.e. with a lower limit of log10(0.01) = -2}
 
-\item{log10_min}{minimum value (default: ifelse(min > 0, log10(min), 
-log10(log_zero_threshold)), only used if 'type' is "loguniform"}
+\item{log10_min}{minimum value (default: ifelse(min > 0 && max > 1, log10(min), 
+ifelse(min == 0 && max < 1, 0.01 * max, log10_zero_threshold)), only used if 
+'type' is "log10_uniform" or "log10_norm"}
 
 \item{log10_max}{maximum value (default: ifelse(max > 0, log10(max), 
-log10(log_zero_threshold)), only used if 'type' is "loguniform"}
+log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"}
+
+\item{log10_mean}{mean value (default: (log10_min + log10_max)/2), only used 
+if 'type' is "log10_norm"}
+
+\item{log10_sdev}{standard deviation (default: (log10_max- log10_mean) / 
+qnorm(0.9)), only used if 'type' is "log10_norm"}
 
 \item{mean}{mean value (default: mean of min & max value), only used if 'type'
 is "norm"}
 
-\item{sdev}{standard deviation (default: (max-mean) / qnorm(0.975)),
+\item{sdev}{standard deviation (default: (max-mean) / qnorm(0.9)),
 only used if 'type' is "norm"}
 
 \item{meanlog}{log mean value (default: mean of log min & max value), only

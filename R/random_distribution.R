@@ -51,10 +51,11 @@ distribution_repeater <- function(number_of_repeatings = 10,
 
 
 #' Create random distribution
-#' @param type "uniform" calls runif(), "loguniform" calls 
+#' @param type "uniform" calls runif(), "log10_uniform" calls 
 #' 10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
-#' EnvStats::rtri(), "lognorm" calls rlnorm() and "norm" calls rnorm(), 
-#' (default: "uniform") 
+#' EnvStats::rtri(), "lognorm" calls rlnorm(), "norm" calls rnorm() and 
+#' "log10_norm" calls 10^rnorm(number_of_events, mean = log10_mean, 
+#' sdev = log10_sdev), (default: "uniform") 
 #' @param number_of_repeatings how often should the random distribution with the
 #' same parameters be generated (default: 1)
 #' @param  number_of_events number of events
@@ -64,16 +65,21 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' "triangle"
 #' @param max maximum value (default: 1000), only used if 'type' is "runif" or
 #' "triangle"
-#' @param log_zero_threshold  only used if 'type' is "loguniform"
-#' and "min" value equal zero. In this case the zero is replaced by this value 
-#' (default: 1E-10), i.e. with a lower limit of log10(1E-10) = -10
-#' @param log10_min minimum value (default: ifelse(min > 0, log10(min), 
-#' log10(log_zero_threshold)), only used if 'type' is "loguniform"
+#' @param log10_zero_threshold  only used if 'type' is "log10_uniform" or 
+#' "log10_norm" and "min" value equal zero. In this case the zero is replaced by 
+#' this value (default: log10(0.01), i.e. with a lower limit of log10(0.01) = -2
+#' @param log10_min minimum value (default: ifelse(min > 0 && max > 1, log10(min), 
+#' ifelse(min == 0 && max < 1, 0.01 * max, log10_zero_threshold)), only used if 
+#' 'type' is "log10_uniform" or "log10_norm"
 #' @param log10_max maximum value (default: ifelse(max > 0, log10(max), 
-#' log10(log_zero_threshold)), only used if 'type' is "loguniform"
+#' log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"
+#' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
+#' if 'type' is "log10_norm"
+#' @param log10_sdev standard deviation (default: (log10_max- log10_mean) / 
+#' qnorm(0.9)), only used if 'type' is "log10_norm"
 #' @param mean mean value (default: mean of min & max value), only used if 'type'
 #' is "norm"
-#' @param sdev standard deviation (default: (max-mean) / qnorm(0.975)),
+#' @param sdev standard deviation (default: (max-mean) / qnorm(0.9)),
 #' only used if 'type' is "norm"
 #' @param meanlog log mean value (default: mean of log min & max value), only
 #' used if 'type' is "lognorm"
@@ -96,15 +102,19 @@ create_random_distribution <- function(type = "uniform",
                                        value = 10,
                                        min = 10,
                                        max = 1000,
-                                       log_zero_threshold = 1E-10, 
-                                       log10_min = ifelse(min > 0, 
+                                       log10_zero_threshold = log10(0.01), 
+                                       log10_min = ifelse(min > 0 && max > 1, 
                                                        log10(min), 
-                                                       log10(log_zero_threshold)), 
+                                                       ifelse(min == 0 && max < 1,
+                                                       0.01 * max, 
+                                                       log10_zero_threshold)), 
                                        log10_max = ifelse(max > 0, 
                                                        log10(max), 
-                                                       log10(log_zero_threshold)),
+                                                       log10_zero_threshold),
+                                       log10_mean = (log10_min + log10_max) / 2,
+                                       log10_sdev = (log10_max - log10_mean) / qnorm(0.9),
                                        mean = (min + max) / 2,
-                                       sdev = (max - mean) / qnorm(0.975),
+                                       sdev = (max - mean) / qnorm(0.9),
                                        meanlog = mean(log((min + max) / 2)),
                                        sdlog = sd(log((c(min, max)))),
                                        mode = (min + max) / 2,
@@ -170,10 +180,10 @@ create_random_distribution <- function(type = "uniform",
       max = max
     )
   }
-  else if (type == "loguniform") {
+  else if (type == "log10_uniform") {
     if (debug) {
       cat(sprintf(
-        "Create %d random distribution(s): loguniform (with parameters n: %d, min: %f, max: %f)\n",
+        "Create %d random distribution(s): 10^runif(with parameters n: %d, min: %f, max: %f)\n",
         number_of_repeatings,
         number_of_events,
         log10_min,
@@ -195,8 +205,8 @@ create_random_distribution <- function(type = "uniform",
     paras <- data.frame(
       repeatings = number_of_repeatings,
       events = number_of_events,
-      min = min,
-      max = max
+      min = log10_min,
+      max = log10_max
     )
   }
   else if (type == "norm") {
@@ -226,6 +236,33 @@ create_random_distribution <- function(type = "uniform",
     )
   }
 
+  else if (type == "log10_norm") {
+    if (debug) {
+      cat(sprintf(
+        "Create %d random distribution(s): 10^rnorm(with parameters n: %d, mean: %f, sd: %f)\n",
+        number_of_repeatings,
+        number_of_events,
+        log10_mean,
+        log10_sdev
+      ))
+    }
+    
+    events <- distribution_repeater(
+      number_of_repeatings = number_of_repeatings,
+      number_of_events = number_of_events,
+      func = rnorm,
+      mean = log10_mean,
+      sd = log10_sdev
+    ) %>% 
+      dplyr::mutate(values = 10^.data$values)
+    
+    paras <- data.frame(
+      repeatings = number_of_repeatings,
+      events = number_of_events,
+      mean = log10_mean,
+      sd = log10_sdev
+    )
+  }
 
   else if (type == "lognorm") {
     if (debug) {
@@ -285,7 +322,8 @@ create_random_distribution <- function(type = "uniform",
     )
   } else {
     stop(sprintf("Your value for parameter 'type' = %s is not an implemented distribution.
-  Valid values of 'type' are: 'uniform', 'triangle', 'norm' or 'lognorm'", type))
+  Valid values of 'type' are: 
+  'uniform', 'triangle', 'norm', 'lognorm', 'log10_uniform' or 'log10_norm'", type))
   }
 
   paras <- data.frame(type = type, paras)

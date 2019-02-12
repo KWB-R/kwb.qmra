@@ -25,9 +25,11 @@ navbar:
       href: articles/installation.html
     - text: 2 Usage (Uniform Inflow)
       href: articles/usage.html
-    - text: 3 Usage (Loguniform Inflow)
-      href: articles/usage_loguniform.html
-    - text: 4 Web-app development
+    - text: 3 Usage (Log10 Uniform Inflow)
+      href: articles/usage_log10_uniform.html
+    - text: 4 Usage (Log10 Norm Inflow)
+      href: articles/usage_log10_norm.html
+    - text: 5 Web-app development
       href: articles/web_app.html
   - text: Case study (WWTP Old Ford)
     menu: 
