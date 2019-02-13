@@ -10,10 +10,10 @@ create_random_distribution(type = "uniform", number_of_repeatings = 1,
   > 1, log10(min), ifelse(min == 0 && max < 1, 0.01 * max,
   log10_zero_threshold)), log10_max = ifelse(max > 0, log10(max),
   log10_zero_threshold), log10_mean = (log10_min + log10_max)/2,
-  log10_sdev = (log10_max - log10_mean)/qnorm(0.95), mean = (min +
-  max)/2, sdev = (max - mean)/qnorm(0.95), meanlog = mean(log((min +
-  max)/2)), sdlog = sd(log((c(min, max)))), mode = (min + max)/2,
-  debug = TRUE)
+  log10_sdev = abs((log10_max - log10_mean)/qnorm(0.95)), mean = (min +
+  max)/2, sdev = abs((max - mean)/qnorm(0.95)), meanlog = mean(log((min
+  + max)/2)), sdlog = abs(sd(log((c(min, max))))), mode = (min +
+  max)/2, debug = TRUE)
 }
 \arguments{
 \item{type}{"uniform" calls runif(), "log10_uniform" calls 
@@ -50,19 +50,19 @@ log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"}
 \item{log10_mean}{mean value (default: (log10_min + log10_max)/2), only used 
 if 'type' is "log10_norm"}
 
-\item{log10_sdev}{standard deviation (default: (log10_max- log10_mean) / 
+\item{log10_sdev}{standard deviation (default: abs((log10_max- log10_mean) / 
 qnorm(0.95)), only used if 'type' is "log10_norm"}
 
-\item{mean}{mean value (default: mean of min & max value), only used if 'type'
+\item{mean}{mean value (default: (min + max) / 2), only used if 'type'
 is "norm"}
 
-\item{sdev}{standard deviation (default: (max-mean) / qnorm(0.95)),
+\item{sdev}{standard deviation (default: abs((max-mean) / qnorm(0.95))),
 only used if 'type' is "norm"}
 
-\item{meanlog}{log mean value (default: mean of log min & max value), only
+\item{meanlog}{log mean value (default: mean(log((min + max) / 2))), only
 used if 'type' is "lognorm"}
 
-\item{sdlog}{standard deviation (default: sd of log min & max value), only
+\item{sdlog}{standard deviation (default: abs(sd(log((c(min, max)))))), only
 used if 'type' is "lognorm"}
 
 \item{mode}{(default: mean of min & max), only used if 'type' is "triangle"}

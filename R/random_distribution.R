@@ -75,15 +75,15 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"
 #' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
 #' if 'type' is "log10_norm"
-#' @param log10_sdev standard deviation (default: (log10_max- log10_mean) / 
+#' @param log10_sdev standard deviation (default: abs((log10_max- log10_mean) / 
 #' qnorm(0.95)), only used if 'type' is "log10_norm"
-#' @param mean mean value (default: mean of min & max value), only used if 'type'
+#' @param mean mean value (default: (min + max) / 2), only used if 'type'
 #' is "norm"
-#' @param sdev standard deviation (default: (max-mean) / qnorm(0.95)),
+#' @param sdev standard deviation (default: abs((max-mean) / qnorm(0.95))),
 #' only used if 'type' is "norm"
-#' @param meanlog log mean value (default: mean of log min & max value), only
+#' @param meanlog log mean value (default: mean(log((min + max) / 2))), only
 #' used if 'type' is "lognorm"
-#' @param sdlog standard deviation (default: sd of log min & max value), only
+#' @param sdlog standard deviation (default: abs(sd(log((c(min, max)))))), only
 #' used if 'type' is "lognorm"
 #' @param mode (default: mean of min & max), only used if 'type' is "triangle"
 #' @param debug print debug information (default: TRUE)
@@ -112,11 +112,11 @@ create_random_distribution <- function(type = "uniform",
                                                        log10(max), 
                                                        log10_zero_threshold),
                                        log10_mean = (log10_min + log10_max) / 2,
-                                       log10_sdev = (log10_max - log10_mean) / qnorm(0.95),
+                                       log10_sdev = abs((log10_max - log10_mean) / qnorm(0.95)),
                                        mean = (min + max) / 2,
-                                       sdev = (max - mean) / qnorm(0.95),
+                                       sdev = abs((max - mean) / qnorm(0.95)),
                                        meanlog = mean(log((min + max) / 2)),
-                                       sdlog = sd(log((c(min, max)))),
+                                       sdlog = abs(sd(log((c(min, max))))),
                                        mode = (min + max) / 2,
                                        debug = TRUE) {
   if (type == "value") {
