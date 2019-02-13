@@ -76,10 +76,10 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
 #' if 'type' is "log10_norm"
 #' @param log10_sdev standard deviation (default: (log10_max- log10_mean) / 
-#' qnorm(0.9)), only used if 'type' is "log10_norm"
+#' qnorm(0.95)), only used if 'type' is "log10_norm"
 #' @param mean mean value (default: mean of min & max value), only used if 'type'
 #' is "norm"
-#' @param sdev standard deviation (default: (max-mean) / qnorm(0.9)),
+#' @param sdev standard deviation (default: (max-mean) / qnorm(0.95)),
 #' only used if 'type' is "norm"
 #' @param meanlog log mean value (default: mean of log min & max value), only
 #' used if 'type' is "lognorm"
@@ -112,9 +112,9 @@ create_random_distribution <- function(type = "uniform",
                                                        log10(max), 
                                                        log10_zero_threshold),
                                        log10_mean = (log10_min + log10_max) / 2,
-                                       log10_sdev = (log10_max - log10_mean) / qnorm(0.9),
+                                       log10_sdev = (log10_max - log10_mean) / qnorm(0.95),
                                        mean = (min + max) / 2,
-                                       sdev = (max - mean) / qnorm(0.9),
+                                       sdev = (max - mean) / qnorm(0.95),
                                        meanlog = mean(log((min + max) / 2)),
                                        sdlog = sd(log((c(min, max)))),
                                        mode = (min + max) / 2,
