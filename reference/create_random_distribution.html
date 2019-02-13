@@ -167,8 +167,8 @@
   <span class='kw'>&gt;</span> <span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>min</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>min</span> <span class='kw'>==</span> <span class='fl'>0</span> <span class='kw'>&amp;&amp;</span> <span class='no'>max</span> <span class='kw'>&lt;</span> <span class='fl'>1</span>, <span class='fl'>0.01</span> * <span class='no'>max</span>,
   <span class='no'>log10_zero_threshold</span>)), <span class='kw'>log10_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ifelse'>ifelse</a></span>(<span class='no'>max</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log10</a></span>(<span class='no'>max</span>),
   <span class='no'>log10_zero_threshold</span>), <span class='kw'>log10_mean</span> <span class='kw'>=</span> (<span class='no'>log10_min</span> + <span class='no'>log10_max</span>)/<span class='fl'>2</span>,
-  <span class='kw'>log10_sdev</span> <span class='kw'>=</span> (<span class='no'>log10_max</span> - <span class='no'>log10_mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.9</span>), <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='no'>min</span> +
-  <span class='no'>max</span>)/<span class='fl'>2</span>, <span class='kw'>sdev</span> <span class='kw'>=</span> (<span class='no'>max</span> - <span class='no'>mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.9</span>), <span class='kw'>meanlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='no'>min</span> +
+  <span class='kw'>log10_sdev</span> <span class='kw'>=</span> (<span class='no'>log10_max</span> - <span class='no'>log10_mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.95</span>), <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='no'>min</span> +
+  <span class='no'>max</span>)/<span class='fl'>2</span>, <span class='kw'>sdev</span> <span class='kw'>=</span> (<span class='no'>max</span> - <span class='no'>mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.95</span>), <span class='kw'>meanlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='no'>min</span> +
   <span class='no'>max</span>)/<span class='fl'>2</span>)), <span class='kw'>sdlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>((<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>min</span>, <span class='no'>max</span>)))), <span class='kw'>mode</span> <span class='kw'>=</span> (<span class='no'>min</span> + <span class='no'>max</span>)/<span class='fl'>2</span>,
   <span class='kw'>debug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -232,7 +232,7 @@ if 'type' is "log10_norm"</p></td>
     <tr>
       <th>log10_sdev</th>
       <td><p>standard deviation (default: (log10_max- log10_mean) / 
-qnorm(0.9)), only used if 'type' is "log10_norm"</p></td>
+qnorm(0.95)), only used if 'type' is "log10_norm"</p></td>
     </tr>
     <tr>
       <th>mean</th>
@@ -241,7 +241,7 @@ is "norm"</p></td>
     </tr>
     <tr>
       <th>sdev</th>
-      <td><p>standard deviation (default: (max-mean) / qnorm(0.9)),
+      <td><p>standard deviation (default: (max-mean) / qnorm(0.95)),
 only used if 'type' is "norm"</p></td>
     </tr>
     <tr>
