@@ -163,12 +163,14 @@
 
     <pre class="usage"><span class='fu'>create_random_distribution</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"uniform"</span>, <span class='kw'>number_of_repeatings</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>number_of_events</span> <span class='kw'>=</span> <span class='fl'>365</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>min_zero</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>log10_min</span> <span class='kw'>=</span> <span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>min_zero</span>, <span class='kw'>f</span> <span class='kw'>=</span>
-  <span class='no'>log10</span>), <span class='kw'>log10_max</span> <span class='kw'>=</span> <span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='no'>min_zero</span> * <span class='fl'>10</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>log10</span>),
+  <span class='kw'>percent_within_minmax</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>min_zero</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>log10_min</span> <span class='kw'>=</span> <span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>min_zero</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>log10</span>),
+  <span class='kw'>log10_max</span> <span class='kw'>=</span> <span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='no'>min_zero</span> * <span class='fl'>10</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>log10</span>),
   <span class='kw'>log10_mean</span> <span class='kw'>=</span> (<span class='no'>log10_min</span> + <span class='no'>log10_max</span>)/<span class='fl'>2</span>, <span class='kw'>log10_sdev</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>((<span class='no'>log10_max</span> -
-  <span class='no'>log10_mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.95</span>)), <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>,
-  <span class='no'>min_zero</span>)/<span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='fl'>10</span> * <span class='no'>min_zero</span>))/<span class='fl'>2</span>,
-  <span class='kw'>sdev</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>((<span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='fl'>10</span> * <span class='no'>min_zero</span>) - <span class='no'>mean</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>(<span class='fl'>0.95</span>)),
+  <span class='no'>log10_mean</span>)/<span class='fu'><a href='get_percentile.html'>get_percentile</a></span>(<span class='no'>percent_within_minmax</span>)),
+  <span class='kw'>mean</span> <span class='kw'>=</span> (<span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>min_zero</span>) + <span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='fl'>10</span> *
+  <span class='no'>min_zero</span>))/<span class='fl'>2</span>, <span class='kw'>sdev</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>((<span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='fl'>10</span> * <span class='no'>min_zero</span>) -
+  <span class='no'>mean</span>)/<span class='fu'><a href='get_percentile.html'>get_percentile</a></span>(<span class='no'>percent_within_minmax</span>)),
   <span class='kw'>meanlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>min_zero</span>) + <span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>,
   <span class='fl'>10</span> * <span class='no'>min_zero</span>))/<span class='fl'>2</span>), <span class='kw'>sdlog</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='default_min.html'>default_min</a></span>(<span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>min_zero</span>, <span class='kw'>f</span>
   <span class='kw'>=</span> <span class='no'>log</span>), <span class='fu'><a href='default_max.html'>default_max</a></span>(<span class='no'>max</span>, <span class='fl'>10</span> * <span class='no'>min_zero</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>log</span>)))),
@@ -211,6 +213,11 @@ times (if 'type' = 'value')</p></td>
 "triangle"</p></td>
     </tr>
     <tr>
+      <th>percent_within_minmax</th>
+      <td><p>percent of data point within min/max (default: 
+0.9 i.e. 90 percent</p></td>
+    </tr>
+    <tr>
       <th>min_zero</th>
       <td><p>only used if 'type' is "log10_uniform" or 
 "log10_norm", "norm" or "lognorm" and "min" value equal zero. 
@@ -235,7 +242,7 @@ if 'type' is "log10_norm"</p></td>
     <tr>
       <th>log10_sdev</th>
       <td><p>standard deviation (default: abs((log10_max- log10_mean) / 
-qnorm(0.95)), only used if 'type' is "log10_norm"</p></td>
+get_percentile(0.95)), only used if 'type' is "log10_norm"</p></td>
     </tr>
     <tr>
       <th>mean</th>
@@ -245,7 +252,7 @@ default_max(max, 10*min_zero)) / 2), only used if 'type' is "norm"</p></td>
     <tr>
       <th>sdev</th>
       <td><p>standard deviation (default: abs((default_max(max, 10*min_zero) - 
-mean) / qnorm(0.95))), only used if 'type' is "norm"</p></td>
+mean) / get_percentile(0.95))), only used if 'type' is "norm"</p></td>
     </tr>
     <tr>
       <th>meanlog</th>
@@ -276,7 +283,8 @@ corresponding values</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>for random triangle see <code>rtri</code>, for default 
-min/max see <code><a href='default_min.html'>default_min</a></code> and <code><a href='default_max.html'>default_max</a></code></p></div>
+min/max see <code><a href='default_min.html'>default_min</a></code>,  <code><a href='default_max.html'>default_max</a></code> and 
+<code><a href='get_percentile.html'>get_percentile</a></code></p></div>
     
 
   </div>
