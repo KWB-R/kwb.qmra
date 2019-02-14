@@ -89,6 +89,22 @@ default_max <- function(org_max, new_max, f = c) {
   
 }
 
+
+#' Helper function: get percentile 
+#' 
+#' @param percent_within_minmax percent of data point within min/max (default: 
+#' 0.9 i.e. 90 percent)
+#' @export
+#' @examples 
+#' get_percentile(0.9)
+#' get_percentile(0.95)
+#' 
+get_percentile <- function(percent_within_minmax = 0.9) {
+  
+  qnorm(percent_within_minmax + (1 - percent_within_minmax)/2) 
+  
+}
+
 #' Create random distribution
 #' @param type "uniform" calls runif(), "log10_uniform" calls 
 #' 10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
@@ -104,6 +120,8 @@ default_max <- function(org_max, new_max, f = c) {
 #' "triangle"
 #' @param max maximum value (default: 1000), only used if 'type' is "runif" or
 #' "triangle"
+#' @param percent_within_minmax percent of data point within min/max (default: 
+#' 0.9 i.e. 90 percent
 #' @param min_zero  only used if 'type' is "log10_uniform" or 
 #' "log10_norm", "norm" or "lognorm" and "min" value equal zero. 
 #' In this case the zero is replaced by this value (default: 0.01), see also 
@@ -115,11 +133,11 @@ default_max <- function(org_max, new_max, f = c) {
 #' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
 #' if 'type' is "log10_norm"
 #' @param log10_sdev standard deviation (default: abs((log10_max- log10_mean) / 
-#' qnorm(0.95)), only used if 'type' is "log10_norm"
+#' get_percentile(0.95)), only used if 'type' is "log10_norm"
 #' @param mean mean value (default: (default_min(min, max, min_zero) / 
 #' default_max(max, 10*min_zero)) / 2), only used if 'type' is "norm"
 #' @param sdev standard deviation (default: abs((default_max(max, 10*min_zero) - 
-#' mean) / qnorm(0.95))), only used if 'type' is "norm"
+#' mean) / get_percentile(0.95))), only used if 'type' is "norm"
 #' @param meanlog log mean value (default: mean(log((min + max) / 2))), only
 #' used if 'type' is "lognorm"
 #' @param sdlog standard deviation (default: abs(sd(c(default_min(min, max, 
@@ -134,7 +152,9 @@ default_max <- function(org_max, new_max, f = c) {
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @seealso for random triangle see \code{\link{rtri}}, for default 
-#' min/max see \code{\link{default_min}} and \code{\link{default_max}} 
+#' min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
+#' \code{\link{get_percentile}} 
+#' 
 #' 
 
 
@@ -144,13 +164,14 @@ create_random_distribution <- function(type = "uniform",
   value = 10,
   min = 10,
   max = 1000,
+  percent_within_minmax = 0.9,
   min_zero = 0.01,
   log10_min = default_min(min, max, min_zero, f = log10), 
   log10_max = default_max(max, min_zero * 10, f = log10),
   log10_mean = (log10_min + log10_max) / 2,
-  log10_sdev = abs((log10_max - log10_mean) / qnorm(0.95)),
-  mean = (default_min(min, max, min_zero)/ default_max(max, 10*min_zero)) / 2,
-  sdev = abs((default_max(max, 10*min_zero) - mean) / qnorm(0.95)),
+  log10_sdev = abs((log10_max - log10_mean) / get_percentile(percent_within_minmax)),
+  mean = (default_min(min, max, min_zero) + default_max(max, 10*min_zero)) / 2,
+  sdev = abs((default_max(max, 10*min_zero) - mean) / get_percentile(percent_within_minmax)),
   meanlog = mean(log(default_min(min, max, min_zero) + default_max(max, 10 * min_zero)) / 2),
   sdlog = abs(sd(c(default_min(min, max, min_zero, f = log), 
                    default_max(max, 10 * min_zero, f = log)))),
