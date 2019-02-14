@@ -64,7 +64,7 @@ default_min <- function(org_min, org_max, new_min, f = c) {
   ifelse(org_min > 0 && org_max > 1, 
          f(org_min), 
          ifelse(org_min == 0 && org_max < 1,
-                0.01 * org_max, 
+                f(0.01 * org_max), 
                 f(new_min)
                 )
          )
