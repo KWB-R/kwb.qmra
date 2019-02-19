@@ -143,9 +143,9 @@ simulate_treatment <- function(config,
   treatment_events <- dplyr::left_join(treatment_events,config$treatment$schemes)
   
   if (wide) {
-    treatment_events_wide <- tidyr::spread_(data = treatment_events,
-                                            key_col = "TreatmentID",
-                                            value_col = "logreduction")
+    treatment_events_wide <- tidyr::spread(data = treatment_events,
+                                            key = .data$TreatmentID,
+                                            value = .data$logreduction)
     
     schemeIDs <- unique(config$treatment$schemes$TreatmentSchemeID)
     schemes_events_wide <- data.frame()
