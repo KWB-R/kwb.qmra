@@ -8,11 +8,11 @@ authors:
     html: <img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png'
       height='24' />
   AquaNES: 
-    href: http://aquanes.eu/Default.aspx?t=1593
+    href: https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/
     html: <img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" />
   DEMOWARE: 
-    href: https://www.demoware.eu/
-    html: <img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="24" />
+    href: https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/
+    html: <img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42" />
 template:
   params:
     bootswatch: cerulean
