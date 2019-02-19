@@ -7,6 +7,12 @@ authors:
     href: https://www.kompetenz-wasser.de
     html: <img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png'
       height='24' />
+  AquaNES: 
+    href: http://aquanes.eu/Default.aspx?t=1593
+    html: <img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" />
+  DEMOWARE: 
+    href: https://www.demoware.eu/
+    html: <img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="24" />
 template:
   params:
     bootswatch: cerulean
@@ -26,9 +32,9 @@ navbar:
     - text: 2 Usage (Uniform Inflow)
       href: articles/usage.html
     - text: 3 Usage (Log10 Uniform Inflow)
-      href: articles/usage_log10_uniform.html
+      href: articles/usage_log10_uniform_inflow.html
     - text: 4 Usage (Log10 Norm Inflow)
-      href: articles/usage_log10_norm.html
+      href: articles/usage_log10_norm_inflow.html
     - text: 5 Web-app development
       href: articles/web_app.html
   - text: Case study (WWTP Old Ford)
