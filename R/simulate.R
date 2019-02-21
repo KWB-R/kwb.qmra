@@ -173,7 +173,7 @@ simulate_treatment <- function(config,
   
   lookup_treatmentNames <- config$treatment$processes[,c("TreatmentID","TreatmentName")] %>%  
     dplyr::group_by(.data$TreatmentID) %>% 
-    dplyr::slice_(1)
+    dplyr::slice(1)
   
   treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
   
@@ -354,7 +354,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
                      .data$PathogenID, 
                      .data$PathogenName, 
                      .data$PathogenGroup) %>% 
-    dplyr::summarise(events = n(), 
+    dplyr::summarise(events = dplyr::n(), 
                      inflow_median = median(.data$inflow), 
                      logreduction_median = median(.data$logreduction), 
                      volume_sum = sum(.data$volume_perEvent), 

@@ -4,6 +4,6 @@
 
 test_that("config_write_dummy() works", {
 
-  kwb.qmra:::config_write_dummy()
+  kwb.qmra:::config_write_dummy(confDir = tempdir())
 })
 
