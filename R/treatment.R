@@ -39,7 +39,8 @@ who_treatment <-  readxl::read_excel(path = whoFile,
 treatments <- who_treatment %>% 
               dplyr::select(.data$TreatmentName) %>%  
               dplyr::distinct() %>% 
-              dplyr::mutate(TreatmentID = row_number()) %>% 
+              dplyr::ungroup() %>% 
+              dplyr::mutate(TreatmentID = dplyr::row_number()) %>% 
               dplyr::select(.data$TreatmentID, .data$TreatmentName)
 
 who_treatment <- merge(who_treatment, treatments) 
