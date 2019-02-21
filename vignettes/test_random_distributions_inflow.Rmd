@@ -33,6 +33,7 @@ library(qmra.db)
 library(ggplot2)
 library(tibble)
 library(sessioninfo)
+library(stringi)
 ``` 
 
 
@@ -148,7 +149,7 @@ for (i in seq_along(n)) {
                        stringi::stri_enc_toutf8(metadata$WaterSourceName),
                        metadata$min, 
                        metadata$max),
-       subtitle = sprintf("Reference: %s (%s)", 
+       subtitle = sprintf("Reference: [%s](%s)", 
                           stringi::stri_enc_toutf8(metadata$ReferenceName), 
                           stringi::stri_enc_toutf8(metadata$ReferenceLink)),
        x = "Percentile", 
@@ -161,7 +162,7 @@ print(gg)
 ```
 
 ## 3.4 Run Checking Function And Plot
-```{r}
+```{r eval = TRUE}
 
 inflow_stats_list <- lapply(c("log10_norm", "log10_uniform", "lognorm", "norm", "uniform", "triangle"), 
                             function(type) {
@@ -177,6 +178,13 @@ plot_percentiles(inflow_stats_list_df, inflow_metadata)
 ```
 
 ## 3.5 Export Distribution Plots to PDF 
+
+The plots shown above are also available in a PDF document 
+which can be downloaded by clicking on the link: **[inflow_test_random_distributions.pdf](../inflow_test_random_distributions.pdf)** 
+
+
+
+
 ```{r eval = TRUE}
 
 pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
@@ -185,6 +193,7 @@ dev.off()
 #kwb.utils::finishAndShowPdf(pdff)
 
 ```
+
 
 # 4 Session Info
 
