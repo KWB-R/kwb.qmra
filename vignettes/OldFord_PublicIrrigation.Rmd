@@ -124,7 +124,7 @@ Subsequently the risk calculation can be performed in R(Studio) by executing the
 following code, which uses the `config` that was imported and inspected above:
 
 ```{r}
-risk <- kwb.qmra::simulate_risk(config)
+risk <- kwb.qmra::simulate_risk(config, debug = FALSE)
 ```
 
 All (input & output) data will be saved in the resulting R object `risk` which an be easily 
@@ -135,7 +135,7 @@ inspected by the user, e.g.:
 
 
 ```{r}
-str(risk$input)
+str(risk$input, 1)
 ```
 
 
@@ -143,8 +143,9 @@ str(risk$input)
 
 
 ```{r}
-str(risk$output)
+str(risk$output, 1)
 ```
+
 
 Thus the user has access to all results.
 
