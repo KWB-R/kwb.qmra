@@ -25,9 +25,9 @@ navbar:
   title: ~
   type: default
   left:
-  - text: General workflow
+  - text: Background
     href: articles/general.html
-  - text: Technical workflow
+  - text: Use
     menu: 
     - text: 1 Installation
       href: articles/installation.html
@@ -39,7 +39,7 @@ navbar:
       href: articles/usage_log10_norm_inflow.html
     - text: 5 Web-app development
       href: articles/web_app.html
-  - text: Case study (WWTP Old Ford)
+  - text: Case study
     menu: 
     - text: 1 Public irrigation
       href: articles/OldFord_PublicIrrigation.html
@@ -90,6 +90,7 @@ reference:
     contents: 
       - config_write_dummy
       - create_random_distribution
+      - start_with("default")
       - generate_random_values 
       - distribution_repeater 
       - dr.betapoisson

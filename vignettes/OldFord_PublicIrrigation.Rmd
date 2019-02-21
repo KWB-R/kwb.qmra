@@ -1,0 +1,227 @@
+---
+title: "WWTP Old Ford: public irrigation scenario"
+author: "Michael Rustler"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Technical workflow: usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r echo = FALSE}
+is_travis <- identical(Sys.getenv("TRAVIS"), "true")
+knitr::opts_chunk$set(eval = is_travis)
+```
+
+How to work with the `kwb.qmra` package in R(Studio) is described in the following chapters
+
+Once the R package is installed it can be loaded with the following command in 
+R(Studio):
+
+```{r}
+library(kwb.qmra)
+```
+
+
+## 1.1 Download 'Old Ford' configuration 
+
+The folder with the csv configuration files for the Old Ford use case are  
+located here and can be downloaded with the following command from [ZENODO](https://doi.org/10.5281/zenodo.159527): 
+
+```{r}
+temp <- tempdir()
+url <- "https://zenodo.org/record/159527/files/QMRA_OldFord.zip"
+t_path <- file.path(temp, basename(url))
+download.file(url, dest= t_path, mode="wb") 
+unzip(t_path, exdir = temp)
+
+scenarios_dir <- file.path(temp, "scenarios")
+
+cat(sprintf("### Available scenarios:\n%s",
+            paste(dir(scenarios_dir), collapse = "\n")))
+```
+
+In total there are three different `scenarios` available. To the select the first 
+one (`r dir(scenarios_dir)[1]`), you need to run the following command:
+
+```{r}
+#### DEFINE DIRECTORY ################
+confDir <- dir(scenarios_dir,full.names = TRUE)[1]
+confDir
+```
+
+
+## 1.2 Import configuration into R
+
+All csv files with the input data for the hypothetical u `dummy` (as shown above) are 
+imported into R with the following function:
+
+```{r, message = FALSE, warnings = FALSE }
+#### LOAD ############################
+config <- config_read(confDir) 
+```
+
+# 2 Check input data 
+
+The QMRA will be performed - in case the user does not modify them in R - based on the 
+imported input data, which are defined in the configuration folder. 
+
+In case of the dummy configuration, a Monte carlo simulation (n = 10) for 365 exposure events per year for three pathogens and the following input parameters will be performed:
+
+
+```{r echo = FALSE, message = FALSE, warnings = FALSE }
+simulated <- config$inflow[config$inflow$simulate == 1, 1:3]
+knitr::kable(simulated,caption = "Simulated pathogens for QMRA (defined in: 'inflow.csv' with 
+             simulated = 1):")
+
+knitr::kable(config$inflow[config$inflow$PathogenName %in% simulated$PathogenName,
+ c("PathogenID","PathogenName", "PathogenGroup", "type", "min", "max", 
+   "ReferenceName","ReferenceLink")], 
+ caption = "Inflow concentrations (defined in: 'inflow.csv') for pathogens used for QMRA:")
+
+knitr::kable(config$treatment$schemes,
+ caption = "Treatment schemes (defined in: 'treatment_schemes.csv') used for QMRA:")
+
+knitr::kable(config$treatment$processes[config$treatment$processes$TreatmentID %in% config$treatment$schemes$TreatmentID,
+c("TreatmentID","TreatmentName", "TreatmentGroup", "PathogenGroup", "type", "min", "max",
+  "ReferenceName","ReferenceLink")], 
+ caption = "Treatment processes (defined in: 'treatment_proecesses.csv') and assumed log-reductions used for QMRA (from [DEMOWARE, 2015](http://http://demoware.eu/en/results/deliverables/deliverable-d3-1-appropiate-and-user-friendly-methodologies-for-ra_lca_wfp.pdf#page=18)):")
+
+
+exposure <- list(number_of_repeatings = as.numeric(config$exposure[config$exposure$name == "number_of_repeatings","value"]),
+                 number_of_exposures =  as.numeric(config$exposure[config$exposure$name == "number_of_exposures","value"]),
+                 volume_perEvent = config$exposure[config$exposure$name == "volume_perEvent",]
+                 )
+
+
+knitr::kable(exposure$volume_perEvent[,c("name", "type", "value")],
+ caption = "Ingested volume per event (defined in: row 3 'volume_perEvent' in 'exposure.csv') (source: own assumption)):")
+
+
+volume_per_event <- kwb.qmra::create_random_distribution(type = exposure$volume_perEvent$type, 
+                                     number_of_repeatings = exposure$number_of_repeatings,
+                                     number_of_events = exposure$number_of_exposures, 
+                                     value = exposure$volume_perEvent$value, 
+                                     min = exposure$volume_perEvent$min, 
+                                     max = exposure$volume_perEvent$max, 
+                                     mode = exposure$volume_perEvent$mode, 
+                                     mean = exposure$volume_perEvent$mean,debug = FALSE)
+
+
+knitr::kable(config$doseresponse[config$doseresponse$PathogenName %in% simulated$PathogenName,], 
+              caption = "Dose-response models (defined in: 'doseresponse.csv') used for QMRA (from [QMRAwiki](http://qmrawiki.canr.msu.edu/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki)):")
+
+knitr::kable(config$health[config$health$PathogenName %in% simulated$PathogenName,], 
+              caption = "Health parameters (defined in: 'health.csv') for simulated pathogens (from [WHO, 2011](http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=132)):")
+
+
+```
+
+# 4 Run risk calculation
+
+Subsequently the risk calculation can be performed in R(Studio) by executing the 
+following code, which uses the `config` that was imported and inspected above:
+
+```{r}
+risk <- kwb.qmra::simulate_risk(config)
+```
+
+All (input & output) data will be saved in the resulting R object `risk` which an be easily 
+inspected by the user, e.g.: 
+
+
+**Input data**
+
+
+```{r}
+str(risk$input)
+```
+
+
+**Output data**
+
+
+```{r}
+str(risk$output)
+```
+
+Thus the user has access to all results.
+
+# 5 Visualise results 
+
+Finally the results of the QMRA can be visualised for each system component as shown 
+below:
+
+
+## 5.1 Inflow
+```{r, fig.width = 12, fig.height = 6, fig.cap="Simulated inflow concentrations", warning= FALSE}
+kwb.qmra::plot_inflow(risk)
+```
+
+## 5.2 Treatment
+```{r, fig.width = 12, fig.height = 12, fig.cap="Simulated reductions in the treatment plant", warning= FALSE}
+kwb.qmra::plot_reduction(risk)
+```
+
+## 5.3 Effluent
+```{r, fig.width = 12, fig.height = 18, fig.cap="Simulated effluent concentrations", warning= FALSE}
+kwb.qmra::plot_effluent(risk)
+```
+
+## 5.4 Exposure 
+```{r, fig.width = 12, fig.height = 18, fig.cap="Simulated dose per event", warning= FALSE}
+kwb.qmra::plot_event_dose(risk)
+```
+
+```{r, fig.width = 12, fig.cap="Simulated ingested volume per event", warning= FALSE}
+kwb.qmra::plot_event_volume(risk)
+```
+
+## 5.5 Health results 
+
+### 5.5.1 Per event
+```{r, fig.width = 12, fig.height = 18, fig.cap="Simulated infection probability per event", warning= FALSE}
+kwb.qmra::plot_event_infectionProb(risk)
+```
+
+```{r, fig.width = 12, fig.height = 18, fig.cap="Simulated illness probability per event", warning= FALSE}
+kwb.qmra::plot_event_illnessProb(risk)
+```
+```{r, fig.width = 12, fig.height = 18, fig.cap="Simulated DALYs per event", warning= FALSE}
+kwb.qmra::plot_event_dalys(risk)
+```
+
+### 5.5.2 Total 
+
+```{r, fig.width = 12, fig.height = 9, fig.cap="Simulated total infection probability (for all events)", warning= FALSE}
+kwb.qmra::plot_total_infectionProb(risk)
+```
+
+```{r, fig.width = 12, fig.height = 9, fig.cap="Simulated total illness probability (for all events", warning= FALSE}
+kwb.qmra::plot_total_illnessProb(risk)
+```
+
+```{r, fig.width = 12, fig.height = 9, fig.cap="Simulated total DALYs (for all events)", warning= FALSE}
+kwb.qmra::plot_total_dalys(risk)
+```
+
+In addition tables with summary statistics, e.g. for the **total risk** can be generated easily 
+as shown below:
+
+```{r, echo = FALSE}
+knitr::kable(risk$output$total[risk$output$total$repeatID==1, ], 
+             caption = "Total risk (for first repeat of random generation)")
+```
+
+## 6 Export results 
+
+
+E.g. Write reports for all configurations in a folder e.g. `/scenarios` (here: 
+`r scenarios_dir`):
+
+```{r eval = FALSE}
+kwb.qmra::report_workflow(confDirs = scenarios_dir)
+
+```
+
