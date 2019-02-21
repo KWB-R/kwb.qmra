@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Download kwb.qmra
+# 1 Installation
 
 ```{r eval = TRUE}
 if(FALSE) {
@@ -35,7 +35,7 @@ library(sessioninfo)
 ``` 
 
 
-### Import data from qmra.db 
+# 2 Import data from "qmra.db"" 
 
 See: https://github.com/KWB-R/qmra.db/tree/master/inst/database
 
@@ -174,11 +174,12 @@ plot_percentiles(inflow_stats_list_df, inflow_metadata)
 ```
 
 ### Export Distribution Plots to PDF 
-```{r eval = FALSE}
+```{r eval = TRUE}
 
 pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
 plot_percentiles(inflow_stats_list_df, inflow_metadata)
-kwb.utils::finishAndShowPdf(pdff)
+dev.off()
+#kwb.utils::finishAndShowPdf(pdff)
 
 ```
 
