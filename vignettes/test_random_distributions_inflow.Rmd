@@ -174,7 +174,7 @@ plot_percentiles(inflow_stats_list_df, inflow_metadata)
 ```
 
 ### Export Distribution Plots to PDF 
-```{r}
+```{r eval = FALSE}
 
 pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
 plot_percentiles(inflow_stats_list_df, inflow_metadata)
