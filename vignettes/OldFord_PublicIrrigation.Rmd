@@ -11,7 +11,7 @@ vignette: >
 
 ```{r echo = FALSE}
 is_travis <- identical(Sys.getenv("TRAVIS"), "true")
-knitr::opts_chunk$set(eval = is_travis)
+knitr::opts_chunk$set(eval = TRUE)
 ```
 
 How to work with the `kwb.qmra` package in R(Studio) is described in the following chapters
@@ -124,7 +124,7 @@ Subsequently the risk calculation can be performed in R(Studio) by executing the
 following code, which uses the `config` that was imported and inspected above:
 
 ```{r}
-risk <- kwb.qmra::simulate_risk(config, debug = FALSE)
+risk <- kwb.qmra::simulate_risk(config)
 ```
 
 All (input & output) data will be saved in the resulting R object `risk` which an be easily 
