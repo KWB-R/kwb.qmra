@@ -10,8 +10,8 @@ vignette: >
 ---
 
 ```{r echo = FALSE}
-is_travis <- identical(Sys.getenv("TRAVIS"), "true")
-knitr::opts_chunk$set(eval = is_travis)
+#is_travis <- identical(Sys.getenv("TRAVIS"), "true")
+#knitr::opts_chunk$set(eval = is_travis)
 ```
 
 

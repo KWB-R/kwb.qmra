@@ -27,7 +27,7 @@ navbar:
   left:
   - text: Background
     href: articles/general.html
-  - text: Use
+  - text: Workflow
     menu: 
     - text: 1 Installation
       href: articles/installation.html
@@ -39,12 +39,16 @@ navbar:
       href: articles/usage_log10_norm_inflow.html
     - text: 5 Web-app development
       href: articles/web_app.html
-  - text: Case study
+#  - text: Case study
+#    menu: 
+#    - text: 1 Public irrigation
+#      href: articles/OldFord_PublicIrrigation.html
+#    - text: 2 Potable reuse
+#      href: articles/OldFord_PotableReuse.html
+  - text: Tests
     menu: 
-    - text: 1 Public irrigation
-      href: articles/OldFord_PublicIrrigation.html
-    - text: 2 Potable reuse
-      href: articles/OldFord_PotableReuse.html
+    - text: 1 Random Distributions For Inflow
+      href: articles/test_random_distributions_inflow.html
   - text: News
     href: news/index.html
   - text: Reference

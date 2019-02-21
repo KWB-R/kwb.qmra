@@ -49,11 +49,14 @@ Suggests:
     knitr,
     kwb.utils,
     ggrepel,
-    testthat
+    testthat,
+    tibble,
+    qmra.db
 VignetteBuilder: 
     knitr
 Remotes: 
-    github::kwb-r/kwb.utils
+    github::kwb-r/kwb.utils,
+    github::kwb-r/qmra.db
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 6.1.1

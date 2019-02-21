@@ -1,0 +1,167 @@
+---
+title: "Inflow: Test Random Distributions"
+author: "Michael Rustler"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Technical Workflow: Usage (Log10 Norm Inflow)}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+# Download kwb.qmra
+
+```{r eval = FALSE}
+#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
+remotes::install_github("KWB-R/kwb.qmra")
+remotes::install_github("KWB-R/qmra.db")
+`%>%` <- magrittr::`%>%`
+library(dplyr)
+library(kwb.qmra)
+library(qmra.db)
+library(ggplot2)
+library(tibble)
+``` 
+
+
+### Import data from qmra.db 
+
+See: https://github.com/KWB-R/qmra.db/tree/master/inst/database
+
+```{r}
+
+paths_list <- list(
+  csv_dir = system.file("database/qmra-db_accdb", package = "qmra.db"),
+  inflow = "<csv_dir>/tbl_inflow.csv",
+  pathogen = "<csv_dir>/tbl_pathogen.csv",
+  pathogen_group = "<csv_dir>/tbl_pathogenGroup.csv",
+  references = "<csv_dir>/tbl_reference.csv",
+  water_source = "<csv_dir>/tbl_waterSource.csv"
+  )
+  
+paths <- kwb.utils::resolve(paths_list)
+
+
+inflow <- readr::read_csv(file = paths$inflow)
+pathogen <- readr::read_csv(file = paths$pathogen)
+pathogen_group <- readr::read_csv(file = paths$pathogen_group)
+references <- readr::read_csv(file = paths$references)
+water_source <- readr::read_csv(file = paths$water_source)
+
+inflow_metadata <- inflow %>% 
+  dplyr::left_join(pathogen) %>% 
+  dplyr::left_join(pathogen_group) %>% 
+  dplyr::left_join(water_source) %>% 
+  dplyr::left_join(references) %>% 
+  dplyr::arrange(.data$WaterSourceName, 
+                 .data$PathogenGroup, 
+                 .data$PathogenName, 
+                 .data$ReferenceName) %>% 
+  dplyr::mutate(row_id = 1:dplyr::n())
+  
+
+head(inflow_metadata)
+```
+
+
+### Define Checking Function
+```{r}
+
+check_inflow_distribution <- function(inflow_metadata,
+### for valid "type" parameter values
+### see: https://kwb-r.github.io/kwb.qmra/reference/create_random_distribution.html
+type = "log10_norm",
+number_of_repeatings = 1000, 
+number_of_events = 365,
+dbg = TRUE) {
+  
+metadata <- inflow_metadata %>% 
+  dplyr::mutate(row_id = 1:dplyr::n()) %>%
+    dplyr::mutate(distribution_type = type)
+
+percentiles_list <- lapply(seq_len(nrow(inflow_metadata)), FUN = function(i) {
+sel_dat <- inflow_metadata[i, ]  
+
+print(sprintf("Water source: %s, Pathogen: %s, Reference: %s, Min: %f, Max: %f", 
+              sel_dat$WaterSourceName, 
+              sel_dat$PathogenName, 
+              sel_dat$ReferenceName, 
+              sel_dat$min, 
+              sel_dat$max))
+inflow <- kwb.qmra::create_random_distribution(type = type,
+                                     number_of_repeatings = number_of_repeatings,
+                                     number_of_events = number_of_events,
+                                     min = sel_dat$min, 
+                                     max = sel_dat$max, 
+                                     debug = dbg)
+
+## Go ahead even if errors occur
+try(tibble::enframe(quantile(inflow$events$values, probs = seq(0, 1, by = 0.01))))
+
+}) 
+
+dplyr::bind_rows(percentiles_list, .id = "row_id") %>% 
+dplyr::rename(percentile = name) %>% 
+dplyr::mutate(percentile = as.numeric(stringr::str_remove(.data$percentile, "%")), 
+                                           distribution_type = type)
+
+
+}
+```
+
+
+### Define Plot Function
+```{r}
+plot_percentiles <- function(inflow_stats, inflow_metadata) {
+  
+
+n <- unique(inflow_stats$row_id)
+for (i in seq_along(n)) {
+ sel_inflow_stats <- inflow_stats[inflow_stats$row_id == i,]
+ metadata <- inflow_metadata[inflow_metadata$row_id == i, ]
+ gg <- ggplot(sel_inflow_stats, aes_string(x = "percentile", 
+                                    y = "value", 
+                                    col = "distribution_type")) +
+  ggplot2::scale_y_log10() +
+  labs(title = sprintf("%s (water source: %s):\nmin = %f, max = %f",              
+                       metadata$PathogenName, 
+                       metadata$WaterSourceName,
+                       metadata$min, 
+                       metadata$max),
+       subtitle = sprintf("Reference: %s (%s)", 
+                          metadata$ReferenceName, 
+                          metadata$ReferenceLink),
+       x = "Percentile", 
+       y = "Pathogens Per Litre") +
+  geom_line() +
+  theme_bw()
+print(gg)
+}
+}
+```
+
+### Run Checking Function And Plot
+```{r}
+inflow_stats_list <- lapply(c("log10_norm", "log10_uniform", "lognorm", "norm", "uniform", "triangle"), 
+                            function(type) {
+                              check_inflow_distribution(inflow_metadata, 
+                                          type = type)
+                              })
+
+inflow_stats_list_df <- dplyr::bind_rows(inflow_stats_list)  
+
+plot_percentiles(inflow_stats_list_df, inflow_metadata)
+
+
+```
+
+### Export Distribution Plots to PDF 
+```{r eval = FALSE}
+pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
+plot_percentiles(inflow_stats_list_df, inflow_metadata)
+kwb.utils::finishAndShowPdf(pdff)
+
+```
+

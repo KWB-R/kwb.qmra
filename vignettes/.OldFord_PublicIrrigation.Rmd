@@ -10,8 +10,8 @@ vignette: >
 ---
 
 ```{r echo = FALSE}
-is_travis <- identical(Sys.getenv("TRAVIS"), "true")
-knitr::opts_chunk$set(eval = TRUE)
+#is_travis <- identical(Sys.getenv("TRAVIS"), "true")
+#knitr::opts_chunk$set(eval = TRUE)
 ```
 
 How to work with the `kwb.qmra` package in R(Studio) is described in the following chapters
