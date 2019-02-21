@@ -35,14 +35,14 @@ distribution_repeater <- function(number_of_repeatings = 10,
     cbind(eventID = seq_len(number_of_events))
   colnames(repl) <- c(seq_len(number_of_repeatings), "eventID")
 
-  repl_list <- tidyr::gather_(
+  
+  repl_list <- tidyr::gather(
     data = repl,
-    key_col = "repeatID",
-    value_col = "values",
-    gather_cols = as.character(seq_len(number_of_repeatings))
-  )
-
-  repl_list$repeatID <- as.integer(repl_list$repeatID)
+    key =  "repeatID",
+    value = "values",
+    -.data$eventID
+  ) %>%  
+    dplyr::mutate(repeatID = as.integer(.data$repeatID))
 
   return(repl_list[, c("repeatID", "eventID", "values")])
 }
