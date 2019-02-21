@@ -102,11 +102,11 @@ percentiles_list <- lapply(seq_len(nrow(inflow_metadata)), FUN = function(i) {
 sel_dat <- inflow_metadata[i, ]  
 
 print(sprintf("Water source: %s, Pathogen: %s, Reference: %s, Min: %f, Max: %f", 
-              sel_dat$WaterSourceName, 
-              sel_dat$PathogenName, 
-              sel_dat$ReferenceName, 
-              sel_dat$min, 
-              sel_dat$max))
+              stringi::stri_enc_toutf8(sel_dat$WaterSourceName), 
+              stringi::stri_enc_toutf8(sel_dat$PathogenName), 
+              stringi::stri_enc_toutf8(sel_dat$ReferenceName), 
+              stringi::stri_enc_toutf8(sel_dat$min), 
+              stringi::stri_enc_toutf8(sel_dat$max)))
 inflow <- kwb.qmra::create_random_distribution(type = type,
                                      number_of_repeatings = number_of_repeatings,
                                      number_of_events = number_of_events,
@@ -144,13 +144,13 @@ for (i in seq_along(n)) {
                                     col = "distribution_type")) +
   ggplot2::scale_y_log10() +
   labs(title = sprintf("%s (water source: %s):\nmin = %f, max = %f",              
-                       metadata$PathogenName, 
-                       metadata$WaterSourceName,
+                       stringi::stri_enc_toutf8(metadata$PathogenName), 
+                       stringi::stri_enc_toutf8(metadata$WaterSourceName),
                        metadata$min, 
                        metadata$max),
        subtitle = sprintf("Reference: %s (%s)", 
-                          metadata$ReferenceName, 
-                          metadata$ReferenceLink),
+                          stringi::stri_enc_toutf8(metadata$ReferenceName), 
+                          stringi::stri_enc_toutf8(metadata$ReferenceLink)),
        x = "Percentile", 
        y = "Pathogens Per Litre") +
   geom_line() +
