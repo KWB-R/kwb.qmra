@@ -93,7 +93,7 @@ dbg = TRUE) {
   
 metadata <- inflow_metadata %>% 
   dplyr::mutate(row_id = 1:dplyr::n()) %>%
-    dplyr::mutate(distribution_type = .data[[type]])
+    dplyr::mutate(distribution_type = type)
 
 percentiles_list <- lapply(seq_len(nrow(inflow_metadata)), FUN = function(i) {
 sel_dat <- inflow_metadata[i, ]  
