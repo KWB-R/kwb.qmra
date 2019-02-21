@@ -80,7 +80,9 @@ head(inflow_metadata)
 ```
 
 
-### Define Checking Function
+# 3 Test
+
+## 3.1 Define Checking Function
 ```{r}
 
 check_inflow_distribution <- function(inflow_metadata,
@@ -126,7 +128,7 @@ dplyr::mutate(percentile = as.numeric(stringr::str_remove(.data$percentile, "%")
 ```
 
 
-### Define Plot Function
+## 3.2 Define Plot Function
 ```{r}
 
 plot_percentiles <- function(inflow_stats, inflow_metadata) {
@@ -157,7 +159,7 @@ print(gg)
 }
 ```
 
-### Run Checking Function And Plot
+## 3.4 Run Checking Function And Plot
 ```{r}
 
 inflow_stats_list <- lapply(c("log10_norm", "log10_uniform", "lognorm", "norm", "uniform", "triangle"), 
@@ -173,7 +175,7 @@ plot_percentiles(inflow_stats_list_df, inflow_metadata)
 
 ```
 
-### Export Distribution Plots to PDF 
+## 3.5 Export Distribution Plots to PDF 
 ```{r eval = TRUE}
 
 pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
@@ -183,7 +185,10 @@ dev.off()
 
 ```
 
-# Session Info 
+# 4 Session Info
+
+For reproducibility 
+
 ```{r echo = TRUE}
 sessioninfo::session_info()
 ```
