@@ -49,6 +49,7 @@ Suggests:
     knitr,
     kwb.utils,
     ggrepel,
+    sessioninfo,
     testthat,
     tibble,
     qmra.db

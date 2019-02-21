@@ -67,7 +67,7 @@ head(inflow_metadata)
 
 
 ### Define Checking Function
-```{r}
+```{r eval = FALSE}
 
 check_inflow_distribution <- function(inflow_metadata,
 ### for valid "type" parameter values
@@ -79,7 +79,7 @@ dbg = TRUE) {
   
 metadata <- inflow_metadata %>% 
   dplyr::mutate(row_id = 1:dplyr::n()) %>%
-    dplyr::mutate(distribution_type = type)
+    dplyr::mutate(distribution_type = .data[[type]])
 
 percentiles_list <- lapply(seq_len(nrow(inflow_metadata)), FUN = function(i) {
 sel_dat <- inflow_metadata[i, ]  
@@ -113,7 +113,7 @@ dplyr::mutate(percentile = as.numeric(stringr::str_remove(.data$percentile, "%")
 
 
 ### Define Plot Function
-```{r}
+```{r eval = FALSE}
 plot_percentiles <- function(inflow_stats, inflow_metadata) {
   
 
@@ -143,7 +143,7 @@ print(gg)
 ```
 
 ### Run Checking Function And Plot
-```{r}
+```{r eval = FALSE}
 inflow_stats_list <- lapply(c("log10_norm", "log10_uniform", "lognorm", "norm", "uniform", "triangle"), 
                             function(type) {
                               check_inflow_distribution(inflow_metadata, 
@@ -165,3 +165,8 @@ kwb.utils::finishAndShowPdf(pdff)
 
 ```
 
+# Session Info 
+```{r echo = FALSE}
+library(sessioninfo)
+session_info()
+```
