@@ -9,20 +9,29 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 # Download kwb.qmra
 
-```{r eval = FALSE}
-#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+```{r eval = TRUE}
+if(FALSE) {
+Sys.setenv(GITHUB_PAT = "mysecret_access_token")
 install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
 remotes::install_github("KWB-R/kwb.qmra")
 remotes::install_github("KWB-R/qmra.db")
-`%>%` <- magrittr::`%>%`
-library(dplyr)
+}
+## Load packages
 library(kwb.qmra)
 library(qmra.db)
 library(ggplot2)
 library(tibble)
+library(sessioninfo)
 ``` 
 
 
@@ -31,6 +40,10 @@ library(tibble)
 See: https://github.com/KWB-R/qmra.db/tree/master/inst/database
 
 ```{r}
+
+
+create_inflow_metadata <- function(csv_dir = system.file("database/qmra-db_accdb", 
+                                             package = "qmra.db")) {
 
 paths_list <- list(
   csv_dir = system.file("database/qmra-db_accdb", package = "qmra.db"),
@@ -60,14 +73,15 @@ inflow_metadata <- inflow %>%
                  .data$PathogenName, 
                  .data$ReferenceName) %>% 
   dplyr::mutate(row_id = 1:dplyr::n())
-  
+}
 
+inflow_metadata <- create_inflow_metadata() 
 head(inflow_metadata)
 ```
 
 
 ### Define Checking Function
-```{r eval = FALSE}
+```{r}
 
 check_inflow_distribution <- function(inflow_metadata,
 ### for valid "type" parameter values
@@ -113,7 +127,8 @@ dplyr::mutate(percentile = as.numeric(stringr::str_remove(.data$percentile, "%")
 
 
 ### Define Plot Function
-```{r eval = FALSE}
+```{r}
+
 plot_percentiles <- function(inflow_stats, inflow_metadata) {
   
 
@@ -143,7 +158,8 @@ print(gg)
 ```
 
 ### Run Checking Function And Plot
-```{r eval = FALSE}
+```{r}
+
 inflow_stats_list <- lapply(c("log10_norm", "log10_uniform", "lognorm", "norm", "uniform", "triangle"), 
                             function(type) {
                               check_inflow_distribution(inflow_metadata, 
@@ -158,7 +174,8 @@ plot_percentiles(inflow_stats_list_df, inflow_metadata)
 ```
 
 ### Export Distribution Plots to PDF 
-```{r eval = FALSE}
+```{r}
+
 pdff <- kwb.utils::preparePdf("inflow_test_random_distributions.pdf")
 plot_percentiles(inflow_stats_list_df, inflow_metadata)
 kwb.utils::finishAndShowPdf(pdff)
@@ -166,7 +183,6 @@ kwb.utils::finishAndShowPdf(pdff)
 ```
 
 # Session Info 
-```{r echo = FALSE}
-library(sessioninfo)
-session_info()
+```{r echo = TRUE}
+sessioninfo::session_info()
 ```

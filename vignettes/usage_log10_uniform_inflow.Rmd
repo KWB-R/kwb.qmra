@@ -118,7 +118,7 @@ inspected by the user, e.g.:
 
 
 ```{r}
-str(risk$input)
+str(risk$input, 1)
 ```
 
 
@@ -126,7 +126,7 @@ str(risk$input)
 
 
 ```{r}
-str(risk$output)
+str(risk$output, 1)
 ```
 
 Thus the user has access to all 
