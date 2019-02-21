@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 if(FALSE) {
 Sys.setenv(GITHUB_PAT = "mysecret_access_token")
 install.packages("remotes", repos = "https://cloud.r-project.org")
+library(remotes)
 remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
 remotes::install_github("KWB-R/kwb.qmra")
 remotes::install_github("KWB-R/qmra.db")
@@ -35,7 +36,7 @@ library(sessioninfo)
 ``` 
 
 
-# 2 Import data from "qmra.db"" 
+# 2 Import data from "qmra.db"
 
 See: https://github.com/KWB-R/qmra.db/tree/master/inst/database
 

@@ -4,7 +4,8 @@
 For current progress on this release see [Milestone: v0.2.0](https://github.com/KWB-R/kwb.qmra/milestone/5) 
 
 * Test: add vignette [test_random_distributions_inflow.Rmd](https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/test_random_distributions_inflow.Rmd) for testing random distrution functions with inflow data (using data stored in 
-[qmra.db](https://github.com/kwb-r/qmra.db) R package) ([#21](https://github.com/KWB-R/kwb.qmra/issues/21)) 
+[qmra.db](https://github.com/kwb-r/qmra.db) R package) ([#21](https://github.com/KWB-R/kwb.qmra/issues/21), 
+([#24](https://github.com/KWB-R/kwb.qmra/issues/24))) 
 
 * Delete "docs" folder (documentation auto-build on gh-pages branch) ([#19](https://github.com/KWB-R/kwb.qmra/issues/19))
 
