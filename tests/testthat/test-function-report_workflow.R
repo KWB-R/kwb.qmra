@@ -4,6 +4,8 @@
 
 test_that("report_workflow() works", {
 
-  kwb.qmra:::report_workflow()
+  kwb.qmra:::report_workflow(report_output_dir = tempdir(), openReport = FALSE)
+  testthat::skip_on_appveyor()
+   kwb.qmra:::report_workflow()
 })
 
