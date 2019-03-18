@@ -25,10 +25,23 @@ init:
 install:
   ps: Bootstrap
 
+# Adapt as necessary starting from here
+
+# begin pandoc fix via https://github.com/krlmlr/r-appveyor/issues/82
+# source code: https://github.com/davidski/evaluator/blob/fa2b7a4323c4a0b5139cf55883fa6b30b4f41a9a/appveyor.yml
 cache:
   - C:\RLibrary
+  - C:\Program Files (x86)\Pandoc\
 
-# Adapt as necessary starting from here
+before_test:
+  - ps: >-
+      if (-Not (Test-Path "C:\Program Files (x86)\Pandoc\")) {
+        cinst pandoc
+      }
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
+# end pandoc fix
+
 
 environment:
 ### Add RTools (for details see: https://github.com/KWB-R/kwb.pkgbuild/issues/37)
