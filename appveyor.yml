@@ -31,7 +31,7 @@ install:
 # source code: https://github.com/davidski/evaluator/blob/fa2b7a4323c4a0b5139cf55883fa6b30b4f41a9a/appveyor.yml
 cache:
   - C:\RLibrary
-  - C:\Program Files (x86)\Pandoc\
+  - C:\Program Files\Pandoc\
 
 before_test:
   - ps: >-
