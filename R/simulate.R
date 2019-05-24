@@ -161,11 +161,22 @@ get_treatment_data_frames <- function(
   include_paras = TRUE
 )
 {
-  events <- NULL
-  paras <- NULL
-
-  random_list <- lapply(seq_len(nrow(processes)), function(i) {
-    
+  # Helper function to select a treatment from "processes" and report about it
+  get_treatment <- function(i) {
+    treatment <- processes[i, ]
+    if (debug) cat(sprintf(
+      "Simulated treatment: %s for %s\n", 
+      treatment$TreatmentName, 
+      treatment$PathogenGroup
+    ))
+    treatment[, c("TreatmentID", "PathogenGroup")]
+  }
+  
+  # Provide row indices
+  indices <- seq_len(nrow(processes))
+  
+  # Create random values for each process
+  random_list <- lapply(indices, function(i) {
     generate_random_values(
       config = processes[i, ], 
       number_of_repeatings = repeatings,
@@ -174,35 +185,25 @@ get_treatment_data_frames <- function(
     )
   })
 
-  for (i in seq_along(random_list)) {
-    
-    treatment <- processes[i, ]
-    random_values <- random_list[[i]]
-
-    treatment_to_pathogens <- treatment[, c("TreatmentID", "PathogenGroup")]
-    
-    if (debug) cat(sprintf(
-      "Simulated treatment: %s for %s\n", 
-      treatment$TreatmentName, 
-      treatment$PathogenGroup
-    ))
-
-    events <- rbind(events, cbind(
-      random_values$events, treatment_to_pathogens, row.names = NULL
-    ))
-
-    if (include_paras) {
-      
-      paras <- plyr::rbind.fill(paras, cbind(
-        random_values$paras, treatment_to_pathogens, row.names = NULL
-      ))
-    }
-    
-  } # next i
+  # Build data frame "events"
+  events <- NULL
+  for (i in indices) events <- rbind(
+    events, 
+    cbind(random_list[[i]]$events, get_treatment(i), row.names = NULL)
+  )
   
   # Rename column "values" to "logreduction" in events
   names(events)[names(events) == "values"] <- "logreduction"
   
+  # Build data frame "paras" if requested
+  paras <- NULL
+  if (include_paras) {
+    for (i in indices) paras <- plyr::rbind.fill(
+      paras, 
+      cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
+    )
+  }
+
   if (include_paras) list(
     
     events = events,
