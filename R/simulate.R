@@ -177,20 +177,20 @@ simulate_treatment <- function(config,
   
   treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
   
-  if (wide) {
-    treatment <- list(events_long = treatment_events,
-                      events_wide = treatment_events_wide, 
-                      schemes_events_wide = schemes_events_wide,
-                      schemes = config$treatment$schemes,
-                      paras = treatment_paras)
-  } else {
-    treatment <- list(events_long = treatment_events,
-                      schemes = config$treatment$schemes,
-                      paras = treatment_paras)
-  }
-  
-  return(treatment = treatment)
-  
+  if (wide) list(
+    
+    events_long = treatment_events,
+    events_wide = treatment_events_wide, 
+    schemes_events_wide = schemes_events_wide,
+    schemes = config$treatment$schemes,
+    paras = treatment_paras
+    
+  ) else list(
+    
+    events_long = treatment_events,
+    schemes = config$treatment$schemes,
+    paras = treatment_paras
+  )
 }
 
 #' Helper function: poisson distribution based on exposure per event 
@@ -247,15 +247,18 @@ simulate_exposure <- function(config, debug = TRUE) {
 #' @import dplyr
 #' @export
 
-simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE) {
+simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE)
+{
+  #kwb.utils::assignPackageObjects("kwb.qmra")
   cat("### STEP 0: BASIC CONFIGURATION #############################################\n\n")
   
   simulated_pathogens <- config$inflow$PathogenName[config$inflow$simulate == 1]
   
-  
-  cat(sprintf("Simulated %d pathogen(s): %s\n", 
-              length(simulated_pathogens),
-              paste(simulated_pathogens, collapse = ", ")))
+  cat(sprintf(
+    "Simulated %d pathogen(s): %s\n", 
+    length(simulated_pathogens),
+    paste(simulated_pathogens, collapse = ", ")
+  ))
   cat(sprintf("Number of random distribution repeatings: %d\n", number_of_repeatings(config)))
   cat(sprintf("Number of exposure events: %d\n\n", number_of_exposures(config)))
   
