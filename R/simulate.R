@@ -363,17 +363,18 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
                      infectionProb_sum = 1 - prod( 1 - .data$infectionProb_per_event),
                      illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
                      dalys_sum = sum(.data$dalys_per_event)) 
-  
-  
-  
-  
-  risk <- list(input = list(inflow = inflow, 
-                            treatment = treatment, 
-                            exposure = exposure, 
-                            doseresponse = doseresponse,
-                            health = health), 
-               output = list(events = tbl_risk, 
-                             total = tbl_risk_total))
-  
-  return(risk)
+
+  list(
+    input = list(
+      inflow = inflow, 
+      treatment = treatment, 
+      exposure = exposure, 
+      doseresponse = doseresponse,
+      health = health
+    ), 
+    output = list(
+      events = tbl_risk, 
+      total = tbl_risk_total
+    )
+  )
 }
