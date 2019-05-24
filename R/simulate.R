@@ -93,15 +93,13 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
   treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
   
-  treatment_required <- config$treatment$processes$TreatmentID %in% treatmentIDs
-  pathogen_required <- config$treatment$processes$PathogenGroup %in% pathoGroups
-  
-  condition <- treatment_required & pathogen_required
+  treatment_wanted <- config$treatment$processes$TreatmentID %in% treatmentIDs
+  pathogen_wanted <- config$treatment$processes$PathogenGroup %in% pathoGroups
 
-  treatment_processes_simulate <- config$treatment$processes[condition, ]
+  processes <- config$treatment$processes[treatment_wanted & pathogen_wanted, ]
   
   treatment_data <- get_treatment_data_frames(
-    treatment_processes_simulate, 
+    processes = processes, 
     repeatings = number_of_repeatings(config), 
     n_events = number_of_exposures(config), 
     debug = debug,
@@ -152,32 +150,36 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
 # get_treatment_data_frames ----------------------------------------------------
 get_treatment_data_frames <- function(
-  treatment_processes_simulate, repeatings, n_events, debug = TRUE, 
+  processes, repeatings, n_events, debug = TRUE, 
   include_paras = TRUE
 )
 {
   events <- NULL
   paras <- NULL
-  
-  for (i in seq_len(nrow(treatment_processes_simulate))) {
+
+  random_list <- lapply(seq_len(nrow(processes)), function(i) {
     
-    treatment <- treatment_processes_simulate[i, ]
+    generate_random_values(
+      config = processes[i, ], 
+      number_of_repeatings = repeatings,
+      number_of_events = n_events,
+      debug = debug
+    )
+  })
+
+  for (i in seq_along(random_list)) {
+    
+    treatment <- processes[i, ]
+    random_values <- random_list[[i]]
+
+    treatment_to_pathogens <- treatment[, c("TreatmentID", "PathogenGroup")]
     
     if (debug) cat(sprintf(
       "Simulated treatment: %s for %s\n", 
       treatment$TreatmentName, 
       treatment$PathogenGroup
     ))
-    
-    random_values <- generate_random_values(
-      config = treatment, 
-      number_of_repeatings = repeatings,
-      number_of_events = n_events,
-      debug = debug
-    )
-    
-    treatment_to_pathogens <- treatment[, c("TreatmentID", "PathogenGroup")]
-    
+
     events <- rbind(events, cbind(
       random_values$events, treatment_to_pathogens, row.names = NULL
     ))
