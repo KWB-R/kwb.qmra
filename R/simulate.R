@@ -153,6 +153,12 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
   treatment_events <- dplyr::left_join(treatment_events, config$treatment$schemes)
   
+  # Return only the result that is required by the web app if "minimal" is TRUE
+  if (minimal) {
+    
+    return(list(events_long = treatment_events))
+  } 
+  
   if (wide) {
     
     treatment_events_wide <- tidyr::spread(
@@ -164,12 +170,6 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
     schemes_events_wide <- get_scheme_events_wide(config, treatment_events_wide)
   }
   
-  # Return only the result that is required by the web app if "minimal" is TRUE
-  if (minimal) {
-    
-    return(list(events_long = treatment_events))
-  } 
-
   # Create and return further results only if "minimal" is FALSE
   lookup_treatmentNames <- config$treatment$processes[, c("TreatmentID", "TreatmentName")] %>%
     dplyr::group_by(.data$TreatmentID) %>% 
