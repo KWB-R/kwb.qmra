@@ -266,7 +266,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
   inflow <- simulate_inflow(config, debug)
   
   cat("\n### STEP 2: TREATMENT SCHEMES #############################################\n\n")
-  treatment <- simulate_treatment(config, debug)
+  treatment <- simulate_treatment(config, debug = debug)
   
   tbl_reduction <- treatment$events_long %>%  
     dplyr::group_by(.data$TreatmentSchemeID,
