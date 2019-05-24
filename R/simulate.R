@@ -161,33 +161,7 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
       value = .data$logreduction
     )
     
-    schemeIDs <- unique(config$treatment$schemes$TreatmentSchemeID)
-    
-    schemes_events_wide <- data.frame()
-    
-    for (schemeID in schemeIDs) {
-      
-      scheme_treatmentIDs <- unique(config$treatment$schemes$TreatmentID[config$treatment$schemes$TreatmentSchemeID == schemeID])
-      
-      if (schemeID == schemeIDs[1]) {
-        
-        schemes_events_wide <- cbind(
-          treatment_events_wide[,c("eventID", "PathogenGroup")],
-          rowSums(treatment_events_wide[, as.character(scheme_treatmentIDs), drop = FALSE]),
-          row.names = NULL
-        )
-        
-      } else {
-        
-        schemes_events_wide <- cbind(
-          schemes_events_wide,
-          rowSums(treatment_events_wide[, as.character(scheme_treatmentIDs), drop = FALSE]),
-          row.names = NULL
-        )
-      }
-    }
-    
-    colnames(schemes_events_wide) <- c("eventID", "PathogenGroup", paste0("scheme_", schemeIDs))
+    schemes_events_wide <- get_scheme_events_wide(config, treatment_events_wide)
   }
   
   # Return only the result that is required by the web app if "minimal" is TRUE
@@ -217,6 +191,48 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
     schemes = config$treatment$schemes,
     paras = treatment_paras
   )
+}
+
+# get_scheme_events_wide -------------------------------------------------------
+get_scheme_events_wide <- function(config, treatment_events_wide)
+{
+  schemes <- config$treatment$schemes
+  
+  schemeIDs <- unique(schemes$TreatmentSchemeID)
+  
+  schemes_events_wide <- data.frame()
+
+  for (schemeID in schemeIDs) {
+    
+    is_scheme <- schemes$TreatmentSchemeID == schemeID
+    
+    scheme_treatmentIDs <- unique(schemes$TreatmentID[is_scheme])
+    
+    event_row_sums <- rowSums(
+      treatment_events_wide[, as.character(scheme_treatmentIDs), drop = FALSE]
+    )
+
+    if (schemeID == schemeIDs[1]) {
+      
+      schemes_events_wide <- cbind(
+        treatment_events_wide[, c("eventID", "PathogenGroup")],
+        event_row_sums,
+        row.names = NULL
+      )
+      
+    } else {
+      
+      schemes_events_wide <- cbind(
+        schemes_events_wide,
+        event_row_sums,
+        row.names = NULL
+      )
+    }
+  }
+  
+  stats::setNames(schemes_events_wide, c(
+    "eventID", "PathogenGroup", paste0("scheme_", schemeIDs)
+  ))
 }
 
 #' Helper function: poisson distribution based on exposure per event 
