@@ -96,56 +96,73 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
   treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
   
+  treatment_required <- config$treatment$processes$TreatmentID %in% treatmentIDs
+  pathogen_required <- config$treatment$processes$PathogenGroup %in% pathoGroups
   
-  cond <- config$treatment$processes$TreatmentID %in% treatmentIDs & 
-    config$treatment$processes$PathogenGroup %in% pathoGroups
+  condition <- treatment_required & pathogen_required
+
+  treatment_processes_simulate <- config$treatment$processes[condition, ]
   
-  treatment_processes_simulate <- config$treatment$processes[cond,]
   treatment_events <- data.frame()
   treatment_paras <- data.frame()
   
-  for (i in 1:nrow(treatment_processes_simulate)) {
-    treatment_tmp <- treatment_processes_simulate[i,]
+  for (i in seq_len(nrow(treatment_processes_simulate))) {
     
-    if (debug) {
-      cat(sprintf("Simulated treatment: %s for %s\n", 
-                  treatment_tmp$TreatmentName, 
-                  treatment_tmp$PathogenGroup)) }
+    treatment_tmp <- treatment_processes_simulate[i, ]
     
+    if (debug) cat(sprintf(
+      "Simulated treatment: %s for %s\n", 
+      treatment_tmp$TreatmentName, 
+      treatment_tmp$PathogenGroup
+    ))
     
-    treatment_tmp_random <- generate_random_values(config = treatment_tmp, 
-                                                   number_of_repeatings = repeatings,
-                                                   number_of_events = events,
-                                                   debug = debug)
+    treatment_tmp_random <- generate_random_values(
+      config = treatment_tmp, 
+      number_of_repeatings = repeatings,
+      number_of_events = events,
+      debug = debug
+    )
     
-    treatment_tmp_events <- cbind(treatment_tmp_random$events, 
-                                  treatment_tmp[,c("TreatmentID", 
-                                                   "PathogenGroup")],
-                                  row.names = NULL)
+    treatment_tmp_events <- cbind(
+      treatment_tmp_random$events, 
+      treatment_tmp[, c("TreatmentID", "PathogenGroup")],
+      row.names = NULL
+    )
     
-    treatment_tmp_paras <- cbind(treatment_tmp_random$paras, 
-                                 treatment_tmp[,c("TreatmentID", "PathogenGroup")],
-                                 row.names = NULL)
+    treatment_tmp_paras <- cbind(
+      treatment_tmp_random$paras, 
+      treatment_tmp[, c("TreatmentID", "PathogenGroup")],
+      row.names = NULL
+    )
     
     if (i == 1) {
+      
       treatment_events <- treatment_tmp_events
       treatment_paras <- treatment_tmp_paras
+      
     } else {
+      
       treatment_events <- rbind(treatment_events, treatment_tmp_events)
       treatment_paras <- plyr::rbind.fill(treatment_paras, treatment_tmp_paras)
-    }}
-  names(treatment_events)[names(treatment_events) == "values"] <- "logreduction"
-  
-  
-  
-  treatment_events <- dplyr::left_join(treatment_events,config$treatment$schemes)
+    }
+    
+  } # next i
+
+  is_value_column <- names(treatment_events) == "values"
+  names(treatment_events)[is_value_column] <- "logreduction"
+
+  treatment_events <- dplyr::left_join(treatment_events, config$treatment$schemes)
   
   if (wide) {
-    treatment_events_wide <- tidyr::spread(data = treatment_events,
-                                            key = .data$TreatmentID,
-                                            value = .data$logreduction)
+    
+    treatment_events_wide <- tidyr::spread(
+      data = treatment_events,
+      key = .data$TreatmentID,
+      value = .data$logreduction
+    )
     
     schemeIDs <- unique(config$treatment$schemes$TreatmentSchemeID)
+    
     schemes_events_wide <- data.frame()
     
     for (schemeID in schemeIDs) {
@@ -153,33 +170,40 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
       scheme_treatmentIDs <- unique(config$treatment$schemes$TreatmentID[config$treatment$schemes$TreatmentSchemeID == schemeID])
       
       if (schemeID == schemeIDs[1]) {
-        schemes_events_wide <- cbind(treatment_events_wide[,c("eventID", "PathogenGroup")],
-                                     rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
-                                                                   drop = FALSE]),
-                                     row.names = NULL)
+        
+        schemes_events_wide <- cbind(
+          treatment_events_wide[,c("eventID", "PathogenGroup")],
+          rowSums(treatment_events_wide[, as.character(scheme_treatmentIDs), drop = FALSE]),
+          row.names = NULL
+        )
+        
       } else {
-        schemes_events_wide <- cbind(schemes_events_wide,
-                                     rowSums(treatment_events_wide[,as.character(scheme_treatmentIDs),
-                                                                   drop = FALSE]),
-                                     row.names = NULL)
+        
+        schemes_events_wide <- cbind(
+          schemes_events_wide,
+          rowSums(treatment_events_wide[, as.character(scheme_treatmentIDs), drop = FALSE]),
+          row.names = NULL
+        )
       }
     }
-    colnames(schemes_events_wide) <- c(c("eventID", "PathogenGroup"),
-                                       paste0("scheme_", schemeIDs))
+    
+    colnames(schemes_events_wide) <- c("eventID", "PathogenGroup", paste0("scheme_", schemeIDs))
   }
   
-  
-  lookup_treatmentNames <- config$treatment$processes[,c("TreatmentID","TreatmentName")] %>%  
+  # Return only the result that is required by the web app if "minimal" is TRUE
+  if (minimal) {
+    
+    return(list(events_long = treatment_events))
+  } 
+
+  # Create and return further results only if "minimal" is FALSE
+  lookup_treatmentNames <- config$treatment$processes[, c("TreatmentID", "TreatmentName")] %>%
     dplyr::group_by(.data$TreatmentID) %>% 
     dplyr::slice(1)
   
-  treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
-
-  if (minimal) list(
-    
-    events_long = treatment_events
-    
-  ) else if (wide) list(
+  treatment_paras <- dplyr::left_join(treatment_paras, lookup_treatmentNames)
+  
+  if (wide) list(
     
     events_long = treatment_events,
     events_wide = treatment_events_wide,
