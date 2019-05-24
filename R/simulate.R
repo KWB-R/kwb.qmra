@@ -1,3 +1,5 @@
+# number_of_exposures ----------------------------------------------------------
+
 #' Helper function: gets number of exposures from config
 #' @param config as retrieved by config_read() 
 #' @return number of exposures
@@ -13,6 +15,7 @@ number_of_exposures <- function(config) {
   return(exposures)
 }
 
+# number_of_repeatings ---------------------------------------------------------
 
 #' Helper function: gets number of repeatings from config
 #' @param config as retrieved by config_read() 
@@ -28,6 +31,8 @@ number_of_repeatings <- function(config) {
   
   return(repeatings)
 }
+
+# simulate_inflow --------------------------------------------------------------
 
 #' Simulate: inflow
 #' @param config as retrieved by config_read() 
@@ -77,6 +82,8 @@ simulate_inflow <- function(config, debug = TRUE) {
   return(inflow = list(events = inflow_events , 
                        paras = inflow_paras))
 }
+
+# simulate_treatment -----------------------------------------------------------
 
 #' Simulate: treatment
 #' @param config as retrieved by config_read() 
@@ -249,6 +256,8 @@ get_scheme_events_wide <- function(config, treatment_events_wide)
   ))
 }
 
+# poisson_dose -----------------------------------------------------------------
+
 #' Helper function: poisson distribution based on exposure per event 
 #' @param exposure_perEvent exposed organisms per event
 #' @return dose per event based on poisson process
@@ -260,6 +269,7 @@ poisson_dose <- function(exposure_perEvent) {
                                          lambda = exposure)})
 }
 
+# simulate_exposure ------------------------------------------------------------
 
 #' Simulate: exposure
 #' @param config as retrieved by config_read() 
@@ -290,6 +300,7 @@ simulate_exposure <- function(config, debug = TRUE) {
   )
 }
 
+# simulate_risk ----------------------------------------------------------------
 
 #' Simulate: risk
 #' @param config as retrieved by config_read() 
