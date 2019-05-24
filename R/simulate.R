@@ -103,7 +103,7 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   treatment_data <- get_treatment_data_frames(
     treatment_processes_simulate, 
     repeatings = number_of_repeatings(config), 
-    events = number_of_exposures(config), 
+    n_events = number_of_exposures(config), 
     debug = debug,
     include_paras = ! minimal
   )
@@ -152,11 +152,12 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
 # get_treatment_data_frames ----------------------------------------------------
 get_treatment_data_frames <- function(
-  treatment_processes_simulate, repeatings, events, debug = TRUE, 
+  treatment_processes_simulate, repeatings, n_events, debug = TRUE, 
   include_paras = TRUE
 )
 {
-  treatment_events <- NULL
+  events <- NULL
+  paras <- NULL
   
   for (i in seq_len(nrow(treatment_processes_simulate))) {
     
@@ -171,49 +172,36 @@ get_treatment_data_frames <- function(
     random_values <- generate_random_values(
       config = treatment, 
       number_of_repeatings = repeatings,
-      number_of_events = events,
+      number_of_events = n_events,
       debug = debug
     )
     
     treatment_to_pathogens <- treatment[, c("TreatmentID", "PathogenGroup")]
     
-    treatment_events <- cbind(
-      random_values$events, 
-      treatment_to_pathogens,
-      row.names = NULL
-    )
-
-    treatment_events <- rbind(treatment_events, treatment_events)
+    events <- rbind(events, cbind(
+      random_values$events, treatment_to_pathogens, row.names = NULL
+    ))
 
     if (include_paras) {
       
-      treatment_paras <- cbind(
-        random_values$paras, 
-        treatment_to_pathogens,
-        row.names = NULL
-      )
-      
-      treatment_paras <- if (i == 1) {
-        treatment_paras
-      } else {
-        plyr::rbind.fill(treatment_paras, treatment_paras)  
-      }
+      paras <- plyr::rbind.fill(paras, cbind(
+        random_values$paras, treatment_to_pathogens, row.names = NULL
+      ))
     }
     
   } # next i
   
-  # Rename column "values" to "logreduction" in treatment_events
-  is_value_column <- names(treatment_events) == "values"
-  names(treatment_events)[is_value_column] <- "logreduction"
+  # Rename column "values" to "logreduction" in events
+  names(events)[names(events) == "values"] <- "logreduction"
   
   if (include_paras) list(
     
-    events = treatment_events,
-    paras = treatment_paras
+    events = events,
+    paras = paras
     
   ) else list(
     
-    events = treatment_events
+    events = events
   )
 }
 
