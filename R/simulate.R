@@ -228,9 +228,10 @@ simulate_exposure <- function(config, debug = TRUE) {
   
   colnames(volumes$events)[names(volumes$events) == "values"] <- "volume_perEvent" 
   
-  return(exposure = list(number_of_events = events,
-                         volumes = volumes))
-  
+  list(
+    #number_of_events = events,
+    volumes = volumes["events"]
+  )
 }
 
 
@@ -366,10 +367,10 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
 
   list(
     input = list(
-      inflow = inflow, 
-      treatment = treatment, 
-      exposure = exposure, 
-      doseresponse = doseresponse,
+      inflow = inflow["events"], 
+      treatment = treatment["events_long"], 
+      exposure = exposure["volumes"], 
+      doseresponse = doseresponse["paras"],
       health = health
     ), 
     output = list(
