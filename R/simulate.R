@@ -104,13 +104,11 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
     treatment_processes_simulate, 
     repeatings = number_of_repeatings(config), 
     events = number_of_exposures(config), 
-    debug = debug
+    debug = debug,
+    include_paras = ! minimal
   )
 
-  treatment_events <- treatment_data$events
-  treatment_paras <- treatment_data$paras
-
-  treatment_events <- dplyr::left_join(treatment_events, config$treatment$schemes)
+  treatment_events <- dplyr::left_join(treatment_data$events, config$treatment$schemes)
   
   # Return only the result that is required by the web app if "minimal" is TRUE
   if (minimal) {
@@ -134,7 +132,7 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
     dplyr::group_by(.data$TreatmentID) %>% 
     dplyr::slice(1)
   
-  treatment_paras <- dplyr::left_join(treatment_paras, lookup_treatmentNames)
+  treatment_paras <- dplyr::left_join(treatment_data$paras, lookup_treatmentNames)
   
   if (wide) list(
     
@@ -154,11 +152,11 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
 # get_treatment_data_frames ----------------------------------------------------
 get_treatment_data_frames <- function(
-  treatment_processes_simulate, repeatings, events, debug = TRUE
+  treatment_processes_simulate, repeatings, events, debug = TRUE, 
+  include_paras = TRUE
 )
 {
-  treatment_events <- data.frame()
-  treatment_paras <- data.frame()
+  treatment_events <- NULL
   
   for (i in seq_len(nrow(treatment_processes_simulate))) {
     
@@ -184,22 +182,22 @@ get_treatment_data_frames <- function(
       treatment_to_pathogens,
       row.names = NULL
     )
-    
-    treatment_tmp_paras <- cbind(
-      treatment_tmp_random$paras, 
-      treatment_to_pathogens,
-      row.names = NULL
-    )
-    
-    if (i == 1) {
+
+    treatment_events <- rbind(treatment_events, treatment_tmp_events)
+
+    if (include_paras) {
       
-      treatment_events <- treatment_tmp_events
-      treatment_paras <- treatment_tmp_paras
+      treatment_tmp_paras <- cbind(
+        treatment_tmp_random$paras, 
+        treatment_to_pathogens,
+        row.names = NULL
+      )
       
-    } else {
-      
-      treatment_events <- rbind(treatment_events, treatment_tmp_events)
-      treatment_paras <- plyr::rbind.fill(treatment_paras, treatment_tmp_paras)
+      treatment_paras <- if (i == 1) {
+        treatment_tmp_paras
+      } else {
+        plyr::rbind.fill(treatment_paras, treatment_tmp_paras)  
+      }
     }
     
   } # next i
@@ -208,9 +206,14 @@ get_treatment_data_frames <- function(
   is_value_column <- names(treatment_events) == "values"
   names(treatment_events)[is_value_column] <- "logreduction"
   
-  list(
+  if (include_paras) list(
+    
     events = treatment_events,
     paras = treatment_paras
+    
+  ) else list(
+    
+    events = treatment_events
   )
 }
 
