@@ -186,24 +186,20 @@ get_treatment_data_frames <- function(
   })
 
   # Build data frame "events"
-  events <- NULL
-  for (i in indices) events <- rbind(
-    events, 
+  events <- do.call(rbind, lapply(indices, function(i) {
     cbind(random_list[[i]]$events, get_treatment(i), row.names = NULL)
-  )
+  }))
   
   # Rename column "values" to "logreduction" in events
   names(events)[names(events) == "values"] <- "logreduction"
   
   # Build data frame "paras" if requested
-  paras <- NULL
-  if (include_paras) {
-    for (i in indices) paras <- plyr::rbind.fill(
-      paras, 
+  paras <- if (include_paras) {
+    do.call(plyr::rbind.fill, lapply(indices, function(i) {
       cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
-    )
+    }))
   }
-
+  
   if (include_paras) list(
     
     events = events,
