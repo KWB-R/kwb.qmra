@@ -123,15 +123,17 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
       debug = debug
     )
     
+    treatment_to_pathogens <- treatment_tmp[, c("TreatmentID", "PathogenGroup")]
+    
     treatment_tmp_events <- cbind(
       treatment_tmp_random$events, 
-      treatment_tmp[, c("TreatmentID", "PathogenGroup")],
+      treatment_to_pathogens,
       row.names = NULL
     )
     
     treatment_tmp_paras <- cbind(
       treatment_tmp_random$paras, 
-      treatment_tmp[, c("TreatmentID", "PathogenGroup")],
+      treatment_to_pathogens,
       row.names = NULL
     )
     
