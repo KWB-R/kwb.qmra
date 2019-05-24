@@ -160,43 +160,43 @@ get_treatment_data_frames <- function(
   
   for (i in seq_len(nrow(treatment_processes_simulate))) {
     
-    treatment_tmp <- treatment_processes_simulate[i, ]
+    treatment <- treatment_processes_simulate[i, ]
     
     if (debug) cat(sprintf(
       "Simulated treatment: %s for %s\n", 
-      treatment_tmp$TreatmentName, 
-      treatment_tmp$PathogenGroup
+      treatment$TreatmentName, 
+      treatment$PathogenGroup
     ))
     
-    treatment_tmp_random <- generate_random_values(
-      config = treatment_tmp, 
+    random_values <- generate_random_values(
+      config = treatment, 
       number_of_repeatings = repeatings,
       number_of_events = events,
       debug = debug
     )
     
-    treatment_to_pathogens <- treatment_tmp[, c("TreatmentID", "PathogenGroup")]
+    treatment_to_pathogens <- treatment[, c("TreatmentID", "PathogenGroup")]
     
-    treatment_tmp_events <- cbind(
-      treatment_tmp_random$events, 
+    treatment_events <- cbind(
+      random_values$events, 
       treatment_to_pathogens,
       row.names = NULL
     )
 
-    treatment_events <- rbind(treatment_events, treatment_tmp_events)
+    treatment_events <- rbind(treatment_events, treatment_events)
 
     if (include_paras) {
       
-      treatment_tmp_paras <- cbind(
-        treatment_tmp_random$paras, 
+      treatment_paras <- cbind(
+        random_values$paras, 
         treatment_to_pathogens,
         row.names = NULL
       )
       
       treatment_paras <- if (i == 1) {
-        treatment_tmp_paras
+        treatment_paras
       } else {
-        plyr::rbind.fill(treatment_paras, treatment_tmp_paras)  
+        plyr::rbind.fill(treatment_paras, treatment_paras)  
       }
     }
     
