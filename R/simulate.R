@@ -90,9 +90,6 @@ simulate_inflow <- function(config, debug = TRUE) {
 
 simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FALSE)
 {
-  events <- number_of_exposures(config)
-  repeatings <- number_of_repeatings(config)
-  
   pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
   treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
   
@@ -103,6 +100,63 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
   treatment_processes_simulate <- config$treatment$processes[condition, ]
   
+  treatment_data <- get_treatment_data_frames(
+    treatment_processes_simulate, 
+    repeatings = number_of_repeatings(config), 
+    events = number_of_exposures(config), 
+    debug = debug
+  )
+
+  treatment_events <- treatment_data$events
+  treatment_paras <- treatment_data$paras
+
+  treatment_events <- dplyr::left_join(treatment_events, config$treatment$schemes)
+  
+  # Return only the result that is required by the web app if "minimal" is TRUE
+  if (minimal) {
+    
+    return(list(events_long = treatment_events))
+  } 
+  
+  if (wide) {
+    
+    treatment_events_wide <- tidyr::spread(
+      data = treatment_events,
+      key = .data$TreatmentID,
+      value = .data$logreduction
+    )
+    
+    schemes_events_wide <- get_scheme_events_wide(config, treatment_events_wide)
+  }
+  
+  # Create and return further results only if "minimal" is FALSE
+  lookup_treatmentNames <- config$treatment$processes[, c("TreatmentID", "TreatmentName")] %>%
+    dplyr::group_by(.data$TreatmentID) %>% 
+    dplyr::slice(1)
+  
+  treatment_paras <- dplyr::left_join(treatment_paras, lookup_treatmentNames)
+  
+  if (wide) list(
+    
+    events_long = treatment_events,
+    events_wide = treatment_events_wide,
+    schemes_events_wide = schemes_events_wide,
+    schemes = config$treatment$schemes,
+    paras = treatment_paras
+    
+  ) else list(
+    
+    events_long = treatment_events,
+    schemes = config$treatment$schemes,
+    paras = treatment_paras
+  )
+}
+
+# get_treatment_data_frames ----------------------------------------------------
+get_treatment_data_frames <- function(
+  treatment_processes_simulate, repeatings, events, debug = TRUE
+)
+{
   treatment_events <- data.frame()
   treatment_paras <- data.frame()
   
@@ -149,48 +203,13 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
     }
     
   } # next i
-
+  
+  # Rename column "values" to "logreduction" in treatment_events
   is_value_column <- names(treatment_events) == "values"
   names(treatment_events)[is_value_column] <- "logreduction"
-
-  treatment_events <- dplyr::left_join(treatment_events, config$treatment$schemes)
   
-  # Return only the result that is required by the web app if "minimal" is TRUE
-  if (minimal) {
-    
-    return(list(events_long = treatment_events))
-  } 
-  
-  if (wide) {
-    
-    treatment_events_wide <- tidyr::spread(
-      data = treatment_events,
-      key = .data$TreatmentID,
-      value = .data$logreduction
-    )
-    
-    schemes_events_wide <- get_scheme_events_wide(config, treatment_events_wide)
-  }
-  
-  # Create and return further results only if "minimal" is FALSE
-  lookup_treatmentNames <- config$treatment$processes[, c("TreatmentID", "TreatmentName")] %>%
-    dplyr::group_by(.data$TreatmentID) %>% 
-    dplyr::slice(1)
-  
-  treatment_paras <- dplyr::left_join(treatment_paras, lookup_treatmentNames)
-  
-  if (wide) list(
-    
-    events_long = treatment_events,
-    events_wide = treatment_events_wide,
-    schemes_events_wide = schemes_events_wide,
-    schemes = config$treatment$schemes,
-    paras = treatment_paras
-    
-  ) else list(
-    
-    events_long = treatment_events,
-    schemes = config$treatment$schemes,
+  list(
+    events = treatment_events,
     paras = treatment_paras
   )
 }
