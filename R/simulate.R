@@ -247,7 +247,7 @@ simulate_exposure <- function(config, debug = TRUE) {
 #' @import dplyr
 #' @export
 
-simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
+simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE) {
   cat("### STEP 0: BASIC CONFIGURATION #############################################\n\n")
   
   simulated_pathogens <- config$inflow$PathogenName[config$inflow$simulate == 1]
@@ -330,9 +330,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
         "alpha & N50 (for beta-poisson model) "
       )
     }
-    
   }
-  
   
   cat("\n### STEP 5: Health        #################################################\n\n")
   
@@ -342,34 +340,44 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE) {
   
   tbl_risk <- tbl_risk %>% 
     dplyr::left_join(config$health) %>% 
-    dplyr::mutate(illnessProb_per_event = .data$infectionProb_per_event * .data$infection_to_illness,
-                  dalys_per_event = .data$illnessProb_per_event * .data$dalys_per_case) %>% 
+    dplyr::mutate(
+      illnessProb_per_event = .data$infectionProb_per_event * .data$infection_to_illness,
+      dalys_per_event = .data$illnessProb_per_event * .data$dalys_per_case
+    ) %>% 
     dplyr::ungroup()
   
-  
-  
   tbl_risk_total <- tbl_risk %>%
-    dplyr::group_by(.data$repeatID, 
-                     .data$TreatmentSchemeID, 
-                     .data$TreatmentSchemeName,
-                     .data$PathogenID, 
-                     .data$PathogenName, 
-                     .data$PathogenGroup) %>% 
-    dplyr::summarise(events = dplyr::n(), 
-                     inflow_median = median(.data$inflow), 
-                     logreduction_median = median(.data$logreduction), 
-                     volume_sum = sum(.data$volume_perEvent), 
-                     exposure_sum = sum(.data$exposure_perEvent),
-                     dose_sum = sum(.data$dose_perEvent),
-                     infectionProb_sum = 1 - prod( 1 - .data$infectionProb_per_event),
-                     illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
-                     dalys_sum = sum(.data$dalys_per_event)) 
-
-  list(
+    dplyr::group_by(
+      .data$repeatID, 
+      .data$TreatmentSchemeID, 
+      .data$TreatmentSchemeName,
+      .data$PathogenID, 
+      .data$PathogenName, 
+      .data$PathogenGroup
+    ) %>% 
+    dplyr::summarise(
+      events = dplyr::n(), 
+      inflow_median = median(.data$inflow), 
+      logreduction_median = median(.data$logreduction), 
+      volume_sum = sum(.data$volume_perEvent), 
+      exposure_sum = sum(.data$exposure_perEvent),
+      dose_sum = sum(.data$dose_perEvent),
+      infectionProb_sum = 1 - prod( 1 - .data$infectionProb_per_event),
+      illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
+      dalys_sum = sum(.data$dalys_per_event)
+    )
+  
+  if (minimal) list(
+    
+    input = list(treatment = treatment["events_long"]), 
+    output = list(total = tbl_risk_total)
+    
+  ) else list(
+    
     input = list(
-      inflow = inflow["events"], 
-      treatment = treatment["events_long"], 
-      exposure = exposure["volumes"], 
+      inflow = inflow["events"],
+      treatment = treatment["events_long"],
+      exposure = exposure["volumes"],
       doseresponse = doseresponse["paras"],
       health = health
     ), 
