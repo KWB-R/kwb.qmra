@@ -105,7 +105,7 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
 
   processes <- config$treatment$processes[treatment_wanted & pathogen_wanted, ]
   
-  treatment_data <- get_treatment_data_frames(
+  treatment_data <- get_treatment_data(
     processes = processes, 
     repeatings = number_of_repeatings(config), 
     n_events = number_of_exposures(config), 
@@ -155,8 +155,8 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   )
 }
 
-# get_treatment_data_frames ----------------------------------------------------
-get_treatment_data_frames <- function(
+# get_treatment_data -----------------------------------------------------------
+get_treatment_data <- function(
   processes, repeatings, n_events, debug = TRUE, 
   include_paras = TRUE
 )
@@ -194,16 +194,12 @@ get_treatment_data_frames <- function(
   names(events)[names(events) == "values"] <- "logreduction"
   
   # Build data frame "paras" if requested
-  paras <- if (include_paras) {
-    do.call(plyr::rbind.fill, lapply(indices, function(i) {
-      cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
-    }))
-  }
-  
   if (include_paras) list(
     
     events = events,
-    paras = paras
+    paras = do.call(plyr::rbind.fill, lapply(indices, function(i) {
+      cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
+    }))
     
   ) else list(
     
