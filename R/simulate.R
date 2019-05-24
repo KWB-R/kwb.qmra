@@ -155,6 +155,49 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   )
 }
 
+# simulate_treatment_lean ------------------------------------------------------
+simulate_treatment_lean <- function(config, debug = TRUE)
+{
+  pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
+  treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
+  
+  treatment_wanted <- config$treatment$processes$TreatmentID %in% treatmentIDs
+  pathogen_wanted <- config$treatment$processes$PathogenGroup %in% pathoGroups
+  
+  processes <- config$treatment$processes[treatment_wanted & pathogen_wanted, ]
+  
+  repeatings = number_of_repeatings(config)
+  n_events = number_of_exposures(config)
+
+  # Provide row indices
+  indices <- seq_len(nrow(processes))
+
+  # Build data frame "events"
+  events <- do.call(rbind, lapply(indices, function(i) {
+    
+    treatment <- processes[i, ]
+
+    # Create random values for each process
+    random_values <- generate_random_values(
+      config = treatment, 
+      number_of_repeatings = repeatings,
+      number_of_events = n_events,
+      debug = debug
+    )
+
+    cbind(
+      random_values$events, 
+      treatment[, c("TreatmentID", "PathogenGroup")], 
+      row.names = NULL
+    )
+  }))
+  
+  # Rename column "values" to "logreduction" in events
+  names(events)[names(events) == "values"] <- "logreduction"
+
+  list(events_long = dplyr::left_join(events, config$treatment$schemes))
+}
+
 # get_treatment_data -----------------------------------------------------------
 get_treatment_data <- function(
   processes, repeatings, n_events, debug = TRUE, 
@@ -326,9 +369,10 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
   inflow <- simulate_inflow(config, debug)
   
   cat("\n### STEP 2: TREATMENT SCHEMES #############################################\n\n")
-  treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
+  #treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
+  treatment <- simulate_treatment_lean(config, debug = debug)
   
-  tbl_reduction <- treatment$events_long %>%  
+  tbl_reduction <- treatment$events_long %>%
     dplyr::group_by(.data$TreatmentSchemeID,
                     .data$TreatmentSchemeName,
                     .data$PathogenGroup, 
