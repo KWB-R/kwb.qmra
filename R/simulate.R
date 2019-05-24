@@ -88,10 +88,8 @@ simulate_inflow <- function(config, debug = TRUE) {
 #' @importFrom tidyr spread 
 #' @export
 
-simulate_treatment <- function(config, 
-                               wide = FALSE, 
-                               debug = TRUE) {
-  
+simulate_treatment <- function(config, wide = FALSE, debug = TRUE)
+{
   events <- number_of_exposures(config)
   repeatings <- number_of_repeatings(config)
   
@@ -187,9 +185,9 @@ simulate_treatment <- function(config,
     
   ) else list(
     
-    events_long = treatment_events,
-    schemes = config$treatment$schemes,
-    paras = treatment_paras
+    events_long = treatment_events
+    #, schemes = config$treatment$schemes
+    #, paras = treatment_paras
   )
 }
 
