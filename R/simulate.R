@@ -88,7 +88,7 @@ simulate_inflow <- function(config, debug = TRUE) {
 #' @importFrom tidyr spread 
 #' @export
 
-simulate_treatment <- function(config, wide = FALSE, debug = TRUE)
+simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FALSE)
 {
   events <- number_of_exposures(config)
   repeatings <- number_of_repeatings(config)
@@ -174,20 +174,24 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE)
     dplyr::slice(1)
   
   treatment_paras <- dplyr::left_join(treatment_paras,lookup_treatmentNames)
-  
-  if (wide) list(
+
+  if (minimal) list(
+    
+    events_long = treatment_events
+    
+  ) else if (wide) list(
     
     events_long = treatment_events,
-    events_wide = treatment_events_wide, 
+    events_wide = treatment_events_wide,
     schemes_events_wide = schemes_events_wide,
     schemes = config$treatment$schemes,
     paras = treatment_paras
     
   ) else list(
     
-    events_long = treatment_events
-    #, schemes = config$treatment$schemes
-    #, paras = treatment_paras
+    events_long = treatment_events,
+    schemes = config$treatment$schemes,
+    paras = treatment_paras
   )
 }
 
@@ -264,7 +268,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
   inflow <- simulate_inflow(config, debug)
   
   cat("\n### STEP 2: TREATMENT SCHEMES #############################################\n\n")
-  treatment <- simulate_treatment(config, debug = debug)
+  treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
   
   tbl_reduction <- treatment$events_long %>%  
     dplyr::group_by(.data$TreatmentSchemeID,
