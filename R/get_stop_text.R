@@ -7,12 +7,8 @@ get_stop_text <- function(keyword = NULL)
       "Define required parameter(s), either k (for exponential model) or\n",
       "alpha & N50 (for beta-poisson model)"
     ),
-    exposures_must_be_value = paste0(
-      "number_of_exposures in configuration 'exposure' MUST be of 'type' ", 
-      "= 'value' and column 'value' has to be numeric"
-    ),
-    repeatings_must_be_value = paste0(
-      "number_of_repeatings in configuration 'exposure' MUST be of 'type' ", 
+    must_be_value = paste0(
+      "%s in configuration 'exposure' MUST be of 'type' ", 
       "= 'value' and column 'value' has to be numeric"
     )
   )

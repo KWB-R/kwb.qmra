@@ -6,14 +6,8 @@
 #' @keywords internal
 number_of_exposures <- function(config)
 {
-  ### HARD CODED: number_of_exposures MUST be of type value!    
-  exposures <- config$exposure$value[config$exposure$name == "number_of_exposures"]
-  
-  if (is.na(exposures)) {
-    stop(get_stop_text("exposures_must_be_value"), call. = FALSE)
-  }
-  
-  exposures
+  # HARD CODED: number_of_exposures MUST be of type value!      
+  get_exposure_value_or_stop(config, "number_of_exposures")
 }
 
 # number_of_repeatings ---------------------------------------------------------
@@ -24,14 +18,19 @@ number_of_exposures <- function(config)
 #' @keywords internal
 number_of_repeatings <- function(config)
 {
-  ### HARD CODED: number_of_exposures MUST be of type value!    
-  repeatings <- config$exposure$value[config$exposure$name == "number_of_repeatings"]
-  
-  if (is.na(repeatings)) {
-    stop(get_stop_text("repeatings_must_be_value"), call. = FALSE)
+  # HARD CODED: number_of_repeatings MUST be of type value!      
+  get_exposure_value_or_stop(config, "number_of_repeatings")
+}
+
+# get_exposure_value_or_stop ---------------------------------------------------
+get_exposure_value_or_stop <- function(config, name)
+{
+  ### HARD CODED: "name" MUST be of type value!    
+  if (is.na(value <- config$exposure$value[config$exposure$name == name])) {
+    stop(sprintf(get_stop_text("must_be_value"), name), call. = FALSE)
   }
   
-  repeatings
+  value
 }
 
 # simulate_inflow --------------------------------------------------------------
