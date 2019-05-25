@@ -168,7 +168,7 @@ create_random_distribution <- function(
   # Consistent message text
   distribution_text <- function(type_text, ...) paste0(
     "Create ", number_of_repeatings, " random distribution(s): ",
-    type_text, " (with parameters n: ", number_of_events, ..., ")\n"
+    type_text, " (n: ", number_of_events, ..., ")\n"
   )
 
   # Creation of paramter data frame
