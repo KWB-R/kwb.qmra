@@ -490,80 +490,59 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
+  
   print_simulated_pathogens(config)
   print_repeatings_exposures(config)
 
   print_step(1, "inflow")
+  
   inflow <- simulate_inflow(config, debug)
   
   print_step(2, "treatment schemes")
-  events <- simulate_treatment_lean(config, debug = debug)
   
-  # events: 
-  #  repeatID|eventID|logreduction|TreatmentID|PathogenGroup|TreatmentSchemeID|
-  #  TreatmentSchemeName|TreatmentName
+  events <- simulate_treatment_lean(config, debug = debug) %>% 
+    kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
+    kwb.qmra:::id_columns_to_integer()
+
+  print_step(3, "exposure")
   
-  tbl_reduction <- events %>%
+  exposure <- simulate_exposure(config, debug)
+  
+  # Function that "exposure_perEvent" will be passed through
+  poisson_or_not <- if (usePoisson) poisson_dose else identity
+  
+  tbl_risk <- events %>%
     dplyr::group_by(
       .data$TreatmentSchemeID,
-      .data$TreatmentSchemeName,
       .data$PathogenGroup, 
       .data$eventID,
       .data$repeatID
     ) %>% 
-    dplyr::summarise(logreduction = sum(.data$logreduction))
-  
-  # tbl_reduction:
-  #  TreatmentSchemeID|TreatmentSchemeName|PathogenGroup|eventID|repeatID|
-  #  logreduction
-  
-  print_step(3, "exposure")
-  exposure <- simulate_exposure(config, debug)
-  
-  tbl_risk <- dplyr::right_join(tbl_reduction, inflow$events) %>% 
+    dplyr::summarise(logreduction = sum(.data$logreduction)) %>%
+    dplyr::right_join(inflow$events) %>% 
     dplyr::mutate(effluent = 10 ^ (log10(.data$inflow) - .data$logreduction)) %>% 
     dplyr::left_join(exposure$volumes$events) %>% 
-    dplyr::mutate(exposure_perEvent = .data$effluent * .data$volume_perEvent)
+    dplyr::mutate(
+      exposure_perEvent = .data$effluent * .data$volume_perEvent,
+      dose_perEvent = poisson_or_not(.data$exposure_perEvent)
+    ) %>% 
+    kwb.utils::removeColumns(c("PathogenGroup", "PathogenName", "effluent"))
 
-  # tbl_risk:
-  #  TreatmentSchemeID|TreatmentSchemeName|PathogenGroup|eventID|repeatID|
-  #  logreduction|inflow|PathogenID|PathogenName|effluent|volume_perEvent|
-  #  exposure_perEvent
-  
-  tbl_risk$dose_perEvent <- if (usePoisson) { 
-    poisson_dose(tbl_risk$exposure_perEvent) 
-  } else {
-    tbl_risk$exposure_perEvent
-  }
-  
-  # tbl_risk:
-  #  TreatmentSchemeID|TreatmentSchemeName|PathogenGroup|eventID|repeatID|
-  #  logreduction|inflow|PathogenID|PathogenName|effluent|volume_perEvent|
-  #  exposure_perEvent|dose_perEvent
-  
   print_step(4, "dose response")
   
-  pathogenIDs <- config$inflow$PathogenID[config$inflow$simulate == 1]
-  
-  paras <- config$doseresponse[config$doseresponse$PathogenID %in% pathogenIDs, ]
-  
-  if (debug) {
-    print(paras)
-  }
-  
-  # paras:
-  #  PathogenID|PathogenName|PathogenGroup|Best fit model*|k|alpha|N50|
-  #  Host type|Dose units|Route|Response|Reference|Link
-  
-  tbl_risk$infectionProb_per_event <- get_infection_prob(tbl_risk, config)
+  tbl_risk$infectionProb_per_event <- get_infection_prob(
+    tbl_risk, 
+    dose_response = config$doseresponse, 
+    health = config$health
+  )
 
   print_step(5, "health")
-  
-  health <- kwb.utils::selectColumns(config$health, c(
-    "PathogenID", "infection_to_illness", "dalys_per_case"
-  ))
+
+  health_columns <- c("PathogenID", "infection_to_illness", "dalys_per_case")
+  health <- kwb.utils::selectColumns(config$health, health_columns)
   
   total <- tbl_risk %>% 
+    id_columns_to_integer() %>%
     dplyr::left_join(health, by = "PathogenID") %>% 
     dplyr::mutate(
       illnessProb_per_event = .data$infectionProb_per_event * 
@@ -572,9 +551,10 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
         .data$dalys_per_case
     ) %>% 
     dplyr::ungroup() %>%
-    kwb.utils::removeColumns(c("TreatmentSchemeName", "PathogenGroup")) %>%
     dplyr::group_by(
-      .data$repeatID, .data$TreatmentSchemeID , .data$PathogenID
+      .data$repeatID, 
+      .data$TreatmentSchemeID , 
+      .data$PathogenID
     ) %>% 
     dplyr::summarise(
       events = dplyr::n(), 
@@ -588,21 +568,11 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       dalys_sum = sum(.data$dalys_per_event)
     )
 
-  # Create "lean" versions of the result data.
-  # TODO: Instead of removing columns here, do not select/append these columns 
-  # within this function
-
-  list(
-    events = events %>% 
-      kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
-      kwb.qmra:::id_columns_to_integer(),
-    total = total %>% 
-      kwb.qmra:::id_columns_to_integer()
-  )
+  list(events = events , total = total)
 }
 
 # get_infection_prob -----------------------------------------------------------
-get_infection_prob <- function(tbl_risk, config)
+get_infection_prob <- function(tbl_risk, dose_response, health)
 {
   result_vector <- rep(NA_real_, nrow(tbl_risk))
   
@@ -610,14 +580,14 @@ get_infection_prob <- function(tbl_risk, config)
     
     condition <- tbl_risk$PathogenID == pathogenID
     
-    this_pathogen <- config$doseresponse$PathogenID == pathogenID
+    this_pathogen <- dose_response$PathogenID == pathogenID
     
     values <- get_dose_response_values(
       dose = tbl_risk$dose_perEvent[condition], 
-      k = config$doseresponse$k[this_pathogen], 
-      n50 = config$doseresponse$N50[this_pathogen],
-      alpha = config$doseresponse$alpha[this_pathogen],
-      pathogen_name = config$health$PathogenName[config$health$PathogenID == pathogenID]
+      k = dose_response$k[this_pathogen], 
+      n50 = dose_response$N50[this_pathogen],
+      alpha = dose_response$alpha[this_pathogen],
+      pathogen_name = health$PathogenName[health$PathogenID == pathogenID]
     )
 
     result_vector[condition] <- values$infectionProbability
