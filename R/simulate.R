@@ -42,46 +42,42 @@ get_exposure_value_or_stop <- function(config, name)
 #' corresponding values
 #' @export
 
-simulate_inflow <- function(config, debug = TRUE) {
+simulate_inflow <- function(config, debug = TRUE)
+{
+  n_exposures <- number_of_exposures(config)
+  n_repeatings <- number_of_repeatings(config)
   
-  events <- number_of_exposures(config)
-  repeatings <- number_of_repeatings(config)
+  # Initialise result objects (will become data frames)
+  events <- NULL
+  paras <- NULL
   
-  ### Only pathogens to be simulated
-  inflow_simulate <- config$inflow[config$inflow$simulate == 1,]
-  inflow_events <- data.frame()
-  inflow_paras <- data.frame()
-  for (patho_id in inflow_simulate$PathogenID) {
+  # Only pathogens to be simulated
+  patho_ids <- config$inflow$PathogenID[config$inflow$simulate == 1]
+  
+  for (patho_id in patho_ids) {
     
-    inflow_tmp <- config$inflow[config$inflow$PathogenID == patho_id,] 
-    if (debug) cat(sprintf("Simulated pathogen: %s\n", inflow_tmp$PathogenName))
-    inflow_tmp_random <- generate_random_values(config = inflow_tmp,
-                                                number_of_repeatings = repeatings,
-                                                number_of_events = events,
-                                                debug = debug)
+    new_inflow <- config$inflow[config$inflow$PathogenID == patho_id, ] 
     
-    inflow_tmp_events <- cbind(inflow_tmp_random$events, 
-                               inflow_tmp[,c("PathogenID", 
-                                             "PathogenName", 
-                                             "PathogenGroup")])
+    if (debug) cat(sprintf(
+      "Simulated pathogen: %s\n", new_inflow$PathogenName
+    ))
     
-    inflow_tmp_paras <- cbind(inflow_tmp_random$paras, 
-                              inflow_tmp[,c("PathogenID", 
-                                            "PathogenName", 
-                                            "PathogenGroup")])
+    random <- generate_random_values(
+      config = new_inflow,
+      number_of_repeatings = n_repeatings,
+      number_of_events = n_exposures,
+      debug = debug
+    )
     
-    if (patho_id == inflow_simulate$PathogenID[1]) {
-      inflow_events <- inflow_tmp_events
-      inflow_paras <- inflow_tmp_paras
-    } else {
-      inflow_events <- rbind(inflow_events, inflow_tmp_events)
-      inflow_paras <- plyr::rbind.fill(inflow_paras, inflow_tmp_paras)
-    }
+    new_inflow <- new_inflow[, c("PathogenID", "PathogenName", "PathogenGroup")]
     
+    events <- rbind(events, cbind(random$events, new_inflow))
+    paras <- plyr::rbind.fill(paras, cbind(random$paras, new_inflow))
   }
-  names(inflow_events)[names(inflow_events) == "values"] <- "inflow"
-  return(inflow = list(events = inflow_events , 
-                       paras = inflow_paras))
+  
+  names(events)[names(events) == "values"] <- "inflow"
+  
+  list(events = events , paras = paras)
 }
 
 # simulate_treatment -----------------------------------------------------------
