@@ -195,7 +195,7 @@ simulate_treatment_lean <- function(config, debug = TRUE)
   # Rename column "values" to "logreduction" in events
   names(events)[names(events) == "values"] <- "logreduction"
 
-  list(events_long = dplyr::left_join(events, config$treatment$schemes))
+  dplyr::left_join(events, config$treatment$schemes)
 }
 
 # get_treatment_data -----------------------------------------------------------
@@ -500,6 +500,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 
   is_simulated <- config$inflow$simulate == 1
   pathogens <- config$inflow$PathogenName[is_simulated]
+  
   print_pathogens(pathogens)
 
   print_repeatings_exposures(config)
@@ -508,9 +509,9 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   inflow <- simulate_inflow(config, debug)
   
   print_step(2, "treatment schemes")
-  treatment <- simulate_treatment_lean(config, debug = debug)
+  events <- simulate_treatment_lean(config, debug = debug)
   
-  tbl_reduction <- treatment$events_long %>%
+  tbl_reduction <- events %>%
     dplyr::group_by(
       .data$TreatmentSchemeID,
       .data$TreatmentSchemeName,
@@ -613,10 +614,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       dalys_sum = sum(.data$dalys_per_event)
     )
   
-  list(
-    input = list(treatment = treatment["events_long"]), 
-    output = list(total = tbl_risk_total)
-  )
+  list(events = events, total = tbl_risk_total)
 }
 
 # print_pathogens --------------------------------------------------------------
@@ -636,7 +634,7 @@ print_repeatings_exposures <- function(config)
   n_exposures <- number_of_exposures(config)
   
   cat(sprintf("Number of random distribution repeatings: %d\n", n_repeatings))
-  cat(sprintf("Number of exposure events: %d\n\n", n_exposures))
+  cat(sprintf("Number of exposure events: %d\n", n_exposures))
 }
 
 # print_step -------------------------------------------------------------------
