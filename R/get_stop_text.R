@@ -10,6 +10,11 @@ get_stop_text <- function(keyword = NULL)
     must_be_value = paste0(
       "%s in configuration 'exposure' MUST be of 'type' ", 
       "= 'value' and column 'value' has to be numeric"
+    ),
+    no_such_distribution = paste0(
+      "Your value for parameter 'type' = %s is not an implemented distribution.\n",
+      "Valid values of 'type' are:\n",
+      "'uniform', 'triangle', 'norm', 'lognorm', 'log10_uniform' or 'log10_norm'"
     )
   )
   
