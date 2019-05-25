@@ -351,10 +351,11 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
-  print_simulated_pathogens(config)
-  print_repeatings_exposures(config)
+  
+  print_basic_information(config)
   
   print_step(1, "inflow")
+  
   inflow <- simulate_inflow(config, debug)
   
   print_step(2, "treatment schemes")
@@ -491,8 +492,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
   
-  print_simulated_pathogens(config)
-  print_repeatings_exposures(config)
+  print_basic_information(config)
 
   print_step(1, "inflow")
   

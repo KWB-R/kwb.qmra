@@ -1,3 +1,10 @@
+# print_basic_information ------------------------------------------------------
+print_basic_information <- function(config)
+{
+  print_simulated_pathogens(config)
+  print_repeatings_exposures(config)
+}
+
 # print_simulated_pathogens ----------------------------------------------------
 print_simulated_pathogens <- function(config)
 {
