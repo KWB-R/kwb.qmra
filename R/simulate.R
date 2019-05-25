@@ -496,7 +496,16 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 
   print_step(1, "inflow")
   
-  inflow <- simulate_inflow(config, debug)
+  inflow_events <- simulate_inflow(config, debug)$events
+  
+  #writeLines(names(inflow_events))
+  # inflow_events:
+  #   repeatID
+  #   eventID
+  #   inflow
+  #   PathogenID
+  #   PathogenName
+  #   PathogenGroup
   
   print_step(2, "treatment schemes")
   
@@ -519,7 +528,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       .data$repeatID
     ) %>% 
     dplyr::summarise(logreduction = sum(.data$logreduction)) %>%
-    dplyr::right_join(inflow$events) %>% 
+    dplyr::right_join(inflow_events) %>% 
     dplyr::mutate(effluent = 10 ^ (log10(.data$inflow) - .data$logreduction)) %>% 
     dplyr::left_join(exposure$volumes$events) %>% 
     dplyr::mutate(
