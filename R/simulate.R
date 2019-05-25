@@ -4,15 +4,16 @@
 #' @param config as retrieved by config_read() 
 #' @return number of exposures
 #' @keywords internal
-number_of_exposures <- function(config) {
+number_of_exposures <- function(config)
+{
   ### HARD CODED: number_of_exposures MUST be of type value!    
   exposures <- config$exposure$value[config$exposure$name == "number_of_exposures"]
   
   if (is.na(exposures)) {
-    stop("number_of_exposures in configuration 'exposure' MUST be of 'type'='value' 
-         and column 'value' has to be numeric") }
+    stop(get_stop_text("exposures_must_be_value"), call. = FALSE)
+  }
   
-  return(exposures)
+  exposures
 }
 
 # number_of_repeatings ---------------------------------------------------------
@@ -21,15 +22,16 @@ number_of_exposures <- function(config) {
 #' @param config as retrieved by config_read() 
 #' @return number of repeatings (used for bayesian analysis)
 #' @keywords internal
-number_of_repeatings <- function(config) {
+number_of_repeatings <- function(config)
+{
   ### HARD CODED: number_of_exposures MUST be of type value!    
   repeatings <- config$exposure$value[config$exposure$name == "number_of_repeatings"]
   
   if (is.na(repeatings)) {
-    stop("number_of_repeatings in configuration 'exposure' MUST be of 'type'='value' 
-         and column 'value' has to be numeric") }
+    stop(get_stop_text("repeatings_must_be_value"), call. = FALSE)
+  }
   
-  return(repeatings)
+  repeatings
 }
 
 # simulate_inflow --------------------------------------------------------------
@@ -354,13 +356,8 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
-  
-  simulated_pathogens <- config$inflow$PathogenName[config$inflow$simulate == 1]
-  
-  print_pathogens(simulated_pathogens)
-  
-  cat(sprintf("Number of random distribution repeatings: %d\n", number_of_repeatings(config)))
-  cat(sprintf("Number of exposure events: %d\n\n", number_of_exposures(config)))
+  print_simulated_pathogens(config)
+  print_repeatings_exposures(config)
   
   print_step(1, "inflow")
   inflow <- simulate_inflow(config, debug)
@@ -419,20 +416,21 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
     dr_model <- config$doseresponse[config$doseresponse$PathogenID == pathogenID,]
     
     if (is.na(dr_model$k) & !is.na(dr_model$alpha) & !is.na(dr_model$N50)) {
-      tbl_risk$infectionProb_per_event[cond] <- dr.betapoisson(dose = dose,
-                                                               alpha = dr_model$alpha, 
-                                                               N50 = dr_model$N50)$infectionProbability
+      tbl_risk$infectionProb_per_event[cond] <- dr.betapoisson(
+        dose = dose,
+        alpha = dr_model$alpha, 
+        N50 = dr_model$N50
+      )$infectionProbability
     } else if (!is.na(dr_model$k) & is.na(dr_model$alpha) & is.na(dr_model$N50)) {
-      tbl_risk$infectionProb_per_event[cond] <- dr.expo(dose = dose,
-                                                        k = dr_model$k)$infectionProbability
+      tbl_risk$infectionProb_per_event[cond] <- dr.expo(
+        dose = dose,
+        k = dr_model$k
+      )$infectionProbability
     } else {
-      
-      stop(
-        "Doseresponse configuration incomplete for pathogen ", 
-        config$health$PathogenName[config$health$PathogenID == pathogenID], ".\n",
-        "Define required parameter(s), either k (for exponential model) or\n",
-        "alpha & N50 (for beta-poisson model) "
-      )
+      stop(sprintf(
+        get_stop_text("doseresponse_config_incomplete"),
+        config$health$PathogenName[config$health$PathogenID == pathogenID]
+      ))
     }
   }
   
@@ -497,12 +495,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
-
-  is_simulated <- config$inflow$simulate == 1
-  pathogens <- config$inflow$PathogenName[is_simulated]
-  
-  print_pathogens(pathogens)
-
+  print_simulated_pathogens(config)
   print_repeatings_exposures(config)
 
   print_step(1, "inflow")
@@ -537,7 +530,8 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   
   print_step(4, "dose response")
   
-  pathogenIDs <- config$inflow$PathogenID[is_simulated]
+  pathogenIDs <- config$inflow$PathogenID[config$inflow$simulate == 1]
+  
   paras <- config$doseresponse[config$doseresponse$PathogenID %in% pathogenIDs, ]
   if (debug) {
     print(paras)
@@ -572,12 +566,10 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       
     } else {
       
-      stop(
-        "Doseresponse configuration incomplete for pathogen ", 
-        config$health$PathogenName[config$health$PathogenID == pathogenID], ".\n",
-        "Define required parameter(s), either k (for exponential model) or\n",
-        "alpha & N50 (for beta-poisson model) "
-      )
+      stop(sprintf(
+        get_stop_text("doseresponse_config_incomplete"),
+        config$health$PathogenName[config$health$PathogenID == pathogenID]
+      ))
     }
     
     tbl_risk$infectionProb_per_event[condition] <- values$infectionProbability
@@ -615,30 +607,4 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     )
   
   list(events = events, total = tbl_risk_total)
-}
-
-# print_pathogens --------------------------------------------------------------
-print_pathogens <- function(pathogens)
-{
-  cat(sprintf(
-    "Simulated %d pathogen(s): %s\n", 
-    length(pathogens),
-    paste(pathogens, collapse = ", ")
-  ))
-}
-
-# print_repeatings_exposures ---------------------------------------------------
-print_repeatings_exposures <- function(config)
-{
-  n_repeatings <- number_of_repeatings(config)
-  n_exposures <- number_of_exposures(config)
-  
-  cat(sprintf("Number of random distribution repeatings: %d\n", n_repeatings))
-  cat(sprintf("Number of exposure events: %d\n", n_exposures))
-}
-
-# print_step -------------------------------------------------------------------
-print_step <- function(number, name)
-{
-  cat(sprintf("\n# STEP %d: %s\n\n", number, toupper(name)))
 }
