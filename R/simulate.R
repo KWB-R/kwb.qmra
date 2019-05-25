@@ -353,64 +353,64 @@ simulate_exposure <- function(config, debug = TRUE) {
 simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
-  cat("### STEP 0: BASIC CONFIGURATION #############################################\n\n")
+  print_step(0, "basic configuration")
   
   simulated_pathogens <- config$inflow$PathogenName[config$inflow$simulate == 1]
   
-  cat(sprintf(
-    "Simulated %d pathogen(s): %s\n", 
-    length(simulated_pathogens),
-    paste(simulated_pathogens, collapse = ", ")
-  ))
+  print_pathogens(simulated_pathogens)
+  
   cat(sprintf("Number of random distribution repeatings: %d\n", number_of_repeatings(config)))
   cat(sprintf("Number of exposure events: %d\n\n", number_of_exposures(config)))
   
-  cat("### STEP 1: INFLOW ##########################################################\n\n")
+  print_step(1, "inflow")
   inflow <- simulate_inflow(config, debug)
   
-  cat("\n### STEP 2: TREATMENT SCHEMES #############################################\n\n")
+  print_step(2, "treatment schemes")
   #treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
   treatment <- simulate_treatment_lean(config, debug = debug)
   
   tbl_reduction <- treatment$events_long %>%
-    dplyr::group_by(.data$TreatmentSchemeID,
-                    .data$TreatmentSchemeName,
-                    .data$PathogenGroup, 
-                    .data$eventID,
-                    .data$repeatID) %>% 
+    dplyr::group_by(
+      .data$TreatmentSchemeID,
+      .data$TreatmentSchemeName,
+      .data$PathogenGroup, 
+      .data$eventID,
+      .data$repeatID
+    ) %>% 
     dplyr::summarise(logreduction = sum(.data$logreduction))
-
-  cat("\n### STEP 3: Exposure ######################################################\n\n")
+  
+  print_step(3, "exposure")
   exposure <- simulate_exposure(config, debug)
   
   tbl_risk <-  dplyr::right_join(tbl_reduction, inflow$events) %>% 
     dplyr::mutate(effluent = 10 ^ (log10(.data$inflow) - .data$logreduction)) %>% 
     dplyr::left_join(exposure$volumes$events) %>% 
     dplyr::mutate(exposure_perEvent = .data$effluent * .data$volume_perEvent)
-  
-  
-  if (usePoisson) { 
-    tbl_risk$dose_perEvent <- poisson_dose(tbl_risk$exposure_perEvent) 
+
+  tbl_risk$dose_perEvent <- if (usePoisson) { 
+    poisson_dose(tbl_risk$exposure_perEvent) 
   } else {
-    tbl_risk$dose_perEvent <- tbl_risk$exposure_perEvent
+    tbl_risk$exposure_perEvent
   }
   
-  cat("\n### STEP 4: DOSE RESPONSE #################################################\n\n")
+  print_step(4, "dose response")
   
   simulated_pathogenIDs <- config$inflow$PathogenID[config$inflow$simulate == 1]
-  
-  
+
   indices <- config$doseresponse$PathogenID %in%  simulated_pathogenIDs
   
   paras <- config$doseresponse[config$doseresponse$PathogenID %in% simulated_pathogenIDs,]
+  
   if(debug) print(paras)
-  doseresponse <- list(response = dr.db_model(dr.db = config$doseresponse[indices,]),
-                       paras = paras)
+  
+  doseresponse <- list(
+    response = dr.db_model(dr.db = config$doseresponse[indices,]),
+    paras = paras
+  )
   
   tbl_risk$infectionProb_per_event <- NA
   
   for (pathogenID in unique(tbl_risk$PathogenID)) {
-    
     
     cond <- tbl_risk$PathogenID == pathogenID  
     
@@ -436,11 +436,11 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
     }
   }
   
-  cat("\n### STEP 5: Health        #################################################\n\n")
+  print_step(5, "health")
   
   health <- config$health[config$health$PathogenID %in% simulated_pathogenIDs,]
   
-  if(debug) print(health)
+  if (debug) print(health)
   
   tbl_risk <- tbl_risk %>% 
     dplyr::left_join(config$health) %>% 
@@ -496,27 +496,18 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
 simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
-  cat("# STEP 0: BASIC CONFIGURATION\n\n")
-  
+  print_step(0, "basic configuration")
+
   is_simulated <- config$inflow$simulate == 1
   pathogens <- config$inflow$PathogenName[is_simulated]
-  
-  cat(sprintf(
-    "Simulated %d pathogen(s): %s\n", 
-    length(pathogens),
-    paste(pathogens, collapse = ", ")
-  ))
-  
-  n_repeatings <- number_of_repeatings(config)
-  n_exposures <- number_of_exposures(config)
-  
-  cat(sprintf("Number of random distribution repeatings: %d\n", n_repeatings))
-  cat(sprintf("Number of exposure events: %d\n\n", n_exposures))
-  
-  cat("# STEP 1: INFLOW\n\n")
+  print_pathogens(pathogens)
+
+  print_repeatings_exposures(config)
+
+  print_step(1, "inflow")
   inflow <- simulate_inflow(config, debug)
   
-  cat("\n# STEP 2: TREATMENT SCHEMES\n\n")
+  print_step(2, "treatment schemes")
   treatment <- simulate_treatment_lean(config, debug = debug)
   
   tbl_reduction <- treatment$events_long %>%
@@ -529,7 +520,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     ) %>% 
     dplyr::summarise(logreduction = sum(.data$logreduction))
   
-  cat("\n### STEP 3: Exposure\n\n")
+  print_step(3, "exposure")
   exposure <- simulate_exposure(config, debug)
   
   tbl_risk <- dplyr::right_join(tbl_reduction, inflow$events) %>% 
@@ -543,7 +534,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     tbl_risk$exposure_perEvent
   }
   
-  cat("\n# STEP 4: DOSE RESPONSE\n\n")
+  print_step(4, "dose response")
   
   pathogenIDs <- config$inflow$PathogenID[is_simulated]
   paras <- config$doseresponse[config$doseresponse$PathogenID %in% pathogenIDs, ]
@@ -591,7 +582,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     tbl_risk$infectionProb_per_event[condition] <- values$infectionProbability
   }
   
-  cat("\n# STEP 5: Health\n\n")
+  print_step(5, "health")
   
   tbl_risk <- tbl_risk %>% 
     dplyr::left_join(config$health) %>% 
@@ -626,4 +617,30 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     input = list(treatment = treatment["events_long"]), 
     output = list(total = tbl_risk_total)
   )
+}
+
+# print_pathogens --------------------------------------------------------------
+print_pathogens <- function(pathogens)
+{
+  cat(sprintf(
+    "Simulated %d pathogen(s): %s\n", 
+    length(pathogens),
+    paste(pathogens, collapse = ", ")
+  ))
+}
+
+# print_repeatings_exposures ---------------------------------------------------
+print_repeatings_exposures <- function(config)
+{
+  n_repeatings <- number_of_repeatings(config)
+  n_exposures <- number_of_exposures(config)
+  
+  cat(sprintf("Number of random distribution repeatings: %d\n", n_repeatings))
+  cat(sprintf("Number of exposure events: %d\n\n", n_exposures))
+}
+
+# print_step -------------------------------------------------------------------
+print_step <- function(number, name)
+{
+  cat(sprintf("\n# STEP %d: %s\n\n", number, toupper(name)))
 }
