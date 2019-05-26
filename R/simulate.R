@@ -168,15 +168,18 @@ simulate_treatment <- function(
 # simulate_treatment_lean ------------------------------------------------------
 simulate_treatment_lean <- function(config, debug = TRUE)
 {
-  pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
-  treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
+  simulated_inflows <- config$inflow %>%
+    dplyr::filter(.data$simulate == 1)
+
+  schemes <- config$treatment$schemes
   
-  treatment_wanted <- config$treatment$processes$TreatmentID %in% treatmentIDs
-  pathogen_wanted <- config$treatment$processes$PathogenGroup %in% pathoGroups
+  processes <- config$treatment$processes %>% 
+    dplyr::filter(
+      .data$TreatmentID %in% unique(schemes$TreatmentID), 
+      .data$PathogenGroup %in% unique(simulated_inflows$PathogenGroup)
+    )
   
-  processes <- config$treatment$processes[treatment_wanted & pathogen_wanted, ]
-  
-  repeatings = number_of_repeatings(config)
+  n_repeatings = number_of_repeatings(config)
   n_events = number_of_exposures(config)
 
   # Provide row indices
@@ -186,31 +189,27 @@ simulate_treatment_lean <- function(config, debug = TRUE)
   events <- do.call(rbind, lapply(indices, function(i) {
     
     treatment <- processes[i, ]
+    treatment_pathogen <- treatment[, c("TreatmentID", "PathogenGroup")]
 
     # Create random values for each process
     random_values <- generate_random_values(
       config = treatment, 
-      number_of_repeatings = repeatings,
+      number_of_repeatings = n_repeatings,
       number_of_events = n_events,
       debug = debug
     )
 
-    cbind(
-      random_values$events, 
-      treatment[, c("TreatmentID", "PathogenGroup")], 
-      row.names = NULL
-    )
+    cbind(random_values$events, treatment_pathogen, row.names = NULL)
   }))
   
-  # Rename column "values" to "logreduction" in events
-  names(events)[names(events) == "values"] <- "logreduction"
-
-  dplyr::left_join(events, config$treatment$schemes)
+  events %>% 
+    kwb.utils::renameColumns(list(values = "logreduction")) %>%
+    dplyr::left_join(schemes)
 }
 
 # get_treatment_data -----------------------------------------------------------
 get_treatment_data <- function(
-  processes, repeatings, n_events, debug = TRUE, 
+  processes, n_repeatings, n_events, debug = TRUE, 
   include_paras = TRUE
 )
 {
@@ -232,31 +231,37 @@ get_treatment_data <- function(
   random_list <- lapply(indices, function(i) {
     generate_random_values(
       config = processes[i, ], 
-      number_of_repeatings = repeatings,
+      number_of_repeatings = n_repeatings,
       number_of_events = n_events,
       debug = debug
     )
   })
 
-  # Build data frame "events"
-  events <- do.call(rbind, lapply(indices, function(i) {
+  # Function to cbind random events and treatment
+  cbind_events_treatment <- function(i) {
     cbind(random_list[[i]]$events, get_treatment(i), row.names = NULL)
-  }))
+  }
   
-  # Rename column "values" to "logreduction" in events
-  names(events)[names(events) == "values"] <- "logreduction"
+  # Build data frame "events"
+  events <- lapply(indices, cbind_events_treatment) %>%
+    do.call(rbind) %>%
+    kwb.utils::renameColumns(list(values = logreduction))
   
-  # Build data frame "paras" if requested
-  if (include_paras) list(
-    
+  # Return the events if parameters are not requested
+  if (! include_paras) {
+    return(events)
+  }
+  
+  # Function to cbind random events and treatment
+  cbind_paras_treatment <- function(i) {
+    cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
+  }
+  
+  # Return a list with events and parameters
+  list(
     events = events,
-    paras = do.call(plyr::rbind.fill, lapply(indices, function(i) {
-      cbind(random_list[[i]]$paras, get_treatment(i), row.names = NULL)
-    }))
-    
-  ) else list(
-    
-    events = events
+    paras = lapply(indices, cbind_paras_treatment) %>%
+      do.call(plyr::rbind.fill)
   )
 }
 
@@ -309,10 +314,9 @@ get_scheme_events_wide <- function(config, treatment_events_wide)
 #' @return dose per event based on poisson process
 #' @export
 #' @importFrom stats rpois
-poisson_dose <- function(exposure_perEvent) {
-  sapply(exposure_perEvent, 
-         FUN = function(exposure) {rpois(n = 1, 
-                                         lambda = exposure)})
+poisson_dose <- function(exposure_perEvent)
+{
+  sapply(exposure_perEvent, stats::rpois, n = 1)
 }
 
 # simulate_exposure ------------------------------------------------------------
@@ -324,25 +328,26 @@ poisson_dose <- function(exposure_perEvent) {
 #' and volumes per Event)
 #' @export
 
-simulate_exposure <- function(config, debug = TRUE) {
+simulate_exposure <- function(config, debug = TRUE)
+{
+  kwb.utils::catIf(debug, sprintf("Simulated exposure: volume per event\n"))
+
+  n_events <- number_of_exposures(config)
   
-  events <- number_of_exposures(config)
-  repeatings <- number_of_repeatings(config)
-  
-  volume_perEvent <- config$exposure[config$exposure$name == "volume_perEvent",]
-  
-  if (debug) {
-    cat(sprintf("Simulated exposure: volume per event\n")) }
-  volumes <-  generate_random_values(config = volume_perEvent, 
-                                     number_of_repeatings = repeatings,
-                                     number_of_events = events,
-                                     debug = debug)
-  
-  colnames(volumes$events)[names(volumes$events) == "values"] <- "volume_perEvent" 
+  volumes <-  generate_random_values(
+    config = config$exposure[config$exposure$name == "volume_perEvent", ], 
+    number_of_repeatings = number_of_repeatings(config),
+    number_of_events = n_events,
+    debug = debug
+  )
   
   list(
-    #number_of_events = events,
-    volumes = volumes["events"]
+    #number_of_events = n_events,
+    volumes = list(
+      events = kwb.utils::renameColumns(volumes$events, list(
+        values = "volume_perEvent"
+      ))
+    )
   )
 }
 
@@ -359,7 +364,7 @@ simulate_exposure <- function(config, debug = TRUE) {
 #' @importFrom stats median
 #' @import dplyr
 #' @export
-
+#' 
 simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
@@ -414,34 +419,11 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
     paras = paras
   )
   
-  tbl_risk$infectionProb_per_event <- NA
-  
-  for (pathogenID in unique(tbl_risk$PathogenID)) {
-    
-    cond <- tbl_risk$PathogenID == pathogenID  
-    
-    dose <- tbl_risk$dose_perEvent[cond]
-    
-    dr_model <- config$doseresponse[config$doseresponse$PathogenID == pathogenID,]
-    
-    if (is.na(dr_model$k) & !is.na(dr_model$alpha) & !is.na(dr_model$N50)) {
-      tbl_risk$infectionProb_per_event[cond] <- dr.betapoisson(
-        dose = dose,
-        alpha = dr_model$alpha, 
-        N50 = dr_model$N50
-      )$infectionProbability
-    } else if (!is.na(dr_model$k) & is.na(dr_model$alpha) & is.na(dr_model$N50)) {
-      tbl_risk$infectionProb_per_event[cond] <- dr.expo(
-        dose = dose,
-        k = dr_model$k
-      )$infectionProbability
-    } else {
-      stop(sprintf(
-        get_stop_text("doseresponse_config_incomplete"),
-        config$health$PathogenName[config$health$PathogenID == pathogenID]
-      ))
-    }
-  }
+  tbl_risk$infectionProb_per_event <- get_infection_prob(
+    tbl_risk, 
+    dose_response = config$doseresponse, 
+    health = config$health
+  )
   
   print_step(5, "health")
   
