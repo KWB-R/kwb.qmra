@@ -490,6 +490,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
 simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
+  #set.seed(123)
   print_step(0, "basic configuration")
   
   print_basic_information(config)
@@ -497,15 +498,15 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   print_step(1, "inflow")
   
   inflow_events <- simulate_inflow(config, debug)$events
-  
-  #writeLines(names(inflow_events))
-  # inflow_events:
-  #   repeatID
-  #   eventID
-  #   inflow
-  #   PathogenID
-  #   PathogenName
-  #   PathogenGroup
+  # 'data.frame':	330000 obs. of  6 variables:
+  #   $ repeatID     : int  1 1 1 1 1 1 1 1 1 1 ...
+  #   $ eventID      : int  1 2 3 4 5 6 7 8 9 10 ...
+  #   $ inflow       : num  287649 788326 409036 883029 940473 ...
+  #   $ PathogenID   : num  3 3 3 3 3 3 3 3 3 3 ...
+  #   $ PathogenName : chr  "Campylobacter jejuni" "Campylobacter jejuni" 
+  #   $ PathogenGroup: chr  "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...  
+  #inflow_events_lean <- kwb.qmra:::id_columns_to_integer(inflow_events)
+  #size_ratio(inflow_events_lean, inflow_events) # 0.87
   
   print_step(2, "treatment schemes")
   
@@ -513,9 +514,22 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
     kwb.qmra:::id_columns_to_integer()
 
+  # 'data.frame':	2640000 obs. of  6 variables:
+  #   $ repeatID         : int  1 1 1 1 1 1 1 1 1 1 ...
+  #   $ eventID          : int  1 2 3 4 5 6 7 8 9 10 ...
+  #   $ logreduction     : num  4.58 3.55 2.8 5.71 2.38 ...
+  #   $ TreatmentID      : int  8 8 8 8 8 8 8 8 8 8 ...
+  #   $ PathogenGroup    : chr  "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
+  #   $ TreatmentSchemeID: int  5 5 5 5 5 5 5 5 5 5 ..
+  
   print_step(3, "exposure")
   
-  exposure <- simulate_exposure(config, debug)
+  exposure_volumes <- simulate_exposure(config, debug)$volumes$events
+  
+  # 'data.frame':	110000 obs. of  3 variables:
+  #   $ repeatID       : int  1 1 1 1 1 1 1 1 1 1 ...
+  #   $ eventID        : int  1 2 3 4 5 6 7 8 9 10 ...
+  #   $ volume_perEvent: num  1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 ...
   
   # Function that "exposure_perEvent" will be passed through
   poisson_or_not <- if (usePoisson) poisson_dose else identity
@@ -528,9 +542,9 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       .data$repeatID
     ) %>% 
     dplyr::summarise(logreduction = sum(.data$logreduction)) %>%
-    dplyr::right_join(inflow_events) %>% 
+    dplyr::right_join(inflow_events, by = c("repeatID", "eventID", "PathogenGroup")) %>% 
     dplyr::mutate(effluent = 10 ^ (log10(.data$inflow) - .data$logreduction)) %>% 
-    dplyr::left_join(exposure$volumes$events) %>% 
+    dplyr::left_join(exposure_volumes, by = c("repeatID", "eventID")) %>% 
     dplyr::mutate(
       exposure_perEvent = .data$effluent * .data$volume_perEvent,
       dose_perEvent = poisson_or_not(.data$exposure_perEvent)
@@ -562,7 +576,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
     dplyr::ungroup() %>%
     dplyr::group_by(
       .data$repeatID, 
-      .data$TreatmentSchemeID , 
+      .data$TreatmentSchemeID, 
       .data$PathogenID
     ) %>% 
     dplyr::summarise(
