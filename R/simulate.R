@@ -44,40 +44,45 @@ get_exposure_value_or_stop <- function(config, name)
 
 simulate_inflow <- function(config, debug = TRUE)
 {
-  n_exposures <- number_of_exposures(config)
-  n_repeatings <- number_of_repeatings(config)
-  
-  # Initialise result objects (will become data frames)
-  events <- NULL
-  paras <- NULL
-  
   # Only pathogens to be simulated
   patho_ids <- config$inflow$PathogenID[config$inflow$simulate == 1]
-  
-  for (patho_id in patho_ids) {
-    
-    new_inflow <- config$inflow[config$inflow$PathogenID == patho_id, ] 
-    
+
+  # Helper function to select a row from config$inflow
+  get_inflow_config_row <- function(patho_id) {
+    inflow_config <- config$inflow[config$inflow$PathogenID == patho_id, ] 
     if (debug) cat(sprintf(
-      "Simulated pathogen: %s\n", new_inflow$PathogenName
+      "Simulated pathogen: %s\n", inflow_config$PathogenName
     ))
-    
-    random <- generate_random_values(
-      config = new_inflow,
-      number_of_repeatings = n_repeatings,
-      number_of_events = n_exposures,
-      debug = debug
-    )
-    
-    new_inflow <- new_inflow[, c("PathogenID", "PathogenName", "PathogenGroup")]
-    
-    events <- rbind(events, cbind(random$events, new_inflow))
-    paras <- plyr::rbind.fill(paras, cbind(random$paras, new_inflow))
+    inflow_config
   }
   
-  names(events)[names(events) == "values"] <- "inflow"
+  random_objects <- lapply(patho_ids, function(patho_id) {
+    
+    inflow_config_row <- get_inflow_config_row(patho_id)
+
+    lapply(
+      generate_random_values(
+        config = inflow_config_row,
+        number_of_repeatings = number_of_repeatings(config),
+        number_of_events = number_of_exposures(config),
+        debug = debug
+      ), 
+      cbind,
+      inflow_config_row[, c("PathogenID", "PathogenName", "PathogenGroup")]
+    )
+  })
   
-  list(events = events , paras = paras)
+  list(
+    events = kwb.utils::catAndRun(
+      "Providing inflow events", 
+      do.call(rbind, lapply(random_objects, "[[", "events")) %>%
+        kwb.utils::renameColumns(list(values = "inflow"))
+    ), 
+    paras = kwb.utils::catAndRun(
+      "Providing inflow paras", 
+      do.call(plyr::rbind.fill, lapply(random_objects, "[[", "paras"))
+    )
+  )
 }
 
 # simulate_treatment -----------------------------------------------------------
