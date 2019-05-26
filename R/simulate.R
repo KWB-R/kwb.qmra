@@ -497,19 +497,21 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 
   print_step(1, "inflow")
   
-  inflow_events <- simulate_inflow(config, debug)$events
-  # 'data.frame':	330000 obs. of  6 variables:
+  # Keep only required columns and convert IDs to integer
+  inflow_events <- simulate_inflow(config, debug)$events %>%
+    kwb.utils::removeColumns("PathogenName") %>%
+    kwb.qmra:::id_columns_to_integer()
+  
+  # 'data.frame':	330000 obs. of  5 variables:
   #   $ repeatID     : int  1 1 1 1 1 1 1 1 1 1 ...
   #   $ eventID      : int  1 2 3 4 5 6 7 8 9 10 ...
   #   $ inflow       : num  287649 788326 409036 883029 940473 ...
-  #   $ PathogenID   : num  3 3 3 3 3 3 3 3 3 3 ...
-  #   $ PathogenName : chr  "Campylobacter jejuni" "Campylobacter jejuni" 
-  #   $ PathogenGroup: chr  "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...  
-  #inflow_events_lean <- kwb.qmra:::id_columns_to_integer(inflow_events)
-  #size_ratio(inflow_events_lean, inflow_events) # 0.87
+  #   $ PathogenID   : int  3 3 3 3 3 3 3 3 3 3 ...
+  #   $ PathogenGroup: chr  "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...
   
   print_step(2, "treatment schemes")
   
+  # Keep only required columns and convert IDs to integer
   events <- simulate_treatment_lean(config, debug = debug) %>% 
     kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
     kwb.qmra:::id_columns_to_integer()
@@ -591,6 +593,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       dalys_sum = sum(.data$dalys_per_event)
     )
 
+  #bak <- list(events = events , total = total)
   list(events = events , total = total)
 }
 
