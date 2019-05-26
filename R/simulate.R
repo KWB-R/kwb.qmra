@@ -94,28 +94,34 @@ simulate_inflow <- function(config, debug = TRUE)
 #' @param debug print debug information (default: TRUE)
 #' @return list with parameters of user defined random distribution and 
 #' corresponding values
-#' @importFrom tidyr spread 
+#' @importFrom tidyr spread
 #' @export
-
-simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FALSE)
+#' 
+simulate_treatment <- function(
+  config, wide = FALSE, debug = TRUE, minimal = FALSE
+)
 {
-  pathoGroups <- unique(config$inflow$PathogenGroup[config$inflow$simulate == 1])
-  treatmentIDs <- unique(config$treatment$schemes$TreatmentID)
-  
-  treatment_wanted <- config$treatment$processes$TreatmentID %in% treatmentIDs
-  pathogen_wanted <- config$treatment$processes$PathogenGroup %in% pathoGroups
+  inflow_config_simulated <- config$inflow %>%
+    dplyr::filter(.data$simulate == 1)
 
-  processes <- config$treatment$processes[treatment_wanted & pathogen_wanted, ]
+  schemes_config <- config$treatment$schemes
+
+  processes_simulated <- config$treatment$processes %>%
+    dplyr::filter(
+      .data$PathogenGroup %in% unique(inflow_config_simulated$PathogenGroup),
+      .data$TreatmentID %in% unique(schemes_config$TreatmentID)
+    )
   
   treatment_data <- get_treatment_data(
-    processes = processes, 
+    processes = processes_simulated, 
     repeatings = number_of_repeatings(config), 
     n_events = number_of_exposures(config), 
     debug = debug,
     include_paras = ! minimal
   )
 
-  treatment_events <- dplyr::left_join(treatment_data$events, config$treatment$schemes)
+  treatment_events <- treatment_data$events %>%
+    dplyr::left_join(schemes_config)
   
   # Return only the result that is required by the web app if "minimal" is TRUE
   if (minimal) {
@@ -135,24 +141,26 @@ simulate_treatment <- function(config, wide = FALSE, debug = TRUE, minimal = FAL
   }
   
   # Create and return further results only if "minimal" is FALSE
-  lookup_treatmentNames <- config$treatment$processes[, c("TreatmentID", "TreatmentName")] %>%
+  treatment_id_to_name <- config$treatment$processes %>%
+    dplyr::select(.data$TreatmentID, .data$TreatmentName) %>%
     dplyr::group_by(.data$TreatmentID) %>% 
     dplyr::slice(1)
   
-  treatment_paras <- dplyr::left_join(treatment_data$paras, lookup_treatmentNames)
+  treatment_paras <- treatment_data$paras %>%
+    dplyr::left_join(treatment_id_to_name)
   
   if (wide) list(
     
     events_long = treatment_events,
     events_wide = treatment_events_wide,
     schemes_events_wide = schemes_events_wide,
-    schemes = config$treatment$schemes,
+    schemes = schemes_config,
     paras = treatment_paras
     
   ) else list(
     
     events_long = treatment_events,
-    schemes = config$treatment$schemes,
+    schemes = schemes_config,
     paras = treatment_paras
   )
 }
