@@ -18,58 +18,59 @@
 #' @seealso \code{\link{dr.expo}} for exponential or \code{\link{dr.betapoisson}} 
 #' for beta-poisson dose-response model
 
-
-calc_infection_risk <- function(inflow_orgPerLitre = 10,
-                                treatment_logRemoval = 5.8, 
-                                exposure_daysPerYear = 365,
-                                doseresponse_modelType = "dr.expo",
-                                waterConsumption_LitrePerDay = 1,
-                                target_infectionRisk_perYear = 1/10000,
-                                ...) {
+calc_infection_risk <- function(
+  inflow_orgPerLitre = 10,
+  treatment_logRemoval = 5.8, 
+  exposure_daysPerYear = 365,
+  doseresponse_modelType = "dr.expo",
+  waterConsumption_LitrePerDay = 1,
+  target_infectionRisk_perYear = 1/10000,
+  ...
+) 
+{
+  outflow_orgPerLitre <- inflow_orgPerLitre / (10 ^ treatment_logRemoval)
   
-outflow_orgPerLitre <- inflow_orgPerLitre / (10 ^ treatment_logRemoval)
-
-exposure_orgPerDay <-  outflow_orgPerLitre * waterConsumption_LitrePerDay
-
-
-doseresponse_modelType <- get(doseresponse_modelType)
-
-doseresponseModel <- function(dose,...) {doseresponse_modelType(dose,...)}
-
-lowExposure <- exposure_orgPerDay < 1
-
-infectionRisk_perDay <- rep(NA,length(exposure_orgPerDay))
-
-
-if (length(which(lowExposure == TRUE)) > 0 ) {
-  doseresponse <- doseresponseModel(dose = 1, ...)
-  infectionRisk_perDay[lowExposure] <- exposure_orgPerDay[lowExposure] * doseresponse$infectionProbability
+  exposure_orgPerDay <-  outflow_orgPerLitre * waterConsumption_LitrePerDay
+  
+  doseresponse_modelType <- get(doseresponse_modelType)
+  
+  doseresponseModel <- function(dose,...) {
+    doseresponse_modelType(dose, ...)
+  }
+  
+  lowExposure <- exposure_orgPerDay < 1
+  
+  infectionRisk_perDay <- rep(NA, length(exposure_orgPerDay))
+  
+  if (length(which(lowExposure == TRUE)) > 0 ) {
+    doseresponse <- doseresponseModel(dose = 1, ...)
+    infectionRisk_perDay[lowExposure] <- exposure_orgPerDay[lowExposure] * 
+      doseresponse$infectionProbability
   } 
-if (length(which(lowExposure == FALSE)) > 0 ) { 
-  doseresponse <-  doseresponseModel(dose = exposure_orgPerDay[!lowExposure],...)
-  infectionRisk_perDay[!lowExposure] <- doseresponse$infectionProbability
+  
+  if (length(which(lowExposure == FALSE)) > 0 ) { 
+    doseresponse <-  doseresponseModel(dose = exposure_orgPerDay[!lowExposure], ...)
+    infectionRisk_perDay[!lowExposure] <- doseresponse$infectionProbability
+  }
+  
+  infectionRisk_perYear <- 1 - prod(1 - rep(infectionRisk_perDay,exposure_daysPerYear))
+  
+  events <- data.frame(
+    inflow_orgPerLitre = inflow_orgPerLitre, 
+    treatment_logRemoval = treatment_logRemoval,
+    outflow_orgPerLitre  = outflow_orgPerLitre, 
+    exposure_orgPerDay  = exposure_orgPerDay,
+    infectionProbability = doseresponse$infectionProbability,
+    infectionRisk_perDay = infectionRisk_perDay, 
+    exposure_daysPerYear = exposure_daysPerYear,
+    infectionRisk_perYear = infectionRisk_perYear
+  )
+  
+  list(
+    events = events, 
+    doseresponse = doseresponse
+  )
 }
-
-
-infectionRisk_perYear <- 1 - prod(1 - rep(infectionRisk_perDay,exposure_daysPerYear))
-
-
-
-events <- data.frame(inflow_orgPerLitre = inflow_orgPerLitre, 
-                            treatment_logRemoval = treatment_logRemoval,
-                            outflow_orgPerLitre  = outflow_orgPerLitre, 
-                            exposure_orgPerDay  = exposure_orgPerDay,
-                            infectionProbability = doseresponse$infectionProbability,
-                            infectionRisk_perDay = infectionRisk_perDay, 
-                            exposure_daysPerYear = exposure_daysPerYear,
-                            infectionRisk_perYear = infectionRisk_perYear)
-
-infectionRisk <- list(events = events, 
-                      doseresponse = doseresponse)
-
-return(infectionRisk)
-}
-
 
 #' Risk calculation: health
 #' @param infectionRisk_perYear as retrieved by calc_infection_risk()$events$infectionRisk_perYear
@@ -87,36 +88,39 @@ return(infectionRisk)
 #' @export
 #' @seealso \code{\link{calc_infection_risk}} for infection risk input
 
-calc_health_risk <- function(infectionRisk_perYear = 9.5 * 10 ^ -4, 
-                             infection_to_illness = 0.7, 
-                             diseaseBurden_dalyPerCase = 1.5*10 ^ -3,
-                             fraction_population = 1, 
-                             target_dalyPerYearPerPerson = 1/1000000) {
-  
-  
-  if (!is.null(infectionRisk_perYear)) {
+calc_health_risk <- function(
+  infectionRisk_perYear = 9.5 * 10 ^ -4, 
+  infection_to_illness = 0.7, 
+  diseaseBurden_dalyPerCase = 1.5*10 ^ -3,
+  fraction_population = 1, 
+  target_dalyPerYearPerPerson = 1/1000000
+) 
+{
+  if (! is.null(infectionRisk_perYear)) {
+    
     illnessRisk_perYear <- infectionRisk_perYear * infection_to_illness
     
+    data.frame(
+      infectionRisk_perYear = infectionRisk_perYear, 
+      infection_to_illness = infection_to_illness,
+      illnessRisk_perYear = illnessRisk_perYear, 
+      diseaseBurden_dalyPerCase = diseaseBurden_dalyPerCase,
+      fraction_population = fraction_population, 
+      healthRisk_dalyPerYearPerPerson  =   illnessRisk_perYear * diseaseBurden_dalyPerCase *  fraction_population
+    ) 
     
-    healthRisk <- data.frame(infectionRisk_perYear = infectionRisk_perYear, 
-                             infection_to_illness = infection_to_illness,
-                             illnessRisk_perYear = illnessRisk_perYear, 
-                             diseaseBurden_dalyPerCase = diseaseBurden_dalyPerCase,
-                             fraction_population = fraction_population, 
-                             healthRisk_dalyPerYearPerPerson  =   illnessRisk_perYear * diseaseBurden_dalyPerCase *  fraction_population
-    ) } else {
-      
-      illnessRisk_perYear <- target_dalyPerYearPerPerson  * fraction_population * diseaseBurden_dalyPerCase / target_dalyPerYearPerPerson 
-      
-      
-      healthRisk <- data.frame(infectionRisk_perYear =  illnessRisk_perYear / infection_to_illness, 
-                               infection_to_illness = infection_to_illness,
-                               illnessRisk_perYear =  illnessRisk_perYear, 
-                               diseaseBurden_dalyPerCase = diseaseBurden_dalyPerCase,
-                               fraction_population = fraction_population, 
-                               healthRisk_dalyPerYearPerPerson =  target_dalyPerYearPerPerson
-      )
-    }
-  
-  return(healthRisk)
+  } else {
+    
+    illnessRisk_perYear <- target_dalyPerYearPerPerson  * fraction_population * 
+      diseaseBurden_dalyPerCase / target_dalyPerYearPerPerson 
+    
+    data.frame(
+      infectionRisk_perYear =  illnessRisk_perYear / infection_to_illness, 
+      infection_to_illness = infection_to_illness,
+      illnessRisk_perYear =  illnessRisk_perYear, 
+      diseaseBurden_dalyPerCase = diseaseBurden_dalyPerCase,
+      fraction_population = fraction_population, 
+      healthRisk_dalyPerYearPerPerson =  target_dalyPerYearPerPerson
+    )
+  }
 }
