@@ -40,7 +40,7 @@ config_write_dummy <- function(
       .data$PathogenGroup
     ) %>%
     dplyr::mutate(
-      simulate = ifelse(.data$PathogenID %in% c(3,32,36), 1, 0),
+      simulate = ifelse(.data$PathogenID %in% c(3, 32, 36), 1, 0),
       type = "uniform", 
       value = NA_real_,
       min = 10, 
@@ -129,16 +129,16 @@ config_write_dummy <- function(
     ) %>%
     dplyr::mutate(
       infection_to_illness = ifelse(
-        .data$PathogenID == 3, 0.7, ifelse(
-          .data$PathogenID == 32, 0.03, ifelse(
-            .data$PathogenID == 36, 0.3, NA
+        .data$PathogenID == 3, 7.0e-1, ifelse(
+          .data$PathogenID == 32, 3.0e-2, ifelse(
+            .data$PathogenID == 36, 3.0e-1, NA
           )
         )
       ),
       dalys_per_case = ifelse(
-        .data$PathogenID == 3, 4.6 * 10^-3, ifelse(
-          .data$PathogenID == 32, 1.4 * 10 ^ -2, ifelse(
-            .data$PathogenID == 36, 1.5*10 ^ -3, NA
+        .data$PathogenID == 3, 4.6e-3, ifelse(
+          .data$PathogenID == 32, 1.4e-2, ifelse(
+            .data$PathogenID == 36, 1.5e-3, NA
           )
         )
       )
