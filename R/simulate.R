@@ -387,14 +387,20 @@ simulate_exposure <- function(config, debug = TRUE)
 #' used to calculate the dose_perEvent (TRUE) or just the exposure_perEvent 
 #' column (FALSE), (default: TRUE)
 #' @param debug print debug information (default: TRUE)
+#' @param lean if \code{TRUE}, a "lean" version of this function is called, see
+#'   \code{kwb.qmra:::simulate_risk_lean}
 #' @return list with parameters of user defined random distribution and 
 #' corresponding values
 #' @importFrom stats median
 #' @import dplyr
 #' @export
 #' 
-simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FALSE)
+simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
 {
+  if (lean) {
+    return(simulate_risk_lean(config, usePoisson, debug))
+  }
+  
   #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
   
@@ -406,9 +412,8 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
   
   print_step(2, "treatment schemes")
   
-  treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
-  #treatment <- simulate_treatment_lean(config, debug = debug)
-  
+  treatment <- simulate_treatment(config, debug = debug)
+
   tbl_reduction <- treatment$events_long %>%
     dplyr::group_by(
       .data$TreatmentSchemeID,
@@ -489,13 +494,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
       dalys_sum = sum(.data$dalys_per_event)
     )
   
-  if (minimal) list(
-    
-    input = list(treatment = treatment["events_long"]), 
-    output = list(total = tbl_risk_total)
-    
-  ) else list(
-    
+  list(
     input = list(
       inflow = inflow["events"],
       treatment = treatment["events_long"],
