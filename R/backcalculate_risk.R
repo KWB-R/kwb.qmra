@@ -1,10 +1,12 @@
 #' Backcalculate risk: infection (helper function)
-#' @param infectionRisk_perDay no default. will be set by function backcalc_infectionRisk_perDay()
-#' @param exposure_daysPerYear exposure days per year 
-#' @param target_infectionRisk_perYear target infection risk per per year (default: 
-#' 1/10000) 
-#' @return absolute offset between "target_infectionRisk_perYear" and 
-#' "infectionRisk_perYear"
+#' 
+#' @param infectionRisk_perDay no default. will be set by function
+#'   backcalc_infectionRisk_perDay()
+#' @param exposure_daysPerYear exposure days per year
+#' @param target_infectionRisk_perYear target infection risk per per year
+#'   (default: 1/10000)
+#' @return absolute offset between "target_infectionRisk_perYear" and
+#'   "infectionRisk_perYear"
 #' @keywords internal
 
 backcalcHelper_infectionRisk_perDay <- function(
@@ -18,13 +20,15 @@ backcalcHelper_infectionRisk_perDay <- function(
 }
 
 #' Backcalculate risk: infection (using optimise() function)
-#' @description Based on exposure days per year and target infection risk per year 
-#' the acceptable daily infection risk is backcalculated
-#' @param target_infectionRisk_perYear target infection risk per per year (default: 
-#' 1/10000) 
-#' @param exposures_daysPerYear exposure days per year (default: 1 to 365) 
-#' @return acceptable daily infection risk for given exposures per year and target
-#' infection risk per year 
+#'
+#' Based on exposure days per year and target infection risk per year the
+#' acceptable daily infection risk is backcalculated
+#'
+#' @param target_infectionRisk_perYear target infection risk per per year
+#'   (default: 1/10000)
+#' @param exposures_daysPerYear exposure days per year (default: 1 to 365)
+#' @return acceptable daily infection risk for given exposures per year and
+#'   target infection risk per year
 #' @export
 
 backcalc_infectionRisk_perDay <- function(
