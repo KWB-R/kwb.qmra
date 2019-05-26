@@ -1,13 +1,20 @@
 # simulate_inflow --------------------------------------------------------------
 
 #' Simulate: inflow
-#' @param config as retrieved by config_read() 
+#'
+#' @param config as retrieved by config_read()
 #' @param debug print debug information (default: TRUE)
-#' @return list with parameters of user defined random distribution and 
-#' corresponding values
+#' @param lean if \code{TRUE}, only the "events" are returned (in a reduced
+#'   version, i.e. without column \code{PathogenName} and with all ID columns
+#'   being of class \code{integer}), otherwise a list with the events in element
+#'   \code{events}" and the corresponding parameters in element \code{paras}.
+#'   The default is \code{FALSE}, i.e. events and parameters are returned in a
+#'   list.
+#' @return list with parameters of user defined random distribution and
+#'   corresponding values
 #' @export
 
-simulate_inflow <- function(config, debug = TRUE)
+simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
 {
   # Only pathogens to be simulated
   patho_ids <- config$inflow$PathogenID[config$inflow$simulate == 1]
@@ -15,7 +22,7 @@ simulate_inflow <- function(config, debug = TRUE)
   # Helper function to select a row from config$inflow
   get_inflow_config_row <- function(patho_id) {
     inflow_config <- config$inflow[config$inflow$PathogenID == patho_id, ] 
-    if (debug) cat(sprintf(
+    kwb.utils::catIf(debug, sprintf(
       "Simulated pathogen: %s\n", inflow_config$PathogenName
     ))
     inflow_config
@@ -36,13 +43,21 @@ simulate_inflow <- function(config, debug = TRUE)
       inflow_config_row[, c("PathogenID", "PathogenName", "PathogenGroup")]
     )
   })
+
+  events <- kwb.utils::catAndRun(
+    "Providing inflow events", 
+    do.call(rbind, lapply(random_objects, "[[", "events")) %>%
+      kwb.utils::renameColumns(list(values = "inflow"))
+  )
+  
+  if (lean) return(
+    events %>%
+      kwb.utils::removeColumns("PathogenName") %>%
+      kwb.qmra:::id_columns_to_integer()
+  )
   
   list(
-    events = kwb.utils::catAndRun(
-      "Providing inflow events", 
-      do.call(rbind, lapply(random_objects, "[[", "events")) %>%
-        kwb.utils::renameColumns(list(values = "inflow"))
-    ), 
+    events = events, 
     paras = kwb.utils::catAndRun(
       "Providing inflow paras", 
       do.call(plyr::rbind.fill, lapply(random_objects, "[[", "paras"))
@@ -133,19 +148,60 @@ simulate_treatment <- function(
 # simulate_treatment_lean ------------------------------------------------------
 simulate_treatment_lean <- function(config, debug = TRUE)
 {
+  #kwb.utils::assignPackageObjects("kwb.qmra")
   simulated_inflows <- config$inflow %>%
-    dplyr::filter(.data$simulate == 1)
-
-  schemes <- config$treatment$schemes
+    dplyr::filter(.data$simulate == 1) %>%
+    kwb.utils::removeColumns(c(
+      "simulate", "PathogenName", "ReferenceName", "ReferenceLink"
+    )) %>% 
+    kwb.qmra:::id_columns_to_integer()
   
+# Classes ???tbl_df???, ???tbl??? and 'data.frame':	3 obs. of  11 variables:
+#  $ PathogenID   : int  3 32 34
+#  $ PathogenGroup: chr  "Bacteria" "Viruses" "Protozoa"
+#  $ type         : chr  "uniform" "uniform" "uniform"
+#  $ value        : logi  NA NA NA
+#  $ min          : num  100 50 1
+#  $ max          : num  1e+06 5e+03 1e+04
+#  $ mode         : logi  NA NA NA
+#  $ mean         : logi  NA NA NA
+#  $ sd           : logi  NA NA NA
+#  $ meanlog      : logi  NA NA NA
+#  $ sdlog        : logi  NA NA NA
+
+  schemes <- config$treatment$schemes %>%
+    kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
+    id_columns_to_integer()
+  
+# Classes ???tbl_df???, ???tbl??? and 'data.frame':	8 obs. of  2 variables:
+#  $ TreatmentSchemeID: int  5 5 5 5 5 5 5 5
+#  $ TreatmentID      : int  16 17 19 20 8 9 15 14
+
   processes <- config$treatment$processes %>% 
     dplyr::filter(
       .data$TreatmentID %in% unique(schemes$TreatmentID), 
       .data$PathogenGroup %in% unique(simulated_inflows$PathogenGroup)
-    )
+    ) %>% 
+    kwb.utils::removeColumns(c(
+      "TreatmentName", "TreatmentGroup", "ReferenceName", "ReferenceLink"
+    )) %>% 
+    id_columns_to_integer()
   
-  n_repeatings = number_of_repeatings(config)
-  n_events = number_of_exposures(config)
+# Classes ???tbl_df???, ???tbl??? and 'data.frame':	24 obs. of  11 variables:
+#  $ TreatmentID  : int  8 8 8 9 9 9 14 14 14 15 ...
+#  $ PathogenGroup: chr  "Bacteria" "Protozoa" "Viruses" "Bacteria" ...
+#  $ type         : chr  "uniform" "uniform" "uniform" "uniform" ...
+#  $ value        : num  NA NA NA NA NA NA NA NA NA NA ...
+#  $ min          : num  2 0.3 0.25 2 1 2.1 2 2 2 4 ...
+#  $ max          : num  6 5 4 6 2 8.3 2 2 2 4 ...
+#  $ mode         : logi  NA NA NA NA NA NA ...
+#  $ mean         : logi  NA NA NA NA NA NA ...
+#  $ sd           : logi  NA NA NA NA NA NA ...
+#  $ meanlog      : logi  NA NA NA NA NA NA ...
+#  $ sdlog        : logi  NA NA NA NA NA NA 
+
+  n_repeatings <- number_of_repeatings(config)
+  n_events <- number_of_exposures(config)
 
   # Provide row indices
   indices <- seq_len(nrow(processes))
@@ -167,9 +223,16 @@ simulate_treatment_lean <- function(config, debug = TRUE)
     cbind(random_values$events, treatment_pathogen, row.names = NULL)
   }))
   
+# 'data.frame':	2640000 obs. of  5 variables:
+#  $ repeatID     : int  1 1 1 1 1 1 1 1 1 1 ...
+#  $ eventID      : int  1 2 3 4 5 6 7 8 9 10 ...
+#  $ values       : num  5.26 5.54 5.22 2.91 5.3 ...
+#  $ TreatmentID  : int  8 8 8 8 8 8 8 8 8 8 ...
+#  $ PathogenGroup: chr  "Bacteria" "Bacteria" "Bacteria" "Bacteria" ...  
+
   events %>% 
     kwb.utils::renameColumns(list(values = "logreduction")) %>%
-    dplyr::left_join(schemes)
+    dplyr::left_join(schemes, by = c("TreatmentID"))
 }
 
 # get_treatment_data -----------------------------------------------------------
@@ -342,8 +405,9 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
   inflow <- simulate_inflow(config, debug)
   
   print_step(2, "treatment schemes")
-  #treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
-  treatment <- simulate_treatment_lean(config, debug = debug)
+  
+  treatment <- simulate_treatment(config, debug = debug, minimal = minimal)
+  #treatment <- simulate_treatment_lean(config, debug = debug)
   
   tbl_reduction <- treatment$events_long %>%
     dplyr::group_by(
@@ -450,6 +514,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, minimal = FAL
 simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
+  #kwb.utils::assignArgumentDefaults(kwb.qmra:::simulate_risk_lean)
   #set.seed(123)
   print_step(0, "basic configuration")
   
@@ -458,9 +523,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   print_step(1, "inflow")
   
   # Keep only required columns and convert IDs to integer
-  inflow_events <- simulate_inflow(config, debug)$events %>%
-    kwb.utils::removeColumns("PathogenName") %>%
-    kwb.qmra:::id_columns_to_integer()
+  inflow_events <- simulate_inflow(config, debug, lean = TRUE)
   
   # 'data.frame':	330000 obs. of  5 variables:
   #   $ repeatID     : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -472,9 +535,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   print_step(2, "treatment schemes")
   
   # Keep only required columns and convert IDs to integer
-  events <- simulate_treatment_lean(config, debug = debug) %>% 
-    kwb.utils::removeColumns(c("TreatmentSchemeName", "TreatmentName")) %>%
-    kwb.qmra:::id_columns_to_integer()
+  events <- simulate_treatment_lean(config, debug = debug)
 
   # 'data.frame':	2640000 obs. of  6 variables:
   #   $ repeatID         : int  1 1 1 1 1 1 1 1 1 1 ...
