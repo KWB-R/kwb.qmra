@@ -94,7 +94,7 @@ simulate_treatment <- function(
   
   treatment_data <- get_treatment_data(
     processes = processes_simulated, 
-    repeatings = number_of_repeatings(config), 
+    n_repeatings = number_of_repeatings(config), 
     n_events = number_of_exposures(config), 
     debug = debug,
     include_paras = ! minimal
@@ -237,8 +237,7 @@ simulate_treatment_lean <- function(config, debug = TRUE)
 
 # get_treatment_data -----------------------------------------------------------
 get_treatment_data <- function(
-  processes, n_repeatings, n_events, debug = TRUE, 
-  include_paras = TRUE
+  processes, n_repeatings, n_events, debug = TRUE, include_paras = TRUE
 )
 {
   # Helper function to select a treatment from "processes" and report about it
