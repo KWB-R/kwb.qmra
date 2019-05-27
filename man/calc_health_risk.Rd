@@ -9,21 +9,23 @@ calc_health_risk(infectionRisk_perYear = 9.5 * 10^-4,
   fraction_population = 1, target_dalyPerYearPerPerson = 1/1e+06)
 }
 \arguments{
-\item{infectionRisk_perYear}{as retrieved by calc_infection_risk()$events$infectionRisk_perYear
-or user defined input (default: 9.5 * 10 ^ - 4 infections/year)}
+\item{infectionRisk_perYear}{as retrieved by
+calc_infection_risk()$events$infectionRisk_perYear or user defined input
+(default: 9.5 * 10 ^ - 4 infections/year)}
 
-\item{infection_to_illness}{probability of illness given infection (default: 0.7,
-i.e. 70 percent illness probability giving infection)}
+\item{infection_to_illness}{probability of illness given infection (default:
+0.7, i.e. 70 percent illness probability giving infection)}
 
 \item{diseaseBurden_dalyPerCase}{disabled adjusted life years per case. Value
 depends on multiple parameters such as illness type (default: 1.5*10 ^ -3)}
 
-\item{fraction_population}{fraction of population at risk of getting the illness
-(default: 1, i.e. 100 percent of population can possibly get the illness, worst-case
-assumption assuming no prior immunization!)}
+\item{fraction_population}{fraction of population at risk of getting the
+illness (default: 1, i.e. 100 percent of population can possibly get the
+illness, worst-case assumption assuming no prior immunization!)}
 
 \item{target_dalyPerYearPerPerson}{target disabled adjusted life years (DALY)
-per person per year (default: 1/1000000 DALY per per person per year, WHO standard)}
+per person per year (default: 1/1000000 DALY per per person per year, WHO
+standard)}
 }
 \value{
 data frame with input parameters and calculated health risk outputs

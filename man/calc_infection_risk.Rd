@@ -10,25 +10,26 @@ calc_infection_risk(inflow_orgPerLitre = 10,
   target_infectionRisk_perYear = 1/10000, ...)
 }
 \arguments{
-\item{inflow_orgPerLitre}{concentration of microbiological parameter in inflow
-to water treatment plant (default: 10 Org/L)}
+\item{inflow_orgPerLitre}{concentration of microbiological parameter in
+inflow to water treatment plant (default: 10 Org/L)}
 
-\item{treatment_logRemoval}{reduction of microbiological concentration in water 
-treatment plant (default: 5.8 log)}
+\item{treatment_logRemoval}{reduction of microbiological concentration in
+water treatment plant (default: 5.8 log)}
 
 \item{exposure_daysPerYear}{exposure days per year (default: 365)}
 
-\item{doseresponse_modelType}{dose response model to be used: "dr.expo" for 
+\item{doseresponse_modelType}{dose response model to be used: "dr.expo" for
 exponential or "dr.betapoisson" for beta-poisson model}
 
-\item{waterConsumption_LitrePerDay}{daily water consumption (default: 1 L/day)}
+\item{waterConsumption_LitrePerDay}{daily water consumption (default: 1
+L/day)}
 
-\item{target_infectionRisk_perYear}{NOT IMPLEMENTED YET!!!! target infection 
-risk per per year. Only used if one of the following input parameters (i.e. 
+\item{target_infectionRisk_perYear}{NOT IMPLEMENTED YET!!!! target infection
+risk per per year. Only used if one of the following input parameters (i.e.
 "inflow_orgPerLitre", "treatment_logRemoval", "exposure_daysPerYear",
 "waterConsumption_LitrePerDay") is not defined (default: 1/10000).}
 
-\item{...}{additional parameters used for dose response modelling. Depends on 
+\item{...}{additional parameters used for dose response modelling. Depends on
 used dose-response model}
 }
 \value{
@@ -38,6 +39,6 @@ list with input parameters and calculated infection risk
 Risk calculation: infection
 }
 \seealso{
-\code{\link{dr.expo}} for exponential or \code{\link{dr.betapoisson}} 
-for beta-poisson dose-response model
+\code{\link{dr.expo}} for exponential or
+  \code{\link{dr.betapoisson}} for beta-poisson dose-response model
 }

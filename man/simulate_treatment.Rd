@@ -4,7 +4,8 @@
 \alias{simulate_treatment}
 \title{Simulate: treatment}
 \usage{
-simulate_treatment(config, wide = FALSE, debug = TRUE)
+simulate_treatment(config, wide = FALSE, debug = TRUE,
+  minimal = FALSE)
 }
 \arguments{
 \item{config}{as retrieved by config_read()}

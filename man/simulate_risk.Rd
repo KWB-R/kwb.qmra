@@ -4,7 +4,7 @@
 \alias{simulate_risk}
 \title{Simulate: risk}
 \usage{
-simulate_risk(config, usePoisson = TRUE, debug = TRUE)
+simulate_risk(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
 }
 \arguments{
 \item{config}{as retrieved by config_read()}
@@ -14,6 +14,9 @@ used to calculate the dose_perEvent (TRUE) or just the exposure_perEvent
 column (FALSE), (default: TRUE)}
 
 \item{debug}{print debug information (default: TRUE)}
+
+\item{lean}{if \code{TRUE}, a "lean" version of this function is called, see
+\code{kwb.qmra:::simulate_risk_lean}}
 }
 \value{
 list with parameters of user defined random distribution and 

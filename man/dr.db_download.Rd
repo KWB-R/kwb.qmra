@@ -10,7 +10,8 @@ http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Param
 dr.db_download(fromInternet = FALSE)
 }
 \arguments{
-\item{fromInternet}{download from internet (default: FALSE), if FALSE import from local copy}
+\item{fromInternet}{download from internet (default: FALSE), if FALSE import
+from local copy}
 }
 \value{
 tbl_df for different microbial parameters

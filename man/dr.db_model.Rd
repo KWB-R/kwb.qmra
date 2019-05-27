@@ -10,7 +10,8 @@ dr.db_model(dr.db = dr.db_download(), dose = sfsmisc::lseq(from = 1, to
 \arguments{
 \item{dr.db}{as retrieved by dr.db_download(), default: dr.db_download()}
 
-\item{dose}{vector of dose data (default: sfsmisc::lseq(from=0.1, to=10^10, length=1000))}
+\item{dose}{vector of dose data (default: 
+\code{sfsmisc::lseq(from=0.1, to = 10^10,length = 1000)})}
 }
 \value{
 tbl_df
