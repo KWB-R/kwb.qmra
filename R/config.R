@@ -193,7 +193,7 @@ config_write <- function(
 #' 
 config_read <- function(
   confDir = system.file("extdata/configs/dummy", package = "kwb.qmra"),
-  ids_as_integer = FALSE
+  ids_as_integer = TRUE
 )
 {
   # Helper function to read a config file

@@ -29,6 +29,12 @@ simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
     inflow_config
   }
   
+  pathogen_columns <- if (lean > 1) {
+    "PathogenGroup"
+  } else {
+    c("PathogenID", "PathogenGroup")
+  }
+    
   random_objects <- lapply(patho_ids, function(patho_id) {
     
     inflow_config_row <- get_inflow_config_row(patho_id)
@@ -41,7 +47,7 @@ simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
         debug = debug
       ), 
       cbind,
-      inflow_config_row[, c("PathogenID", "PathogenName", "PathogenGroup")]
+      inflow_config_row[, pathogen_columns, drop = FALSE]
     )
   })
 
@@ -51,11 +57,9 @@ simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
       kwb.utils::renameColumns(list(values = "inflow"))
   )
   
-  if (lean) return(
-    events %>%
-      kwb.utils::removeColumns("PathogenName") %>%
-      id_columns_to_integer()
-  )
+  if (lean) {
+    return(events)
+  }
   
   list(
     events = events, 
@@ -401,7 +405,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   if (lean) {
-    return(simulate_risk_lean(config, usePoisson, debug))
+    return(simulate_risk_lean(config, usePoisson, debug, lean = lean))
   }
   
   print_step(0, "basic configuration")
@@ -512,7 +516,7 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
 }
 
 # simulate_risk_lean -----------------------------------------------------------
-simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
+simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE, lean = 1)
 {
   #kwb.utils::assignPackageObjects("kwb.qmra")
   #kwb.utils::assignArgumentDefaults(kwb.qmra:::simulate_risk_lean)
@@ -525,10 +529,8 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   
   # Keep only required columns and convert IDs to integer
   #set.seed(123)
-  inflow_events <- simulate_inflow(config, debug, lean = TRUE)
-  
-  #set.seed(123);inflow_events_int <- simulate_inflow(config_int, debug, lean = TRUE)
-  #identical(inflow_events, inflow_events_int)
+  inflow_events <- simulate_inflow(config, debug, lean = lean)
+  kwb.utils::printIf(debug, dim(inflow_events))
   
   # 'data.frame':	330000 obs. of  5 variables:
   #   $ repeatID     : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -542,8 +544,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   # Keep only required columns and convert IDs to integer
   #set.seed(123)
   system.time(events <- simulate_treatment_lean(config, debug = debug))
-  #set.seed(123); system.time(events_int <- simulate_treatment_lean(config_int, debug = debug))
-  #identical(events, events_int)
+  kwb.utils::printIf(debug, dim(events))
   
   # 'data.frame':	2640000 obs. of  6 variables:
   #   $ repeatID         : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -557,8 +558,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
   
   #set.seed(123)
   exposure_volumes <- simulate_exposure(config, debug)$volumes$events
-  #set.seed(123);exposure_volumes_int <- simulate_exposure(config_int, debug)$volumes$events
-  #identical(exposure_volumes, exposure_volumes_int)
+  kwb.utils::printIf(debug, dim(exposure_volumes))
   
   # 'data.frame':	110000 obs. of  3 variables:
   #   $ repeatID       : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -584,33 +584,28 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       dose_perEvent = poisson_or_not(.data$exposure_perEvent)
     ) %>% 
     kwb.utils::removeColumns(c("PathogenGroup", "PathogenName", "effluent"))
-
+  
+  kwb.utils::printIf(debug, dim(tbl_risk))
+  
   print_step(4, "dose response")
   
-  infection_prob <- get_infection_prob(
+  tbl_risk$infectionProb_per_event <- get_infection_prob(
     tbl_risk, 
     dose_response = config$doseresponse, 
     health = config$health
   )
   
-  # infection_prob_int <- get_infection_prob(
-  #   tbl_risk, 
-  #   dose_response = config_int$doseresponse, 
-  #   health = config_int$health
-  # )
-  # 
-  # identical(infection_prob, infection_prob_int)
+  kwb.utils::printIf(debug, dim(tbl_risk))
   
-  tbl_risk$infectionProb_per_event <- infection_prob
-
   print_step(5, "health")
 
   health_columns <- c("PathogenID", "infection_to_illness", "dalys_per_case")
   
   health <- kwb.utils::selectColumns(config$health, health_columns)
-  #health_int <- kwb.utils::selectColumns(config_int$health, health_columns)
-  #identical(health, health_int)
+  kwb.utils::printIf(debug, dim(health))
   
+  #health_int <- kwb.utils::selectColumns(config_int$health, health_columns)
+
   total <- tbl_risk %>% 
     id_columns_to_integer() %>%
     dplyr::left_join(health, by = "PathogenID") %>% 
@@ -638,34 +633,7 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       dalys_sum = sum(.data$dalys_per_event)
     )
 
-  if (FALSE) {
-    total_int <- tbl_risk %>% 
-      id_columns_to_integer() %>%
-      dplyr::left_join(health_int, by = "PathogenID") %>% 
-      dplyr::mutate(
-        illnessProb_per_event = .data$infectionProb_per_event * 
-          .data$infection_to_illness,
-        dalys_per_event = .data$illnessProb_per_event * 
-          .data$dalys_per_case
-      ) %>% 
-      dplyr::ungroup() %>%
-      dplyr::group_by(
-        .data$repeatID, 
-        .data$TreatmentSchemeID, 
-        .data$PathogenID
-      ) %>% 
-      dplyr::summarise(
-        events = dplyr::n(), 
-        inflow_median = median(.data$inflow), 
-        logreduction_median = median(.data$logreduction), 
-        volume_sum = sum(.data$volume_perEvent), 
-        exposure_sum = sum(.data$exposure_perEvent),
-        dose_sum = sum(.data$dose_perEvent),
-        infectionProb_sum = 1 - prod( 1 - .data$infectionProb_per_event),
-        illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
-        dalys_sum = sum(.data$dalys_per_event)
-      )
-  }
+  kwb.utils::printIf(debug, dim(total))
 
   #bak <- list(events = events , total = total)
   list(events = events , total = total)

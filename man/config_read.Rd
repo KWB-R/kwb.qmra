@@ -5,7 +5,7 @@
 \title{Config: read configuration}
 \usage{
 config_read(confDir = system.file("extdata/configs/dummy", package =
-  "kwb.qmra"))
+  "kwb.qmra"), ids_as_integer = FALSE)
 }
 \arguments{
 \item{confDir}{directory to read configuration files (Default:
