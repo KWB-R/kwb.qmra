@@ -192,12 +192,20 @@ config_write <- function(
 #' @export
 #' 
 config_read <- function(
-  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra")
+  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra"),
+  ids_as_integer = FALSE
 )
 {
   # Helper function to read a config file
   read_config_csv <- function(filename) {
-    readr::read_csv(file.path(confDir, filename))
+    
+    config <- readr::read_csv(file.path(confDir, filename))
+    
+    if (! ids_as_integer) {
+      config
+    } else {
+      id_columns_to_integer(config)
+    }
   }
   
   list(
