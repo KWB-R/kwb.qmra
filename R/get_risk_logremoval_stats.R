@@ -1,4 +1,5 @@
 # get_risk_logremoval_stats ----------------------------------------------------
+#' @keywords internal
 get_risk_logremoval_stats <- function(data)
 {
   data %>% 
@@ -7,6 +8,7 @@ get_risk_logremoval_stats <- function(data)
 }
 
 # group_by_treatment_and_pathogen_group ----------------------------------------
+#' @keywords internal
 group_by_treatment_and_pathogen_group <- function(data, lean)
 {
   if (lean) {
@@ -29,6 +31,7 @@ group_by_treatment_and_pathogen_group <- function(data, lean)
 }
 
 # summarise_logreduction -------------------------------------------------------
+#' @keywords internal
 summarise_logreduction <- function(data)
 {
   dplyr::summarise( 
@@ -47,14 +50,15 @@ summarise_logreduction <- function(data)
 # get_risk_logremoval_stats_lean -----------------------------------------------
 
 #' "Lean" version of get_risk_logremoval_stats()
-#' 
+#' @importFrom kwb.utils moveColumnsToFront
+#' @keywords internal
 get_risk_logremoval_stats_lean <- function(data, config)
 {
   data %>% 
     group_by_treatment_and_pathogen_group(lean = TRUE) %>% 
     summarise_logreduction() %>% 
-    kwb.qmra:::add_scheme_name(config) %>%
-    kwb.qmra:::add_treatment_name(config) %>%
+    add_scheme_name(config) %>%
+    add_treatment_name(config) %>%
     kwb.utils::moveColumnsToFront(c(
       scheme_columns(), treatment_columns(), "PathogenGroup"
     ))
