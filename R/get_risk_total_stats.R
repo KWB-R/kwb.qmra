@@ -1,5 +1,6 @@
 # get_risk_total_stats ---------------------------------------------------------
 #' @keywords internal
+#' @noRd
 get_risk_total_stats <- function(data)
 {
   data %>% 
@@ -89,7 +90,9 @@ summarise_value <- function(data)
 #' This function returns the same as get_risk_total_stats() but does not require
 #' the "Name" columns. Instead, names are merged by ID from the metadata tables
 #' given in "config".
+#' @importFrom kwb.utils moveColumnsToFront
 #' @keywords internal
+#' @noRd
 get_risk_total_stats_lean <- function(data_lean, config)
 {
   data_lean %>% 

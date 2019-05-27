@@ -10,6 +10,7 @@
 #'   \code{events}" and the corresponding parameters in element \code{paras}.
 #'   The default is \code{FALSE}, i.e. events and parameters are returned in a
 #'   list.
+#' @importFrom kwb.utils catIf catAndRun renameColumns removeColumns selectColumns
 #' @return list with parameters of user defined random distribution and
 #'   corresponding values
 #' @export
@@ -53,7 +54,7 @@ simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
   if (lean) return(
     events %>%
       kwb.utils::removeColumns("PathogenName") %>%
-      kwb.qmra:::id_columns_to_integer()
+      id_columns_to_integer()
   )
   
   list(
@@ -72,13 +73,14 @@ simulate_inflow <- function(config, debug = TRUE, lean = FALSE)
 #' @param wide if TRUE results will be converted to wide format (default: 
 #' FALSE)
 #' @param debug print debug information (default: TRUE)
+#' @param lean lean (default: FALSE)
 #' @return list with parameters of user defined random distribution and 
 #' corresponding values
 #' @importFrom tidyr spread
 #' @export
 #' 
 simulate_treatment <- function(
-  config, wide = FALSE, debug = TRUE, minimal = FALSE
+  config, wide = FALSE, debug = TRUE, lean = FALSE
 )
 {
   inflow_config_simulated <- config$inflow %>%
@@ -97,14 +99,14 @@ simulate_treatment <- function(
     n_repeatings = number_of_repeatings(config), 
     n_events = number_of_exposures(config), 
     debug = debug,
-    include_paras = ! minimal
+    include_paras = ! lean
   )
 
   treatment_events <- treatment_data$events %>%
     dplyr::left_join(schemes_config)
   
-  # Return only the result that is required by the web app if "minimal" is TRUE
-  if (minimal) {
+  # Return only the result that is required by the web app if "lean" is TRUE
+  if (lean) {
     
     return(list(events_long = treatment_events))
   } 
@@ -120,7 +122,7 @@ simulate_treatment <- function(
     schemes_events_wide <- get_scheme_events_wide(config, treatment_events_wide)
   }
   
-  # Create and return further results only if "minimal" is FALSE
+  # Create and return further results only if "lean" is FALSE
   treatment_id_to_name <- config$treatment$processes %>%
     dplyr::select(.data$TreatmentID, .data$TreatmentName) %>%
     dplyr::group_by(.data$TreatmentID) %>% 
@@ -154,7 +156,7 @@ simulate_treatment_lean <- function(config, debug = TRUE)
     kwb.utils::removeColumns(c(
       "simulate", "PathogenName", "ReferenceName", "ReferenceLink"
     )) %>% 
-    kwb.qmra:::id_columns_to_integer()
+    id_columns_to_integer()
   
 # Classes ???tbl_df???, ???tbl??? and 'data.frame':	3 obs. of  11 variables:
 #  $ PathogenID   : int  3 32 34
@@ -391,6 +393,7 @@ simulate_exposure <- function(config, debug = TRUE)
 #' @return list with parameters of user defined random distribution and 
 #' corresponding values
 #' @importFrom stats median
+#' @importFrom  kwb.utils selectColumns
 #' @import dplyr
 #' @export
 #' 

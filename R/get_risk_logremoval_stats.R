@@ -1,5 +1,7 @@
 # get_risk_logremoval_stats ----------------------------------------------------
+
 #' @keywords internal
+#' @noRd
 get_risk_logremoval_stats <- function(data)
 {
   data %>% 
@@ -9,6 +11,7 @@ get_risk_logremoval_stats <- function(data)
 
 # group_by_treatment_and_pathogen_group ----------------------------------------
 #' @keywords internal
+#' @noRd
 group_by_treatment_and_pathogen_group <- function(data, lean)
 {
   if (lean) {
@@ -31,18 +34,19 @@ group_by_treatment_and_pathogen_group <- function(data, lean)
 }
 
 # summarise_logreduction -------------------------------------------------------
+#' @importFrom stats quantile
 #' @keywords internal
 summarise_logreduction <- function(data)
 {
   dplyr::summarise( 
     data,
     min = min(.data$logreduction), 
-    p05 = quantile(.data$logreduction, probs = 0.05),
-    p25 =  quantile(.data$logreduction, probs = 0.25),
+    p05 = stats::quantile(.data$logreduction, probs = 0.05),
+    p25 =  stats::quantile(.data$logreduction, probs = 0.25),
     mean = mean(.data$logreduction), 
     median = median(.data$logreduction), 
-    p75 =  quantile(.data$logreduction, probs = 0.75),
-    p95 = quantile(.data$logreduction, probs = 0.95),
+    p75 =  stats::quantile(.data$logreduction, probs = 0.75),
+    p95 = stats::quantile(.data$logreduction, probs = 0.95),
     max = max(.data$logreduction)
   )
 }
@@ -50,11 +54,18 @@ summarise_logreduction <- function(data)
 # get_risk_logremoval_stats_lean -----------------------------------------------
 
 #' "Lean" version of get_risk_logremoval_stats()
+#' @param data_lean list element "events" (as returned after running 
+#' kwb.qmra::simulate_risk(config, lean = TRUE))
+#' @param config config as returned by kwb.qmra::config_read()
+#' This function returns the same as get_risk_total_stats() but does not require
+#' the "Name" columns. Instead, names are merged by ID from the metadata tables
+#' given in "config".
 #' @importFrom kwb.utils moveColumnsToFront
 #' @keywords internal
-get_risk_logremoval_stats_lean <- function(data, config)
+#' @noRd
+get_risk_logremoval_stats_lean <- function(data_lean, config)
 {
-  data %>% 
+  data_lean %>% 
     group_by_treatment_and_pathogen_group(lean = TRUE) %>% 
     summarise_logreduction() %>% 
     add_scheme_name(config) %>%
