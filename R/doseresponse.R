@@ -30,7 +30,7 @@ dr.db_download <- function(fromInternet = FALSE)
       rvest::html_node(xpath = sprintf(xpath_fmt, i)) %>%
       rvest::html_table()
     
-    result$Link <- sprintf("%s/%s", url, gsub(result$Agent, " ", "_"))
+    result$Link <- sprintf("%s/%s", url, gsub(" ", "_", result$Agent))
     result$PathogenGroup <- pathogens[i]
     result
   }))
