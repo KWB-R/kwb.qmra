@@ -75,7 +75,7 @@ dr.db_download <- function(fromInternet = FALSE)
     no = NA
   ))
   
-  dr.db$PathogenID <- seq_len(dr.db)
+  dr.db$PathogenID <- seq_len(nrow(dr.db))
   
   #write.csv(dr.db,
   #"C:/Users/mrustl/Documents/WC_Server/R_Development/trunk/RPackages/kwb.qmra/inst/extdata/doseresponse/dr_db.csv")  
