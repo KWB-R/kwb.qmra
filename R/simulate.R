@@ -271,8 +271,8 @@ get_treatment_data <- function(
   
   # Build data frame "events"
   events <- lapply(indices, cbind_events_treatment) %>%
-    do.call(rbind) %>%
-    kwb.utils::renameColumns(list(values = logreduction))
+    do.call(what = rbind) %>%
+    kwb.utils::renameColumns(list(values = "logreduction"))
   
   # Return the events if parameters are not requested
   if (! include_paras) {
@@ -288,7 +288,7 @@ get_treatment_data <- function(
   list(
     events = events,
     paras = lapply(indices, cbind_paras_treatment) %>%
-      do.call(plyr::rbind.fill)
+      do.call(what = plyr::rbind.fill)
   )
 }
 
@@ -396,11 +396,11 @@ simulate_exposure <- function(config, debug = TRUE)
 #' 
 simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
 {
+  #kwb.utils::assignPackageObjects("kwb.qmra")
   if (lean) {
     return(simulate_risk_lean(config, usePoisson, debug))
   }
   
-  #kwb.utils::assignPackageObjects("kwb.qmra")
   print_step(0, "basic configuration")
   
   print_basic_information(config)
