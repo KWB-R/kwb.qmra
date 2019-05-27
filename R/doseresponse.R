@@ -30,7 +30,7 @@ dr.db_download <- function(fromInternet = FALSE)
       rvest::html_node(xpath = sprintf(xpath_fmt, i)) %>%
       rvest::html_table()
     
-    result$Link <- sprintf("%s/%s", url, gsub(result$Agent, " ", "_"))
+    result$Link <- sprintf("%s/%s", url, gsub(" ", "_", result$Agent))
     result$PathogenGroup <- pathogens[i]
     result
   }))
@@ -75,7 +75,7 @@ dr.db_download <- function(fromInternet = FALSE)
     no = NA
   ))
   
-  dr.db$PathogenID <- seq_len(dr.db)
+  dr.db$PathogenID <- seq_len(nrow(dr.db))
   
   #write.csv(dr.db,
   #"C:/Users/mrustl/Documents/WC_Server/R_Development/trunk/RPackages/kwb.qmra/inst/extdata/doseresponse/dr_db.csv")  

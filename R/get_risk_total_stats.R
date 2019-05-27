@@ -1,4 +1,6 @@
 # get_risk_total_stats ---------------------------------------------------------
+#' @keywords internal
+#' @noRd
 get_risk_total_stats <- function(data)
 {
   data %>% 
@@ -8,6 +10,7 @@ get_risk_total_stats <- function(data)
 }
 
 # gather_total_risk ------------------------------------------------------------
+#' @keywords internal
 gather_total_risk <- function(data, lean)
 {
   if (lean) {
@@ -36,6 +39,7 @@ gather_total_risk <- function(data, lean)
 }
 
 # group_by_treatment_and_pathogen ----------------------------------------------
+#' @keywords internal
 group_by_treatment_and_pathogen <- function(data, lean)
 {
   if (lean) {
@@ -59,17 +63,19 @@ group_by_treatment_and_pathogen <- function(data, lean)
 }
 
 # summarise_value --------------------------------------------------------------
+#' @importFrom stats quantile
+#' @keywords internal
 summarise_value <- function(data)
 {
   dplyr::summarise(
     data,
     min = min(.data$value), 
-    p05 = quantile(.data$value, probs = 0.05),
-    p25 =  quantile(.data$value, probs = 0.25),
+    p05 = stats::quantile(.data$value, probs = 0.05),
+    p25 =  stats::quantile(.data$value, probs = 0.25),
     mean = mean(.data$value), 
     median = median(.data$value), 
-    p75 =  quantile(.data$value, probs = 0.75),
-    p95 = quantile(.data$value, probs = 0.95),
+    p75 =  stats::quantile(.data$value, probs = 0.75),
+    p95 = stats::quantile(.data$value, probs = 0.95),
     max = max(.data$value)
   )
 }
@@ -78,10 +84,15 @@ summarise_value <- function(data)
 
 #' Lean version of get_risk_total_stats()
 #' 
+#' @param data_lean list element "total" (as returned after running 
+#' kwb.qmra::simulate_risk(config, lean = TRUE))
+#' @param config config as returned by kwb.qmra::config_read()
 #' This function returns the same as get_risk_total_stats() but does not require
 #' the "Name" columns. Instead, names are merged by ID from the metadata tables
 #' given in "config".
-#' 
+#' @importFrom kwb.utils moveColumnsToFront
+#' @keywords internal
+#' @noRd
 get_risk_total_stats_lean <- function(data_lean, config)
 {
   data_lean %>% 
