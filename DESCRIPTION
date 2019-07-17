@@ -57,7 +57,7 @@ VignetteBuilder:
     knitr
 Remotes: 
     github::kwb-r/kwb.utils,
-    github::kwb-r/qmra.db@0.9.0
+    github::kwb-r/qmra.db@v0.9.0
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 6.1.1
