@@ -17,4 +17,8 @@ matrix:
       provider: script
       script: Rscript -e 'kwb.pkgbuild::deploy_site_github_with_extra_files(vignettes_file_pattern_to_copy = "\\.pdf$")'
       skip_cleanup: 'true'
+      on:
+        branch: 
+          - master
+          - dev
   - r: oldrel
