@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -522,64 +522,82 @@
 <a href="#run-risk-calculation" class="anchor"></a>4 Run risk calculation</h1>
 <p>Subsequently the risk calculation can be performed in R(Studio) by executing the following code, which uses the <code>config</code> that was imported and inspected above:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">risk &lt;-<span class="st"> </span>kwb.qmra<span class="op">::</span><span class="kw">simulate_risk</span>(config)</a></code></pre></div>
-<pre><code>## ### STEP 0: BASIC CONFIGURATION #############################################
+<pre><code>## 
+## # STEP 0: BASIC CONFIGURATION
 ## 
 ## Simulated 3 pathogen(s): Campylobacter jejuni and Campylobacter coli, Rotavirus, Giardia duodenalis
 ## Number of random distribution repeatings: 10
 ## Number of exposure events: 365
 ## 
-## ### STEP 1: INFLOW ##########################################################
+## # STEP 1: INFLOW
 ## 
 ## Simulated pathogen: Campylobacter jejuni and Campylobacter coli
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 10.000000, max: 10000.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 10.000000, max: 10000.000000)
 ## Simulated pathogen: Rotavirus
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 10.000000, max: 10000.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 10.000000, max: 10000.000000)
 ## Simulated pathogen: Giardia duodenalis
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 10.000000, max: 10000.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 10.000000, max: 10000.000000)
+## Providing inflow events ... ok. (0.00s) 
+## Providing inflow paras ... ok. (0.00s) 
 ## 
-## ### STEP 2: TREATMENT SCHEMES #############################################
+## # STEP 2: TREATMENT SCHEMES
 ## 
+## Create 10 random distribution(s): uniform (n: 365, min: 0.200000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 1.000000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.100000, max: 3.400000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.200000, max: 4.400000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.400000, max: 3.300000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.000000, max: 3.500000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.000000, max: 6.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.300000, max: 5.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.250000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.000000, max: 6.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 1.000000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.100000, max: 8.300000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: Conventional clarification for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.200000, max: 2.000000)
 ## Simulated treatment: Conventional clarification for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 2.000000)
 ## Simulated treatment: Conventional clarification for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.100000, max: 3.400000)
 ## Simulated treatment: Granular high-rate filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.200000, max: 4.400000)
 ## Simulated treatment: Granular high-rate filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.400000, max: 3.300000)
 ## Simulated treatment: Granular high-rate filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 3.500000)
 ## Simulated treatment: Slow sand filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 6.000000)
 ## Simulated treatment: Slow sand filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.300000, max: 5.000000)
 ## Simulated treatment: Slow sand filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.250000, max: 4.000000)
 ## Simulated treatment: Bank filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 6.000000)
 ## Simulated treatment: Bank filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 2.000000)
 ## Simulated treatment: Bank filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.100000, max: 8.300000)
 ## Simulated treatment: UV for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: UV for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: UV for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)</code></pre>
+## Simulated treatment: Conventional clarification for Bacteria
+## Simulated treatment: Conventional clarification for Protozoa
+## Simulated treatment: Conventional clarification for Viruses
+## Simulated treatment: Granular high-rate filtration for Bacteria
+## Simulated treatment: Granular high-rate filtration for Protozoa
+## Simulated treatment: Granular high-rate filtration for Viruses
+## Simulated treatment: Slow sand filtration for Bacteria
+## Simulated treatment: Slow sand filtration for Protozoa
+## Simulated treatment: Slow sand filtration for Viruses
+## Simulated treatment: Bank filtration for Bacteria
+## Simulated treatment: Bank filtration for Protozoa
+## Simulated treatment: Bank filtration for Viruses
+## Simulated treatment: UV for Bacteria
+## Simulated treatment: UV for Protozoa
+## Simulated treatment: UV for Viruses</code></pre>
 <pre><code>## Joining, by = "TreatmentID"
 ## Joining, by = "TreatmentID"</code></pre>
 <pre><code>## 
-## ### STEP 3: Exposure ######################################################
+## # STEP 3: EXPOSURE
 ## 
 ## Simulated exposure: volume per event
-## Create 10 random distribution(s): triangle (with parameters n: 365, min: 0.500000, max: 3.000000, mode = 1.500000)</code></pre>
+## Create 10 random distribution(s): triangle (n: 365, min: 0.500000, max: 3.000000, mode = 1.500000)</code></pre>
 <pre><code>## Joining, by = c("PathogenGroup", "eventID", "repeatID")</code></pre>
 <pre><code>## Joining, by = c("eventID", "repeatID")</code></pre>
 <pre><code>## 
-## ### STEP 4: DOSE RESPONSE #################################################
+## # STEP 4: DOSE RESPONSE
 ## 
 ## # A tibble: 3 x 13
 ##   PathogenID PathogenName PathogenGroup `Best fit model…       k  alpha
@@ -590,7 +608,7 @@
 ## # … with 7 more variables: N50 &lt;dbl&gt;, `Host type` &lt;chr&gt;, `Dose
 ## #   units` &lt;chr&gt;, Route &lt;chr&gt;, Response &lt;chr&gt;, Reference &lt;chr&gt;, Link &lt;chr&gt;
 ## 
-## ### STEP 5: Health        #################################################
+## # STEP 5: HEALTH
 ## 
 ## # A tibble: 3 x 4
 ##   PathogenID PathogenName                 infection_to_illn… dalys_per_case
@@ -603,10 +621,10 @@
 <p><strong>Input data</strong></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(risk<span class="op">$</span>input, <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## List of 5
-##  $ inflow      :List of 2
-##  $ treatment   :List of 5
-##  $ exposure    :List of 2
-##  $ doseresponse:List of 2
+##  $ inflow      :List of 1
+##  $ treatment   :List of 1
+##  $ exposure    :List of 1
+##  $ doseresponse:List of 1
 ##  $ health      :Classes 'tbl_df', 'tbl' and 'data.frame':    3 obs. of  4 variables:</code></pre>
 <p><strong>Output data</strong></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(risk<span class="op">$</span>output, <span class="dv">1</span>)</a></code></pre></div>
@@ -742,14 +760,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">5604.054</td>
-<td align="right">7.914880</td>
-<td align="right">621.0259</td>
-<td align="right">2.6816924</td>
-<td align="right">5</td>
-<td align="right">0.0884511</td>
-<td align="right">0.0626012</td>
-<td align="right">0.0002955</td>
+<td align="right">4920.284</td>
+<td align="right">8.117849</td>
+<td align="right">599.3271</td>
+<td align="right">4.3266533</td>
+<td align="right">2</td>
+<td align="right">0.0363663</td>
+<td align="right">0.0255271</td>
+<td align="right">0.0001182</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -759,14 +777,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5079.190</td>
-<td align="right">7.094586</td>
-<td align="right">621.0259</td>
-<td align="right">107.9405607</td>
-<td align="right">100</td>
-<td align="right">0.9999995</td>
-<td align="right">0.2894025</td>
-<td align="right">0.0047552</td>
+<td align="right">4762.725</td>
+<td align="right">7.359948</td>
+<td align="right">599.3271</td>
+<td align="right">106.0980440</td>
+<td align="right">95</td>
+<td align="right">0.9999847</td>
+<td align="right">0.2257796</td>
+<td align="right">0.0035605</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -776,14 +794,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4277.584</td>
-<td align="right">3.958040</td>
-<td align="right">621.0259</td>
-<td align="right">4366.4190641</td>
-<td align="right">4326</td>
+<td align="right">5046.960</td>
+<td align="right">4.083261</td>
+<td align="right">599.3271</td>
+<td align="right">4696.7808220</td>
+<td align="right">4773</td>
 <td align="right">1.0000000</td>
 <td align="right">0.9999998</td>
-<td align="right">0.0209164</td>
+<td align="right">0.0213398</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -793,10 +811,10 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">5604.054</td>
-<td align="right">7.299404</td>
-<td align="right">621.0259</td>
-<td align="right">2.9502943</td>
+<td align="right">4920.284</td>
+<td align="right">7.385730</td>
+<td align="right">599.3271</td>
+<td align="right">1.8728150</td>
 <td align="right">2</td>
 <td align="right">0.0363663</td>
 <td align="right">0.0255271</td>
@@ -810,14 +828,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">5079.190</td>
-<td align="right">7.606800</td>
-<td align="right">621.0259</td>
-<td align="right">3.1303902</td>
-<td align="right">0</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
+<td align="right">4762.725</td>
+<td align="right">7.464940</td>
+<td align="right">599.3271</td>
+<td align="right">3.4934766</td>
+<td align="right">6</td>
+<td align="right">0.8402196</td>
+<td align="right">0.0464787</td>
+<td align="right">0.0006637</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -827,14 +845,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">4277.584</td>
-<td align="right">7.296168</td>
-<td align="right">621.0259</td>
-<td align="right">0.6974345</td>
-<td align="right">2</td>
-<td align="right">0.0390184</td>
-<td align="right">0.0117870</td>
-<td align="right">0.0000177</td>
+<td align="right">5046.960</td>
+<td align="right">7.391043</td>
+<td align="right">599.3271</td>
+<td align="right">0.7974091</td>
+<td align="right">0</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0000000</td>
 </tr>
 </tbody>
 </table>
@@ -881,7 +899,7 @@ Simulated total DALYs (for all events)
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
 </div>
 
 <div class="pkgdown">
