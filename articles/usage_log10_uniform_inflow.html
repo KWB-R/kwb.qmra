@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Usage (Log10 Uniform Inflow) • kwb.qmra</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Usage (Log10 Uniform Inflow)">
@@ -92,7 +93,7 @@
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -106,13 +107,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Usage (Log10 Uniform Inflow)</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">18 July, 2019</h4>
+            <h4 class="date">06 September, 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/usage_log10_uniform_inflow.Rmd"><code>vignettes/usage_log10_uniform_inflow.Rmd</code></a></small>
       <div class="hidden name"><code>usage_log10_uniform_inflow.Rmd</code></div>
@@ -123,7 +125,7 @@
     
 <p>How to work with the <code>kwb.qmra</code> package in R(Studio) is described in the following chapters</p>
 <p>Once the R package is installed it can be loaded with the following command in R(Studio):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(kwb.qmra)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(kwb.qmra)</a></code></pre></div>
 <div id="input-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#input-data" class="anchor"></a>1 Input data</h1>
@@ -132,10 +134,10 @@
 <a href="#location-of-dummy-configuration" class="anchor"></a>1.1 Location of ‘dummy’ configuration</h2>
 <p>The folder with the csv configuration files for a hypothetical use case is located here:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">#### DEFINE DIRECTORY ################</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">confDir &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata/configs/dummy_log10_uniform"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">confDir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/configs/dummy_log10_uniform"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">confDir</a></code></pre></div>
-<pre><code>## [1] "/home/travis/R/Library/kwb.qmra/extdata/configs/dummy_log10_uniform"</code></pre>
-<p>The following screenshot shows the required configuration files located in <code>confDir</code> (here: /home/travis/R/Library/kwb.qmra/extdata/configs/dummy_log10_uniform):</p>
+<pre><code>## [1] "/tmp/Rtmp74EwYq/temp_libpath3c21589d56d0/kwb.qmra/extdata/configs/dummy_log10_uniform"</code></pre>
+<p>The following screenshot shows the required configuration files located in <code>confDir</code> (here: /tmp/Rtmp74EwYq/temp_libpath3c21589d56d0/kwb.qmra/extdata/configs/dummy_log10_uniform):</p>
 <div class="figure">
 <img src="dummy_config.jpg" alt="Screenshot of required configuration files"><p class="caption">Screenshot of required configuration files</p>
 </div>
@@ -619,7 +621,7 @@
 <pre><code>## Joining, by = c("PathogenID", "PathogenName")</code></pre>
 <p>All (input &amp; output) data will be saved in the resulting R object <code>risk</code> which an be easily inspected by the user, e.g.:</p>
 <p><strong>Input data</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(risk<span class="op">$</span>input, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(risk<span class="op">$</span>input, <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## List of 5
 ##  $ inflow      :List of 1
 ##  $ treatment   :List of 1
@@ -627,7 +629,7 @@
 ##  $ doseresponse:List of 1
 ##  $ health      :Classes 'tbl_df', 'tbl' and 'data.frame':    3 obs. of  4 variables:</code></pre>
 <p><strong>Output data</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(risk<span class="op">$</span>output, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(risk<span class="op">$</span>output, <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## List of 2
 ##  $ events:Classes 'tbl_df', 'tbl' and 'data.frame':  21900 obs. of  18 variables:
 ##  $ total :Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':    60 obs. of  15 variables:
@@ -760,14 +762,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">246.3132</td>
-<td align="right">7.900312</td>
-<td align="right">616.6343</td>
-<td align="right">2.0743286</td>
-<td align="right">3</td>
-<td align="right">0.0520494</td>
-<td align="right">0.0365669</td>
-<td align="right">0.0001696</td>
+<td align="right">262.9370</td>
+<td align="right">8.057883</td>
+<td align="right">627.2557</td>
+<td align="right">2.0214604</td>
+<td align="right">2</td>
+<td align="right">0.0363663</td>
+<td align="right">0.0255271</td>
+<td align="right">0.0001182</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -777,14 +779,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">233.0000</td>
-<td align="right">7.382755</td>
-<td align="right">616.6343</td>
-<td align="right">8.7181140</td>
-<td align="right">10</td>
-<td align="right">0.8486115</td>
-<td align="right">0.0440497</td>
-<td align="right">0.0006271</td>
+<td align="right">223.2097</td>
+<td align="right">7.366270</td>
+<td align="right">627.2557</td>
+<td align="right">14.5381222</td>
+<td align="right">21</td>
+<td align="right">0.9952251</td>
+<td align="right">0.1259761</td>
+<td align="right">0.0018764</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -794,14 +796,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">269.1966</td>
-<td align="right">4.056976</td>
-<td align="right">616.6343</td>
-<td align="right">2309.9452576</td>
-<td align="right">2412</td>
+<td align="right">365.6843</td>
+<td align="right">4.028783</td>
+<td align="right">627.2557</td>
+<td align="right">1520.9092331</td>
+<td align="right">1565</td>
 <td align="right">1.0000000</td>
-<td align="right">0.9993648</td>
-<td align="right">0.0099962</td>
+<td align="right">0.9951226</td>
+<td align="right">0.0074351</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -811,10 +813,10 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">246.3132</td>
-<td align="right">7.421655</td>
-<td align="right">616.6343</td>
-<td align="right">1.0043214</td>
+<td align="right">262.9370</td>
+<td align="right">7.336891</td>
+<td align="right">627.2557</td>
+<td align="right">0.9536466</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -828,10 +830,10 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">233.0000</td>
-<td align="right">7.315769</td>
-<td align="right">616.6343</td>
-<td align="right">1.3380465</td>
+<td align="right">223.2097</td>
+<td align="right">7.346653</td>
+<td align="right">627.2557</td>
+<td align="right">0.6876411</td>
 <td align="right">1</td>
 <td align="right">0.2633623</td>
 <td align="right">0.0079009</td>
@@ -845,10 +847,10 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">269.1966</td>
-<td align="right">7.412767</td>
-<td align="right">616.6343</td>
-<td align="right">0.2274255</td>
+<td align="right">365.6843</td>
+<td align="right">7.360616</td>
+<td align="right">627.2557</td>
+<td align="right">0.2150424</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -861,14 +863,15 @@ Simulated total DALYs (for all events)
 <div id="export-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-results" class="anchor"></a>6 Export results</h2>
-<p>E.g. Write reports for all configurations in package subfolder <code>extdata/configs/</code> (here: /home/travis/R/Library/kwb.qmra/extdata/configs/):</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">confDirs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata/configs/"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
+<p>E.g. Write reports for all configurations in package subfolder <code>extdata/configs/</code> (here: /tmp/Rtmp74EwYq/temp_libpath3c21589d56d0/kwb.qmra/extdata/configs/):</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">confDirs &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/configs/"</span>, <span class="dt">package =</span> <span class="st">"kwb.qmra"</span>)</a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">kwb.qmra<span class="op">::</span><span class="kw">report_workflow</span>(confDirs)</a></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -898,13 +901,15 @@ Simulated total DALYs (for all events)
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
