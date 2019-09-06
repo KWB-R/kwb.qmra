@@ -19,6 +19,6 @@ matrix:
       skip_cleanup: 'true'
       on:
         branch: 
-          - master
-          - dev
+        - master
+        - dev
   - r: oldrel
