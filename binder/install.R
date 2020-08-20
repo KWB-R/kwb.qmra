@@ -1,2 +1,2 @@
 install.packages("devtools")
-devtools::install_github("kwb-r/kwb.qmra")
+devtools::install_github("kwb-r/kwb.qmra@dev")
