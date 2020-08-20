@@ -5,16 +5,15 @@ authors:
     href: https://github.com/hsonne
   Wolfgang Seis:
     href: https://www.researchgate.net/profile/Wolfgang_Seis
-  Kompetenzzentrum Wasser Berlin gGmbH (KWB):
+  Kompetenzzentrum Wasser Berlin gGmbH:
     href: https://www.kompetenz-wasser.de
-    html: <img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png'
-      height='24' />
+    html: <img src="http://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png" height="24" />
   AquaNES: 
-    href: https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/
-    html: <img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" />
+    href: https://www.kompetenz-wasser.de/en/project/aquanes/
+    html: <img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24" />
   DEMOWARE: 
-    href: https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/
-    html: <img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42" />
+    href: https://www.kompetenz-wasser.de/en/project/demoware/
+    html: <img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24" />
 template:
   params:
     bootswatch: cerulean
