@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -165,23 +165,22 @@
     <p>Risk calculation: health</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calc_health_risk</span>(<span class='kw'>infectionRisk_perYear</span> <span class='kw'>=</span> <span class='fl'>9.5</span> * <span class='fl'>10</span>^-<span class='fl'>4</span>,
-  <span class='kw'>infection_to_illness</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>diseaseBurden_dalyPerCase</span> <span class='kw'>=</span> <span class='fl'>1.5</span> * <span class='fl'>10</span>^-<span class='fl'>3</span>,
-  <span class='kw'>fraction_population</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>target_dalyPerYearPerPerson</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>1e+06</span>)</pre>
+    <pre class="usage"><span class='fu'>calc_health_risk</span><span class='op'>(</span>infectionRisk_perYear <span class='op'>=</span> <span class='fl'>9.5</span> <span class='op'>*</span> <span class='fl'>10</span><span class='op'>^</span><span class='op'>-</span><span class='fl'>4</span>,
+  infection_to_illness <span class='op'>=</span> <span class='fl'>0.7</span>, diseaseBurden_dalyPerCase <span class='op'>=</span> <span class='fl'>1.5</span> <span class='op'>*</span> <span class='fl'>10</span><span class='op'>^</span><span class='op'>-</span><span class='fl'>3</span>,
+  fraction_population <span class='op'>=</span> <span class='fl'>1</span>, target_dalyPerYearPerPerson <span class='op'>=</span> <span class='fl'>1</span><span class='op'>/</span><span class='fl'>1e+06</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>infectionRisk_perYear</th>
-      <td><p>as retrieved by
-calc_infection_risk()$events$infectionRisk_perYear or user defined input
-(default: 9.5 * 10 ^ - 4 infections/year)</p></td>
+      <td><p>as retrieved by calc_infection_risk()$events$infectionRisk_perYear
+or user defined input (default: 9.5 * 10 ^ - 4 infections/year)</p></td>
     </tr>
     <tr>
       <th>infection_to_illness</th>
-      <td><p>probability of illness given infection (default:
-0.7, i.e. 70 percent illness probability giving infection)</p></td>
+      <td><p>probability of illness given infection (default: 0.7,
+i.e. 70 percent illness probability giving infection)</p></td>
     </tr>
     <tr>
       <th>diseaseBurden_dalyPerCase</th>
@@ -190,15 +189,14 @@ depends on multiple parameters such as illness type (default: 1.5*10 ^ -3)</p></
     </tr>
     <tr>
       <th>fraction_population</th>
-      <td><p>fraction of population at risk of getting the
-illness (default: 1, i.e. 100 percent of population can possibly get the
-illness, worst-case assumption assuming no prior immunization!)</p></td>
+      <td><p>fraction of population at risk of getting the illness
+(default: 1, i.e. 100 percent of population can possibly get the illness, worst-case
+assumption assuming no prior immunization!)</p></td>
     </tr>
     <tr>
       <th>target_dalyPerYearPerPerson</th>
       <td><p>target disabled adjusted life years (DALY)
-per person per year (default: 1/1000000 DALY per per person per year, WHO
-standard)</p></td>
+per person per year (default: 1/1000000 DALY per per person per year, WHO standard)</p></td>
     </tr>
     </table>
 
@@ -220,11 +218,11 @@ standard)</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://github.com/hsonne'>Hauke Sonnenberg</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24" /></a>.</p>
+  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/'><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/'><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42" /></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Dose-response modelling</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2020-08-20</h4>
+            <h4 class="date">2020-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/doseresponse.Rmd"><code>vignettes/doseresponse.Rmd</code></a></small>
       <div class="hidden name"><code>doseresponse.Rmd</code></div>
@@ -126,8 +126,9 @@
 <div id="load-the-required-r-packages" class="section level1">
 <h1 class="hasAnchor">
 <a href="#load-the-required-r-packages" class="anchor"></a>1. Load the required R packages</h1>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">kwb.qmra</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/KWB-R/kwb.qmra/">kwb.qmra</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -136,16 +137,18 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggrepel</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="dose-response-database-from-qmrawiki" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dose-response-database-from-qmrawiki" class="anchor"></a>2. Dose-response database from <a href="http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki</a>
 </h1>
 <p>2.1 Download</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">dr.db</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.qmra</span><span class="kw ns">::</span><span class="fu"><a href="../reference/dr.db_download.html">dr.db_download</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">dr.db</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/dr.db_download.html">dr.db_download</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Agent = col_character(),
@@ -171,21 +174,22 @@
 <h2 class="hasAnchor">
 <a href="#visualise" class="anchor"></a>2.2 Visualise</h2>
 <p><strong>Database</strong>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">dr.db2</span> <span class="kw">&lt;-</span> <span class="no">dr.db</span> <span class="kw">%&gt;%</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">PathogenGroup</span>,
-                         <span class="no">PathogenName</span>,
-                        <span class="no">`Agent strain`</span>,
-                        <span class="no">`Best fit model*`</span>,
-                        <span class="no">`Optimized parameter(s)`</span>,
-                        <span class="no">`LD50/ID50`</span>,
-                        <span class="no">`Host type`</span>,
-                         <span class="no">Route</span>,
-                        <span class="no">`Dose units`</span>,
-                         <span class="no">Response</span>,
-                         <span class="no">Reference</span>)  <span class="kw">%&gt;%</span>
-                <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">PathogenGroup</span>, <span class="no">PathogenName</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">dr.db2</span> <span class="op">&lt;-</span> <span class="va">dr.db</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PathogenGroup</span>,
+                         <span class="va">PathogenName</span>, 
+                        <span class="va">`Agent strain`</span>,
+                        <span class="va">`Best fit model*`</span>,
+                        <span class="va">`Optimized parameter(s)`</span>, 
+                        <span class="va">`LD50/ID50`</span>,
+                        <span class="va">`Host type`</span>,
+                         <span class="va">Route</span>,
+                        <span class="va">`Dose units`</span>,
+                         <span class="va">Response</span>, 
+                         <span class="va">Reference</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
+                <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">PathogenGroup</span>, <span class="va">PathogenName</span><span class="op">)</span> 
 
-<span class="no">caption</span> <span class="kw">&lt;-</span> <span class="st">"Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"</span>
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">dr.db2</span>,<span class="kw">caption</span> <span class="kw">=</span> <span class="no">caption</span> )</pre></body></html></div>
+<span class="va">caption</span> <span class="op">&lt;-</span> <span class="st">"Table 1: Best-fit dose-response parameters ([QMRAwiki, 2016](http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters))"</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">dr.db2</span>,caption <span class="op">=</span> <span class="va">caption</span> <span class="op">)</span></pre></div>
 <table class="table">
 <caption>Table 1: Best-fit dose-response parameters (<a href="http://qmrawiki.canr.msu.edu/index.php/?title=Table_of_Recommended_Best-Fit_Parameters">QMRAwiki, 2016</a>)</caption>
 <colgroup>
@@ -698,19 +702,22 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb9"><html><body><pre class="r">#DT::datatable(doseresponse, caption = caption)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co">#DT::datatable(doseresponse, caption = caption)</span></pre></div>
 <p><strong>Dose response for all microbial parameters</strong>:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">dr.model</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.qmra</span><span class="kw ns">::</span><span class="fu"><a href="../reference/dr.db_model.html">dr.db_model</a></span>(<span class="kw">dr.db</span> <span class="kw">=</span> <span class="no">dr.db</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">dr.model</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/dr.db_model.html">dr.db_model</a></span><span class="op">(</span>dr.db <span class="op">=</span> <span class="va">dr.db</span><span class="op">)</span></pre></div>
 <pre><code>## Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
 ## Please use `tibble::as_tibble()` instead.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>( <span class="no">dr.model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">dose</span>,
-                      <span class="kw">y</span> <span class="kw">=</span> <span class="no">infectionProbability</span>,
-                      <span class="kw">col</span> <span class="kw">=</span> <span class="no">PathogenGroup</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="va">dr.model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>, 
+                      y <span class="op">=</span> <span class="va">infectionProbability</span>, 
+                      col <span class="op">=</span> <span class="va">PathogenGroup</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="doseresponse_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p><strong>Dose for all microbial parameters with 50% infection probability</strong></p>
 <pre><code>## `summarise()` regrouping output by 'PathogenID', 'PathogenGroup' (override with `.groups` argument)</code></pre>
@@ -734,11 +741,11 @@ Figure 3: Dose for all microbial parameters with 50% infection probability
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

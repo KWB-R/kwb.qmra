@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -165,23 +165,23 @@
     <p>Run shiny app</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_app</span>(<span class='kw'>appDir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/shiny"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"kwb.qmra"</span>),
-  <span class='kw'>launch.browser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>run_app</span><span class='op'>(</span>appDir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/shiny"</span>, package <span class='op'>=</span> <span class='st'>"kwb.qmra"</span><span class='op'>)</span>,
+  launch.browser <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>appDir</th>
-      <td><p>directory of shiny app (default: system.file("extdata/shiny",
+      <td><p>directory of shiny app (default: system.file("extdata/shiny", 
 package = "kwb.qmra"))</p></td>
     </tr>
     <tr>
       <th>launch.browser</th>
-      <td><p>If true, the system's default web browser will be
-launched automatically after the app is started. Defaults to true in
-interactive sessions only. This value of this parameter can also be a
-function to call with the application's URL.</p></td>
+      <td><p>If true, the system's default web browser will be launched 
+automatically after the app is started. Defaults to true in interactive sessions 
+only. This value of this parameter can also be a function to call with the 
+application's URL.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -201,11 +201,11 @@ function to call with the application's URL.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://github.com/hsonne'>Hauke Sonnenberg</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24" /></a>.</p>
+  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/'><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/'><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42" /></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Inflow: Test Random Distributions</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">20 August, 2020</h4>
+            <h4 class="date">29 September, 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/test_random_distributions_inflow.Rmd"><code>vignettes/test_random_distributions_inflow.Rmd</code></a></small>
       <div class="hidden name"><code>test_random_distributions_inflow.Rmd</code></div>
@@ -126,62 +126,64 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>1 Installation</h1>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span>(<span class="fl">FALSE</span>) {
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="kw">GITHUB_PAT</span> <span class="kw">=</span> <span class="st">"mysecret_access_token"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>, <span class="kw">repos</span> <span class="kw">=</span> <span class="st">"https://cloud.r-project.org"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">remotes</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"KWB-R/kwb.qmra"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"KWB-R/qmra.db"</span>)
-}
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">if</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>GITHUB_PAT <span class="op">=</span> <span class="st">"mysecret_access_token"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span>, repos <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/kwb.qmra"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/qmra.db"</span><span class="op">)</span>
+<span class="op">}</span>
 <span class="co">## Load packages</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">kwb.qmra</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">qmra.db</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sessioninfo</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">stringi</span>)</pre></body></html></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/KWB-R/kwb.qmra/">kwb.qmra</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/qmra.db">qmra.db</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/sessioninfo#readme">sessioninfo</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringi.gagolewski.com/">stringi</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="import-data-from-qmra-db" class="section level1">
 <h1 class="hasAnchor">
 <a href="#import-data-from-qmra-db" class="anchor"></a>2 Import data from “qmra.db”</h1>
 <p>See: <a href="https://github.com/KWB-R/qmra.db/tree/master/inst/database" class="uri">https://github.com/KWB-R/qmra.db/tree/master/inst/database</a></p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">
-
-<span class="no">create_inflow_metadata</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">csv_dir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"database/qmra-db_accdb"</span>,
-                                             <span class="kw">package</span> <span class="kw">=</span> <span class="st">"qmra.db"</span>)) {
-
-<span class="no">paths_list</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="kw">csv_dir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"database/qmra-db_accdb"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"qmra.db"</span>),
-  <span class="kw">inflow</span> <span class="kw">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_inflow.csv"</span>,
-  <span class="kw">pathogen</span> <span class="kw">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_pathogen.csv"</span>,
-  <span class="kw">pathogen_group</span> <span class="kw">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_pathogenGroup.csv"</span>,
-  <span class="kw">references</span> <span class="kw">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_reference.csv"</span>,
-  <span class="kw">water_source</span> <span class="kw">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_waterSource.csv"</span>
-  )
-
-<span class="no">paths</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.utils</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/resolve.html">resolve</a></span>(<span class="no">paths_list</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
 
 
-<span class="no">inflow</span> <span class="kw">&lt;-</span> <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">paths</span>$<span class="no">inflow</span>)
-<span class="no">pathogen</span> <span class="kw">&lt;-</span> <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">paths</span>$<span class="no">pathogen</span>)
-<span class="no">pathogen_group</span> <span class="kw">&lt;-</span> <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">paths</span>$<span class="no">pathogen_group</span>)
-<span class="no">references</span> <span class="kw">&lt;-</span> <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">paths</span>$<span class="no">references</span>)
-<span class="no">water_source</span> <span class="kw">&lt;-</span> <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">paths</span>$<span class="no">water_source</span>)
+<span class="va">create_inflow_metadata</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">csv_dir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"database/qmra-db_accdb"</span>, 
+                                             package <span class="op">=</span> <span class="st">"qmra.db"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
 
-<span class="no">inflow_metadata</span> <span class="kw">&lt;-</span> <span class="no">inflow</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="no">pathogen</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="no">pathogen_group</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="no">water_source</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="no">references</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">.data</span>$<span class="no">WaterSourceName</span>,
-                 <span class="no">.data</span>$<span class="no">PathogenGroup</span>,
-                 <span class="no">.data</span>$<span class="no">PathogenName</span>,
-                 <span class="no">.data</span>$<span class="no">ReferenceName</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">row_id</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())
-}
+<span class="va">paths_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  csv_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"database/qmra-db_accdb"</span>, package <span class="op">=</span> <span class="st">"qmra.db"</span><span class="op">)</span>,
+  inflow <span class="op">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_inflow.csv"</span>,
+  pathogen <span class="op">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_pathogen.csv"</span>,
+  pathogen_group <span class="op">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_pathogenGroup.csv"</span>,
+  references <span class="op">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_reference.csv"</span>,
+  water_source <span class="op">=</span> <span class="st">"&lt;csv_dir&gt;/tbl_waterSource.csv"</span>
+  <span class="op">)</span>
+  
+<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu">kwb.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/resolve.html">resolve</a></span><span class="op">(</span><span class="va">paths_list</span><span class="op">)</span>
 
-<span class="no">inflow_metadata</span> <span class="kw">&lt;-</span> <span class="fu">create_inflow_metadata</span>()
+
+<span class="va">inflow</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">paths</span><span class="op">$</span><span class="va">inflow</span><span class="op">)</span>
+<span class="va">pathogen</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">paths</span><span class="op">$</span><span class="va">pathogen</span><span class="op">)</span>
+<span class="va">pathogen_group</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">paths</span><span class="op">$</span><span class="va">pathogen_group</span><span class="op">)</span>
+<span class="va">references</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">paths</span><span class="op">$</span><span class="va">references</span><span class="op">)</span>
+<span class="va">water_source</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">paths</span><span class="op">$</span><span class="va">water_source</span><span class="op">)</span>
+
+<span class="va">inflow_metadata</span> <span class="op">&lt;-</span> <span class="va">inflow</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">pathogen</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">pathogen_group</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">water_source</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">references</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">WaterSourceName</span>, 
+                 <span class="va">.data</span><span class="op">$</span><span class="va">PathogenGroup</span>, 
+                 <span class="va">.data</span><span class="op">$</span><span class="va">PathogenName</span>, 
+                 <span class="va">.data</span><span class="op">$</span><span class="va">ReferenceName</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>row_id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">inflow_metadata</span> <span class="op">&lt;-</span> <span class="fu">create_inflow_metadata</span><span class="op">(</span><span class="op">)</span> 
 <span class="co">#&gt; Parsed with column specification:</span>
 <span class="co">#&gt; cols(</span>
 <span class="co">#&gt;   PathogenID = col_double(),</span>
@@ -226,7 +228,7 @@
 <span class="co">#&gt; Joining, by = "PathogenGroupID"</span>
 <span class="co">#&gt; Joining, by = "WaterSourceID"</span>
 <span class="co">#&gt; Joining, by = "ReferenceID"</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">inflow_metadata</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">inflow_metadata</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 22</span>
 <span class="co">#&gt;   PathogenID ReferenceID WaterSourceID   min   max distribution  mean alpha</span>
 <span class="co">#&gt;        &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;</span>
@@ -241,7 +243,7 @@
 <span class="co">#&gt; #   PathogenGroup &lt;chr&gt;, PathogenGroupDescription &lt;chr&gt;,</span>
 <span class="co">#&gt; #   DefaultPathogenID &lt;dbl&gt;, WaterSourceName &lt;chr&gt;,</span>
 <span class="co">#&gt; #   WaterSourceDescription &lt;chr&gt;, ReferenceName &lt;chr&gt;, ReferenceLink &lt;chr&gt;,</span>
-<span class="co">#&gt; #   row_id &lt;int&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   row_id &lt;int&gt;</span></pre></div>
 </div>
 <div id="test" class="section level1">
 <h1 class="hasAnchor">
@@ -249,431 +251,434 @@
 <div id="define-checking-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#define-checking-function" class="anchor"></a>3.1 Define Checking Function</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">
-<span class="no">check_inflow_distribution</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">inflow_metadata</span>,
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
+<span class="va">check_inflow_distribution</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">inflow_metadata</span>,
 <span class="co">### for valid "type" parameter values</span>
 <span class="co">### see: https://kwb-r.github.io/kwb.qmra/reference/create_random_distribution.html</span>
-<span class="no">type</span> <span class="kw">=</span> <span class="st">"log10_norm"</span>,
-<span class="no">number_of_repeatings</span> <span class="kw">=</span> <span class="fl">1000</span>,
-<span class="no">number_of_events</span> <span class="kw">=</span> <span class="fl">365</span>,
-<span class="no">dbg</span> <span class="kw">=</span> <span class="fl">TRUE</span>) {
+<span class="va">type</span> <span class="op">=</span> <span class="st">"log10_norm"</span>,
+<span class="va">number_of_repeatings</span> <span class="op">=</span> <span class="fl">1000</span>, 
+<span class="va">number_of_events</span> <span class="op">=</span> <span class="fl">365</span>,
+<span class="va">dbg</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span>
+  
+<span class="va">metadata</span> <span class="op">&lt;-</span> <span class="va">inflow_metadata</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>row_id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>distribution_type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
 
-<span class="no">metadata</span> <span class="kw">&lt;-</span> <span class="no">inflow_metadata</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">row_id</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>()) <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">distribution_type</span> <span class="kw">=</span> <span class="no">type</span>)
+<span class="va">percentiles_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">inflow_metadata</span><span class="op">)</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span>
+<span class="va">sel_dat</span> <span class="op">&lt;-</span> <span class="va">inflow_metadata</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span>  
 
-<span class="no">percentiles_list</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">inflow_metadata</span>)), <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
-<span class="no">sel_dat</span> <span class="kw">&lt;-</span> <span class="no">inflow_metadata</span>[<span class="no">i</span>, ]
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"Water source: %s, Pathogen: %s, Reference: %s, Min: %f, Max: %f"</span>,
-              <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">sel_dat</span>$<span class="no">WaterSourceName</span>),
-              <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">sel_dat</span>$<span class="no">PathogenName</span>),
-              <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">sel_dat</span>$<span class="no">ReferenceName</span>),
-              <span class="no">sel_dat</span>$<span class="no">min</span>,
-              <span class="no">sel_dat</span>$<span class="no">max</span>))
-<span class="no">inflow</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.qmra</span><span class="kw ns">::</span><span class="fu"><a href="../reference/create_random_distribution.html">create_random_distribution</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="no">type</span>,
-                                     <span class="kw">number_of_repeatings</span> <span class="kw">=</span> <span class="no">number_of_repeatings</span>,
-                                     <span class="kw">number_of_events</span> <span class="kw">=</span> <span class="no">number_of_events</span>,
-                                     <span class="kw">min</span> <span class="kw">=</span> <span class="no">sel_dat</span>$<span class="no">min</span>,
-                                     <span class="kw">max</span> <span class="kw">=</span> <span class="no">sel_dat</span>$<span class="no">max</span>,
-                                     <span class="kw">debug</span> <span class="kw">=</span> <span class="no">dbg</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"Water source: %s, Pathogen: %s, Reference: %s, Min: %f, Max: %f"</span>, 
+              <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">sel_dat</span><span class="op">$</span><span class="va">WaterSourceName</span><span class="op">)</span>, 
+              <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">sel_dat</span><span class="op">$</span><span class="va">PathogenName</span><span class="op">)</span>, 
+              <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">sel_dat</span><span class="op">$</span><span class="va">ReferenceName</span><span class="op">)</span>, 
+              <span class="va">sel_dat</span><span class="op">$</span><span class="va">min</span>, 
+              <span class="va">sel_dat</span><span class="op">$</span><span class="va">max</span><span class="op">)</span><span class="op">)</span>
+<span class="va">inflow</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/create_random_distribution.html">create_random_distribution</a></span><span class="op">(</span>type <span class="op">=</span> <span class="va">type</span>,
+                                     number_of_repeatings <span class="op">=</span> <span class="va">number_of_repeatings</span>,
+                                     number_of_events <span class="op">=</span> <span class="va">number_of_events</span>,
+                                     min <span class="op">=</span> <span class="va">sel_dat</span><span class="op">$</span><span class="va">min</span>, 
+                                     max <span class="op">=</span> <span class="va">sel_dat</span><span class="op">$</span><span class="va">max</span>, 
+                                     debug <span class="op">=</span> <span class="va">dbg</span><span class="op">)</span>
 
 <span class="co">## Go ahead even if errors occur</span>
-<span class="fu"><a href="https://rdrr.io/r/base/try.html">try</a></span>(<span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">inflow</span>$<span class="no">events</span>$<span class="no">values</span>, <span class="kw">probs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">0.01</span>))))
+<span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">inflow</span><span class="op">$</span><span class="va">events</span><span class="op">$</span><span class="va">values</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-})
+<span class="op">}</span><span class="op">)</span> 
 
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(<span class="no">percentiles_list</span>, <span class="kw">.id</span> <span class="kw">=</span> <span class="st">"row_id"</span>) <span class="kw">%&gt;%</span>
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="kw">percentile</span> <span class="kw">=</span> <span class="no">name</span>) <span class="kw">%&gt;%</span>
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">percentile</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span>(<span class="no">.data</span>$<span class="no">percentile</span>, <span class="st">"%"</span>)),
-                                           <span class="kw">distribution_type</span> <span class="kw">=</span> <span class="no">type</span>)
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">percentiles_list</span>, .id <span class="op">=</span> <span class="st">"row_id"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>percentile <span class="op">=</span> <span class="va">name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">percentile</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span>, 
+                                           distribution_type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
 
 
-}</pre></body></html></div>
+<span class="op">}</span></pre></div>
 </div>
 <div id="define-plot-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#define-plot-function" class="anchor"></a>3.2 Define Plot Function</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">
-<span class="no">plot_percentiles</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">inflow_stats</span>, <span class="no">inflow_metadata</span>) {
+<div class="sourceCode" id="cb4"><pre class="downlit">
 
+<span class="va">plot_percentiles</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">inflow_stats</span>, <span class="va">inflow_metadata</span><span class="op">)</span> <span class="op">{</span>
+  
 
-<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">inflow_stats</span>$<span class="no">row_id</span>)
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(<span class="no">n</span>)) {
- <span class="no">sel_inflow_stats</span> <span class="kw">&lt;-</span> <span class="no">inflow_stats</span>[<span class="no">inflow_stats</span>$<span class="no">row_id</span> <span class="kw">==</span> <span class="no">i</span>,]
- <span class="no">metadata</span> <span class="kw">&lt;-</span> <span class="no">inflow_metadata</span>[<span class="no">inflow_metadata</span>$<span class="no">row_id</span> <span class="kw">==</span> <span class="no">i</span>, ]
- <span class="no">gg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">sel_inflow_stats</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html">aes_string</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"percentile"</span>,
-                                    <span class="kw">y</span> <span class="kw">=</span> <span class="st">"value"</span>,
-                                    <span class="kw">col</span> <span class="kw">=</span> <span class="st">"distribution_type"</span>)) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"%s (water source: %s):\nmin = %f, max = %f"</span>,
-                       <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">metadata</span>$<span class="no">PathogenName</span>),
-                       <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">metadata</span>$<span class="no">WaterSourceName</span>),
-                       <span class="no">metadata</span>$<span class="no">min</span>,
-                       <span class="no">metadata</span>$<span class="no">max</span>),
-       <span class="kw">subtitle</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"Reference: [%s](%s)"</span>,
-                          <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">metadata</span>$<span class="no">ReferenceName</span>),
-                          <span class="kw pkg">stringi</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span>(<span class="no">metadata</span>$<span class="no">ReferenceLink</span>)),
-       <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Percentile"</span>,
-       <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Pathogens Per Litre"</span>) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">gg</span>)
-}
-}</pre></body></html></div>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">inflow_stats</span><span class="op">$</span><span class="va">row_id</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+ <span class="va">sel_inflow_stats</span> <span class="op">&lt;-</span> <span class="va">inflow_stats</span><span class="op">[</span><span class="va">inflow_stats</span><span class="op">$</span><span class="va">row_id</span> <span class="op">==</span> <span class="va">i</span>,<span class="op">]</span>
+ <span class="va">metadata</span> <span class="op">&lt;-</span> <span class="va">inflow_metadata</span><span class="op">[</span><span class="va">inflow_metadata</span><span class="op">$</span><span class="va">row_id</span> <span class="op">==</span> <span class="va">i</span>, <span class="op">]</span>
+ <span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sel_inflow_stats</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html">aes_string</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"percentile"</span>, 
+                                    y <span class="op">=</span> <span class="st">"value"</span>, 
+                                    col <span class="op">=</span> <span class="st">"distribution_type"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%s (water source: %s):\nmin = %f, max = %f"</span>,              
+                       <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">PathogenName</span><span class="op">)</span>, 
+                       <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">WaterSourceName</span><span class="op">)</span>,
+                       <span class="va">metadata</span><span class="op">$</span><span class="va">min</span>, 
+                       <span class="va">metadata</span><span class="op">$</span><span class="va">max</span><span class="op">)</span>,
+       subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"Reference: [%s](%s)"</span>, 
+                          <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">ReferenceName</span><span class="op">)</span>, 
+                          <span class="fu">stringi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringi/man/stri_enc_toutf8.html">stri_enc_toutf8</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">ReferenceLink</span><span class="op">)</span><span class="op">)</span>,
+       x <span class="op">=</span> <span class="st">"Percentile"</span>, 
+       y <span class="op">=</span> <span class="st">"Pathogens Per Litre"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">gg</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="op">}</span></pre></div>
 </div>
 <div id="run-checking-function-and-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-checking-function-and-plot" class="anchor"></a>3.4 Run Checking Function And Plot</h2>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">
-<span class="no">inflow_stats_list</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"log10_norm"</span>, <span class="st">"log10_uniform"</span>, <span class="st">"lognorm"</span>, <span class="st">"norm"</span>, <span class="st">"uniform"</span>, <span class="st">"triangle"</span>),
-                            <span class="kw">function</span>(<span class="no">type</span>) {
-                              <span class="fu">check_inflow_distribution</span>(<span class="no">inflow_metadata</span>,
-                                          <span class="kw">type</span> <span class="kw">=</span> <span class="no">type</span>)
-                              })
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -0.500000, sd: 0.911935)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -1.000000, sd: 0.607957)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -0.849485, sd: 0.699463)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -0.309894, sd: 1.027511)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -1.721246, sd: 0.607957)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -3.000000, sd: 0.607957)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.800000, sd: 0.400000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -1.527573, sd: 0.287215)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.400000, sd: 0.250000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 4.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 8.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 4.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 2.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 2.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.500000, sd: 0.911935)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 2.698970, sd: 0.607957)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 0.000000, sd: 1.823870)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.000000, sd: 1.823870)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 2.676091, sd: 0.438853)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.491136, sd: 0.723533)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.627636, sd: 0.091507)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 3.000000, sd: 0.607957)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 0.500000, sd: 1.519892)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 0.000000, sd: 1.215914)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 0.520696, sd: 1.532475)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: 1.340621, sd: 0.632026)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm  (n: 365, mean: -0.761439, sd: 0.752991)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 1.000000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 0.000000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 0.301030)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 1.380211)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.721246, max: -0.721246)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -4.000000, max: -2.000000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 1.142059, max: 2.457941)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: -1.055146)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.988787, max: 1.811213)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 2.000000, max: 6.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 6.000000, max: 10.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 2.000000, max: 6.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.000000, max: 4.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.000000, max: 4.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.000000, max: 3.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 1.698970, max: 3.698970)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -3.000000, max: 3.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 4.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -1.000000, max: 3.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 1.954243, max: 3.397940)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.301030, max: 2.681241)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 1.477121, max: 1.778151)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 2.000000, max: 4.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 3.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 2.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 3.041393)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: 0.301030, max: 2.380211)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): 10^runif (n: 365, min: -2.000000, max: 0.477121)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 1.151792, sdlog: 4.884521)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 0.004975, sdlog: 3.256347)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 0.349067, sdlog: 3.746476)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 1.589235, sdlog: 5.503570)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: -0.825390, sdlog: 3.256347)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: -2.297610, sdlog: 3.256347)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 2.853404, sdlog: 2.142486)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: -1.161010, sdlog: 1.538386)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 2.155340, sdlog: 1.339054)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 6.907805, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 11.512975, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 6.907805, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 4.605220, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 4.605220, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.454377, sdlog: 4.884521)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 4.263572, sdlog: 3.256347)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.453878, sdlog: 9.769041)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 4.605171, sdlog: 9.769041)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.453928, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.929707, sdlog: 2.350590)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.088972, sdlog: 3.875397)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 2.249905, sdlog: 0.490129)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 4.610145, sdlog: 3.256347)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.453883, sdlog: 8.140868)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 2.302635, sdlog: 6.512694)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 3.501537, sdlog: 8.208262)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 2.744469, sdlog: 3.385268)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): lognorm (n: 365, meanlog: 0.550970, sdlog: 4.033183)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5.005000, sd: 3.036744)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 0.505000, sd: 0.300939)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 1.005000, sd: 0.604917)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 12.005000, sd: 7.292442)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 0.095950, sd: 0.057178)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 0.005050, sd: 0.003009)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 150.454393, sd: 83.037763)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 0.049038, sd: 0.023733)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 37.245588, sd: 16.719105)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500050.000000, sd: 303948.018114)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5000500000.000000, sd: 3039480181.142891)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500050.000000, sd: 303948.018114)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5000.500000, sd: 3039.480181)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5000.500000, sd: 3039.480181)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500.500000, sd: 303.674438)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 2525.000000, sd: 1504.693159)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500.000500, sd: 303.978112)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5000.005000, sd: 3039.781120)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500.050000, sd: 303.948018)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 1295.000000, sd: 732.587982)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 241.000000, sd: 145.301683)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 45.000000, sd: 9.119352)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 5050.000000, sd: 3009.386318)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 500.005000, sd: 303.975376)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 50.005000, sd: 30.394802)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 550.005000, sd: 334.373218)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 121.000000, sd: 72.346863)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): norm (n: 365, mean: 1.505000, sd: 0.908895)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 10.000000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 1.000000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 2.000000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 24.000000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 0.190000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 0.010000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 13.869428, max: 287.039359)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000045, max: 0.088075)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 9.745107, max: 64.746069)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 100.000000, max: 1000000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 1000000.000000, max: 10000000000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 100.000000, max: 1000000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 1.000000, max: 10000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 1.000000, max: 10000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 1.000000, max: 1000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 50.000000, max: 5000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.001000, max: 1000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.010000, max: 10000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.100000, max: 1000.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 90.000000, max: 2500.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 2.000000, max: 480.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 30.000000, max: 60.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 100.000000, max: 10000.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 1000.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.010000, max: 100.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 1100.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 2.000000, max: 240.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): uniform (n: 365, min: 0.000000, max: 3.000000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 10.000000, mode = 5.005000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 1.000000, mode = 0.505000)</span>
-<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 2.000000, mode = 1.005000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 24.000000, mode = 12.005000)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 0.190000, mode = 0.095950)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 0.010000, mode = 0.005050)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 13.869428, max: 287.039359, mode = 150.454393)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000045, max: 0.088075, mode = 0.049038)</span>
-<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 9.745107, max: 64.746069, mode = 37.245588)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 100.000000, max: 1000000.000000, mode = 500050.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 1000000.000000, max: 10000000000.000000, mode = 5000500000.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 100.000000, max: 1000000.000000, mode = 500050.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 1.000000, max: 10000.000000, mode = 5000.500000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 1.000000, max: 10000.000000, mode = 5000.500000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 1.000000, max: 1000.000000, mode = 500.500000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 50.000000, max: 5000.000000, mode = 2525.000000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.001000, max: 1000.000000, mode = 500.000500)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.010000, max: 10000.000000, mode = 5000.005000)</span>
-<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.100000, max: 1000.000000, mode = 500.050000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 90.000000, max: 2500.000000, mode = 1295.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 2.000000, max: 480.000000, mode = 241.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 30.000000, max: 60.000000, mode = 45.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 100.000000, max: 10000.000000, mode = 5050.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 1000.000000, mode = 500.005000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.010000, max: 100.000000, mode = 50.005000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 1100.000000, mode = 550.005000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 2.000000, max: 240.000000, mode = 121.000000)</span>
-<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
-<span class="co">#&gt; Create 1000 random distribution(s): triangle (n: 365, min: 0.000000, max: 3.000000, mode = 1.505000)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
 
-<span class="no">inflow_stats_list_df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(<span class="no">inflow_stats_list</span>)
+<span class="va">inflow_stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"log10_norm"</span>, <span class="st">"log10_uniform"</span>, <span class="st">"lognorm"</span>, <span class="st">"norm"</span>, <span class="st">"uniform"</span>, <span class="st">"triangle"</span><span class="op">)</span>, 
+                            <span class="kw">function</span><span class="op">(</span><span class="va">type</span><span class="op">)</span> <span class="op">{</span>
+                              <span class="fu">check_inflow_distribution</span><span class="op">(</span><span class="va">inflow_metadata</span>, 
+                                          type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
+                              <span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -0.500000, sd: 0.911935)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -1.000000, sd: 0.607957)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -0.849485, sd: 0.699463)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -0.309894, sd: 1.027511)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -1.721246, sd: 0.607957)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -3.000000, sd: 0.607957)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.800000, sd: 0.400000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -1.527573, sd: 0.287215)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.400000, sd: 0.250000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 4.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 8.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 4.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.500000, sd: 0.911935)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.698970, sd: 0.607957)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 0.000000, sd: 1.823870)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.000000, sd: 1.823870)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.676091, sd: 0.438853)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.491136, sd: 0.723533)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.627636, sd: 0.091507)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 3.000000, sd: 0.607957)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 0.500000, sd: 1.519892)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 0.000000, sd: 1.215914)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 0.520696, sd: 1.532475)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: 1.340621, sd: 0.632026)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^rnorm(with parameters n: 365, mean: -0.761439, sd: 0.752991)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 1.000000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 0.000000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 0.301030)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 1.380211)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.721246, max: -0.721246)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -4.000000, max: -2.000000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 1.142059, max: 2.457941)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: -1.055146)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.988787, max: 1.811213)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 2.000000, max: 6.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 6.000000, max: 10.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 2.000000, max: 6.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.000000, max: 4.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.000000, max: 4.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.000000, max: 3.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 1.698970, max: 3.698970)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -3.000000, max: 3.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 4.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -1.000000, max: 3.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 1.954243, max: 3.397940)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.301030, max: 2.681241)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 1.477121, max: 1.778151)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 2.000000, max: 4.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 3.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 2.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 3.041393)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: 0.301030, max: 2.380211)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): 10^runif(with parameters n: 365, min: -2.000000, max: 0.477121)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 1.151792, sdlog: 4.884521)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 0.004975, sdlog: 3.256347)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 0.349067, sdlog: 3.746476)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 1.589235, sdlog: 5.503570)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: -0.825390, sdlog: 3.256347)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: -2.297610, sdlog: 3.256347)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 2.853404, sdlog: 2.142486)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: -1.161010, sdlog: 1.538386)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 2.155340, sdlog: 1.339054)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 6.907805, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 11.512975, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 6.907805, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 4.605220, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 4.605220, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.454377, sdlog: 4.884521)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 4.263572, sdlog: 3.256347)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.453878, sdlog: 9.769041)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 4.605171, sdlog: 9.769041)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.453928, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.929707, sdlog: 2.350590)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.088972, sdlog: 3.875397)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 2.249905, sdlog: 0.490129)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 4.610145, sdlog: 3.256347)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.453883, sdlog: 8.140868)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 2.302635, sdlog: 6.512694)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 3.501537, sdlog: 8.208262)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 2.744469, sdlog: 3.385268)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): lognorm (with parameters n: 365, meanlog: 0.550970, sdlog: 4.033183)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5.005000, sd: 3.036744)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 0.505000, sd: 0.300939)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 1.005000, sd: 0.604917)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 12.005000, sd: 7.292442)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 0.095950, sd: 0.057178)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 0.005050, sd: 0.003009)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 150.454393, sd: 83.037763)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 0.049038, sd: 0.023733)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 37.245588, sd: 16.719105)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500050.000000, sd: 303948.018114)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5000500000.000000, sd: 3039480181.142891)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500050.000000, sd: 303948.018114)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5000.500000, sd: 3039.480181)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5000.500000, sd: 3039.480181)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500.500000, sd: 303.674438)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 2525.000000, sd: 1504.693159)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500.000500, sd: 303.978112)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5000.005000, sd: 3039.781120)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500.050000, sd: 303.948018)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 1295.000000, sd: 732.587982)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 241.000000, sd: 145.301683)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 45.000000, sd: 9.119352)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 5050.000000, sd: 3009.386318)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 500.005000, sd: 303.975376)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 50.005000, sd: 30.394802)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 550.005000, sd: 334.373218)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 121.000000, sd: 72.346863)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): norm (with parameters n: 365, mean: 1.505000, sd: 0.908895)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 10.000000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 1.000000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 2.000000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 24.000000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 0.190000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 0.010000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 13.869428, max: 287.039359)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000045, max: 0.088075)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 9.745107, max: 64.746069)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 100.000000, max: 1000000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 1000000.000000, max: 10000000000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 100.000000, max: 1000000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 10000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 10000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 1000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 50.000000, max: 5000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.001000, max: 1000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.010000, max: 10000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.100000, max: 1000.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 90.000000, max: 2500.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 480.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 30.000000, max: 60.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 100.000000, max: 10000.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 1000.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.010000, max: 100.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 1100.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 240.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 3.000000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 10.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 10.000000, mode = 5.005000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 1.000000, mode = 0.505000)</span>
+<span class="co">#&gt; [1] "Water source: groundwater, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 2.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 2.000000, mode = 1.005000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Campylobacter jejuni, Reference: KWR 2016.081, Min: 0.000000, Max: 24.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 24.000000, mode = 12.005000)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Cryptosporidium parvum, Reference: KWR 2016.081, Min: 0.000000, Max: 0.190000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 0.190000, mode = 0.095950)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, rooftop harvesting, Pathogen: Rotavirus, Reference: KWR 2016.081, Min: 0.000000, Max: 0.010000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 0.010000, mode = 0.005050)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Campylobacter jejuni, Reference: Sales Ortells 2015, Min: 13.869428, Max: 287.039359"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 13.869428, max: 287.039359, mode = 150.454393)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Cryptosporidium parvum, Reference: Sales Ortells 2015, Min: 0.000045, Max: 0.088075"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000045, max: 0.088075, mode = 0.049038)</span>
+<span class="co">#&gt; [1] "Water source: rainwater, stormwater harvesting, Pathogen: Rotavirus, Reference: Sales Ortells 2015, Min: 9.745107, Max: 64.746069"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 9.745107, max: 64.746069, mode = 37.245588)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 100.000000, max: 1000000.000000, mode = 500050.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Escherichia coli, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1000000.000000, Max: 10000000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 1000000.000000, max: 10000000000.000000, mode = 5000500000.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Vibrio cholerae, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 1000000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 100.000000, max: 1000000.000000, mode = 500050.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 1.000000, max: 10000.000000, mode = 5000.500000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Giardia duodenalis, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 1.000000, max: 10000.000000, mode = 5000.500000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Enteroviruses, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 1.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 1.000000, max: 1000.000000, mode = 500.500000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, raw, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 50.000000, Max: 5000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 50.000000, max: 5000.000000, mode = 2525.000000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Campylobacter jejuni, Reference: WHO (2006) safe use wastewater V2, Min: 0.001000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.001000, max: 1000.000000, mode = 500.000500)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Cryptosporidium parvum, Reference: WHO (2006) safe use wastewater V2, Min: 0.010000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.010000, max: 10000.000000, mode = 5000.005000)</span>
+<span class="co">#&gt; [1] "Water source: sewage, treated, Pathogen: Rotavirus, Reference: WHO (2006) safe use wastewater V2, Min: 0.100000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.100000, max: 1000.000000, mode = 500.050000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 90.000000, Max: 2500.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 90.000000, max: 2500.000000, mode = 1295.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 480.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 2.000000, max: 480.000000, mode = 241.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, contaminated, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 30.000000, Max: 60.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 30.000000, max: 60.000000, mode = 45.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Campylobacter jejuni, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 100.000000, Max: 10000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 100.000000, max: 10000.000000, mode = 5050.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Cryptosporidium parvum, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.000000, Max: 1000.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 1000.000000, mode = 500.005000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, general, Pathogen: Rotavirus, Reference: WHO (2011): Drinking water guideline, Table 7.6, Min: 0.010000, Max: 100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.010000, max: 100.000000, mode = 50.005000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Campylobacter jejuni, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 1100.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 1100.000000, mode = 550.005000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Cryptosporidium parvum, Reference: WHO GDWQ (2004), Min: 2.000000, Max: 240.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 2.000000, max: 240.000000, mode = 121.000000)</span>
+<span class="co">#&gt; [1] "Water source: surface water, protected, Pathogen: Rotavirus, Reference: WHO GDWQ (2004), Min: 0.000000, Max: 3.000000"</span>
+<span class="co">#&gt; Create 1000 random distribution(s): triangle (with parameters n: 365, min: 0.000000, max: 3.000000, mode = 1.505000)</span>
 
-<span class="fu">plot_percentiles</span>(<span class="no">inflow_stats_list_df</span>, <span class="no">inflow_metadata</span>)
+<span class="va">inflow_stats_list_df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">inflow_stats_list</span><span class="op">)</span>  
+
+<span class="fu">plot_percentiles</span><span class="op">(</span><span class="va">inflow_stats_list_df</span>, <span class="va">inflow_metadata</span><span class="op">)</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span></pre></body></html></div>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span></pre></div>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -685,7 +690,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-3.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-4.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -709,7 +714,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-9.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-10.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -721,7 +726,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-12.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-13.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -761,7 +766,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-23.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-24.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -769,7 +774,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-25.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-26.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -784,48 +789,10 @@
 <h2 class="hasAnchor">
 <a href="#export-distribution-plots-to-pdf" class="anchor"></a>3.5 Export Distribution Plots to PDF</h2>
 <p>The plots shown above are also available in a PDF document which can be downloaded by clicking on the link: <strong><a href="../inflow_test_random_distributions.pdf">inflow_test_random_distributions.pdf</a></strong></p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r">
-<span class="no">pdff</span> <span class="kw">&lt;-</span> <span class="kw pkg">kwb.utils</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/preparePdf.html">preparePdf</a></span>(<span class="st">"inflow_test_random_distributions.pdf"</span>)
-<span class="fu">plot_percentiles</span>(<span class="no">inflow_stats_list_df</span>, <span class="no">inflow_metadata</span>)
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 4 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 2 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 2 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
+<div class="sourceCode" id="cb32"><pre class="downlit">
+
+<span class="va">pdff</span> <span class="op">&lt;-</span> <span class="fu">kwb.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/preparePdf.html">preparePdf</a></span><span class="op">(</span><span class="st">"inflow_test_random_distributions.pdf"</span><span class="op">)</span>
+<span class="fu">plot_percentiles</span><span class="op">(</span><span class="va">inflow_stats_list_df</span>, <span class="va">inflow_metadata</span><span class="op">)</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
@@ -849,6 +816,27 @@
 <span class="co">#&gt; Warning: Removed 4 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 2 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 2 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
@@ -864,24 +852,43 @@
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 4 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span>()
-<span class="co">#&gt; png </span>
-<span class="co">#&gt;   2</span>
-<span class="co">#kwb.utils::finishAndShowPdf(pdff)</span></pre></body></html></div>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; agg_png </span>
+<span class="co">#&gt;       2</span>
+<span class="co">#kwb.utils::finishAndShowPdf(pdff)</span></pre></div>
 </div>
 </div>
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>4 Session Info</h1>
 <p>For reproducibility</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="kw pkg">sessioninfo</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>()
+<div class="sourceCode" id="cb33"><pre class="downlit">
+<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.0 (2020-04-24)</span>
+<span class="co">#&gt;  version  R version 4.0.2 (2020-06-22)</span>
 <span class="co">#&gt;  os       Ubuntu 16.04.6 LTS          </span>
 <span class="co">#&gt;  system   x86_64, linux-gnu           </span>
 <span class="co">#&gt;  ui       X11                         </span>
@@ -889,80 +896,82 @@
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-08-20                  </span>
+<span class="co">#&gt;  date     2020-09-29                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt;  package      * version    date       lib source                             </span>
-<span class="co">#&gt;  assertthat     0.2.1      2019-03-21 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  backports      1.1.8      2020-06-17 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  cli            2.0.2      2020-02-28 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  colorspace     1.4-1      2019-03-18 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  crayon         1.3.4      2017-09-16 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  desc           1.2.0      2018-05-01 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  digest         0.6.25     2020-02-23 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  dplyr          1.0.2      2020-08-18 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  ellipsis       0.3.1      2020-05-15 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  EnvStats       2.3.1      2018-07-15 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  evaluate       0.14       2019-05-28 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  fansi          0.4.1      2020-01-08 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  farver         2.0.3      2020-01-16 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  fastmap        1.0.1      2019-10-08 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  fs             1.5.0      2020-07-31 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  generics       0.0.2      2018-11-29 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  ggplot2      * 3.3.2      2020-06-19 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  glue           1.4.1      2020-05-13 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  gtable         0.3.0      2019-03-25 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  hms            0.5.3      2020-01-08 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  htmltools      0.5.0      2020-06-16 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  httpuv         1.5.4      2020-06-06 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  knitr          1.29       2020-06-23 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  kwb.datetime   0.4.0      2020-08-20 [2] Github (kwb-r/kwb.datetime@0ffea49)</span>
-<span class="co">#&gt;  kwb.db         0.5.0      2020-08-20 [2] Github (kwb-r/kwb.db@5e6b039)      </span>
-<span class="co">#&gt;  kwb.qmra     * 0.2.0.9000 2020-08-20 [1] local                              </span>
-<span class="co">#&gt;  kwb.utils      0.7.0      2020-08-20 [2] Github (kwb-r/kwb.utils@c9f447a)   </span>
-<span class="co">#&gt;  labeling       0.3        2014-08-23 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  later          1.1.0.1    2020-06-05 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  lifecycle      0.2.0      2020-03-06 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  magrittr       1.5        2014-11-22 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  MASS           7.3-51.5   2019-12-20 [4] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  memoise        1.1.0      2017-04-21 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  mime           0.9        2020-02-04 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  munsell        0.5.0      2018-06-12 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  pillar         1.4.6      2020-07-10 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  pkgconfig      2.0.3      2019-09-22 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  pkgdown        1.5.1      2020-04-09 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  plyr           1.8.6      2020-03-03 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  promises       1.1.1      2020-06-09 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  purrr          0.3.4      2020-04-17 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  qmra.db      * 0.10.0     2020-08-20 [2] Github (kwb-r/qmra.db@a17cf3a)     </span>
-<span class="co">#&gt;  R6             2.4.1      2019-11-12 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  Rcpp           1.0.5      2020-07-06 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  readr          1.3.1      2018-12-21 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  rlang          0.4.7      2020-07-09 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  rmarkdown      2.3        2020-06-18 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  RODBC          1.3-16     2019-09-03 [2] Github (cran/RODBC@275b1a6)        </span>
-<span class="co">#&gt;  rprojroot      1.3-2      2018-01-03 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  scales         1.1.1      2020-05-11 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  sessioninfo  * 1.1.1      2018-11-05 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  sfsmisc        1.1-7      2020-05-07 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  shiny          1.5.0      2020-06-23 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  stringi      * 1.4.6      2020-02-17 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  stringr        1.4.0      2019-02-10 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  tibble       * 3.0.3      2020-07-10 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  tidyr          1.1.1      2020-07-31 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  tidyselect     1.1.0      2020-05-11 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  utf8           1.1.4      2018-05-24 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  vctrs          0.3.2      2020-07-15 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  withr          2.2.0      2020-04-20 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  xfun           0.16       2020-07-24 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  xtable         1.8-4      2019-04-21 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  yaml           2.2.1      2020-02-01 [2] CRAN (R 4.0.0)                     </span>
-<span class="co">#&gt;  zip            2.1.0      2020-08-10 [2] CRAN (R 4.0.0)                     </span>
+<span class="co">#&gt;  package      * version date       lib source                             </span>
+<span class="co">#&gt;  assertthat     0.2.1   2019-03-21 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  backports      1.1.10  2020-09-15 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  cli            2.0.2   2020-02-28 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  colorspace     1.4-1   2019-03-18 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  cpp11          0.2.1   2020-08-11 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  crayon         1.3.4   2017-09-16 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  desc           1.2.0   2018-05-01 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  digest         0.6.25  2020-02-23 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  dplyr          1.0.2   2020-08-18 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  ellipsis       0.3.1   2020-05-15 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  EnvStats       2.3.1   2018-07-15 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  evaluate       0.14    2019-05-28 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  fansi          0.4.1   2020-01-08 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  farver         2.0.3   2020-01-16 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  fastmap        1.0.1   2019-10-08 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  fs             1.5.0   2020-07-31 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  generics       0.0.2   2018-11-29 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  ggplot2      * 3.3.2   2020-06-19 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  glue           1.4.2   2020-08-27 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  gtable         0.3.0   2019-03-25 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  hms            0.5.3   2020-01-08 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  htmltools      0.5.0   2020-06-16 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  httpuv         1.5.4   2020-06-06 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  knitr          1.30    2020-09-22 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  kwb.datetime   0.4.0   2020-09-29 [2] Github (kwb-r/kwb.datetime@0ffea49)</span>
+<span class="co">#&gt;  kwb.db         0.5.0   2020-09-29 [2] Github (kwb-r/kwb.db@5e6b039)      </span>
+<span class="co">#&gt;  kwb.qmra     * 0.2.0   2020-09-29 [1] local                              </span>
+<span class="co">#&gt;  kwb.utils      0.7.0   2020-09-29 [2] Github (kwb-r/kwb.utils@c9f447a)   </span>
+<span class="co">#&gt;  labeling       0.3     2014-08-23 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  later          1.1.0.1 2020-06-05 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  lifecycle      0.2.0   2020-03-06 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  magrittr       1.5     2014-11-22 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  memoise        1.1.0   2017-04-21 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  mime           0.9     2020-02-04 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  munsell        0.5.0   2018-06-12 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  pillar         1.4.6   2020-07-10 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  pkgconfig      2.0.3   2019-09-22 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  pkgdown        1.6.1   2020-09-12 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  plyr           1.8.6   2020-03-03 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  promises       1.1.1   2020-06-09 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  purrr          0.3.4   2020-04-17 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  qmra.db      * 0.10.0  2020-09-29 [2] Github (kwb-r/qmra.db@a17cf3a)     </span>
+<span class="co">#&gt;  R6             2.4.1   2019-11-12 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  ragg           0.3.1   2020-07-03 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  Rcpp           1.0.5   2020-07-06 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  readr          1.3.1   2018-12-21 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  rlang          0.4.7   2020-07-09 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  rmarkdown      2.3     2020-06-18 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  RODBC          1.3-16  2019-09-03 [2] Github (cran/RODBC@275b1a6)        </span>
+<span class="co">#&gt;  rprojroot      1.3-2   2018-01-03 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  scales         1.1.1   2020-05-11 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  sessioninfo  * 1.1.1   2018-11-05 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  sfsmisc        1.1-7   2020-05-07 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  shiny          1.5.0   2020-06-23 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  stringi      * 1.5.3   2020-09-09 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  stringr        1.4.0   2019-02-10 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  systemfonts    0.3.1   2020-09-08 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  tibble       * 3.0.3   2020-07-10 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  tidyr          1.1.2   2020-08-27 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  tidyselect     1.1.0   2020-05-11 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  utf8           1.1.4   2018-05-24 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  vctrs          0.3.4   2020-08-29 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  withr          2.3.0   2020-09-22 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  xfun           0.18    2020-09-29 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  xtable         1.8-4   2019-04-21 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  yaml           2.2.1   2020-02-01 [2] CRAN (R 4.0.2)                     </span>
+<span class="co">#&gt;  zip            2.1.1   2020-08-27 [2] CRAN (R 4.0.2)                     </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [1] /tmp/RtmpzEkBpw/temp_libpath4b15157ac32f</span>
+<span class="co">#&gt; [1] /tmp/RtmpxLOb35/temp_libpath252a1b8e3b89</span>
 <span class="co">#&gt; [2] /home/travis/R/Library</span>
 <span class="co">#&gt; [3] /usr/local/lib/R/site-library</span>
-<span class="co">#&gt; [4] /home/travis/R-bin/lib/R/library</span></pre></body></html></div>
+<span class="co">#&gt; [4] /opt/R/4.0.2/lib/R/library</span></pre></div>
 </div>
   </div>
 
@@ -977,11 +986,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
