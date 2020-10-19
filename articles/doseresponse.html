@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -108,13 +108,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="doseresponse_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Dose-response modelling</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2020-09-29</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/doseresponse.Rmd"><code>vignettes/doseresponse.Rmd</code></a></small>
       <div class="hidden name"><code>doseresponse.Rmd</code></div>
@@ -149,7 +149,8 @@
 <p>2.1 Download</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="va">dr.db</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/dr.db_download.html">dr.db_download</a></span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Agent = col_character(),
 ##   `Best fit model*` = col_character(),
@@ -282,7 +283,7 @@
 <td align="left">oral (in milk)</td>
 <td align="left">CFU</td>
 <td align="left">positive stool isolation</td>
-<td align="left">DuPont et al. (1971)</td>
+<td align="left">DuPont et al. (1971)</td>
 </tr>
 <tr class="even">
 <td align="left">Bacteria</td>
@@ -321,7 +322,7 @@
 <td align="left">inhalation</td>
 <td align="left">CFU</td>
 <td align="left">infection</td>
-<td align="left">Muller et al. (1983)</td>
+<td align="left">Muller et al. (1983)</td>
 </tr>
 <tr class="odd">
 <td align="left">Bacteria</td>
@@ -399,7 +400,7 @@
 <td align="left">contact lens</td>
 <td align="left">CFU</td>
 <td align="left">corneal ulceration</td>
-<td align="left">Lawin-Brussel et al. (1993)</td>
+<td align="left">Lawin-Brussel et al. (1993)</td>
 </tr>
 <tr class="odd">
 <td align="left">Bacteria</td>
@@ -477,7 +478,7 @@
 <td align="left">oral, in milk</td>
 <td align="left">CFU</td>
 <td align="left">disease</td>
-<td align="left">Hornick et al. (1966),Hornick et al. (1970)</td>
+<td align="left">Hornick et al. (1966),Hornick et al. (1970)</td>
 </tr>
 <tr class="odd">
 <td align="left">Bacteria</td>
@@ -490,7 +491,7 @@
 <td align="left">oral (in milk)</td>
 <td align="left">CFU</td>
 <td align="left">positive stool isolation</td>
-<td align="left">DuPont et al. (1972b)</td>
+<td align="left">DuPont et al. (1972b)</td>
 </tr>
 <tr class="even">
 <td align="left">Bacteria</td>
@@ -741,7 +742,7 @@ Figure 3: Dose for all microbial parameters with 50% infection probability
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/smart-control/"><img src="https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">

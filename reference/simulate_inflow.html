@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -165,7 +165,7 @@
     <p>Simulate: inflow</p>
     </div>
 
-    <pre class="usage"><span class='fu'>simulate_inflow</span><span class='op'>(</span><span class='va'>config</span>, debug <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>simulate_inflow</span><span class='op'>(</span><span class='va'>config</span>, debug <span class='op'>=</span> <span class='cn'>TRUE</span>, lean <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,12 +178,21 @@
       <th>debug</th>
       <td><p>print debug information (default: TRUE)</p></td>
     </tr>
+    <tr>
+      <th>lean</th>
+      <td><p>if <code>TRUE</code>, only the "events" are returned (in a reduced
+version, i.e. without column <code>PathogenName</code> and with all ID columns
+being of class <code>integer</code>), otherwise a list with the events in element
+<code>events</code>" and the corresponding parameters in element <code>paras</code>.
+The default is <code>FALSE</code>, i.e. events and parameters are returned in a
+list.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list with parameters of user defined random distribution and 
-corresponding values</p>
+    <p>list with parameters of user defined random distribution and
+  corresponding values</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -196,7 +205,7 @@ corresponding values</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/'><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/'><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42" /></a>.</p>
+  <p>Developed by <a href='https://mrustl.de'>Michael Rustler</a>, <a href='https://github.com/hsonne'>Hauke Sonnenberg</a>, <a href='https://www.kompetenz-wasser.de/en/project/aquanes/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/demoware/'><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24" /></a>, <a href='https://www.kompetenz-wasser.de/en/project/smart-control/'><img src='https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

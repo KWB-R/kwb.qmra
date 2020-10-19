@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -108,13 +108,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="usage_log10_norm_inflow_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Usage (Log10 Norm Inflow)</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 September, 2020</h4>
+            <h4 class="date">19 October, 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/usage_log10_norm_inflow.Rmd"><code>vignettes/usage_log10_norm_inflow.Rmd</code></a></small>
       <div class="hidden name"><code>usage_log10_norm_inflow.Rmd</code></div>
@@ -138,10 +138,10 @@
 <span class="co">#### DEFINE DIRECTORY ################</span>
 <span class="va">confDir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/configs/dummy_log10_norm"</span>, package <span class="op">=</span> <span class="st">"kwb.qmra"</span><span class="op">)</span>
 <span class="va">confDir</span></pre></div>
-<pre><code>## [1] "/tmp/RtmpxLOb35/temp_libpath252a1b8e3b89/kwb.qmra/extdata/configs/dummy_log10_norm"</code></pre>
-<p>The following screenshot shows the required configuration files located in <code>confDir</code> (here: /tmp/RtmpxLOb35/temp_libpath252a1b8e3b89/kwb.qmra/extdata/configs/dummy_log10_norm):</p>
+<pre><code>## [1] "/home/travis/R/Library/kwb.qmra/extdata/configs/dummy_log10_norm"</code></pre>
+<p>The following screenshot shows the required configuration files located in <code>confDir</code> (here: /home/travis/R/Library/kwb.qmra/extdata/configs/dummy_log10_norm):</p>
 <div class="figure">
-<img src="dummy_config.jpg" alt="Screenshot of required configuration files"><p class="caption">Screenshot of required configuration files</p>
+<img src="dummy_config.jpg" alt=""><p class="caption">Screenshot of required configuration files</p>
 </div>
 </div>
 <div id="import-configuration-into-r" class="section level2">
@@ -552,64 +552,82 @@
 <p>Subsequently the risk calculation can be performed in R(Studio) by executing the following code, which uses the <code>config</code> that was imported and inspected above:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="va">risk</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/simulate_risk.html">simulate_risk</a></span><span class="op">(</span><span class="va">config</span><span class="op">)</span></pre></div>
-<pre><code>## ### STEP 0: BASIC CONFIGURATION #############################################
+<pre><code>## 
+## # STEP 0: BASIC CONFIGURATION
 ## 
 ## Simulated 3 pathogen(s): Campylobacter jejuni and Campylobacter coli, Rotavirus, Giardia duodenalis
 ## Number of random distribution repeatings: 10
 ## Number of exposure events: 365
 ## 
-## ### STEP 1: INFLOW ##########################################################
+## # STEP 1: INFLOW
 ## 
 ## Simulated pathogen: Campylobacter jejuni and Campylobacter coli
-## Create 10 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.500000, sd: 0.911935)
+## Create 10 random distribution(s): 10^rnorm  (n: 365, mean: 2.500000, sd: 0.911935)
 ## Simulated pathogen: Rotavirus
-## Create 10 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.500000, sd: 0.911935)
+## Create 10 random distribution(s): 10^rnorm  (n: 365, mean: 2.500000, sd: 0.911935)
 ## Simulated pathogen: Giardia duodenalis
-## Create 10 random distribution(s): 10^rnorm(with parameters n: 365, mean: 2.500000, sd: 0.911935)
+## Create 10 random distribution(s): 10^rnorm  (n: 365, mean: 2.500000, sd: 0.911935)
+## Providing inflow events ... ok. (0.00s) 
+## Providing inflow paras ... ok. (0.00s) 
 ## 
-## ### STEP 2: TREATMENT SCHEMES #############################################
+## # STEP 2: TREATMENT SCHEMES
 ## 
+## Create 10 random distribution(s): uniform (n: 365, min: 0.200000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 1.000000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.100000, max: 3.400000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.200000, max: 4.400000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.400000, max: 3.300000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.000000, max: 3.500000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.000000, max: 6.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.300000, max: 5.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 0.250000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.000000, max: 6.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 1.000000, max: 2.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 2.100000, max: 8.300000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
+## Create 10 random distribution(s): uniform (n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: Conventional clarification for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.200000, max: 2.000000)
 ## Simulated treatment: Conventional clarification for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 2.000000)
 ## Simulated treatment: Conventional clarification for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.100000, max: 3.400000)
 ## Simulated treatment: Granular high-rate filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.200000, max: 4.400000)
 ## Simulated treatment: Granular high-rate filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.400000, max: 3.300000)
 ## Simulated treatment: Granular high-rate filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.000000, max: 3.500000)
 ## Simulated treatment: Slow sand filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 6.000000)
 ## Simulated treatment: Slow sand filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.300000, max: 5.000000)
 ## Simulated treatment: Slow sand filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 0.250000, max: 4.000000)
 ## Simulated treatment: Bank filtration for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.000000, max: 6.000000)
 ## Simulated treatment: Bank filtration for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 1.000000, max: 2.000000)
 ## Simulated treatment: Bank filtration for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 2.100000, max: 8.300000)
 ## Simulated treatment: UV for Bacteria
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: UV for Protozoa
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)
 ## Simulated treatment: UV for Viruses
-## Create 10 random distribution(s): uniform (with parameters n: 365, min: 4.000000, max: 4.000000)</code></pre>
+## Simulated treatment: Conventional clarification for Bacteria
+## Simulated treatment: Conventional clarification for Protozoa
+## Simulated treatment: Conventional clarification for Viruses
+## Simulated treatment: Granular high-rate filtration for Bacteria
+## Simulated treatment: Granular high-rate filtration for Protozoa
+## Simulated treatment: Granular high-rate filtration for Viruses
+## Simulated treatment: Slow sand filtration for Bacteria
+## Simulated treatment: Slow sand filtration for Protozoa
+## Simulated treatment: Slow sand filtration for Viruses
+## Simulated treatment: Bank filtration for Bacteria
+## Simulated treatment: Bank filtration for Protozoa
+## Simulated treatment: Bank filtration for Viruses
+## Simulated treatment: UV for Bacteria
+## Simulated treatment: UV for Protozoa
+## Simulated treatment: UV for Viruses</code></pre>
 <pre><code>## Joining, by = "TreatmentID"
 ## Joining, by = "TreatmentID"</code></pre>
 <pre><code>## 
-## ### STEP 3: Exposure ######################################################
+## # STEP 3: EXPOSURE
 ## 
 ## Simulated exposure: volume per event
-## Create 10 random distribution(s): triangle (with parameters n: 365, min: 0.500000, max: 3.000000, mode = 1.500000)</code></pre>
+## Create 10 random distribution(s): triangle (n: 365, min: 0.500000, max: 3.000000, mode = 1.500000)</code></pre>
 <pre><code>## Joining, by = c("PathogenGroup", "eventID", "repeatID")</code></pre>
 <pre><code>## Joining, by = c("eventID", "repeatID")</code></pre>
 <pre><code>## 
-## ### STEP 4: DOSE RESPONSE #################################################
+## # STEP 4: DOSE RESPONSE
 ## 
 ## # A tibble: 3 x 13
 ##   PathogenID PathogenName PathogenGroup `Best fit model…       k  alpha    N50
@@ -624,7 +642,7 @@
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>## 
-## ### STEP 5: Health        #################################################
+## # STEP 5: HEALTH
 ## 
 ## # A tibble: 3 x 4
 ##   PathogenID PathogenName                      infection_to_illn… dalys_per_case
@@ -638,10 +656,10 @@
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">risk</span><span class="op">$</span><span class="va">input</span>, <span class="fl">1</span><span class="op">)</span></pre></div>
 <pre><code>## List of 5
-##  $ inflow      :List of 2
-##  $ treatment   :List of 5
-##  $ exposure    :List of 2
-##  $ doseresponse:List of 2
+##  $ inflow      :List of 1
+##  $ treatment   :List of 1
+##  $ exposure    :List of 1
+##  $ doseresponse:List of 1
 ##  $ health      : tibble [3 × 4] (S3: tbl_df/tbl/data.frame)</code></pre>
 <p><strong>Output data</strong></p>
 <div class="sourceCode" id="cb17"><pre class="downlit">
@@ -806,14 +824,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">351.2737</td>
-<td align="right">8.049000</td>
-<td align="right">614.8595</td>
-<td align="right">1.3943927</td>
-<td align="right">1</td>
-<td align="right">0.0183515</td>
-<td align="right">0.0128461</td>
-<td align="right">0.0000591</td>
+<td align="right">358.4171</td>
+<td align="right">8.026557</td>
+<td align="right">604.0654</td>
+<td align="right">3.7347052</td>
+<td align="right">4</td>
+<td align="right">0.0610761</td>
+<td align="right">0.0427533</td>
+<td align="right">0.0001967</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -823,14 +841,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">398.8307</td>
-<td align="right">7.248814</td>
-<td align="right">614.8595</td>
-<td align="right">52.7273484</td>
-<td align="right">40</td>
-<td align="right">0.9935370</td>
-<td align="right">0.1114544</td>
-<td align="right">0.0016446</td>
+<td align="right">357.8874</td>
+<td align="right">7.314419</td>
+<td align="right">604.0654</td>
+<td align="right">51.5633919</td>
+<td align="right">58</td>
+<td align="right">0.9893705</td>
+<td align="right">0.0966084</td>
+<td align="right">0.0014131</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -840,14 +858,14 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">234.0670</td>
-<td align="right">4.035210</td>
-<td align="right">614.8595</td>
-<td align="right">3686.8011577</td>
-<td align="right">3573</td>
+<td align="right">392.1562</td>
+<td align="right">4.146200</td>
+<td align="right">604.0654</td>
+<td align="right">7203.7582597</td>
+<td align="right">7350</td>
 <td align="right">1.0000000</td>
-<td align="right">0.9987820</td>
-<td align="right">0.0091474</td>
+<td align="right">0.9986138</td>
+<td align="right">0.0090337</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -857,14 +875,14 @@ Simulated total DALYs (for all events)
 <td align="left">Campylobacter jejuni and Campylobacter coli</td>
 <td align="left">Bacteria</td>
 <td align="right">365</td>
-<td align="right">351.2737</td>
-<td align="right">7.315279</td>
-<td align="right">614.8595</td>
-<td align="right">1.1660500</td>
-<td align="right">1</td>
-<td align="right">0.0183515</td>
-<td align="right">0.0128461</td>
-<td align="right">0.0000591</td>
+<td align="right">358.4171</td>
+<td align="right">7.522614</td>
+<td align="right">604.0654</td>
+<td align="right">2.5856821</td>
+<td align="right">5</td>
+<td align="right">0.0724855</td>
+<td align="right">0.0507399</td>
+<td align="right">0.0002334</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -874,14 +892,14 @@ Simulated total DALYs (for all events)
 <td align="left">Rotavirus</td>
 <td align="left">Viruses</td>
 <td align="right">365</td>
-<td align="right">398.8307</td>
-<td align="right">7.525906</td>
-<td align="right">614.8595</td>
-<td align="right">1.5628480</td>
-<td align="right">0</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
-<td align="right">0.0000000</td>
+<td align="right">357.8874</td>
+<td align="right">7.272848</td>
+<td align="right">604.0654</td>
+<td align="right">2.0967741</td>
+<td align="right">3</td>
+<td align="right">0.6002746</td>
+<td align="right">0.0235158</td>
+<td align="right">0.0003318</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -891,10 +909,10 @@ Simulated total DALYs (for all events)
 <td align="left">Giardia duodenalis</td>
 <td align="left">Protozoa</td>
 <td align="right">365</td>
-<td align="right">234.0670</td>
-<td align="right">7.393793</td>
-<td align="right">614.8595</td>
-<td align="right">0.2783745</td>
+<td align="right">392.1562</td>
+<td align="right">7.280340</td>
+<td align="right">604.0654</td>
+<td align="right">0.6423862</td>
 <td align="right">0</td>
 <td align="right">0.0000000</td>
 <td align="right">0.0000000</td>
@@ -907,7 +925,7 @@ Simulated total DALYs (for all events)
 <div id="export-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-results" class="anchor"></a>6 Export results</h2>
-<p>E.g. Write reports for all configurations in package subfolder <code>extdata/configs/</code> (here: /tmp/RtmpxLOb35/temp_libpath252a1b8e3b89/kwb.qmra/extdata/configs/):</p>
+<p>E.g. Write reports for all configurations in package subfolder <code>extdata/configs/</code> (here: /home/travis/R/Library/kwb.qmra/extdata/configs/):</p>
 <div class="sourceCode" id="cb30"><pre class="downlit">
 <span class="va">confDirs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/configs/"</span>, package <span class="op">=</span> <span class="st">"kwb.qmra"</span><span class="op">)</span>
 <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/report_workflow.html">report_workflow</a></span><span class="op">(</span><span class="va">confDirs</span><span class="op">)</span></pre></div>
@@ -926,7 +944,7 @@ Simulated total DALYs (for all events)
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/smart-control/"><img src="https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">

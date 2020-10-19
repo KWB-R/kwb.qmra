@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -108,13 +108,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="general_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>General workflow</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">29 September, 2020</h4>
+            <h4 class="date">19 October, 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/general.Rmd"><code>vignettes/general.Rmd</code></a></small>
       <div class="hidden name"><code>general.Rmd</code></div>
@@ -127,21 +127,21 @@
 <p>With the <code>kwb.qmra</code> package a QMRA was performed for the Old Ford site within the DEMOWARE project in order to assesss different wastewater reuse options (for details see: <a href="https://doi.org/10.5281/zenodo.159527">Zenodo</a>).</p>
 <p>The general workflow for using the R package <code>kwb.qmra</code> is shown in Fig. 1 below.</p>
 <div class="figure">
-<img src="qmra_workflow.jpg" alt="Fig 1: General workflow"><p class="caption">Fig 1: General workflow</p>
+<img src="qmra_workflow.jpg" alt=""><p class="caption">Fig 1: General workflow</p>
 </div>
 <p>The QMRA calculation is based on input data which are stored in six different .CSV configuration files as shown in Fig. 2 below.</p>
 <div class="figure">
-<img src="dummy_config.jpg" alt="Fig. 2: Screenshot of the six required .CSV configuration files"><p class="caption">Fig. 2: Screenshot of the six required .CSV configuration files</p>
+<img src="dummy_config.jpg" alt=""><p class="caption">Fig. 2: Screenshot of the six required .CSV configuration files</p>
 </div>
 <p>These contain the required information for:</p>
 <ul>
 <li><p><strong>Inflow concentrations</strong> (defined in <code>inflow.csv</code>): inflow concentrations (fixed value or following a predefined distribution: e.g. min/max values in case of uniform distribution). Inflow concentrations need to be defined for all pathogens that should be used for QMRA.</p></li>
 <li><p><strong>Treatment processes</strong> (defined in <code>treatment_processes.csv</code>): for each treatment process the log-removals for the three different pathogen groups (i.e. Bacteria, Protozoa, Viruses) need to be defined. Again these can be either defined as fixed value or following a used defined distribution (e.g. uniform, which requires specifying min/max values). Ranges for log-removals can be found for example in <a href="http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=162">WHO (2011)</a></p></li>
-<li><p><strong>Treatment schemes</strong> (defined in <code>treatment_schemes.csv</code>): different treatment processes (defined in <code>treatment_processes.csv</code>) can be combined to treatment schemes (e.g. bankfiltration + slow sand filtration). All defined treatment schemes will be considered in the QMRA calculation.</p></li>
+<li><p><strong>Treatment schemes</strong> (defined in <code>treatment_schemes.csv</code>): different treatment processes (defined in <code>treatment_processes.csv</code>) can be combined to treatment schemes (e.g.  bankfiltration + slow sand filtration). All defined treatment schemes will be considered in the QMRA calculation.</p></li>
 <li><p><strong>Exposure scenario</strong> (defined in <code>exposure.csv</code>): i.e. the number of exposures per year and the ingested volume per event, which can be defined as fixed value or by following a predefined distribution (e.g. uniform, triangle). In case of a<br>
 Monte-Carlo simulation the number of random distribution generations can be specified here also.</p></li>
-<li><p><strong>Dose-response modelling</strong> (defined in <code>doseresponse.csv</code>): the best-fit model (<br>
-i.e. exponential or beta-poisson) and its parameters for each pathogen are taken from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki (2016)</a>.</p></li>
+<li><p><strong>Dose-response modelling</strong> (defined in <code>doseresponse.csv</code>): the best-fit model (i.e.<br>
+exponential or beta-poisson) and its parameters for each pathogen are taken from <a href="http://qmrawiki.canr.msu.edu/old/index.php/Quantitative_Microbial_Risk_Assessment_(QMRA)_Wiki">QMRAwiki (2016)</a>.</p></li>
 <li><p><strong>Health parameters</strong> (defined in <code>health.csv</code>): for all pathogens to be used for QMRA the infection to illness factor and the disability-adjusted life years (DALY) per case need to be defined. Values for these parameters can be found for example in <a href="http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=132">WHO (2011)</a></p></li>
 </ul>
 </div>
@@ -155,7 +155,7 @@ i.e. exponential or beta-poisson) and its parameters for each pathogen are take
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes-prozesskombinationen-fuer-die-wasseraufbereitung/"><img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware-effektive-wasserwiederverwendung/"><img src="http://demoware.ctm.com.es/en/intranet/administrative/communication/logos/demoware-logo-png-web" height="42"></a>.</p>
+  <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>, <a href="https://github.com/hsonne">Hauke Sonnenberg</a>, <a href="https://www.kompetenz-wasser.de/en/project/aquanes/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/demoware/"><img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24"></a>, <a href="https://www.kompetenz-wasser.de/en/project/smart-control/"><img src="https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">

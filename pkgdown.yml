@@ -1,4 +1,4 @@
-pandoc: '2.2'
+pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -10,5 +10,5 @@ articles:
   usage_log10_norm_inflow: usage_log10_norm_inflow.html
   usage_log10_uniform_inflow: usage_log10_uniform_inflow.html
   web_app: web_app.html
-last_built: 2020-09-29T12:42Z
+last_built: 2020-10-19T14:31Z
 
