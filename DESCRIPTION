@@ -24,8 +24,7 @@ Authors@R:
       person(given = "DEMOWARE",
              role = "fnd"),
       person(given = "Smart-Control",
-             role = "fnd")             
-             )
+             role = "fnd"))
 Description: QMRA for water supply systems.
 License: MIT + file LICENSE
 URL: http://github.com/KWB-R/kwb.qmra/
