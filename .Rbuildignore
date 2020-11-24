@@ -12,3 +12,4 @@ _pkgdown.yaml
 codecov.yml
 ^.gitlab-ci\.yml$
 ^appveyor\.yml$
+^\.github$
