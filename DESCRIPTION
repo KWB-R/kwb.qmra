@@ -52,7 +52,9 @@ Suggests:
     ggrepel (>= 0.8.2),
     knitr (>= 1.30),
     qmra.db (>= 0.10.0),
+    remotes (>= 2.2.0),
     sessioninfo (>= 1.1.1),
+    stringi (>= 1.5.3),
     testthat (>= 2.3.2),
     tibble (>= 3.0.4)
 VignetteBuilder: 
@@ -62,4 +64,4 @@ Remotes:
     github::kwb-r/qmra.db@v0.10.0
 Encoding: UTF-8
 LazyLoad: yes
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
