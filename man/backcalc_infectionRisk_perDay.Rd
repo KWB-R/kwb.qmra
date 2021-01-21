@@ -4,8 +4,10 @@
 \alias{backcalc_infectionRisk_perDay}
 \title{Backcalculate risk: infection (using optimise() function)}
 \usage{
-backcalc_infectionRisk_perDay(target_infectionRisk_perYear = 1/10000,
-  exposures_daysPerYear = 1:365)
+backcalc_infectionRisk_perDay(
+  target_infectionRisk_perYear = 1/10000,
+  exposures_daysPerYear = 1:365
+)
 }
 \arguments{
 \item{target_infectionRisk_perYear}{target infection risk per per year

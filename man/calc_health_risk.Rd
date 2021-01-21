@@ -4,9 +4,13 @@
 \alias{calc_health_risk}
 \title{Risk calculation: health}
 \usage{
-calc_health_risk(infectionRisk_perYear = 9.5 * 10^-4,
-  infection_to_illness = 0.7, diseaseBurden_dalyPerCase = 1.5 * 10^-3,
-  fraction_population = 1, target_dalyPerYearPerPerson = 1/1e+06)
+calc_health_risk(
+  infectionRisk_perYear = 9.5 * 10^-4,
+  infection_to_illness = 0.7,
+  diseaseBurden_dalyPerCase = 1.5 * 10^-3,
+  fraction_population = 1,
+  target_dalyPerYearPerPerson = 1/1e+06
+)
 }
 \arguments{
 \item{infectionRisk_perYear}{as retrieved by

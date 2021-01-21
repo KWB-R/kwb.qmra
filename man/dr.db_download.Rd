@@ -14,7 +14,7 @@ dr.db_download(fromInternet = FALSE)
 from local copy}
 }
 \value{
-tbl_df for different microbial parameters
+tibble for different microbial parameters
 }
 \description{
 Download dose-response model database from QMRAwiki
