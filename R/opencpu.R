@@ -41,9 +41,8 @@ opencpu_config_read <- function(
 #' @examples 
 #' ### Example json config file
 #' config_json <- kwb.qmra::opencpu_config_read()
-#' head(config_json)
 #' risk_json <- kwb.qmra::opencpu_simulate_risk(config_json)
-#' head(config_json)
+#' 
 opencpu_simulate_risk <- function(config_json = opencpu_config_read(), 
                                   usePoisson = TRUE, 
                                   debug = TRUE, 

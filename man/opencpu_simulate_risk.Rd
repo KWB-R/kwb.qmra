@@ -33,7 +33,6 @@ OpenCPU wrapper: Simulate risk using JSON format for config/results
 \examples{
 ### Example json config file
 config_json <- kwb.qmra::opencpu_config_read()
-head(config_json)
 risk_json <- kwb.qmra::opencpu_simulate_risk(config_json)
-head(config_json)
+
 }
