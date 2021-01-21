@@ -420,6 +420,8 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
     dplyr::group_by(
       .data$TreatmentSchemeID,
       .data$TreatmentSchemeName,
+      .data$TreatmentID, 
+      .data$TreatmentName, 
       .data$PathogenGroup, 
       .data$eventID,
       .data$repeatID
