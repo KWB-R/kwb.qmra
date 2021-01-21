@@ -35,6 +35,7 @@ Imports:
     dplyr (>= 1.0.2),
     EnvStats (>= 2.3.1),
     ggplot2 (>= 3.3.2),
+    jsonlite (>= 1.7.2),
     kwb.utils (>= 0.7.0),
     magrittr (>= 1.5),
     plyr (>= 1.8.6),
