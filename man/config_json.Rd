@@ -15,7 +15,8 @@ data(config_json)
 JSON input configuration generated with R script (data-raw/config_json.R)
 }
 \examples{
-cat(config_json)
+data("config_json")
+config_json
 
 }
 \keyword{datasets}

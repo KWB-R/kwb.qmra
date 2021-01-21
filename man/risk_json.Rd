@@ -15,6 +15,7 @@ data(risk_json)
 JSON risk result object generated with R script (data-raw/risk_json.R)
 }
 \examples{
+data("risk_json")
 risk <- jsonlite::fromJSON(risk_json)
 ### only show "stats" elements (skip "events" and "total" due to much data)
 risk_stats <- list(stats_total = risk$stats_total,

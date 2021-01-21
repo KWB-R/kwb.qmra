@@ -10,7 +10,8 @@
 #'
 #' @keywords datasets
 #' @examples
-#' cat(config_json)
+#' data("config_json")
+#' config_json
 #'
 
 "config_json"
@@ -27,6 +28,7 @@
 #'
 #' @keywords datasets
 #' @examples
+#' data("risk_json")
 #' risk <- jsonlite::fromJSON(risk_json)
 #' ### only show "stats" elements (skip "events" and "total" due to much data)
 #' risk_stats <- list(stats_total = risk$stats_total,
