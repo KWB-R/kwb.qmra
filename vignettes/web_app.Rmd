@@ -9,6 +9,15 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+is_ghactions <- identical(Sys.getenv("CI"), "true")
+
+```
+
 For developing a web application, which is based on the R package `kwb.qmra` 
 the [OpenCPU API](https://www.opencpu.org/api.html) can be used. It has a lot of 
 great features which its author Jeroen Ooms describes as follows 
@@ -54,3 +63,65 @@ More advanced web-apps can be easily developed by using the [OpenCPU API](https:
 but will most probably need an own backend server which hosts the OpenCPU 
 server, because the [publically freely available OpenCPU server](https://www.opencpu.org/cloud.html) 
 might be too limited.
+
+```{r setup}
+library(kwb.qmra)
+data(config_json)
+writeLines(text = config_json, "config.json")
+```
+
+
+```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("## Input parameters
+
+You need to provide the input parameters 
+for `kwb.qmra::opencpu_simulate_risk()` 
+required in a JSON data structure as provided 
+in the example data [config.json](../config.json) (for details see: 
+`kwb.qmra::config_json`)."
+)
+```
+
+```{r input_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
+cat("## Input parameters
+
+You need to provide the input parameters 
+for `kwb.qmra::opencpu_simulate_risk()` 
+required in a JSON data structure as provided 
+in the example data [config_json](config_json) (for details see: 
+`kwb.qmra::config_json`)."
+)
+```
+
+
+```{r}
+
+### Convert "config.json" to R list
+config <- jsonlite::fromJSON("config.json")
+
+### Optionally directly import configurations from CSVs
+### for details see: https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs
+# config_dir <- system.file("extdata/configs/dummy", package = "kwb.qmra")
+# config <- kwb.qmra::config_read(confDir = config_dir)
+
+# Run risk simulation
+risk_json <- kwb.qmra::opencpu_simulate_risk(config)
+
+# Save simulation results in JSON format
+writeLines(text = risk_json, "risk.json")
+
+```
+
+```{r output_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The structure of the optimisation results is stored in JSON format in the R object 
+`predictions` and also saved. For inspecting it please open the 
+[risk.json](../risk.json) file."
+)
+```
+
+```{r output_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
+cat("The structure of the optimisation results is stored in JSON format in the R object 
+`predictions` and also saved. For inspecting it please open the 
+[risk.json](risk.json) file."
+)
+```

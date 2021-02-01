@@ -5,14 +5,14 @@
 \title{OpenCPU wrapper: Simulate risk using JSON format for config/results}
 \usage{
 opencpu_simulate_risk(
-  config_json = opencpu_config_read(),
+  config = config_read(),
   usePoisson = TRUE,
   debug = TRUE,
   lean = TRUE
 )
 }
 \arguments{
-\item{config_json}{config json object as retrieved by opencpu_config_read()}
+\item{config}{config object as retrieved by \code{kwb.qmra::config_read()}}
 
 \item{usePoisson}{should a poisson proccess (see function dose_perEvent()) be
 used to calculate the dose_perEvent (TRUE) or just the exposure_perEvent 
@@ -31,8 +31,13 @@ corresponding values
 OpenCPU wrapper: Simulate risk using JSON format for config/results
 }
 \examples{
-### Example json config file
+### Example simulation run
+## Read from JSON
 config_json <- kwb.qmra::opencpu_config_read()
-risk_json <- kwb.qmra::opencpu_simulate_risk(config_json)
+config <- jsonlite::fromJSON(config_json)
+## Optionally directly read from CS
+# config <- kwb.qmra::config_read()
+risk_json <- kwb.qmra::opencpu_simulate_risk(config)
+writeLines(text = risk_json, "risk.json")
 
 }

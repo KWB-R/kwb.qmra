@@ -26,8 +26,8 @@ opencpu_config_read <- function(
 
 # simulate_risk_opencpu --------------------------------------------------------
 
-#' OpenCPU wrapper: Simulate risk using JSON format for config/results
-#' @param config_json config json object as retrieved by opencpu_config_read() 
+#' OpenCPU wrapper: run risk calculation and convert results to JSON format
+#' @param config config object as retrieved by \code{kwb.qmra::config_read()}
 #' @param usePoisson should a poisson proccess (see function dose_perEvent()) be
 #' used to calculate the dose_perEvent (TRUE) or just the exposure_perEvent 
 #' column (FALSE), (default: TRUE)
@@ -39,17 +39,20 @@ opencpu_config_read <- function(
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 #' @examples 
-#' ### Example json config file
+#' ### Example simulation run
+#' ## Read from JSON
 #' config_json <- kwb.qmra::opencpu_config_read()
-#' risk_json <- kwb.qmra::opencpu_simulate_risk(config_json)
+#' config <- jsonlite::fromJSON(config_json)
+#' ## Optionally directly import from CSVs
+#' # config <- kwb.qmra::config_read()
+#' risk_json <- kwb.qmra::opencpu_simulate_risk(config)
+#' writeLines(text = risk_json, "risk.json")
 #' 
-opencpu_simulate_risk <- function(config_json = opencpu_config_read(), 
+opencpu_simulate_risk <- function(config = config_read(), 
                                   usePoisson = TRUE, 
                                   debug = TRUE, 
                                   lean = TRUE)
 {
-  
-  config <- jsonlite::fromJSON(config_json)
   
     args_list <- list(
     config, 
