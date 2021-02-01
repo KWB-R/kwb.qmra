@@ -18,6 +18,8 @@ is_ghactions <- identical(Sys.getenv("CI"), "true")
 
 ```
 
+## Background
+
 For developing a web application, which is based on the R package `kwb.qmra` 
 the [OpenCPU API](https://www.opencpu.org/api.html) can be used. It has a lot of 
 great features which its author Jeroen Ooms describes as follows 
@@ -64,7 +66,7 @@ but will most probably need an own backend server which hosts the OpenCPU
 server, because the [publically freely available OpenCPU server](https://www.opencpu.org/cloud.html) 
 might be too limited.
 
-```{r setup}
+```{r setup, echo = FALSE}
 library(kwb.qmra)
 data(config_json)
 writeLines(text = config_json, "config.json")
