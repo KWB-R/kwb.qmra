@@ -18,6 +18,8 @@ is_ghactions <- identical(Sys.getenv("CI"), "true")
 
 ```
 
+## Background
+
 For developing a web application, which is based on the R package `kwb.qmra` 
 the [OpenCPU API](https://www.opencpu.org/api.html) can be used. It has a lot of 
 great features which its author Jeroen Ooms describes as follows 
@@ -64,7 +66,7 @@ but will most probably need an own backend server which hosts the OpenCPU
 server, because the [publically freely available OpenCPU server](https://www.opencpu.org/cloud.html) 
 might be too limited.
 
-```{r setup}
+```{r setup, echo = FALSE}
 library(kwb.qmra)
 data(config_json)
 writeLines(text = config_json, "config.json")
@@ -72,24 +74,26 @@ writeLines(text = config_json, "config.json")
 
 
 ```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
-cat("## Input parameters
+cat("## Run risk simulatation
 
 You need to provide the input parameters 
 for `kwb.qmra::opencpu_simulate_risk()` 
 required in a JSON data structure as provided 
 in the example data [config.json](../config.json) (for details see: 
-`kwb.qmra::config_json`)."
+`kwb.qmra::config_json`), which needs to be converted into an R list data
+structure (see below)"
 )
 ```
 
 ```{r input_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
-cat("## Input parameters
+cat("## Run risk simulatation
 
 You need to provide the input parameters 
 for `kwb.qmra::opencpu_simulate_risk()` 
 required in a JSON data structure as provided 
-in the example data [config_json](config_json) (for details see: 
-`kwb.qmra::config_json`)."
+in the example data [config.json](config.json) (for details see: 
+`kwb.qmra::config_json`), which needs to be converted into an R list data
+structure (see below)"
 )
 ```
 
@@ -99,7 +103,7 @@ in the example data [config_json](config_json) (for details see:
 ### Convert "config.json" to R list
 config <- jsonlite::fromJSON("config.json")
 
-### Optionally directly import configurations from CSVs
+### Optionally directly import a configuration from CSV files
 ### for details see: https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs
 # config_dir <- system.file("extdata/configs/dummy", package = "kwb.qmra")
 # config <- kwb.qmra::config_read(confDir = config_dir)
