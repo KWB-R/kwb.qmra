@@ -57,7 +57,7 @@ navbar:
   - text: Reference
     href: reference/index.html
   right:
-    - icon: fa-github
+    - icon: fab fa-github fa-lg
       href: https://github.com/kwb-r/kwb.qmra
 
 
