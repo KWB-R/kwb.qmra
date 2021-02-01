@@ -138,16 +138,16 @@
 <p>For the <code>kwb.qmra</code> R package a very tiny example app (source code on <a href="https://github.com/KWB-R/kwb.qmra/tree/master/inst/www">GitHub</a>) was developed which uses the <a href="https://www.opencpu.org">OpenCPU</a> framework. This web app performs a quantitative microbiological risk assessment (QMRA) for a <a href="https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs/dummy">dummy configuration</a> and can be tested here: <a href="https://kwb-r.ocpu.io/kwb.qmra/www/">https://kwb-r.ocpu.io/kwb.qmra/www/</a></p>
 <p>More advanced web-apps can be easily developed by using the <a href="https://www.opencpu.org/api.html">OpenCPU API</a> but will most probably need an own backend server which hosts the OpenCPU server, because the <a href="https://www.opencpu.org/cloud.html">publically freely available OpenCPU server</a> might be too limited.</p>
 </div>
-<div id="input-parameters" class="section level2">
+<div id="run-risk-simulatation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#input-parameters" class="anchor"></a>Input parameters</h2>
-<p>You need to provide the input parameters for <code><a href="../reference/opencpu_simulate_risk.html">kwb.qmra::opencpu_simulate_risk()</a></code> required in a JSON data structure as provided in the example data <a href="../config.json">config.json</a> (for details see: <code><a href="../reference/config_json.html">kwb.qmra::config_json</a></code>).</p>
+<a href="#run-risk-simulatation" class="anchor"></a>Run risk simulatation</h2>
+<p>You need to provide the input parameters for <code><a href="../reference/opencpu_simulate_risk.html">kwb.qmra::opencpu_simulate_risk()</a></code> required in a JSON data structure as provided in the example data <a href="../config.json">config.json</a> (for details see: <code><a href="../reference/config_json.html">kwb.qmra::config_json</a></code>), which needs to be converted into an R list data structure (see below)</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">### Convert "config.json" to R list</span>
 <span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"config.json"</span><span class="op">)</span>
 
-<span class="co">### Optionally directly import configurations from CSVs</span>
+<span class="co">### Optionally directly import a configuration from CSV files</span>
 <span class="co">### for details see: https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs</span>
 <span class="co"># config_dir &lt;- system.file("extdata/configs/dummy", package = "kwb.qmra")</span>
 <span class="co"># config &lt;- kwb.qmra::config_read(confDir = config_dir)</span>
