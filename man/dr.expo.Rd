@@ -4,8 +4,7 @@
 \alias{dr.expo}
 \title{Dose-response model: exponential}
 \usage{
-dr.expo(dose = sfsmisc::lseq(from = 1, to = 10^10, length = 1000),
-  k = 0.572)
+dr.expo(dose = sfsmisc::lseq(from = 1, to = 10^10, length = 1000), k = 0.572)
 }
 \arguments{
 \item{dose}{vector of dose data (default: 
@@ -14,7 +13,7 @@ dr.expo(dose = sfsmisc::lseq(from = 1, to = 10^10, length = 1000),
 \item{k}{k-value (default: 5.72E-01)}
 }
 \value{
-tbl_df
+tibble
 }
 \description{
 Dose-response model: exponential

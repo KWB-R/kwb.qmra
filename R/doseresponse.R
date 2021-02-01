@@ -2,7 +2,7 @@
 #' 
 #' @param fromInternet download from internet (default: FALSE), if FALSE import
 #'   from local copy
-#' @return tbl_df for different microbial parameters
+#' @return tibble for different microbial parameters
 #' @source
 #'   http://qmrawiki.canr.msu.edu/index.php?title=Table_of_Recommended_Best-Fit_Parameters
 #'
@@ -87,7 +87,7 @@ dr.db_download <- function(fromInternet = FALSE)
 #' @param dose vector of dose data (default: 
 #'   \code{sfsmisc::lseq(from = 0.1, to = 10^10, length = 1000)})
 #' @param k k-value (default: 5.72E-01)
-#' @return tbl_df
+#' @return tibble
 #' @export
 #' @importFrom sfsmisc lseq
 #' 
@@ -96,7 +96,7 @@ dr.expo <- function(
   k = 5.72E-01
 )
 {
-  dplyr::tbl_df(data.frame(
+  dplyr::as_tibble(data.frame(
     model = "exponential", 
     dose = dose, 
     infectionProbability = 1 - exp(-k * dose),
@@ -110,7 +110,7 @@ dr.expo <- function(
 #'   \code{sfsmisc::lseq(from = 0.1, to = 10^10, length = 1000)})
 #' @param alpha  alpha (default: 3.28E-01)
 #' @param N50  N50 (default: 5.43E+03)
-#' @return tbl_df
+#' @return tibble
 #' @export
 #' @importFrom sfsmisc lseq
 #' 
@@ -120,7 +120,7 @@ dr.betapoisson <- function(
   N50 = 5.43E+03
 )
 {
-  dplyr::tbl_df(data.frame(
+  dplyr::as_tibble(data.frame(
     model = "betapoisson",
     dose = dose, 
     infectionProbability = 1 - (1 + dose * (2 ^ (1/alpha) - 1)/N50) ^ -alpha, 
@@ -134,7 +134,7 @@ dr.betapoisson <- function(
 #' @param dr.db as retrieved by dr.db_download(), default: dr.db_download()
 #' @param dose vector of dose data (default: 
 #'   \code{sfsmisc::lseq(from=0.1, to = 10^10,length = 1000)})
-#' @return tbl_df
+#' @return tibble
 #' @export
 #' @importFrom plyr rbind.fill
 #' 
@@ -154,7 +154,7 @@ dr.db_model <- function(
   } # else NULL
  
   plyr::rbind.fill(dr_model_expo, dr_model_poisson) %>% 
-    dplyr::tbl_df()
+    dplyr::as_tibble()
 }
 
 # get_dr_model -----------------------------------------------------------------

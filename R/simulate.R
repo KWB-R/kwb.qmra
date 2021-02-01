@@ -420,6 +420,8 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
     dplyr::group_by(
       .data$TreatmentSchemeID,
       .data$TreatmentSchemeName,
+      .data$TreatmentID, 
+      .data$TreatmentName, 
       .data$PathogenGroup, 
       .data$eventID,
       .data$repeatID
@@ -496,6 +498,10 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
       dalys_sum = sum(.data$dalys_per_event)
     )
   
+  stats_total <- get_risk_total_stats(tbl_risk_total)
+  
+  stats_logremoval <- get_risk_logremoval_stats(tbl_risk)
+  
   list(
     input = list(
       inflow = inflow["events"],
@@ -506,7 +512,9 @@ simulate_risk <- function(config, usePoisson = TRUE, debug = TRUE, lean = FALSE)
     ), 
     output = list(
       events = tbl_risk, 
-      total = tbl_risk_total
+      total = tbl_risk_total,
+      stats_total = stats_total,
+      stats_logremoval = stats_logremoval
     )
   )
 }
@@ -614,9 +622,19 @@ simulate_risk_lean <- function(config, usePoisson = TRUE, debug = TRUE)
       illnessProb_sum = 1 - prod(1 - .data$illnessProb_per_event),
       dalys_sum = sum(.data$dalys_per_event)
     )
+  
+  stats_total <- get_risk_total_stats_lean(data_lean = total, 
+                                          config = config)
+  
+  stats_logremoval <- get_risk_logremoval_stats_lean(data_lean = events,
+                                                config = config)
 
   #bak <- list(events = events , total = total)
-  list(events = events , total = total)
+  list(events = events , 
+       total = total, 
+       stats_total = stats_total, 
+       stats_logremoval = stats_logremoval
+       )
 }
 
 # get_infection_prob -----------------------------------------------------------

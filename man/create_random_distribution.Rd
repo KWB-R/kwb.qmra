@@ -4,21 +4,29 @@
 \alias{create_random_distribution}
 \title{Create random distribution}
 \usage{
-create_random_distribution(type = "uniform", number_of_repeatings = 1,
-  number_of_events = 365, value = 10, min = 10, max = 1000,
-  percent_within_minmax = 0.9, min_zero = 0.01,
+create_random_distribution(
+  type = "uniform",
+  number_of_repeatings = 1,
+  number_of_events = 365,
+  value = 10,
+  min = 10,
+  max = 1000,
+  percent_within_minmax = 0.9,
+  min_zero = 0.01,
   log10_min = default_min(min, max, min_zero, f = log10),
   log10_max = default_max(max, min_zero * 10, f = log10),
-  log10_mean = (log10_min + log10_max)/2, log10_sdev = abs((log10_max -
-  log10_mean)/get_percentile(percent_within_minmax)),
-  mean = (default_min(min, max, min_zero) + default_max(max, 10 *
-  min_zero))/2, sdev = abs((default_max(max, 10 * min_zero) -
-  mean)/get_percentile(percent_within_minmax)),
-  meanlog = mean(log(default_min(min, max, min_zero) + default_max(max,
-  10 * min_zero))/2), sdlog = abs(sd(c(default_min(min, max, min_zero, f
-  = log), default_max(max, 10 * min_zero, f = log)))),
-  mode = (default_min(min, max, min_zero) + default_max(max, 10 *
-  min_zero))/2, debug = TRUE)
+  log10_mean = (log10_min + log10_max)/2,
+  log10_sdev = abs((log10_max - log10_mean)/get_percentile(percent_within_minmax)),
+  mean = (default_min(min, max, min_zero) + default_max(max, 10 * min_zero))/2,
+  sdev = abs((default_max(max, 10 * min_zero) -
+    mean)/get_percentile(percent_within_minmax)),
+  meanlog = mean(log(default_min(min, max, min_zero) + default_max(max, 10 *
+    min_zero))/2),
+  sdlog = abs(sd(c(default_min(min, max, min_zero, f = log), default_max(max, 10 *
+    min_zero, f = log)))),
+  mode = (default_min(min, max, min_zero) + default_max(max, 10 * min_zero))/2,
+  debug = TRUE
+)
 }
 \arguments{
 \item{type}{"uniform" calls runif(), "log10_uniform" calls 

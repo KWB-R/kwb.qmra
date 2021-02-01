@@ -1,4 +1,21 @@
-# [kwb.qmra 0.2.0](https://github.com/KWB-R/kwb.qmra)
+# [kwb.qmra 0.3.0](https://github.com/KWB-R/kwb.qmra)
+
+Adaptions for project [Smart-Control](https://www.kompetenz-wasser.de/en/project/smart-control/):
+
+* Added stats summary outputs to `risk` output list (i.e. `stats_total` and 
+`stats_logreductions`)
+
+* Added wrapper functions for OpenCPU (kwb.qmra::opencpu_config_read, 
+kwb.qmra::opencpu_simulate_risk) and example JSON datasets based on dummy config
+(`config_json` and `risk_json)
+
+* Fixes: fix deprecation warning for `dplyr::tbl_df()` by replacing with 
+`dplyr::as_tibble()`
+
+* Continuous integration: moved to `github-actions` (instead of `travis-ci` and 
+`appveyor`)
+
+# [kwb.qmra 0.2.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.2.0)
 
 
 For current progress on this release see [Milestone: v0.2.0](https://github.com/KWB-R/kwb.qmra/milestone/5) 

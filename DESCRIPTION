@@ -1,6 +1,6 @@
 Package: kwb.qmra
 Title: QMRA (quantitative microbial risk assessment)
-Version: 0.2.0.9000
+Version: 0.3.0
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -17,6 +17,11 @@ Authors@R:
              role = c("ctb", "rev"),
              email = "wolfgang.seis@kompetenz-wasser.de",
              comment = c(ORCID = "0000-0002-7436-8575")),
+      person(given = "Ralf",
+             family = "Junghanns",
+             role = c("ctb"),
+             email = "ralf.junghanns@gmail.com",
+             comment = c(ORCID = "")),
       person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
              role = "cph"),
       person(given = "AquaNES",
@@ -35,6 +40,7 @@ Imports:
     dplyr (>= 1.0.2),
     EnvStats (>= 2.3.1),
     ggplot2 (>= 3.3.2),
+    jsonlite (>= 1.7.2),
     kwb.utils (>= 0.7.0),
     magrittr (>= 1.5),
     plyr (>= 1.8.6),
@@ -52,7 +58,9 @@ Suggests:
     ggrepel (>= 0.8.2),
     knitr (>= 1.30),
     qmra.db (>= 0.10.0),
+    remotes (>= 2.2.0),
     sessioninfo (>= 1.1.1),
+    stringi (>= 1.5.3),
     testthat (>= 2.3.2),
     tibble (>= 3.0.4)
 VignetteBuilder: 
@@ -62,4 +70,4 @@ Remotes:
     github::kwb-r/qmra.db@v0.10.0
 Encoding: UTF-8
 LazyLoad: yes
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

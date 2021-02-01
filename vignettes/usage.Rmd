@@ -4,7 +4,7 @@ author: "Michael Rustler"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Technical Workflow: Usage (Uniform Inflow)}
+  %\VignetteIndexEntry{Usage (Uniform Inflow)}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---

@@ -4,8 +4,9 @@
 \alias{config_read}
 \title{Config: read configuration}
 \usage{
-config_read(confDir = system.file("extdata/configs/dummy", package =
-  "kwb.qmra"))
+config_read(
+  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra")
+)
 }
 \arguments{
 \item{confDir}{directory to read configuration files (Default:
