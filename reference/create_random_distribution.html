@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.qmra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/kwb-r/kwb.qmra">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -165,21 +165,29 @@
     <p>Create random distribution</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_random_distribution</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"uniform"</span>, number_of_repeatings <span class='op'>=</span> <span class='fl'>1</span>,
-  number_of_events <span class='op'>=</span> <span class='fl'>365</span>, value <span class='op'>=</span> <span class='fl'>10</span>, min <span class='op'>=</span> <span class='fl'>10</span>, max <span class='op'>=</span> <span class='fl'>1000</span>,
-  percent_within_minmax <span class='op'>=</span> <span class='fl'>0.9</span>, min_zero <span class='op'>=</span> <span class='fl'>0.01</span>,
+    <pre class="usage"><span class='fu'>create_random_distribution</span><span class='op'>(</span>
+  type <span class='op'>=</span> <span class='st'>"uniform"</span>,
+  number_of_repeatings <span class='op'>=</span> <span class='fl'>1</span>,
+  number_of_events <span class='op'>=</span> <span class='fl'>365</span>,
+  value <span class='op'>=</span> <span class='fl'>10</span>,
+  min <span class='op'>=</span> <span class='fl'>10</span>,
+  max <span class='op'>=</span> <span class='fl'>1000</span>,
+  percent_within_minmax <span class='op'>=</span> <span class='fl'>0.9</span>,
+  min_zero <span class='op'>=</span> <span class='fl'>0.01</span>,
   log10_min <span class='op'>=</span> <span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span>, f <span class='op'>=</span> <span class='va'>log10</span><span class='op'>)</span>,
   log10_max <span class='op'>=</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='va'>min_zero</span> <span class='op'>*</span> <span class='fl'>10</span>, f <span class='op'>=</span> <span class='va'>log10</span><span class='op'>)</span>,
-  log10_mean <span class='op'>=</span> <span class='op'>(</span><span class='va'>log10_min</span> <span class='op'>+</span> <span class='va'>log10_max</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, log10_sdev <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>log10_max</span> <span class='op'>-</span>
-  <span class='va'>log10_mean</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='get_percentile.html'>get_percentile</a></span><span class='op'>(</span><span class='va'>percent_within_minmax</span><span class='op'>)</span><span class='op'>)</span>,
-  mean <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span>
-  <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, sdev <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='op'>(</span><span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>-</span>
-  <span class='va'>mean</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='get_percentile.html'>get_percentile</a></span><span class='op'>(</span><span class='va'>percent_within_minmax</span><span class='op'>)</span><span class='op'>)</span>,
-  meanlog <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>,
-  <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>, sdlog <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span>, f
-  <span class='op'>=</span> <span class='va'>log</span><span class='op'>)</span>, <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span>, f <span class='op'>=</span> <span class='va'>log</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
-  mode <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span>
-  <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, debug <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+  log10_mean <span class='op'>=</span> <span class='op'>(</span><span class='va'>log10_min</span> <span class='op'>+</span> <span class='va'>log10_max</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,
+  log10_sdev <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>log10_max</span> <span class='op'>-</span> <span class='va'>log10_mean</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='get_percentile.html'>get_percentile</a></span><span class='op'>(</span><span class='va'>percent_within_minmax</span><span class='op'>)</span><span class='op'>)</span>,
+  mean <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,
+  sdev <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='op'>(</span><span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>-</span>
+    <span class='va'>mean</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='get_percentile.html'>get_percentile</a></span><span class='op'>(</span><span class='va'>percent_within_minmax</span><span class='op'>)</span><span class='op'>)</span>,
+  meanlog <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span>
+    <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>,
+  sdlog <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span>, f <span class='op'>=</span> <span class='va'>log</span><span class='op'>)</span>, <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span>
+    <span class='va'>min_zero</span>, f <span class='op'>=</span> <span class='va'>log</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+  mode <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='default_min.html'>default_min</a></span><span class='op'>(</span><span class='va'>min</span>, <span class='va'>max</span>, <span class='va'>min_zero</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='default_max.html'>default_max</a></span><span class='op'>(</span><span class='va'>max</span>, <span class='fl'>10</span> <span class='op'>*</span> <span class='va'>min_zero</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,
+  debug <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
