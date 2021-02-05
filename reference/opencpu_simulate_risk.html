@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>OpenCPU wrapper: Simulate risk using JSON format for config/results — opencpu_simulate_risk • kwb.qmra</title>
+<title>OpenCPU wrapper: run risk calculation and convert results to JSON format — opencpu_simulate_risk • kwb.qmra</title>
 
 
 <!-- jquery -->
@@ -45,8 +45,8 @@
 
 
 
-<meta property="og:title" content="OpenCPU wrapper: Simulate risk using JSON format for config/results — opencpu_simulate_risk" />
-<meta property="og:description" content="OpenCPU wrapper: Simulate risk using JSON format for config/results" />
+<meta property="og:title" content="OpenCPU wrapper: run risk calculation and convert results to JSON format — opencpu_simulate_risk" />
+<meta property="og:description" content="OpenCPU wrapper: run risk calculation and convert results to JSON format" />
 
 
 
@@ -156,13 +156,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>OpenCPU wrapper: Simulate risk using JSON format for config/results</h1>
+    <h1>OpenCPU wrapper: run risk calculation and convert results to JSON format</h1>
     <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.qmra/blob/master/R/opencpu.R'><code>R/opencpu.R</code></a></small>
     <div class="hidden name"><code>opencpu_simulate_risk.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>OpenCPU wrapper: Simulate risk using JSON format for config/results</p>
+    <p>OpenCPU wrapper: run risk calculation and convert results to JSON format</p>
     </div>
 
     <pre class="usage"><span class='fu'>opencpu_simulate_risk</span><span class='op'>(</span>
@@ -281,7 +281,7 @@ corresponding values</p>
 #&gt; <span class='message'>  infection_to_illness = </span><span style='color: #00BB00;'>col_double()</span><span>,</span>
 #&gt; <span class='message'>  dalys_per_case = </span><span style='color: #00BB00;'>col_double()</span><span></span>
 #&gt; <span class='message'>)</span></div><div class='input'><span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>config_json</span><span class='op'>)</span>
-<span class='co'>## Optionally directly read from CS</span>
+<span class='co'>## Optionally directly import from CSVs</span>
 <span class='co'># config &lt;- kwb.qmra::config_read()</span>
 <span class='va'>risk_json</span> <span class='op'>&lt;-</span> <span class='fu'>kwb.qmra</span><span class='fu'>::</span><span class='fu'>opencpu_simulate_risk</span><span class='op'>(</span><span class='va'>config</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 

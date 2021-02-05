@@ -1,0 +1,1392 @@
+{
+  "exposure": [
+    {
+      "name": "number_of_repeatings",
+      "type": "value",
+      "value": 10
+    },
+    {
+      "name": "number_of_exposures",
+      "type": "value",
+      "value": 365
+    },
+    {
+      "name": "volume_perEvent",
+      "type": "triangle",
+      "min": 0.5,
+      "max": 3,
+      "mode": 1.5,
+      "mean": 2
+    }
+  ],
+  "inflow": [
+    {
+      "PathogenID": 1,
+      "PathogenName": "Bacillus anthracis",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 2,
+      "PathogenName": "Burkholderia pseudomallei",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 3,
+      "PathogenName": "Campylobacter jejuni and Campylobacter coli",
+      "PathogenGroup": "Bacteria",
+      "simulate": 1,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 4,
+      "PathogenName": "Coxiella burnetii",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 5,
+      "PathogenName": "Escherichia coli enterohemorrhagic (EHEC)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 6,
+      "PathogenName": "Escherichia coli",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 7,
+      "PathogenName": "Francisella tularensis",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 8,
+      "PathogenName": "Legionella pneumophila",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 9,
+      "PathogenName": "Listeria monocytogenes (Death as response)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 10,
+      "PathogenName": "Listeria monocytogenes (Infection)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 11,
+      "PathogenName": "Listeria monocytogenes (Stillbirths)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 12,
+      "PathogenName": "Mycobacterium avium",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 13,
+      "PathogenName": "Pseudomonas aeruginosa (Contact lens)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 14,
+      "PathogenName": "Pseudomonas aeruginosa (bacterimia)",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 15,
+      "PathogenName": "Rickettsia rickettsi",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 16,
+      "PathogenName": "Salmonella Typhi",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 17,
+      "PathogenName": "Salmonella anatum",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 18,
+      "PathogenName": "Salmonella meleagridis",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 19,
+      "PathogenName": "Salmonella nontyphoid",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 20,
+      "PathogenName": "Salmonella serotype newport",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 21,
+      "PathogenName": "Shigella",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 22,
+      "PathogenName": "Staphylococcus aureus",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 23,
+      "PathogenName": "Vibrio cholerae",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 24,
+      "PathogenName": "Yersinia pestis",
+      "PathogenGroup": "Bacteria",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 25,
+      "PathogenName": "Adenovirus",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 26,
+      "PathogenName": "Echovirus",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 27,
+      "PathogenName": "Enteroviruses",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 28,
+      "PathogenName": "Influenza",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 29,
+      "PathogenName": "Lassa virus",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 30,
+      "PathogenName": "Poliovirus",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 31,
+      "PathogenName": "Rhinovirus",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 32,
+      "PathogenName": "Rotavirus",
+      "PathogenGroup": "Viruses",
+      "simulate": 1,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 33,
+      "PathogenName": "SARS",
+      "PathogenGroup": "Viruses",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 34,
+      "PathogenName": "Cryptosporidium parvum and Cryptosporidium hominis",
+      "PathogenGroup": "Protozoa",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 35,
+      "PathogenName": "Endamoeba coli",
+      "PathogenGroup": "Protozoa",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 36,
+      "PathogenName": "Giardia duodenalis",
+      "PathogenGroup": "Protozoa",
+      "simulate": 1,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    },
+    {
+      "PathogenID": 37,
+      "PathogenName": "Naegleria fowleri",
+      "PathogenGroup": "Protozoa",
+      "simulate": 0,
+      "type": "uniform",
+      "min": 10,
+      "max": 10000
+    }
+  ],
+  "treatment": {
+    "processes": [
+      {
+        "TreatmentID": 1,
+        "TreatmentName": "Conventional clarification",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 0.2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 1,
+        "TreatmentName": "Conventional clarification",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 1,
+        "max": 2
+      },
+      {
+        "TreatmentID": 1,
+        "TreatmentName": "Conventional clarification",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 0.1,
+        "max": 3.4
+      },
+      {
+        "TreatmentID": 2,
+        "TreatmentName": "Dissolved air flotation",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 0.6,
+        "max": 2.6
+      },
+      {
+        "TreatmentID": 3,
+        "TreatmentName": "High-rate clarification",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 2,
+        "max": 2.8
+      },
+      {
+        "TreatmentID": 4,
+        "TreatmentName": "Lime softening",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 1,
+        "max": 4
+      },
+      {
+        "TreatmentID": 4,
+        "TreatmentName": "Lime softening",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 0,
+        "max": 2
+      },
+      {
+        "TreatmentID": 4,
+        "TreatmentName": "Lime softening",
+        "TreatmentGroup": "Coagulation, flocculation and sedimentation",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 2,
+        "max": 4
+      },
+      {
+        "TreatmentID": 5,
+        "TreatmentName": "Granular high-rate filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 0.2,
+        "max": 4.4
+      },
+      {
+        "TreatmentID": 5,
+        "TreatmentName": "Granular high-rate filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 0.4,
+        "max": 3.3
+      },
+      {
+        "TreatmentID": 5,
+        "TreatmentName": "Granular high-rate filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 0,
+        "max": 3.5
+      },
+      {
+        "TreatmentID": 6,
+        "TreatmentName": "Membrane filtration (micro, ultra-, nanofiltration, reverse osmosis)",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 1,
+        "max": 7
+      },
+      {
+        "TreatmentID": 6,
+        "TreatmentName": "Membrane filtration (micro, ultra-, nanofiltration, reverse osmosis)",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 2.3,
+        "max": 7
+      },
+      {
+        "TreatmentID": 6,
+        "TreatmentName": "Membrane filtration (micro, ultra-, nanofiltration, reverse osmosis)",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 1,
+        "max": 6.5
+      },
+      {
+        "TreatmentID": 7,
+        "TreatmentName": "Precoat filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 0.2,
+        "max": 2.3
+      },
+      {
+        "TreatmentID": 7,
+        "TreatmentName": "Precoat filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 3,
+        "max": 6.7
+      },
+      {
+        "TreatmentID": 7,
+        "TreatmentName": "Precoat filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 1,
+        "max": 1.7
+      },
+      {
+        "TreatmentID": 8,
+        "TreatmentName": "Slow sand filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 2,
+        "max": 6
+      },
+      {
+        "TreatmentID": 8,
+        "TreatmentName": "Slow sand filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 0.3,
+        "max": 5
+      },
+      {
+        "TreatmentID": 8,
+        "TreatmentName": "Slow sand filtration",
+        "TreatmentGroup": "Filtration",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 0.25,
+        "max": 4
+      },
+      {
+        "TreatmentID": 9,
+        "TreatmentName": "Bank filtration",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 2,
+        "max": 6
+      },
+      {
+        "TreatmentID": 9,
+        "TreatmentName": "Bank filtration",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 1,
+        "max": 2
+      },
+      {
+        "TreatmentID": 9,
+        "TreatmentName": "Bank filtration",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 2.1,
+        "max": 8.3
+      },
+      {
+        "TreatmentID": 10,
+        "TreatmentName": "Roughing filters",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 0.2,
+        "max": 2.3
+      },
+      {
+        "TreatmentID": 11,
+        "TreatmentName": "Storage reservoirs",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 0.7,
+        "max": 2.2
+      },
+      {
+        "TreatmentID": 11,
+        "TreatmentName": "Storage reservoirs",
+        "TreatmentGroup": "Pretreatment",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 1.4,
+        "max": 2.3
+      },
+      {
+        "TreatmentID": 12,
+        "TreatmentName": "Chlorine",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 12,
+        "TreatmentName": "Chlorine",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 12,
+        "TreatmentName": "Chlorine",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 13,
+        "TreatmentName": "Chlorine dioxide",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 13,
+        "TreatmentName": "Chlorine dioxide",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 13,
+        "TreatmentName": "Chlorine dioxide",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 14,
+        "TreatmentName": "Ozone",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 14,
+        "TreatmentName": "Ozone",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 14,
+        "TreatmentName": "Ozone",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "TreatmentID": 15,
+        "TreatmentName": "UV",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Bacteria",
+        "type": "uniform",
+        "min": 4,
+        "max": 4
+      },
+      {
+        "TreatmentID": 15,
+        "TreatmentName": "UV",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Protozoa",
+        "type": "uniform",
+        "min": 4,
+        "max": 4
+      },
+      {
+        "TreatmentID": 15,
+        "TreatmentName": "UV",
+        "TreatmentGroup": "Primary disinfection",
+        "PathogenGroup": "Viruses",
+        "type": "uniform",
+        "min": 4,
+        "max": 4
+      }
+    ],
+    "schemes": [
+      {
+        "TreatmentSchemeID": 1,
+        "TreatmentSchemeName": "Berlin (BF + Slow sand)",
+        "TreatmentID": 8,
+        "TreatmentName": "Slow sand filtration"
+      },
+      {
+        "TreatmentSchemeID": 1,
+        "TreatmentSchemeName": "Berlin (BF + Slow sand)",
+        "TreatmentID": 9,
+        "TreatmentName": "Bank filtration"
+      },
+      {
+        "TreatmentSchemeID": 2,
+        "TreatmentSchemeName": "Depth & surface filtration",
+        "TreatmentID": 1,
+        "TreatmentName": "Conventional clarification"
+      },
+      {
+        "TreatmentSchemeID": 2,
+        "TreatmentSchemeName": "Depth & surface filtration",
+        "TreatmentID": 5,
+        "TreatmentName": "Granular high-rate filtration"
+      },
+      {
+        "TreatmentSchemeID": 2,
+        "TreatmentSchemeName": "Depth & surface filtration",
+        "TreatmentID": 15,
+        "TreatmentName": "UV"
+      }
+    ]
+  },
+  "doseresponse": [
+    {
+      "PathogenID": 1,
+      "PathogenName": "Bacillus anthracis",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0,
+      "Host type": "guinea pig",
+      "Dose units": "spores",
+      "Route": "inhalation",
+      "Response": "death",
+      "Reference": "Druett 1953",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Bacillus_anthracis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 2,
+      "PathogenName": "Burkholderia pseudomallei",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.328,
+      "N50": 5430,
+      "Host type": "C57BL/6 mice and diabetic rat",
+      "Dose units": "CFU",
+      "Route": "intranasal,intraperitoneal",
+      "Response": "death",
+      "Reference": "Liu, Koo et al. 2002 and Brett and Woods 1996",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Burkholderia_pseudomallei:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 3,
+      "PathogenName": "Campylobacter jejuni and Campylobacter coli",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.144,
+      "N50": 890,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral (in milk)",
+      "Response": "infection",
+      "Reference": "Black et al 1988",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Campylobacter_jejuni_and_Campylobacter_coli:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 4,
+      "PathogenName": "Coxiella burnetii",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.357,
+      "N50": 493000000,
+      "Host type": "C57BL/1OScN mice",
+      "Dose units": "PFU",
+      "Route": "intraperitoneal",
+      "Response": "death",
+      "Reference": "Williams et al, 1982",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Coxiella_burnetii:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 5,
+      "PathogenName": "Escherichia coli enterohemorrhagic (EHEC)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0002,
+      "Host type": "pig",
+      "Dose units": "CFU",
+      "Route": "oral (in food)",
+      "Response": "shedding in feces",
+      "Reference": "Cornick & Helgerson (2004)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Escherichia_coli_enterohemorrhagic_(EHEC):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 6,
+      "PathogenName": "Escherichia coli",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.155,
+      "N50": 2110000,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral (in milk)",
+      "Response": "positive stool isolation",
+      "Reference": "DuPont et al. (1971)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Escherichia_coli:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 7,
+      "PathogenName": "Francisella tularensis",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0473,
+      "Host type": "monkeys",
+      "Dose units": "CFU",
+      "Route": "inhalation",
+      "Response": "death",
+      "Reference": "Day and Berendt, 1972",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Francisella_tularensis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 8,
+      "PathogenName": "Legionella pneumophila",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0599,
+      "Host type": "guinea pig",
+      "Dose units": "CFU",
+      "Route": "inhalation",
+      "Response": "infection",
+      "Reference": "Muller et al. (1983)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Legionella_pneumophila:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 9,
+      "PathogenName": "Listeria monocytogenes (Death as response)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0,
+      "Host type": "C57B1/6J mice",
+      "Dose units": "CFU",
+      "Route": "oral",
+      "Response": "death",
+      "Reference": "Golnazarian, Donnelly et al. 1989",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Listeria_monocytogenes_(Death_as_response):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 10,
+      "PathogenName": "Listeria monocytogenes (Infection)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.253,
+      "N50": 277,
+      "Host type": "C57Bl/6J mice",
+      "Dose units": "CFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Golnazarian",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Listeria_monocytogenes_(Infection):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 11,
+      "PathogenName": "Listeria monocytogenes (Stillbirths)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.0422,
+      "N50": 1780000000,
+      "Host type": "pooled",
+      "Dose units": "CFU",
+      "Route": "oral",
+      "Response": "stillbirths",
+      "Reference": "Smith, Williams2007",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Listeria_monocytogenes_(Stillbirths):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 12,
+      "PathogenName": "Mycobacterium avium",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0007,
+      "Host type": "deer",
+      "Dose units": "CFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "O'Brien et al(1976)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Mycobacterium_avium:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 13,
+      "PathogenName": "Pseudomonas aeruginosa (Contact lens)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.19,
+      "N50": 18500,
+      "Host type": "white rabbit",
+      "Dose units": "CFU",
+      "Route": "contact lens",
+      "Response": "corneal ulceration",
+      "Reference": "Lawin-Brussel et al. (1993)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Pseudomonas_aeruginosa_(Contact_lens):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 14,
+      "PathogenName": "Pseudomonas aeruginosa (bacterimia)",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0001,
+      "Host type": "Swiss webster mice (5day old)",
+      "Dose units": "CFU",
+      "Route": "injected in eyelids",
+      "Response": "death",
+      "Reference": "Hazlett, Rosen et al. 1978",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Pseudomonas_aeruginosa_(bacterimia):_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 15,
+      "PathogenName": "Rickettsia rickettsi",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.777,
+      "N50": 21.3,
+      "Host type": "Pooled data",
+      "Dose units": "CFU",
+      "Response": "morbidity",
+      "Reference": "Saslaw and Carlisle 1966 and Dupont, Hornick et al. 1973",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Rickettsia_rickettsi:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 16,
+      "PathogenName": "Salmonella Typhi",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.175,
+      "N50": 1110000,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral, in milk",
+      "Response": "disease",
+      "Reference": "Hornick et al. (1966),Hornick et al. (1970)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Salmonella_Typhi:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 17,
+      "PathogenName": "Salmonella anatum",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.318,
+      "N50": 37100,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral, with eggnog",
+      "Response": "positive stool culture",
+      "Reference": "McCullough and Elsele,1951",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Salmonella_anatum:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 18,
+      "PathogenName": "Salmonella meleagridis",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.389,
+      "N50": 16800,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral, with eggnog",
+      "Response": "infection",
+      "Reference": "McCullough and Eisele 1951,2",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Salmonella_meleagridis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 19,
+      "PathogenName": "Salmonella nontyphoid",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.21,
+      "N50": 49.8,
+      "Host type": "mice",
+      "Dose units": "CFU",
+      "Route": "intraperitoneal",
+      "Response": "death",
+      "Reference": "Meynell and Meynell,1958",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Salmonella_nontyphoid:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 20,
+      "PathogenName": "Salmonella serotype newport",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 3.97e-06,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "McCullough and Elsele,1951",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Salmonella_serotype_newport:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 21,
+      "PathogenName": "Shigella",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.265,
+      "N50": 1480,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral (in milk)",
+      "Response": "positive stool isolation",
+      "Reference": "DuPont et al. (1972b)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Shigella:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 22,
+      "PathogenName": "Staphylococcus aureus",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 7.64e-08,
+      "Host type": "human",
+      "Dose units": "CFU/cm2",
+      "Route": "subcutaneous",
+      "Response": "infection",
+      "Reference": "Rose and Haas 1999",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Staphylococcus_aureus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 23,
+      "PathogenName": "Vibrio cholerae",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.25,
+      "N50": 243,
+      "Host type": "human",
+      "Dose units": "CFU",
+      "Route": "oral (with NaHCO3)",
+      "Response": "infection",
+      "Reference": "Hornick et al., (1971)",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Vibrio_cholerae:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 24,
+      "PathogenName": "Yersinia pestis",
+      "PathogenGroup": "Bacteria",
+      "Best fit model*": "exponential",
+      "k": 0.0016,
+      "Host type": "mice",
+      "Dose units": "CFU",
+      "Route": "intranasal",
+      "Response": "death",
+      "Reference": "Lathem et al. 2005",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Yersinia_pestis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 25,
+      "PathogenName": "Adenovirus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "exponential",
+      "k": 0.607,
+      "Host type": "human",
+      "Dose units": "TCID50",
+      "Route": "inhalation",
+      "Response": "infection",
+      "Reference": "Couch, Cate et al. 1966",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Adenovirus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 26,
+      "PathogenName": "Echovirus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 1.06,
+      "N50": 922,
+      "Host type": "human",
+      "Dose units": "PFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Schiff et al.,1984",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Echovirus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 27,
+      "PathogenName": "Enteroviruses",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "exponential",
+      "k": 0.0037,
+      "Host type": "pig",
+      "Dose units": "PFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Cliver, 1981",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Enteroviruses:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 28,
+      "PathogenName": "Influenza",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.581,
+      "N50": 945000,
+      "Host type": "human",
+      "Dose units": "TCID50",
+      "Route": "intranasal",
+      "Response": "infection",
+      "Reference": "Murphy et al., 1984 & Murphy et al., 1985",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Influenza:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 29,
+      "PathogenName": "Lassa virus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "exponential",
+      "k": 2.95,
+      "Host type": "guinea pig",
+      "Dose units": "PFU",
+      "Route": "subcutaneous",
+      "Response": "death",
+      "Reference": "Jahrling et al., 1982",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Lassa_virus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 30,
+      "PathogenName": "Poliovirus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "exponential",
+      "k": 0.491,
+      "Host type": "human",
+      "Dose units": "PD50 (mouse paralytic doses)",
+      "Route": "oral (capsule)",
+      "Response": "alimentary infection",
+      "Reference": "Koprowski",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Poliovirus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 31,
+      "PathogenName": "Rhinovirus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.221,
+      "N50": 1.81,
+      "Host type": "human",
+      "Dose units": "TCID50 doses",
+      "Route": "intranasal",
+      "Response": "infection",
+      "Reference": "Hendley et al., 1972",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Rhinovirus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 32,
+      "PathogenName": "Rotavirus",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.253,
+      "N50": 6.17,
+      "Host type": "human",
+      "Dose units": "FFU",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Ward et al, 1986",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Rotavirus:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 33,
+      "PathogenName": "SARS",
+      "PathogenGroup": "Viruses",
+      "Best fit model*": "exponential",
+      "k": 0.0025,
+      "Host type": "mice hACE-2 and A/J",
+      "Dose units": "PFU",
+      "Route": "intranasal",
+      "Response": "death",
+      "Reference": "DeDiego et al., 2008 &  De Albuquerque et al., 2006",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/SARS:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 34,
+      "PathogenName": "Cryptosporidium parvum and Cryptosporidium hominis",
+      "PathogenGroup": "Protozoa",
+      "Best fit model*": "exponential",
+      "k": 0.0572,
+      "Host type": "human",
+      "Dose units": "oocysts",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Messner et al. 2001",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Cryptosporidium_parvum_and_Cryptosporidium_hominis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 35,
+      "PathogenName": "Endamoeba coli",
+      "PathogenGroup": "Protozoa",
+      "Best fit model*": "beta-Poisson",
+      "alpha": 0.101,
+      "N50": 341,
+      "Host type": "human",
+      "Dose units": "Cysts",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Rendtorff 1954",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Endamoeba_coli:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 36,
+      "PathogenName": "Giardia duodenalis",
+      "PathogenGroup": "Protozoa",
+      "Best fit model*": "exponential",
+      "k": 0.0199,
+      "Host type": "human",
+      "Dose units": "Cysts",
+      "Route": "oral",
+      "Response": "infection",
+      "Reference": "Rendtorff 1954",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Giardia_duodenalis:_Dose_Response_Models"
+    },
+    {
+      "PathogenID": 37,
+      "PathogenName": "Naegleria fowleri",
+      "PathogenGroup": "Protozoa",
+      "Best fit model*": "exponential",
+      "k": 3.42e-07,
+      "Host type": "mice",
+      "Dose units": "no of trophozoites",
+      "Route": "intravenous",
+      "Response": "death",
+      "Reference": "Adams et al. 1976 & Haggerty and John 1978",
+      "Link": "http://qmrawiki.canr.msu.edu/index.php/Naegleria_fowleri:_Dose_Response_Models"
+    }
+  ],
+  "health": [
+    {
+      "PathogenID": 1,
+      "PathogenName": "Bacillus anthracis"
+    },
+    {
+      "PathogenID": 2,
+      "PathogenName": "Burkholderia pseudomallei"
+    },
+    {
+      "PathogenID": 3,
+      "PathogenName": "Campylobacter jejuni and Campylobacter coli",
+      "infection_to_illness": 0.7,
+      "dalys_per_case": 0.0046
+    },
+    {
+      "PathogenID": 4,
+      "PathogenName": "Coxiella burnetii"
+    },
+    {
+      "PathogenID": 5,
+      "PathogenName": "Escherichia coli enterohemorrhagic (EHEC)"
+    },
+    {
+      "PathogenID": 6,
+      "PathogenName": "Escherichia coli"
+    },
+    {
+      "PathogenID": 7,
+      "PathogenName": "Francisella tularensis"
+    },
+    {
+      "PathogenID": 8,
+      "PathogenName": "Legionella pneumophila"
+    },
+    {
+      "PathogenID": 9,
+      "PathogenName": "Listeria monocytogenes (Death as response)"
+    },
+    {
+      "PathogenID": 10,
+      "PathogenName": "Listeria monocytogenes (Infection)"
+    },
+    {
+      "PathogenID": 11,
+      "PathogenName": "Listeria monocytogenes (Stillbirths)"
+    },
+    {
+      "PathogenID": 12,
+      "PathogenName": "Mycobacterium avium"
+    },
+    {
+      "PathogenID": 13,
+      "PathogenName": "Pseudomonas aeruginosa (Contact lens)"
+    },
+    {
+      "PathogenID": 14,
+      "PathogenName": "Pseudomonas aeruginosa (bacterimia)"
+    },
+    {
+      "PathogenID": 15,
+      "PathogenName": "Rickettsia rickettsi"
+    },
+    {
+      "PathogenID": 16,
+      "PathogenName": "Salmonella Typhi"
+    },
+    {
+      "PathogenID": 17,
+      "PathogenName": "Salmonella anatum"
+    },
+    {
+      "PathogenID": 18,
+      "PathogenName": "Salmonella meleagridis"
+    },
+    {
+      "PathogenID": 19,
+      "PathogenName": "Salmonella nontyphoid"
+    },
+    {
+      "PathogenID": 20,
+      "PathogenName": "Salmonella serotype newport"
+    },
+    {
+      "PathogenID": 21,
+      "PathogenName": "Shigella"
+    },
+    {
+      "PathogenID": 22,
+      "PathogenName": "Staphylococcus aureus"
+    },
+    {
+      "PathogenID": 23,
+      "PathogenName": "Vibrio cholerae"
+    },
+    {
+      "PathogenID": 24,
+      "PathogenName": "Yersinia pestis"
+    },
+    {
+      "PathogenID": 25,
+      "PathogenName": "Adenovirus"
+    },
+    {
+      "PathogenID": 26,
+      "PathogenName": "Echovirus"
+    },
+    {
+      "PathogenID": 27,
+      "PathogenName": "Enteroviruses"
+    },
+    {
+      "PathogenID": 28,
+      "PathogenName": "Influenza"
+    },
+    {
+      "PathogenID": 29,
+      "PathogenName": "Lassa virus"
+    },
+    {
+      "PathogenID": 30,
+      "PathogenName": "Poliovirus"
+    },
+    {
+      "PathogenID": 31,
+      "PathogenName": "Rhinovirus"
+    },
+    {
+      "PathogenID": 32,
+      "PathogenName": "Rotavirus",
+      "infection_to_illness": 0.03,
+      "dalys_per_case": 0.014
+    },
+    {
+      "PathogenID": 33,
+      "PathogenName": "SARS"
+    },
+    {
+      "PathogenID": 34,
+      "PathogenName": "Cryptosporidium parvum and Cryptosporidium hominis"
+    },
+    {
+      "PathogenID": 35,
+      "PathogenName": "Endamoeba coli"
+    },
+    {
+      "PathogenID": 36,
+      "PathogenName": "Giardia duodenalis",
+      "infection_to_illness": 0.3,
+      "dalys_per_case": 0.0015
+    },
+    {
+      "PathogenID": 37,
+      "PathogenName": "Naegleria fowleri"
+    }
+  ]
+}
