@@ -5,12 +5,12 @@
 \title{OpenCPU wrapper: import config from CSV and convert to JSON}
 \usage{
 opencpu_config_read(
-  confDir = system.file("extdata/configs/default", package = "kwb.qmra")
+  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra")
 )
 }
 \arguments{
 \item{confDir}{directory to read configuration files (Default:
-system.file('extdata/configs/default', package = 'kwb.qmra')")}
+system.file('extdata/configs/dummy', package = 'kwb.qmra')")}
 }
 \value{
 stores configuration in JSON format
