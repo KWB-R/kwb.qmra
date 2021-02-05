@@ -1,0 +1,4 @@
+"name","type","value","min","max","mode","mean","sd","meanlog","sdlog"
+"number_of_repeatings","value",1000,NA,NA,NA,NA,NA,NA,NA
+"number_of_exposures","value",100,NA,NA,NA,NA,NA,NA,NA
+"volume_perEvent","triangle",NA,0.001,0.01,0.005,NA,NA,NA,NA

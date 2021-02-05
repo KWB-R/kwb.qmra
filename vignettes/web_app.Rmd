@@ -68,8 +68,10 @@ might be too limited.
 
 ```{r setup, echo = FALSE}
 library(kwb.qmra)
-data(config_json)
-writeLines(text = config_json, "config.json")
+data(config_dummy_json)
+data(config_default_json)
+writeLines(text = config_dummy_json, "config_dummy.json")
+writeLines(text = config_default_json, "config_default.json")
 ```
 
 
@@ -79,8 +81,8 @@ cat("## Run risk simulatation
 You need to provide the input parameters 
 for `kwb.qmra::opencpu_simulate_risk()` 
 required in a JSON data structure as provided 
-in the example data [config.json](../config.json) (for details see: 
-`kwb.qmra::config_json`), which needs to be converted into an R list data
+in the example data [config_dummy.json](../config_dummy.json) (for details see: 
+`kwb.qmra::config_dummy_json`), which needs to be converted into an R list data
 structure (see below)"
 )
 ```
@@ -91,8 +93,8 @@ cat("## Run risk simulatation
 You need to provide the input parameters 
 for `kwb.qmra::opencpu_simulate_risk()` 
 required in a JSON data structure as provided 
-in the example data [config.json](config.json) (for details see: 
-`kwb.qmra::config_json`), which needs to be converted into an R list data
+in the example data [config_dummy.json](config_dummy.json) (for details see: 
+`kwb.qmra::config_dummy_json`), which needs to be converted into an R list data
 structure (see below)"
 )
 ```
@@ -101,7 +103,7 @@ structure (see below)"
 ```{r}
 
 ### Convert "config.json" to R list
-config <- jsonlite::fromJSON("config.json")
+config <- jsonlite::fromJSON("config_dummy.json")
 
 ### Optionally directly import a configuration from CSV files
 ### for details see: https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs
@@ -109,23 +111,31 @@ config <- jsonlite::fromJSON("config.json")
 # config <- kwb.qmra::config_read(confDir = config_dir)
 
 # Run risk simulation
-risk_json <- kwb.qmra::opencpu_simulate_risk(config)
+risk_dummy_json <- kwb.qmra::opencpu_simulate_risk(config)
 
 # Save simulation results in JSON format
-writeLines(text = risk_json, "risk.json")
+writeLines(text = risk_dummy_json, "risk_dummy.json")
 
 ```
 
 ```{r output_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
 cat("The structure of the optimisation results is stored in JSON format in the R object 
 `predictions` and also saved. For inspecting it please open the 
-[risk.json](../risk.json) file."
+[risk_dummy.json](../risk_dummy.json) file."
 )
 ```
 
 ```{r output_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
 cat("The structure of the optimisation results is stored in JSON format in the R object 
 `predictions` and also saved. For inspecting it please open the 
-[risk.json](risk.json) file."
+[risk_dummy.json](risk_dummy.json) file."
 )
+```
+
+```{r conclusion_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("Real calculations should be performed using the [config_default.json](../config_default.json) configuration developed
+by Christoph Sprenger (@chsprenger). However, due to the large size of the resulting 
+`risk_default.json` object (~ 275MB) this default example could not be hosted at 
+GitHub (maximum single file size <100MB). Thus this workflow was limited to the 
+`dummy` configuration only!")
 ```
