@@ -2,7 +2,7 @@
 % Please edit documentation in R/opencpu.R
 \name{opencpu_simulate_risk}
 \alias{opencpu_simulate_risk}
-\title{OpenCPU wrapper: Simulate risk using JSON format for config/results}
+\title{OpenCPU wrapper: run risk calculation and convert results to JSON format}
 \usage{
 opencpu_simulate_risk(
   config = config_read(),
@@ -28,14 +28,14 @@ JSON list with parameters of user defined random distribution and
 corresponding values
 }
 \description{
-OpenCPU wrapper: Simulate risk using JSON format for config/results
+OpenCPU wrapper: run risk calculation and convert results to JSON format
 }
 \examples{
 ### Example simulation run
 ## Read from JSON
 config_json <- kwb.qmra::opencpu_config_read()
 config <- jsonlite::fromJSON(config_json)
-## Optionally directly read from CS
+## Optionally directly import from CSVs
 # config <- kwb.qmra::config_read()
 risk_json <- kwb.qmra::opencpu_simulate_risk(config)
 writeLines(text = risk_json, "risk.json")

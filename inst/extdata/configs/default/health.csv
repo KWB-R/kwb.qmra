@@ -1,0 +1,38 @@
+"PathogenID","PathogenName","infection_to_illness","dalys_per_case","ReferenceNameInfection","ReferenceNameDalys"
+1,"Bacillus anthracis",NA,NA,NA,NA
+2,"Burkholderia pseudomallei",NA,NA,NA,NA
+3,"Campylobacter jejuni and Campylobacter coli",NA,NA,NA,NA
+4,"Coxiella burnetii",NA,NA,NA,NA
+5,"Escherichia coli enterohemorrhagic (EHEC)",NA,NA,NA,NA
+6,"Escherichia coli",0.25,0.0547,"Bartak et al. (2014) Application of risk-based assessment and management to riverbank filtration sites in India","Havelaar and Melse (2003) Table 2.7 Quantifying public health risk in the WHO Guidelines - A burden of disease approach"
+7,"Francisella tularensis",NA,NA,NA,NA
+8,"Legionella pneumophila",NA,NA,NA,NA
+9,"Listeria monocytogenes (Death as response)",NA,NA,NA,NA
+10,"Listeria monocytogenes (Infection)",NA,NA,NA,NA
+11,"Listeria monocytogenes (Stillbirths)",NA,NA,NA,NA
+12,"Mycobacterium avium",NA,NA,NA,NA
+13,"Pseudomonas aeruginosa (Contact lens)",NA,NA,NA,NA
+14,"Pseudomonas aeruginosa (bacterimia)",NA,NA,NA,NA
+15,"Rickettsia rickettsi",NA,NA,NA,NA
+16,"Salmonella Typhi",NA,NA,NA,NA
+17,"Salmonella anatum",NA,NA,NA,NA
+18,"Salmonella meleagridis",NA,NA,NA,NA
+19,"Salmonella nontyphoid",NA,NA,NA,NA
+20,"Salmonella serotype newport",NA,NA,NA,NA
+21,"Shigella",NA,NA,NA,NA
+22,"Staphylococcus aureus",NA,NA,NA,NA
+23,"Vibrio cholerae",NA,NA,NA,NA
+24,"Yersinia pestis",NA,NA,NA,NA
+25,"Adenovirus",NA,NA,NA,NA
+26,"Echovirus",NA,NA,NA,NA
+27,"Enteroviruses",NA,NA,NA,NA
+28,"Influenza",NA,NA,NA,NA
+29,"Lassa virus",NA,NA,NA,NA
+30,"Poliovirus",NA,NA,NA,NA
+31,"Rhinovirus",NA,NA,NA,NA
+32,"Rotavirus",0.5,0.014,"WHO (2011): Guidelines for drinking-water quality. World Health Organisation, Table 7.4","http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155"
+33,"SARS",NA,NA,NA,NA
+34,"Cryptosporidium parvum and Cryptosporidium hominis",NA,NA
+35,"Endamoeba coli",NA,NA,NA,NA
+36,"Giardia duodenalis",0.7,0.0015,"WHO (2011): Guidelines for drinking-water quality. World Health Organisation, Table 7.4","http://apps.who.int/iris/bitstream/10665/44584/1/9789241548151_eng.pdf#page=155"
+37,"Naegleria fowleri",NA,NA,NA,NA

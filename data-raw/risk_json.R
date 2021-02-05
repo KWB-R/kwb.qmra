@@ -1,6 +1,22 @@
 ## code to prepare `risk_json` dataset goes here
 
-config_json <- kwb.qmra::opencpu_config_read()
-risk_json <- kwb.qmra::opencpu_simulate_risk(config_json)
+config_dummy_json <- kwb.qmra::opencpu_config_read(
+  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra")
+)
+config_json <- jsonlite::fromJSON(config_dummy_json)
 
-usethis::use_data(risk_json, overwrite = TRUE)
+risk_dummy_json <- kwb.qmra::opencpu_simulate_risk(config_json)
+
+usethis::use_data(risk_dummy_json, overwrite = TRUE)
+
+
+### Unused (resulting "risk_default.json" too big for Github -> ~276MB size!!!)
+
+# config_default_json <- kwb.qmra::opencpu_config_read(
+#   confDir = system.file("extdata/configs/default", package = "kwb.qmra")
+# )
+# config_default <- jsonlite::fromJSON(config_default_json)
+# 
+# risk_default_json <- kwb.qmra::opencpu_simulate_risk(config_default)
+# 
+# usethis::use_data(risk_default_json, overwrite = TRUE)

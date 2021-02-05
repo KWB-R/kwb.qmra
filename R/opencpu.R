@@ -1,7 +1,7 @@
 #' OpenCPU wrapper: import config from CSV and convert to JSON
 #' 
 #' @param confDir directory to read configuration files (Default:  
-#' system.file('extdata/configs/dummy', package = 'kwb.qmra')")
+#' system.file('extdata/configs/default', package = 'kwb.qmra')")
 #' @return stores configuration in JSON format
 #' @export
 #' @examples 
@@ -10,7 +10,7 @@
 #' head(config_json)
 #' 
 opencpu_config_read <- function(
-  confDir = system.file("extdata/configs/dummy", package = "kwb.qmra")
+  confDir = system.file("extdata/configs/default", package = "kwb.qmra")
 )
 {
   
