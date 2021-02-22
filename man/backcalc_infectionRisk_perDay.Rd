@@ -4,20 +4,22 @@
 \alias{backcalc_infectionRisk_perDay}
 \title{Backcalculate risk: infection (using optimise() function)}
 \usage{
-backcalc_infectionRisk_perDay(target_infectionRisk_perYear = 1/10000,
-  exposures_daysPerYear = 1:365)
+backcalc_infectionRisk_perDay(
+  target_infectionRisk_perYear = 1/10000,
+  exposures_daysPerYear = 1:365
+)
 }
 \arguments{
-\item{target_infectionRisk_perYear}{target infection risk per per year (default: 
-1/10000)}
+\item{target_infectionRisk_perYear}{target infection risk per per year
+(default: 1/10000)}
 
 \item{exposures_daysPerYear}{exposure days per year (default: 1 to 365)}
 }
 \value{
-acceptable daily infection risk for given exposures per year and target
-infection risk per year
+acceptable daily infection risk for given exposures per year and
+  target infection risk per year
 }
 \description{
-Based on exposure days per year and target infection risk per year 
-the acceptable daily infection risk is backcalculated
+Based on exposure days per year and target infection risk per year the
+acceptable daily infection risk is backcalculated
 }

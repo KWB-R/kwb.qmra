@@ -4,16 +4,23 @@
 \alias{simulate_inflow}
 \title{Simulate: inflow}
 \usage{
-simulate_inflow(config, debug = TRUE)
+simulate_inflow(config, debug = TRUE, lean = FALSE)
 }
 \arguments{
 \item{config}{as retrieved by config_read()}
 
 \item{debug}{print debug information (default: TRUE)}
+
+\item{lean}{if \code{TRUE}, only the "events" are returned (in a reduced
+version, i.e. without column \code{PathogenName} and with all ID columns
+being of class \code{integer}), otherwise a list with the events in element
+\code{events}" and the corresponding parameters in element \code{paras}.
+The default is \code{FALSE}, i.e. events and parameters are returned in a
+list.}
 }
 \value{
-list with parameters of user defined random distribution and 
-corresponding values
+list with parameters of user defined random distribution and
+  corresponding values
 }
 \description{
 Simulate: inflow

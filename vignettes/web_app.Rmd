@@ -4,10 +4,21 @@ author: "Michael Rustler"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Technical workflow: usage}
+  %\VignetteIndexEntry{Web-app development with OpenCpu}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+is_ghactions <- identical(Sys.getenv("CI"), "true")
+
+```
+
+## Background
 
 For developing a web application, which is based on the R package `kwb.qmra` 
 the [OpenCPU API](https://www.opencpu.org/api.html) can be used. It has a lot of 
@@ -54,3 +65,78 @@ More advanced web-apps can be easily developed by using the [OpenCPU API](https:
 but will most probably need an own backend server which hosts the OpenCPU 
 server, because the [publically freely available OpenCPU server](https://www.opencpu.org/cloud.html) 
 might be too limited.
+
+```{r setup, echo = FALSE}
+library(kwb.qmra)
+data(config_dummy_json)
+data(config_default_json)
+writeLines(text = config_dummy_json, "config_dummy.json")
+writeLines(text = config_default_json, "config_default.json")
+```
+
+
+```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("## Run risk simulatation
+
+You need to provide the input parameters 
+for `kwb.qmra::opencpu_simulate_risk()` 
+required in a JSON data structure as provided 
+in the example data [config_dummy.json](../config_dummy.json) (for details see: 
+`kwb.qmra::config_dummy_json`), which needs to be converted into an R list data
+structure (see below)"
+)
+```
+
+```{r input_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
+cat("## Run risk simulatation
+
+You need to provide the input parameters 
+for `kwb.qmra::opencpu_simulate_risk()` 
+required in a JSON data structure as provided 
+in the example data [config_dummy.json](config_dummy.json) (for details see: 
+`kwb.qmra::config_dummy_json`), which needs to be converted into an R list data
+structure (see below)"
+)
+```
+
+
+```{r}
+
+### Convert "config.json" to R list
+config <- jsonlite::fromJSON("config_dummy.json")
+
+### Optionally directly import a configuration from CSV files
+### for details see: https://github.com/KWB-R/kwb.qmra/tree/master/inst/extdata/configs
+# config_dir <- system.file("extdata/configs/dummy", package = "kwb.qmra")
+# config <- kwb.qmra::config_read(confDir = config_dir)
+
+# Run risk simulation
+risk_dummy <- kwb.qmra::opencpu_simulate_risk(config)
+risk_dummy_json <- jsonlite::toJSON(risk_dummy, pretty = TRUE)
+
+# Save simulation results in JSON format
+writeLines(text = risk_dummy_json, "risk_dummy.json")
+
+```
+
+```{r output_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The structure of the optimisation results is stored in JSON format in the R object 
+`predictions` and also saved. For inspecting it please open the 
+[risk_dummy.json](../risk_dummy.json) file."
+)
+```
+
+```{r output_nonghactions, echo=FALSE, results='asis', eval=!is_ghactions}
+cat("The structure of the optimisation results is stored in JSON format in the R object 
+`predictions` and also saved. For inspecting it please open the 
+[risk_dummy.json](risk_dummy.json) file."
+)
+```
+
+```{r conclusion_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("Real calculations should be performed using the [config_default.json](../config_default.json) configuration developed
+by Christoph Sprenger (@chsprenger). However, due to the large size of the resulting 
+`risk_default.json` object (~ 275MB) this default example could not be hosted at 
+GitHub (maximum single file size <100MB). Thus this workflow was limited to the 
+`dummy` configuration only!")
+```

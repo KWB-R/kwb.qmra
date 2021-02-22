@@ -4,8 +4,12 @@
 \alias{generate_random_values}
 \title{Create random distribution based on configuration file}
 \usage{
-generate_random_values(config, number_of_repeatings = 1,
-  number_of_events, debug = TRUE)
+generate_random_values(
+  config,
+  number_of_repeatings = 1,
+  number_of_events,
+  debug = TRUE
+)
 }
 \arguments{
 \item{config}{as retrieved by config_read()}

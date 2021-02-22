@@ -4,17 +4,20 @@
 \alias{run_app}
 \title{Run shiny app}
 \usage{
-run_app(appDir = system.file("extdata/shiny", package = "kwb.qmra"),
-  launch.browser = TRUE, ...)
+run_app(
+  appDir = system.file("extdata/shiny", package = "kwb.qmra"),
+  launch.browser = TRUE,
+  ...
+)
 }
 \arguments{
-\item{appDir}{directory of shiny app (default: system.file("extdata/shiny", 
+\item{appDir}{directory of shiny app (default: system.file("extdata/shiny",
 package = "kwb.qmra"))}
 
-\item{launch.browser}{If true, the system's default web browser will be launched 
-automatically after the app is started. Defaults to true in interactive sessions 
-only. This value of this parameter can also be a function to call with the 
-application's URL.}
+\item{launch.browser}{If true, the system's default web browser will be
+launched automatically after the app is started. Defaults to true in
+interactive sessions only. This value of this parameter can also be a
+function to call with the application's URL.}
 
 \item{...}{additional parameters passed to shiny::runApp}
 }

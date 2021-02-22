@@ -4,18 +4,22 @@
 \alias{dr.betapoisson}
 \title{Dose-response model: beta-poisson}
 \usage{
-dr.betapoisson(dose = sfsmisc::lseq(from = 1, to = 10^10, length = 1000),
-  alpha = 0.328, N50 = 5430)
+dr.betapoisson(
+  dose = sfsmisc::lseq(from = 1, to = 10^10, length = 1000),
+  alpha = 0.328,
+  N50 = 5430
+)
 }
 \arguments{
-\item{dose}{vector of dose data (default: sfsmisc::lseq(from=0.1, to=10^10, length=1000))}
+\item{dose}{vector of dose data (default: 
+\code{sfsmisc::lseq(from = 0.1, to = 10^10, length = 1000)})}
 
 \item{alpha}{alpha (default: 3.28E-01)}
 
 \item{N50}{N50 (default: 5.43E+03)}
 }
 \value{
-tbl_df
+tibble
 }
 \description{
 Dose-response model: beta-poisson

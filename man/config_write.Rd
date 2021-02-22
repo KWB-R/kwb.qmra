@@ -4,8 +4,7 @@
 \alias{config_write}
 \title{Config: create configuration}
 \usage{
-config_write(config, confName = "dummy", confDir = tempdir(),
-  zipFiles = TRUE)
+config_write(config, confName = "dummy", confDir = tempdir(), zipFiles = TRUE)
 }
 \arguments{
 \item{config}{a configuration as retrieved by config_read()}

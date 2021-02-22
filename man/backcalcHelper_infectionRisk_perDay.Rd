@@ -4,20 +4,24 @@
 \alias{backcalcHelper_infectionRisk_perDay}
 \title{Backcalculate risk: infection (helper function)}
 \usage{
-backcalcHelper_infectionRisk_perDay(infectionRisk_perDay,
-  exposure_daysPerYear, target_infectionRisk_perYear = 1/10000)
+backcalcHelper_infectionRisk_perDay(
+  infectionRisk_perDay,
+  exposure_daysPerYear,
+  target_infectionRisk_perYear = 1/10000
+)
 }
 \arguments{
-\item{infectionRisk_perDay}{no default. will be set by function backcalc_infectionRisk_perDay()}
+\item{infectionRisk_perDay}{no default. will be set by function
+backcalc_infectionRisk_perDay()}
 
 \item{exposure_daysPerYear}{exposure days per year}
 
-\item{target_infectionRisk_perYear}{target infection risk per per year (default: 
-1/10000)}
+\item{target_infectionRisk_perYear}{target infection risk per per year
+(default: 1/10000)}
 }
 \value{
-absolute offset between "target_infectionRisk_perYear" and 
-"infectionRisk_perYear"
+absolute offset between "target_infectionRisk_perYear" and
+  "infectionRisk_perYear"
 }
 \description{
 Backcalculate risk: infection (helper function)

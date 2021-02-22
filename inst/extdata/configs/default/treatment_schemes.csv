@@ -1,0 +1,6 @@
+"TreatmentSchemeID","TreatmentSchemeName","TreatmentID","TreatmentName"
+1,"default",16,"Primary treatment"
+1,"default",17,"Secondary treatment"
+1,"default",13,"Chlorine dioxide"
+1,"default",18,"Soil-Aquifer passage"
+1,"default",24,"Filtration"

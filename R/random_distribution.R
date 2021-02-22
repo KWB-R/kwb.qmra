@@ -14,37 +14,25 @@
 #'   min = 1,
 #'   max = 10
 #' )
-distribution_repeater <- function(number_of_repeatings = 10,
-                                  number_of_events = 365,
-                                  func,
-                                  ...) {
-  repl_tmp <- vapply(seq_len(number_of_repeatings),
-    function(x) {
-      func(
-        n = number_of_events,
-        ...
-      )
-    },
+distribution_repeater <- function(
+  number_of_repeatings = 10, number_of_events = 365, func, ...
+)
+{
+  seq_repeatings <- seq_len(number_of_repeatings)
+
+  repl <- vapply(
+    seq_repeatings, 
+    function(i) func(n = number_of_events, ...), 
     FUN.VALUE = numeric(number_of_events)
   )
 
-  if (number_of_events == 1) repl_tmp <- t(repl_tmp)
-
-  repl <- repl_tmp %>%
+  if (number_of_events == 1) t(repl) else repl %>%
     as.data.frame() %>%
-    cbind(eventID = seq_len(number_of_events))
-  colnames(repl) <- c(seq_len(number_of_repeatings), "eventID")
-
-  
-  repl_list <- tidyr::gather(
-    data = repl,
-    key =  "repeatID",
-    value = "values",
-    -.data$eventID
-  ) %>%  
-    dplyr::mutate(repeatID = as.integer(.data$repeatID))
-
-  return(repl_list[, c("repeatID", "eventID", "values")])
+    cbind(eventID = seq_len(number_of_events)) %>%
+    stats::setNames(c(seq_repeatings, "eventID")) %>%
+    tidyr::gather(key = "repeatID", value = "values", -.data$eventID) %>%
+    dplyr::mutate(repeatID = as.integer(.data$repeatID)) %>%
+    dplyr::select(.data$repeatID, .data$eventID, .data$values)
 }
 
 #' Default Min
@@ -60,15 +48,13 @@ distribution_repeater <- function(number_of_repeatings = 10,
 #' default_min(org_min = 0, org_max = 100, new_min = 0.01, f = log10)
 #' default_min(org_min = 2, org_max = 100, new_min = 0.01, f = log)
 #' default_min(org_min = 0, org_max = 100, new_min = 0.01, f = log)
-default_min <- function(org_min, org_max, new_min, f = c) {
-  ifelse(org_min > 0 && org_max > 1, 
-         f(org_min), 
-         ifelse(org_min == 0 && org_max < 1,
-                f(0.01 * org_max), 
-                f(new_min)
-                )
-         )
-  
+default_min <- function(org_min, org_max, new_min, f = c)
+{
+  ifelse(
+    org_min > 0 && org_max > 1, 
+    f(org_min), 
+    ifelse(org_min == 0 && org_max < 1, f(0.01 * org_max), f(new_min))
+  )
 }
 
 #' Default Max
@@ -83,12 +69,10 @@ default_min <- function(org_min, org_max, new_min, f = c) {
 #' default_max(org_max = 0, new_max = 0.01, f = log10)
 #' default_max(org_max = 2, new_max = 0.01, f = log)
 #' default_max(org_max = 0, new_max = 0.01, f = log)
-default_max <- function(org_max, new_max, f = c) {
-
-    ifelse(org_max > 0, f(org_max), f(new_max))
-  
+default_max <- function(org_max, new_max, f = c)
+{
+  ifelse(org_max > 0, f(org_max), f(new_max))
 }
-
 
 #' Helper function: get percentile 
 #' 
@@ -99,10 +83,9 @@ default_max <- function(org_max, new_max, f = c) {
 #' get_percentile(0.9)
 #' get_percentile(0.95)
 #' 
-get_percentile <- function(percent_within_minmax = 0.9) {
-  
-  qnorm(percent_within_minmax + (1 - percent_within_minmax)/2) 
-  
+get_percentile <- function(percent_within_minmax = 0.9)
+{
+  qnorm(percent_within_minmax + (1 - percent_within_minmax) / 2)
 }
 
 #' Create random distribution
@@ -155,10 +138,8 @@ get_percentile <- function(percent_within_minmax = 0.9) {
 #' min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
 #' \code{\link{get_percentile}} 
 #' 
-#' 
-
-
-create_random_distribution <- function(type = "uniform",
+create_random_distribution <- function(
+  type = "uniform",
   number_of_repeatings = 1,
   number_of_events = 365,
   value = 10,
@@ -176,225 +157,130 @@ create_random_distribution <- function(type = "uniform",
   sdlog = abs(sd(c(default_min(min, max, min_zero, f = log), 
                    default_max(max, 10 * min_zero, f = log)))),
   mode = (default_min(min, max, min_zero) + default_max(max, 10 * min_zero)) / 2,
-  debug = TRUE) {
+  debug = TRUE
+)
+{
+  # Inline helper functions 
   
-    if (type == "value") {
-    if (debug) {
-      cat(sprintf(
-        "Replicate %d times constant value %f\n",
-        number_of_events * number_of_repeatings,
-        value
-      ))
-    }
+  # Print a message if debug is TRUE
+  debug_formatted <- function(fmt, ...) if (debug) cat(sprintf(fmt, ...))
 
-    values <- rep(value,
-      times = number_of_events * number_of_repeatings
+  # Consistent message text
+  distribution_text <- function(type_text, ...) paste0(
+    "Create ", number_of_repeatings, " random distribution(s): ",
+    type_text, " (n: ", number_of_events, ..., ")\n"
+  )
+
+  # Creation of paramter data frame
+  paras_data_frame <- function(...) data.frame(
+    type = type, 
+    repeatings = number_of_repeatings,
+    events = number_of_events,
+    ...
+  )
+  
+  # Creation of event data frame
+  event_data_frame <- function(...) distribution_repeater(
+    number_of_repeatings = number_of_repeatings,
+    number_of_events = number_of_events,
+    ...
+  )
+  
+  # Product of numbers, to be reused
+  number_product <- number_of_events * number_of_repeatings
+  
+  if (type == "value") {
+    
+    debug_formatted(
+      "Replicate %d times constant value %f\n", number_product, value
     )
 
     events <- data.frame(
-      repeatID = lapply(
-        1:number_of_repeatings,
-        function(x) {
-          rep(x, number_of_events)
-        }
-      ) %>%
-        unlist(),
-      eventID = rep(1:number_of_events, number_of_repeatings),
-      values = rep(value, number_of_events * number_of_repeatings)
+      repeatID = unlist(lapply(
+        seq_len(number_of_repeatings), rep, number_of_events
+      )),
+      eventID = rep(seq_len(number_of_events), number_of_repeatings),
+      values = rep(value, number_product)
     )
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      value = value
-    )
-  }
-  else if (type == "uniform") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): uniform (with parameters n: %d, min: %f, max: %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        min,
-        max
-      ))
-    }
-
-
-
-
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = runif,
-      min = min,
-      max = max
-    )
-
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      min = min,
-      max = max
-    )
-  }
-  else if (type == "log10_uniform") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): 10^runif(with parameters n: %d, min: %f, max: %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        log10_min,
-        log10_max
-      ))
-    }
-
-
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = runif,
-      min = log10_min,
-      max = log10_max
-    ) %>% 
-      dplyr::mutate(values = 10^.data$values)
-
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      min = log10_min,
-      max = log10_max
-    )
-  }
-  else if (type == "norm") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): norm (with parameters n: %d, mean: %f, sd: %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        mean,
-        sdev
-      ))
-    }
-
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = rnorm,
-      mean = mean,
-      sd = sdev
-    )
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      mean = mean,
-      sd = sdev
-    )
-  }
-
-  else if (type == "log10_norm") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): 10^rnorm(with parameters n: %d, mean: %f, sd: %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        log10_mean,
-        log10_sdev
-      ))
-    }
     
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = rnorm,
-      mean = log10_mean,
-      sd = log10_sdev
+    paras <- paras_data_frame(value = value)
+    
+  } else if (type == "uniform") {
+    
+    debug_formatted(
+      distribution_text("uniform", ", min: %f, max: %f"), 
+      min, max
+    )
+    
+    events <- event_data_frame(func = runif, min = min, max = max)
+    paras <- paras_data_frame(min = min, max = max)
+    
+  } else if (type == "log10_uniform") {
+    
+    debug_formatted(
+      distribution_text("10^runif", ", min: %f, max: %f"), 
+      log10_min, log10_max
+    )
+
+    events <- event_data_frame(
+      func = runif, min = log10_min, max = log10_max
     ) %>% 
       dplyr::mutate(values = 10^.data$values)
     
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      mean = log10_mean,
-      sd = log10_sdev
+    paras <- paras_data_frame(min = log10_min, max = log10_max)
+    
+  } else if (type == "norm") {
+    
+    debug_formatted(
+      distribution_text("norm", ", mean: %f, sd: %f"), mean, sdev
     )
-  }
-
-  else if (type == "lognorm") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): lognorm (with parameters n: %d, meanlog: %f, sdlog: %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        meanlog,
-        sdlog
-      ))
-    }
-
-
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = rlnorm,
-      meanlog = meanlog,
-      sdlog = sdlog
+    
+    events <- event_data_frame(func = rnorm, mean = mean, sd = sdev)
+    paras <- paras_data_frame(mean = mean, sd = sdev)
+    
+  } else if (type == "log10_norm") {
+    
+    debug_formatted(
+      distribution_text("10^rnorm ", ", mean: %f, sd: %f"),
+      log10_mean, log10_sdev
     )
-
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      meanlog = meanlog,
-      sdlog = sdlog
+    
+    events <- event_data_frame(
+      func = rnorm, mean = log10_mean, sd = log10_sdev
+    ) %>% 
+      dplyr::mutate(values = 10^.data$values)
+    
+    paras <- paras_data_frame(mean = log10_mean, sd = log10_sdev)
+    
+  } else if (type == "lognorm") {
+    
+    debug_formatted(
+      distribution_text("lognorm", ", meanlog: %f, sdlog: %f"), 
+      meanlog, sdlog
     )
+    
+    events <- event_data_frame(func = rlnorm, meanlog = meanlog, sdlog = sdlog)
+    paras <- paras_data_frame(meanlog = meanlog, sdlog = sdlog)
+    
   } else if (type == "triangle") {
-    if (debug) {
-      cat(sprintf(
-        "Create %d random distribution(s): triangle (with parameters n: %d, min: %f, max: %f, mode = %f)\n",
-        number_of_repeatings,
-        number_of_events,
-        min,
-        max,
-        mode
-      ))
-    }
-
-
-    events <- distribution_repeater(
-      number_of_repeatings = number_of_repeatings,
-      number_of_events = number_of_events,
-      func = EnvStats::rtri,
-      min = min,
-      max = max,
-      mode = mode
+    
+    debug_formatted(
+      distribution_text("triangle", ", min: %f, max: %f, mode = %f"),
+      min, max, mode
     )
-
-    paras <- data.frame(
-      repeatings = number_of_repeatings,
-      events = number_of_events,
-      min = min,
-      max = max,
-      mode = mode
+    
+    events <- event_data_frame(
+      func = EnvStats::rtri, min = min, max = max, mode = mode
     )
+    paras <- paras_data_frame(min = min, max = max, mode = mode)
+    
   } else {
-    stop(sprintf("Your value for parameter 'type' = %s is not an implemented distribution.
-  Valid values of 'type' are: 
-  'uniform', 'triangle', 'norm', 'lognorm', 'log10_uniform' or 'log10_norm'", type))
+    
+    stop(sprintf(get_stop_text("no_such_distribution"), type), call. = FALSE)
   }
 
-  paras <- data.frame(type = type, paras)
-
-  dist <- list(
-    events = events,
-    paras = paras
-  )
-
-  return(dist)
+  list(events = events, paras = paras)
 }
-
 
 #' Create random distribution based on configuration file
 #' @param config as retrieved by config_read()
@@ -405,36 +291,41 @@ create_random_distribution <- function(type = "uniform",
 #' @return list random distributions based on configuration file
 #' @export
 
-generate_random_values <- function(config,
-                                   number_of_repeatings = 1,
-                                   number_of_events,
-                                   debug = TRUE) {
-  #### Set defaults based on min/max for function create_random_distribution() if
-  #### values are missing
+generate_random_values <- function(
+  config, number_of_repeatings = 1, number_of_events, debug = TRUE
+) 
+{
+  default <- function(x, default) {
+    if (is.na(x)) default else x
+  }
+  
+  # Set defaults based on min/max for function create_random_distribution() if
+  # values are missing
   if (config$type == "norm") {
-    if (is.na(config$mean)) config$mean <- (config$max + config$min) / 2
-    if (is.na(config$sd)) config$sd <- sd(c(config$mean, config$max)) / 2
+    config$mean <- default(config$mean, (config$max + config$min) / 2)
+    config$sd <- default(config$sd, sd(c(config$mean, config$max)) / 2)
   }
 
   if (config$type == "lnorm") {
-    if (is.na(config$meanlog)) config$meanlog <- mean(log((config$min + config$max) / 2))
-    if (is.na(config$sdlog)) config$sdlog <- sd(log((c(config$min, config$max))))
+    config$meanlog <- default(config$meanlog, log((config$min + config$max) / 2))
+    config$sdlog <- default(config$sdlog, sd(log((c(config$min, config$max)))))
   }
-
 
   if (config$type == "triangle") {
     if (is.na(config$mode)) {
       if (config$min == config$max) {
-        cat("Distribution set from 'triangle' to 'uniform' because 'min' equals 'max'\n")
+        cat(
+          "Distribution set from 'triangle' to 'uniform' because 'min'", 
+          "equals 'max'\n"
+        )
         config$type <- "uniform"
       } else {
         config$mode <- (config$min + config$max) / 2
       }
     }
   }
-
-
-  random <- create_random_distribution(
+  
+  create_random_distribution(
     type = config$type,
     number_of_repeatings = number_of_repeatings,
     number_of_events = number_of_events,
@@ -448,8 +339,4 @@ generate_random_values <- function(config,
     mode = config$mode,
     debug = debug
   )
-
-
-
-  return(random)
 }

@@ -4,7 +4,7 @@
 \alias{simulate_treatment}
 \title{Simulate: treatment}
 \usage{
-simulate_treatment(config, wide = FALSE, debug = TRUE)
+simulate_treatment(config, wide = FALSE, debug = TRUE, lean = FALSE)
 }
 \arguments{
 \item{config}{as retrieved by config_read()}
@@ -13,6 +13,8 @@ simulate_treatment(config, wide = FALSE, debug = TRUE)
 FALSE)}
 
 \item{debug}{print debug information (default: TRUE)}
+
+\item{lean}{lean (default: FALSE)}
 }
 \value{
 list with parameters of user defined random distribution and 
