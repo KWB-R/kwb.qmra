@@ -283,7 +283,7 @@ corresponding values</p>
 #&gt; <span class='message'>)</span></div><div class='input'><span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>config_json</span><span class='op'>)</span>
 <span class='co'>## Optionally directly import from CSVs</span>
 <span class='co'># config &lt;- kwb.qmra::config_read()</span>
-<span class='va'>risk_json</span> <span class='op'>&lt;-</span> <span class='fu'>kwb.qmra</span><span class='fu'>::</span><span class='fu'>opencpu_simulate_risk</span><span class='op'>(</span><span class='va'>config</span><span class='op'>)</span>
+<span class='va'>risk</span> <span class='op'>&lt;-</span> <span class='fu'>kwb.qmra</span><span class='fu'>::</span><span class='fu'>opencpu_simulate_risk</span><span class='op'>(</span><span class='va'>config</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; # STEP 0: BASIC CONFIGURATION
 #&gt; 
@@ -325,7 +325,8 @@ corresponding values</p>
 #&gt; 
 #&gt; 
 #&gt; # STEP 5: HEALTH
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>risk_json</span>, <span class='st'>"risk.json"</span><span class='op'>)</span>
+#&gt; </div><div class='input'><span class='va'>risk_json</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>toJSON</a></span><span class='op'>(</span><span class='va'>risk</span>, pretty <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>risk_json</span>, <span class='st'>"risk.json"</span><span class='op'>)</span>
 
 </div></span></pre>
   </div>

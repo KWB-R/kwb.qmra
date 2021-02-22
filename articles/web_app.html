@@ -153,7 +153,7 @@
 <span class="co"># config &lt;- kwb.qmra::config_read(confDir = config_dir)</span>
 
 <span class="co"># Run risk simulation</span>
-<span class="va">risk_dummy_json</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/opencpu_simulate_risk.html">opencpu_simulate_risk</a></span><span class="op">(</span><span class="va">config</span><span class="op">)</span>
+<span class="va">risk_dummy</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/opencpu_simulate_risk.html">opencpu_simulate_risk</a></span><span class="op">(</span><span class="va">config</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # STEP 0: BASIC CONFIGURATION</span>
 <span class="co">#&gt; </span>
@@ -204,6 +204,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # STEP 5: HEALTH</span>
+<span class="va">risk_dummy_json</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">toJSON</a></span><span class="op">(</span><span class="va">risk_dummy</span>, pretty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Save simulation results in JSON format</span>
 <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">risk_dummy_json</span>, <span class="st">"risk_dummy.json"</span><span class="op">)</span></code></pre></div>
