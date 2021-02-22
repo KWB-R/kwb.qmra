@@ -111,7 +111,8 @@ config <- jsonlite::fromJSON("config_dummy.json")
 # config <- kwb.qmra::config_read(confDir = config_dir)
 
 # Run risk simulation
-risk_dummy_json <- kwb.qmra::opencpu_simulate_risk(config)
+risk_dummy <- kwb.qmra::opencpu_simulate_risk(config)
+risk_dummy_json <- jsonlite::toJSON(risk_dummy, pretty = TRUE)
 
 # Save simulation results in JSON format
 writeLines(text = risk_dummy_json, "risk_dummy.json")

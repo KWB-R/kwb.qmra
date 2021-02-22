@@ -37,7 +37,8 @@ config_json <- kwb.qmra::opencpu_config_read()
 config <- jsonlite::fromJSON(config_json)
 ## Optionally directly import from CSVs
 # config <- kwb.qmra::config_read()
-risk_json <- kwb.qmra::opencpu_simulate_risk(config)
+risk <- kwb.qmra::opencpu_simulate_risk(config)
+risk_json <- jsonlite::toJSON(risk, pretty = TRUE)
 writeLines(text = risk_json, "risk.json")
 
 }
