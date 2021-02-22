@@ -78,6 +78,12 @@ reference:
       - simulate_treatment
       - simulate_exposure
 
+  - title: Web-apps
+    desc: >
+      Functions for developing web-apps with [OpenCPU](https://opencpu.org)
+    contents: 
+      - starts_with("opencpu_")
+      
   - title: Visualise results
     desc: >
       Functions for plotting QMRA results
