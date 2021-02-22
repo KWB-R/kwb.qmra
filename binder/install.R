@@ -6,4 +6,4 @@ cran_pkgs <- c("assertthat", "cli", "colorspace", "crayon", "digest",
 "sfsmisc", "shiny", "tibble", "tidyr", "tidyselect", "utf8", "vctrs", 
 "withr", "xtable")
 install.packages(cran_pkgs)
-remotes::install_github("kwb-r/kwb.qmra@dev")
+remotes::install_github("kwb-r/kwb.qmra")

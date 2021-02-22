@@ -17,8 +17,8 @@ kwb.qmra::opencpu_simulate_risk) and example JSON datasets based on dummy config
 
 # [kwb.qmra 0.2.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.2.0)
 
-
-For current progress on this release see [Milestone: v0.2.0](https://github.com/KWB-R/kwb.qmra/milestone/5) 
+Improvements of the R package (originally developed within the EU project [DEMOWARE](http://www.demoware.eu/en))
+made within the EU project [AquaNES](http://www.aquanes-h2020.eu): 
 
 * Test: add vignette [test_random_distributions_inflow.Rmd](https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/test_random_distributions_inflow.Rmd) for testing random distrution functions with inflow data (using data stored in 
 [qmra.db](https://github.com/kwb-r/qmra.db) R package) ([#21](https://github.com/KWB-R/kwb.qmra/issues/21), 
@@ -38,6 +38,8 @@ For current progress on this release see [Milestone: v0.2.0](https://github.com/
 * `create_random_distribution()` add  **loguniform** distribution together with new vignette `usage_loguniform.Rmd` ([#23](https://github.com/KWB-R/kwb.qmra/issues/23))
 
 * bugfix: `distribution_repeater()`, works now if number_of_events == 1 ([#22](https://github.com/KWB-R/kwb.qmra/issues/22))
+
+For more details of the changes see also [Milestone: v0.2.0](https://github.com/KWB-R/kwb.qmra/milestone/5) 
 
 # [kwb.qmra 0.1.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v.0.1.1)
 
