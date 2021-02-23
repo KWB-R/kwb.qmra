@@ -22,6 +22,10 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install system dependencies
+        if: runner.os == 'MacOS'
+        run: brew install harfbuzz fribidi
+        
       - name: Query dependencies
         run: |
           install.packages('remotes')
