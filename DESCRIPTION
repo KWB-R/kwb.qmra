@@ -61,7 +61,7 @@ Suggests:
     remotes (>= 2.2.0),
     sessioninfo (>= 1.1.1),
     stringi (>= 1.5.3),
-    testthat (>= 2.3.2),
+    testthat (>= 3.0.0),
     tibble (>= 3.0.4)
 VignetteBuilder: 
     knitr
@@ -71,3 +71,4 @@ Remotes:
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 7.1.1
+Config/testthat/edition: 3
