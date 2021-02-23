@@ -1,4 +1,4 @@
-# [kwb.qmra 0.3.0](https://github.com/KWB-R/kwb.qmra)
+# [kwb.qmra 0.3.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.3.0) <small>2021-02-23</small>
 
 Adaptions for project [Smart-Control](https://www.kompetenz-wasser.de/en/project/smart-control/):
 
@@ -15,7 +15,7 @@ kwb.qmra::opencpu_simulate_risk) and example JSON datasets based on dummy config
 * Continuous integration: moved to `github-actions` (instead of `travis-ci` and 
 `appveyor`)
 
-# [kwb.qmra 0.2.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.2.0)
+# [kwb.qmra 0.2.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.2.0) <small>2019-07-19</small>
 
 Improvements of the R package (originally developed within the EU project [DEMOWARE](http://www.demoware.eu/en))
 made within the EU project [AquaNES](http://www.aquanes-h2020.eu): 
@@ -41,7 +41,7 @@ made within the EU project [AquaNES](http://www.aquanes-h2020.eu):
 
 For more details of the changes see also [Milestone: v0.2.0](https://github.com/KWB-R/kwb.qmra/milestone/5) 
 
-# [kwb.qmra 0.1.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v.0.1.1)
+# [kwb.qmra 0.1.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v.0.1.1) <small>2016-09-15</small>
 
 * version developed within DEMOWARE project and also released on [Zenodo](https://zenodo.org/record/154111) 
 * used for the quantitative microbiological risk assessment of different wastewater reuse options in Old Ford (see: [Zenodo](https://doi.org/10.5281/zenodo.159527))
