@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Dose-response modelling</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2021-06-14</h4>
+            <h4 class="date">2021-08-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/doseresponse.Rmd"><code>vignettes/doseresponse.Rmd</code></a></small>
       <div class="hidden name"><code>doseresponse.Rmd</code></div>
@@ -149,33 +149,19 @@
 <p>2.1 Download</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dr.db</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/dr.db_download.html">dr.db_download</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 37 Columns: 18</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr (12): Agent, Best fit model*, Optimized parameter(s), Host type, Agent s...
+## dbl  (6): LD50/ID50, # of doses, k, alpha, N50, PathogenID</code></pre>
 <pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Agent = col_character(),
-##   `Best fit model*` = col_character(),
-##   `Optimized parameter(s)` = col_character(),
-##   `LD50/ID50` = col_double(),
-##   `Host type` = col_character(),
-##   `Agent strain` = col_character(),
-##   Route = col_character(),
-##   `# of doses` = col_double(),
-##   `Dose units` = col_character(),
-##   Response = col_character(),
-##   Reference = col_character(),
-##   Link = col_character(),
-##   PathogenGroup = col_character(),
-##   PathogenName = col_character(),
-##   k = col_double(),
-##   alpha = col_double(),
-##   N50 = col_double(),
-##   PathogenID = col_double()
-## )</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div id="visualise" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualise" class="anchor"></a>2.2 Visualise</h2>
 <p><strong>Database</strong>:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dr.db2</span> <span class="op">&lt;-</span> <span class="va">dr.db</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PathogenGroup</span>,
                          <span class="va">PathogenName</span>, 
                         <span class="va">`Agent strain`</span>,
@@ -703,10 +689,10 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#DT::datatable(doseresponse, caption = caption)</span></code></pre></div>
 <p><strong>Dose response for all microbial parameters</strong>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dr.model</span> <span class="op">&lt;-</span> <span class="fu">kwb.qmra</span><span class="fu">::</span><span class="fu"><a href="../reference/dr.db_model.html">dr.db_model</a></span><span class="op">(</span>dr.db <span class="op">=</span> <span class="va">dr.db</span><span class="op">)</span>
 
 
@@ -719,6 +705,8 @@
 <p><img src="doseresponse_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p><strong>Dose for all microbial parameters with 50% infection probability</strong></p>
 <pre><code>## `summarise()` has grouped output by 'PathogenID', 'PathogenGroup'. You can override using the `.groups` argument.</code></pre>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## "none")` instead.</code></pre>
 <div class="figure">
 <img src="doseresponse_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Dose for all microbial parameters with 50% infection probability" width="768"><p class="caption">
 Figure 3: Dose for all microbial parameters with 50% infection probability

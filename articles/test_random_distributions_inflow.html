@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Inflow: Test Random Distributions</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">14 June, 2021</h4>
+            <h4 class="date">30 August, 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.qmra/blob/master/vignettes/test_random_distributions_inflow.Rmd"><code>vignettes/test_random_distributions_inflow.Rmd</code></a></small>
       <div class="hidden name"><code>test_random_distributions_inflow.Rmd</code></div>
@@ -184,57 +184,54 @@
 <span class="op">}</span>
 
 <span class="va">inflow_metadata</span> <span class="op">&lt;-</span> <span class="fu">create_inflow_metadata</span><span class="op">(</span><span class="op">)</span> 
-<span class="co">#&gt; </span>
+<span class="co">#&gt; Rows: 28 Columns: 11</span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; cols(</span>
-<span class="co">#&gt;   PathogenID = col_double(),</span>
-<span class="co">#&gt;   ReferenceID = col_double(),</span>
-<span class="co">#&gt;   WaterSourceID = col_double(),</span>
-<span class="co">#&gt;   min = col_double(),</span>
-<span class="co">#&gt;   max = col_double(),</span>
-<span class="co">#&gt;   distribution = col_character(),</span>
-<span class="co">#&gt;   mean = col_double(),</span>
-<span class="co">#&gt;   alpha = col_logical(),</span>
-<span class="co">#&gt;   beta = col_logical(),</span>
-<span class="co">#&gt;   PathogenInReference = col_character(),</span>
-<span class="co">#&gt;   Notes = col_character()</span>
-<span class="co">#&gt; )</span>
+<span class="co">#&gt; Delimiter: ","</span>
+<span class="co">#&gt; chr (3): distribution, PathogenInReference, Notes</span>
+<span class="co">#&gt; dbl (6): PathogenID, ReferenceID, WaterSourceID, min, max, mean</span>
+<span class="co">#&gt; lgl (2): alpha, beta</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; Rows: 37 Columns: 4</span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; cols(</span>
-<span class="co">#&gt;   PathogenID = col_double(),</span>
-<span class="co">#&gt;   PathogenName = col_character(),</span>
-<span class="co">#&gt;   PathogenDescription = col_logical(),</span>
-<span class="co">#&gt;   PathogenGroupID = col_double()</span>
-<span class="co">#&gt; )</span>
+<span class="co">#&gt; Delimiter: ","</span>
+<span class="co">#&gt; chr (1): PathogenName</span>
+<span class="co">#&gt; dbl (2): PathogenID, PathogenGroupID</span>
+<span class="co">#&gt; lgl (1): PathogenDescription</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; Rows: 3 Columns: 4</span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; cols(</span>
-<span class="co">#&gt;   PathogenGroupID = col_double(),</span>
-<span class="co">#&gt;   PathogenGroup = col_character(),</span>
-<span class="co">#&gt;   PathogenGroupDescription = col_character(),</span>
-<span class="co">#&gt;   DefaultPathogenID = col_double()</span>
-<span class="co">#&gt; )</span>
+<span class="co">#&gt; Delimiter: ","</span>
+<span class="co">#&gt; chr (2): PathogenGroup, PathogenGroupDescription</span>
+<span class="co">#&gt; dbl (2): PathogenGroupID, DefaultPathogenID</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; Rows: 50 Columns: 3</span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; cols(</span>
-<span class="co">#&gt;   ReferenceID = col_double(),</span>
-<span class="co">#&gt;   ReferenceName = col_character(),</span>
-<span class="co">#&gt;   ReferenceLink = col_character()</span>
-<span class="co">#&gt; )</span>
+<span class="co">#&gt; Delimiter: ","</span>
+<span class="co">#&gt; chr (2): ReferenceName, ReferenceLink</span>
+<span class="co">#&gt; dbl (1): ReferenceID</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; Rows: 8 Columns: 3</span>
 <span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; cols(</span>
-<span class="co">#&gt;   WaterSourceID = col_double(),</span>
-<span class="co">#&gt;   WaterSourceName = col_character(),</span>
-<span class="co">#&gt;   WaterSourceDescription = col_character()</span>
-<span class="co">#&gt; )</span>
+<span class="co">#&gt; Delimiter: ","</span>
+<span class="co">#&gt; chr (2): WaterSourceName, WaterSourceDescription</span>
+<span class="co">#&gt; dbl (1): WaterSourceID</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
+<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
 <span class="co">#&gt; Joining, by = "PathogenID"</span>
 <span class="co">#&gt; Joining, by = "PathogenGroupID"</span>
 <span class="co">#&gt; Joining, by = "WaterSourceID"</span>
 <span class="co">#&gt; Joining, by = "ReferenceID"</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">inflow_metadata</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 22</span>
+<span class="co">#&gt; # A tibble: 6 × 22</span>
 <span class="co">#&gt;   PathogenID ReferenceID WaterSourceID   min   max distribution  mean alpha</span>
 <span class="co">#&gt;        &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;</span>
 <span class="co">#&gt; 1          3          43             7     0 10    log10_norm   NA    NA   </span>
@@ -683,7 +680,7 @@
 <span class="fu">plot_percentiles</span><span class="op">(</span><span class="va">inflow_stats_list_df</span>, <span class="va">inflow_metadata</span><span class="op">)</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span></code></pre></div>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span></code></pre></div>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -695,7 +692,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-3.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-4.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -723,7 +720,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-10.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-11.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -731,7 +728,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-12.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-13.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -747,7 +744,7 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-16.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-17.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -771,15 +768,15 @@
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-23.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-24.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-25.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
-#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="test_random_distributions_inflow_files/figure-html/unnamed-chunk-5-26.png" width="700"></p>
 <pre><code>#&gt; Warning in self$trans$transform(x): NaNs produced
 #&gt; Warning: Transformation introduced infinite values in continuous y-axis
@@ -800,16 +797,16 @@
 <span class="fu">plot_percentiles</span><span class="op">(</span><span class="va">inflow_stats_list_df</span>, <span class="va">inflow_metadata</span><span class="op">)</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
@@ -830,7 +827,13 @@
 <span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
+<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
@@ -842,13 +845,7 @@
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
-<span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
-<span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
@@ -866,13 +863,13 @@
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
-<span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
+<span class="co">#&gt; Warning: Removed 6 row(s) containing missing values (geom_path).</span>
 <span class="co">#&gt; Warning in self$trans$transform(x): NaNs produced</span>
 <span class="co">#&gt; Warning: Transformation introduced infinite values in continuous y-axis</span>
 <span class="co">#&gt; Warning: Removed 5 row(s) containing missing values (geom_path).</span>
@@ -893,7 +890,7 @@
 <code class="sourceCode R"><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.1.0 (2021-05-18)</span>
+<span class="co">#&gt;  version  R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt;  os       macOS Catalina 10.15.7      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
@@ -901,18 +898,20 @@
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-06-14                  </span>
+<span class="co">#&gt;  date     2021-08-30                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version date       lib source                             </span>
+<span class="co">#&gt;  bit            4.0.4   2020-08-04 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  bit64          4.0.5   2020-08-30 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  bslib          0.2.5.1 2021-05-18 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  cachem         1.0.5   2021-05-15 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  cli            2.5.0   2021-04-26 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  colorspace     2.0-1   2021-05-04 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  cachem         1.0.6   2021-08-19 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  cli            3.0.1   2021-07-17 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  colorspace     2.0-2   2021-06-24 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  crayon         1.4.1   2021-02-08 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  desc           1.3.0   2021-03-05 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  digest         0.6.27  2020-10-24 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  dplyr          1.0.6   2021-05-05 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  dplyr          1.0.7   2021-06-18 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  ellipsis       0.3.2   2021-04-29 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  EnvStats       2.4.0   2020-10-21 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  evaluate       0.14    2019-05-28 [1] CRAN (R 4.1.0)                     </span>
@@ -921,60 +920,60 @@
 <span class="co">#&gt;  fastmap        1.1.0   2021-01-25 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  fs             1.5.0   2020-07-31 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  generics       0.1.0   2020-10-31 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  ggplot2      * 3.3.3   2020-12-30 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  ggplot2      * 3.3.5   2021-06-25 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  glue           1.4.2   2020-08-27 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  gtable         0.3.0   2019-03-25 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  highr          0.9     2021-04-16 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  hms            1.1.0   2021-05-17 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  htmltools      0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  httpuv         1.6.1   2021-05-07 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  htmltools      0.5.2   2021-08-25 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  httpuv         1.6.2   2021-08-18 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  jquerylib      0.1.4   2021-04-26 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  jsonlite       1.7.2   2020-12-09 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  knitr          1.33    2021-04-24 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  kwb.datetime   0.4.0   2021-06-14 [1] Github (kwb-r/kwb.datetime@0ffea49)</span>
-<span class="co">#&gt;  kwb.db         0.5.0   2021-06-14 [1] Github (kwb-r/kwb.db@5e6b039)      </span>
-<span class="co">#&gt;  kwb.qmra     * 0.3.0   2021-06-14 [1] local                              </span>
-<span class="co">#&gt;  kwb.utils      0.8.0   2021-06-14 [1] Github (kwb-r/kwb.utils@f58dba7)   </span>
+<span class="co">#&gt;  kwb.datetime   0.5.0   2021-08-30 [1] Github (kwb-r/kwb.datetime@5f2b2c4)</span>
+<span class="co">#&gt;  kwb.db         0.6.0   2021-08-30 [1] Github (kwb-r/kwb.db@358aa98)      </span>
+<span class="co">#&gt;  kwb.qmra     * 0.3.0   2021-08-30 [1] local                              </span>
+<span class="co">#&gt;  kwb.utils      0.8.0   2021-08-30 [1] Github (kwb-r/kwb.utils@f58dba7)   </span>
 <span class="co">#&gt;  labeling       0.4.2   2020-10-20 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  later          1.2.0   2021-04-23 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  later          1.3.0   2021-08-18 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  lifecycle      1.0.0   2021-02-15 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  magrittr       2.0.1   2020-11-17 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  memoise        2.0.0   2021-01-26 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  mime           0.10    2021-02-13 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  mime           0.11    2021-06-23 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  munsell        0.5.0   2018-06-12 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  pillar         1.6.1   2021-05-16 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  pillar         1.6.2   2021-07-29 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  pkgdown        1.6.1   2020-09-12 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  plyr           1.8.6   2020-03-03 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  promises       1.2.0.1 2021-02-11 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  ps             1.6.0   2021-02-28 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  purrr          0.3.4   2020-04-17 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  qmra.db      * 0.10.0  2021-06-14 [1] Github (kwb-r/qmra.db@a17cf3a)     </span>
-<span class="co">#&gt;  R6             2.5.0   2020-10-28 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  qmra.db      * 0.10.0  2021-08-30 [1] Github (kwb-r/qmra.db@a17cf3a)     </span>
+<span class="co">#&gt;  R6             2.5.1   2021-08-19 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  ragg           1.1.3   2021-06-09 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  Rcpp           1.0.6   2021-01-15 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  readr          1.4.0   2020-10-05 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  Rcpp           1.0.7   2021-07-07 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  readr          2.0.1   2021-08-10 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  rlang          0.4.11  2021-04-30 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  rmarkdown      2.8     2021-05-07 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  rmarkdown      2.10    2021-08-06 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  RODBC          1.3-16  2019-09-03 [1] Github (cran/RODBC@275b1a6)        </span>
 <span class="co">#&gt;  rprojroot      2.0.2   2020-11-15 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  rstudioapi     0.13    2020-11-12 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  sass           0.4.0   2021-05-12 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  scales         1.1.1   2020-05-11 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  sessioninfo  * 1.1.1   2018-11-05 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  sfsmisc        1.1-11  2021-04-12 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  shiny          1.6.0   2021-01-25 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  stringi      * 1.6.2   2021-05-17 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  stringi      * 1.7.4   2021-08-25 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  stringr        1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  systemfonts    1.0.2   2021-05-11 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  textshaping    0.3.5   2021-06-09 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  tibble       * 3.1.2   2021-05-16 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  tibble       * 3.1.4   2021-08-25 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  tidyr          1.1.3   2021-03-03 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  tidyselect     1.1.1   2021-04-30 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  utf8           1.2.1   2021-03-12 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  tzdb           0.1.2   2021-07-20 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  utf8           1.2.2   2021-07-24 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  vctrs          0.3.8   2021-04-29 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  vroom          1.5.4   2021-08-05 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  withr          2.4.2   2021-04-18 [1] CRAN (R 4.1.0)                     </span>
-<span class="co">#&gt;  xfun           0.23    2021-05-15 [1] CRAN (R 4.1.0)                     </span>
+<span class="co">#&gt;  xfun           0.25    2021-08-06 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  xtable         1.8-4   2019-04-21 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  yaml           2.2.1   2020-02-01 [1] CRAN (R 4.1.0)                     </span>
 <span class="co">#&gt;  zip            2.2.0   2021-05-31 [1] CRAN (R 4.1.0)                     </span>

@@ -205,82 +205,40 @@ corresponding values</p>
     <pre class="examples"><div class='input'><span class='co'>### Example simulation run</span>
 <span class='co'>## Read from JSON</span>
 <span class='va'>config_json</span> <span class='op'>&lt;-</span> <span class='fu'>kwb.qmra</span><span class='fu'>::</span><span class='fu'><a href='opencpu_config_read.html'>opencpu_config_read</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  name = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  type = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  value = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  min = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  max = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  mode = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  mean = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  sd = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  meanlog = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  sdlog = <span style='color: #BBBB00;'>col_logical()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  PathogenID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  PathogenName = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  PathogenGroup = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  simulate = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  type = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  value = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  min = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  max = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  mode = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  mean = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  sd = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  meanlog = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  sdlog = <span style='color: #BBBB00;'>col_logical()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  TreatmentID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  TreatmentName = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  TreatmentGroup = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  PathogenGroup = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  type = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  value = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  min = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  max = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  mode = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  mean = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  sd = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  meanlog = <span style='color: #BBBB00;'>col_logical()</span>,</span>
-#&gt; <span class='message'>  sdlog = <span style='color: #BBBB00;'>col_logical()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  TreatmentSchemeID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  TreatmentSchemeName = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  TreatmentID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  TreatmentName = <span style='color: #BB0000;'>col_character()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  PathogenID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  PathogenName = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  PathogenGroup = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  `Best fit model*` = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  k = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  alpha = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  N50 = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  `Host type` = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  `Dose units` = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  Route = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  Response = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  Reference = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  Link = <span style='color: #BB0000;'>col_character()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  PathogenID = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  PathogenName = <span style='color: #BB0000;'>col_character()</span>,</span>
-#&gt; <span class='message'>  infection_to_illness = <span style='color: #00BB00;'>col_double()</span>,</span>
-#&gt; <span class='message'>  dalys_per_case = <span style='color: #00BB00;'>col_double()</span></span>
-#&gt; <span class='message'>)</span></div><div class='input'><span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>config_json</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>3</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>10</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (2): name, type</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (5): value, min, max, mode, mean</span>
+#&gt; <span class='message'><span style='color: #BBBB00;'>lgl</span> (3): sd, meanlog, sdlog</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>37</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>13</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (3): PathogenName, PathogenGroup, type</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (4): PathogenID, simulate, min, max</span>
+#&gt; <span class='message'><span style='color: #BBBB00;'>lgl</span> (6): value, mode, mean, sd, meanlog, sdlog</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>38</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>13</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (4): TreatmentName, TreatmentGroup, PathogenGroup, type</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (3): TreatmentID, min, max</span>
+#&gt; <span class='message'><span style='color: #BBBB00;'>lgl</span> (6): value, mode, mean, sd, meanlog, sdlog</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>5</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>4</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (2): TreatmentSchemeName, TreatmentName</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (2): TreatmentSchemeID, TreatmentID</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>37</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>13</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (9): PathogenName, PathogenGroup, Best fit model*, Host type, Dose units...</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (4): PathogenID, k, alpha, N50</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>37</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>4</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>──</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>────────────────────────────────────────────────────────</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (1): PathogenName</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (3): PathogenID, infection_to_illness, dalys_per_case</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='input'><span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>config_json</span><span class='op'>)</span>
 <span class='co'>## Optionally directly import from CSVs</span>
 <span class='co'># config &lt;- kwb.qmra::config_read()</span>
 <span class='va'>risk</span> <span class='op'>&lt;-</span> <span class='fu'>kwb.qmra</span><span class='fu'>::</span><span class='fu'>opencpu_simulate_risk</span><span class='op'>(</span><span class='va'>config</span><span class='op'>)</span>
