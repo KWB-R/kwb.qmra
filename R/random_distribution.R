@@ -117,9 +117,10 @@ get_percentile <- function(percent_within_minmax = 0.9)
 #' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
 #' if 'type' is "log10_norm"
 #' @param log10_sdev standard deviation (default: abs((log10_max- log10_mean) / 
-#' get_percentile(0.95)), only used if 'type' is "log10_norm"
-#' @param mean mean value (default: (default_min(min, max, min_zero) / 
-#' default_max(max, 10*min_zero)) / 2), only used if 'type' is "norm"
+#' \code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
+#' "log10_norm"
+#' @param mean mean value (default: (\code{\link{default_min}}(min, max, min_zero) / 
+#' \code{\link{default_max}}(max, 10*min_zero)) / 2), only used if 'type' is "norm"
 #' @param sdev standard deviation (default: abs((log10_max - log10_mean) / 
 #' \code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
 #' "norm"

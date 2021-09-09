@@ -68,10 +68,11 @@ min_zero * 10, f = log10)), only used if 'type' is "log10_uniform" or "log10_nor
 if 'type' is "log10_norm"}
 
 \item{log10_sdev}{standard deviation (default: abs((log10_max- log10_mean) / 
-get_percentile(0.95)), only used if 'type' is "log10_norm"}
+\code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
+"log10_norm"}
 
-\item{mean}{mean value (default: (default_min(min, max, min_zero) / 
-default_max(max, 10*min_zero)) / 2), only used if 'type' is "norm"}
+\item{mean}{mean value (default: (\code{\link{default_min}}(min, max, min_zero) / 
+\code{\link{default_max}}(max, 10*min_zero)) / 2), only used if 'type' is "norm"}
 
 \item{sdev}{standard deviation (default: abs((log10_max - log10_mean) / 
 \code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
@@ -101,5 +102,7 @@ corresponding values
 Create random distribution
 }
 \seealso{
-
+for random triangle see \code{\link[stats]{rtri}}, for default 
+min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
+\code{\link{get_percentile}}
 }
