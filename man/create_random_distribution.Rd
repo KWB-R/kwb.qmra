@@ -102,7 +102,7 @@ corresponding values
 Create random distribution
 }
 \seealso{
-for random triangle see \code{\link[stats]{rtri}}, for default 
+for random triangle see \code{\link[EnvStats]{rtri}}, for default 
 min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
 \code{\link{get_percentile}}
 }

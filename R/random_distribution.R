@@ -142,7 +142,7 @@ get_percentile <- function(percent_within_minmax = 0.9)
 #' @importFrom stats sd qnorm runif rnorm rlnorm
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
-#' @seealso for random triangle see \code{\link[stats]{rtri}}, for default 
+#' @seealso for random triangle see \code{\link[EnvStats]{rtri}}, for default 
 #' min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
 #' \code{\link{get_percentile}} 
 #' 
