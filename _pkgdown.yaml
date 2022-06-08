@@ -98,6 +98,14 @@ reference:
       Functions for plotting QMRA results
     contents: 
       - starts_with("plot_")
+      
+  - title: Datasets
+    desc: >
+      Datasets within R package
+    contents:       
+      - config_default_json
+      - config_dummy_json
+      - risk_dummy_json
 
   - title: Export data
     desc: >
@@ -109,16 +117,22 @@ reference:
   - title: Helper functions
     desc: >
       Helper functions for performing QMRA
-    contents: 
+    contents:
+      - backcalc_infectionRisk_perDay
+      - calc_health_risk
+      - calc_infection_risk
       - config_write_dummy
       - create_random_distribution
-      - start_with("default")
+      - default_max
+      - default_min
       - generate_random_values 
+      - get_percentile
       - distribution_repeater 
       - dr.betapoisson
       - dr.db_download 
       - dr.db_model 
       - dr.expo
       - poisson_dose
+      - run_app
       - who_getTreatment
       
