@@ -4,7 +4,7 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![DOI](https://zenodo.org/badge/68301647.svg)](https://zenodo.org/badge/latestdoi/68301647)
 [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/kwb-r/kwb.qmra/master?urlpath=rstudio)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.qmra)](
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.qmra)]()
 [![R-Universe_Status_Badge](https://kwb-r.r-universe.dev/badges/kwb.qmra)](https://kwb-r.r-universe.dev/)
 
 An R package for QMRA (quantitative microbial risk assessment) of water supply systems
