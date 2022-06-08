@@ -11,7 +11,17 @@ An R package for QMRA (quantitative microbial risk assessment) of water supply s
 
 ## Installation
 
+For installing the latest release of this R package run the following code below:
+
 ```r
-#install.packages("remotes", repos = "https://cloud.r-project.org")
-remotes::install_github("KWB-R/kwb.qmra")
+# Enable repository from kwb-r
+options(repos = c(
+  kwbr = 'https://kwb-r.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
+  
+# Download and install kwb.qmra in R
+install.packages('kwb.qmra')
+
+# Browse the kwb.qmra manual pages
+help(package = 'kwb.qmra')
 ```
