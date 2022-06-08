@@ -35,7 +35,6 @@ development:
   
 navbar:
   title: ~
-  type: default
   left:
   - text: Background
     href: articles/general.html
