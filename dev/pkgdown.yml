@@ -1,0 +1,14 @@
+pandoc: 2.7.3
+pkgdown: 2.0.3
+pkgdown_sha: ~
+articles:
+  doseresponse: doseresponse.html
+  general: general.html
+  installation: installation.html
+  test_random_distributions_inflow: test_random_distributions_inflow.html
+  usage: usage.html
+  usage_log10_norm_inflow: usage_log10_norm_inflow.html
+  usage_log10_uniform_inflow: usage_log10_uniform_inflow.html
+  web_app: web_app.html
+last_built: 2022-06-09T10:00Z
+
