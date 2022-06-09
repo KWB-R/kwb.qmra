@@ -2,31 +2,39 @@ authors:
   Michael Rustler:
     href: https://mrustl.de
   Hauke Sonnenberg:
-    href: https://github.com/hsonne
+    href: https://www.kompetenz-wasser.de/en/ueber-uns/team/hauke-sonnenberg
   Wolfgang Seis:
-    href: https://www.researchgate.net/profile/Wolfgang_Seis
-  Kompetenzzentrum Wasser Berlin gGmbH:
-    href: https://www.kompetenz-wasser.de
-    html: <img src="http://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png" height="24" />
-  AquaNES: 
-    href: https://www.kompetenz-wasser.de/en/project/aquanes/
-    html: <img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg" height="24" />
+    href: https://www.kompetenz-wasser.de/en/ueber-uns/team/wolfgang-seis
+  AquaNES:
+    href: https://www.kompetenz-wasser.de/en/forschung/projekte/aquanes
+    html: <img src='https://old.kompetenz-wasser.de/wp-content/uploads/2017/09/11-558x122.jpg' alt='Project AquaNES'
+      width='72' />
   DEMOWARE: 
-    href: https://www.kompetenz-wasser.de/en/project/demoware/
-    html: <img src="https://www.kompetenz-wasser.de/wp-content/uploads/2017/05/demoware-logo.png" height="24" />
+    href: https://www.kompetenz-wasser.de/en/forschung/projekte/demoware/
+    html: <img src='https://www.kompetenz-wasser.de/media/pages/forschung/projekte/demoware/46595105f4-1639132759/demoware-logo.png' alt='Project DEMOWARE'
+      width='72' />
   Smart-Control:
-    href: https://www.kompetenz-wasser.de/en/project/smart-control/
-    html: <img src='https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png'
-      height='24' />
+    href: https://www.kompetenz-wasser.de/en/forschung/projekte/smart-control/
+    html: <img src='https://smart-control.inowas.com/wp-content/uploads/2020/06/cropped-SMART_logo_black.png' alt='Project Smart-Control'
+      width='72' />
+  Kompetenzzentrum Wasser Berlin gGmbH (KWB):
+    href: https://www.kompetenz-wasser.de
+    html: <img src='https://publications.kompetenz-wasser.de/img/KWB-Logo.svg' alt='KWB'
+      width='72' />
 template:
-  params:
-    bootswatch: cerulean
-    docsearch:
-      api_key: ba545525664b60ab9e580ae0f7f4ac02
-      index_name: kwb_qmra
+  bootstrap: 5
+  bootswatch: cerulean
+  bslib:
+    bg: '#ffffff'
+    fg: '#000000'
+    primary: '#007aff'
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+development:
+  mode: auto
+  
 navbar:
   title: ~
-  type: default
   left:
   - text: Background
     href: articles/general.html
@@ -89,6 +97,14 @@ reference:
       Functions for plotting QMRA results
     contents: 
       - starts_with("plot_")
+      
+  - title: Datasets
+    desc: >
+      Datasets within R package
+    contents:       
+      - config_default_json
+      - config_dummy_json
+      - risk_dummy_json
 
   - title: Export data
     desc: >
@@ -100,16 +116,22 @@ reference:
   - title: Helper functions
     desc: >
       Helper functions for performing QMRA
-    contents: 
+    contents:
+      - backcalc_infectionRisk_perDay
+      - calc_health_risk
+      - calc_infection_risk
       - config_write_dummy
       - create_random_distribution
-      - start_with("default")
+      - default_max
+      - default_min
       - generate_random_values 
+      - get_percentile
       - distribution_repeater 
       - dr.betapoisson
       - dr.db_download 
       - dr.db_model 
       - dr.expo
       - poisson_dose
+      - run_app
       - who_getTreatment
       

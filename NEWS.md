@@ -1,3 +1,7 @@
+# [kwb.qmra 0.3.1](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.3.1) <small>2022-06-08</small>
+
+* Harmonise with kwb.pkgbuild
+
 # [kwb.qmra 0.3.0](https://github.com/KWB-R/kwb.qmra/releases/tag/v0.3.0) <small>2021-02-23</small>
 
 Adaptions for project [Smart-Control](https://www.kompetenz-wasser.de/en/project/smart-control/):

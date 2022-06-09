@@ -1,35 +1,19 @@
 Package: kwb.qmra
 Title: QMRA (quantitative microbial risk assessment)
-Version: 0.3.0
-Authors@R: 
-    c(person(given = "Michael",
-             family = "Rustler",
-             role = c("aut", "cre"),
-             email = "michael.rustler@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0003-0647-7726")),
-      person(given = "Hauke",
-             family = "Sonnenberg",
-             role = "aut",
-             email = "hauke.sonnenberg@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0001-9134-2871")),
-      person(given = "Wolfgang",
-             family = "Seis",
-             role = c("ctb", "rev"),
-             email = "wolfgang.seis@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0002-7436-8575")),
-      person(given = "Ralf",
-             family = "Junghanns",
-             role = c("ctb"),
-             email = "ralf.junghanns@gmail.com",
-             comment = c(ORCID = "")),
-      person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
-             role = "cph"),
-      person(given = "AquaNES",
-             role = "fnd"),
-      person(given = "DEMOWARE",
-             role = "fnd"),
-      person(given = "Smart-Control",
-             role = "fnd"))
+Version: 0.3.0.9000
+Authors@R: c(
+    person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0647-7726")),
+    person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = "aut",
+           comment = c(ORCID = "0000-0001-9134-2871")),
+    person("Wolfgang", "Seis", , "wolfgang.seis@kompetenz-wasser.de", role = c("ctb", "rev"),
+           comment = c(ORCID = "0000-0002-7436-8575")),
+    person("Ralf", "Junghanns", , "ralf.junghanns@gmail.com", role = "ctb"),
+    person("Kompetenzzentrum Wasser Berlin gGmbH (KWB)", role = "cph"),
+    person("AquaNES", role = "fnd"),
+    person("DEMOWARE", role = "fnd"),
+    person("Smart-Control", role = "fnd")
+  )
 Description: QMRA for water supply systems.
 License: MIT + file LICENSE
 URL: http://github.com/KWB-R/kwb.qmra/
@@ -66,9 +50,9 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes: 
-    github::kwb-r/kwb.utils@v0.7.0,
-    github::kwb-r/qmra.db@v0.10.0
+    github::kwb-r/kwb.utils,
+    github::kwb-r/qmra.db
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 7.1.1
-Config/testthat/edition: 3

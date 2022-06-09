@@ -89,44 +89,52 @@ get_percentile <- function(percent_within_minmax = 0.9)
 }
 
 #' Create random distribution
-#' @param type "uniform" calls runif(), "log10_uniform" calls 
-#' 10^runif(number_of_events, log10_min, log10_max), "triangle" calls 
-#' EnvStats::rtri(), "lognorm" calls rlnorm(), "norm" calls rnorm() and 
-#' "log10_norm" calls 10^rnorm(number_of_events, mean = log10_mean, 
+#' @param type "uniform" calls \code{\link[stats]{runif}}, "log10_uniform" calls 
+#' 10^\code{\link[stats]{runif}}(number_of_events, log10_min, log10_max), "triangle" 
+#' calls \code{\link[EnvStats]{rtri}}, "lognorm" calls \code{\link[stats]{rlnorm}}, 
+#' "norm" calls \code{\link[stats]{rnorm}} and "log10_norm" calls 
+#' 10^\code{\link[stats]{rnorm}}(number_of_events, mean = log10_mean, 
 #' sdev = log10_sdev), (default: "uniform") 
 #' @param number_of_repeatings how often should the random distribution with the
 #' same parameters be generated (default: 1)
 #' @param  number_of_events number of events
 #' @param value constant value (no random number), gets repeated number_of_events
 #' times (if 'type' = 'value')
-#' @param min minimum value (default: 10), only used if 'type' is "runif" or
+#' @param min minimum value (default: 10), only used if 'type' is "uniform" or
 #' "triangle"
-#' @param max maximum value (default: 1000), only used if 'type' is "runif" or
+#' @param max maximum value (default: 1000), only used if 'type' is "uniform" or
 #' "triangle"
 #' @param percent_within_minmax percent of data point within min/max (default: 
-#' 0.9 i.e. 90 percent
+#' 0.9 i.e. 90 percent,see also \code{\link{get_percentile}}
 #' @param min_zero  only used if 'type' is "log10_uniform" or 
 #' "log10_norm", "norm" or "lognorm" and "min" value equal zero. 
 #' In this case the zero is replaced by this value (default: 0.01), see also 
 #' \code{\link{default_min}}
-#' @param log10_min minimum value (default: default_min(min, max, 
+#' @param log10_min minimum value (default: \code{\link{default_min}}(min, max, 
 #' min_zero, f = log10)), only used if 'type' is "log10_uniform" or "log10_norm"
-#' @param log10_max maximum value (default: ifelse(max > 0, log10(max), 
-#' log10_zero_threshold), only used if 'type' is "log10_uniform" or "log10_norm"
+#' @param log10_max maximum value (default: \code{\link{default_max}}(max, 
+#' min_zero * 10, f = log10)), only used if 'type' is "log10_uniform" or "log10_norm"
 #' @param log10_mean mean value (default: (log10_min + log10_max)/2), only used 
 #' if 'type' is "log10_norm"
 #' @param log10_sdev standard deviation (default: abs((log10_max- log10_mean) / 
-#' get_percentile(0.95)), only used if 'type' is "log10_norm"
-#' @param mean mean value (default: (default_min(min, max, min_zero) / 
-#' default_max(max, 10*min_zero)) / 2), only used if 'type' is "norm"
-#' @param sdev standard deviation (default: abs((default_max(max, 10*min_zero) - 
-#' mean) / get_percentile(0.95))), only used if 'type' is "norm"
-#' @param meanlog log mean value (default: mean(log((min + max) / 2))), only
+#' \code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
+#' "log10_norm"
+#' @param mean mean value (default: (\code{\link{default_min}}(min, max, min_zero) / 
+#' \code{\link{default_max}}(max, 10*min_zero)) / 2), only used if 'type' is "norm"
+#' @param sdev standard deviation (default: abs((log10_max - log10_mean) / 
+#' \code{\link{get_percentile}}(percent_within_minmax))), only used if 'type' is 
+#' "norm"
+#' @param meanlog log mean value (default: 
+#' mean(log( \code{\link{default_min}}(min, max, min_zero) +  
+#' \code{\link{default_max}}(max, 10 * min_zero)) / 2)), only
 #' used if 'type' is "lognorm"
-#' @param sdlog standard deviation (default: abs(sd(c(default_min(min, max, 
-#' min_zero, f = log)))) ), only used if 'type' is "lognorm"
-#' @param mode (default: default_min(min, max, min_zero) + 
-#' default_max(max, 10 * min_zero) / 2), only used if 'type' is "triangle"
+#' @param sdlog standard deviation (default: abs(sd(c(
+#' \code{\link{default_min}}(min, max, min_zero, f = log), 
+#' \code{\link{default_max}}(max, 10 * min_zero, f = log)))), 
+#' only used if 'type' is "lognorm"
+#' @param mode (default: \code{\link{default_min}}(min, max, min_zero) + 
+#' \code{\link{default_max}}(max, 10 * min_zero) / 2), only used if 'type' is 
+#' "triangle"
 #' @param debug print debug information (default: TRUE)
 #' @return list with parameters of user defined random distribution and
 #' corresponding values
@@ -134,7 +142,7 @@ get_percentile <- function(percent_within_minmax = 0.9)
 #' @importFrom stats sd qnorm runif rnorm rlnorm
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
-#' @seealso for random triangle see \code{\link{rtri}}, for default 
+#' @seealso for random triangle see \code{\link[EnvStats]{rtri}}, for default 
 #' min/max see \code{\link{default_min}},  \code{\link{default_max}} and 
 #' \code{\link{get_percentile}} 
 #' 
